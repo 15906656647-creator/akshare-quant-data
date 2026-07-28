@@ -1,0 +1,90 @@
+﻿# =============================================================================
+# AKShare Quantitative Finance Data – Universe Configuration
+# Stage 0: Frozen scope – do not edit without updating stage0 tests.
+# =============================================================================
+# as_of_date: 2026-07-27
+
+schema_version: "1.0.0"
+project_name: "AKShare 量化金融数据测试"
+timezone: "Asia/Shanghai"
+base_currency: "CNY"
+as_of_date: "2026-07-27"
+
+# ---- Stock universe (16 A-shares) -------------------------------------------
+stocks:
+  - symbol: "002067"
+    exchange: "SZ"
+    symbol_em: "SZ002067"
+    market_lower: "sz"
+  - symbol: "002600"
+    exchange: "SZ"
+    symbol_em: "SZ002600"
+    market_lower: "sz"
+  - symbol: "002230"
+    exchange: "SZ"
+    symbol_em: "SZ002230"
+    market_lower: "sz"
+  - symbol: "600763"
+    exchange: "SH"
+    symbol_em: "SH600763"
+    market_lower: "sh"
+  - symbol: "603259"
+    exchange: "SH"
+    symbol_em: "SH603259"
+    market_lower: "sh"
+  - symbol: "603799"
+    exchange: "SH"
+    symbol_em: "SH603799"
+    market_lower: "sh"
+  - symbol: "601012"
+    exchange: "SH"
+    symbol_em: "SH601012"
+    market_lower: "sh"
+  - symbol: "600438"
+    exchange: "SH"
+    symbol_em: "SH600438"
+    market_lower: "sh"
+  - symbol: "002361"
+    exchange: "SZ"
+    symbol_em: "SZ002361"
+    market_lower: "sz"
+  - symbol: "601500"
+    exchange: "SH"
+    symbol_em: "SH601500"
+    market_lower: "sh"
+  - symbol: "600231"
+    exchange: "SH"
+    symbol_em: "SH600231"
+    market_lower: "sh"
+  - symbol: "300274"
+    exchange: "SZ"
+    symbol_em: "SZ300274"
+    market_lower: "sz"
+  - symbol: "601636"
+    exchange: "SH"
+    symbol_em: "SH601636"
+    market_lower: "sh"
+  - symbol: "002129"
+    exchange: "SZ"
+    symbol_em: "SZ002129"
+    market_lower: "sz"
+  - symbol: "000100"
+    exchange: "SZ"
+    symbol_em: "SZ000100"
+    market_lower: "sz"
+  - symbol: "300433"
+    exchange: "SZ"
+    symbol_em: "SZ300433"
+    market_lower: "sz"
+
+# ---- Crypto capability-validation configuration -----------------------------
+crypto:
+  - requested_pair: "ETHUSDT"
+    base_asset: "ETH"
+    quote_asset: "USDT"
+    exact_match_required: true
+    allow_pair_substitution: false
+    result_enum:
+      - success
+      - partial_success
+      - unsupported

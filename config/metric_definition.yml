@@ -1,0 +1,224 @@
+# =============================================================================
+# AKShare Quantitative Finance Data - Metric & Analysis Definitions
+# Stage 0: Frozen metrics, data ranges, adjustment types, and calculation rules.
+# =============================================================================
+schema_version: "1.0.0"
+as_of_date: "2026-07-27"
+
+# ---- Data range specifications -----------------------------------------------
+data_ranges:
+  stock_daily:
+    description: "A-share daily bars"
+    default_years: 3
+    min_acceptance_years: 1
+    apply_to_baseline: true
+  limit_event:
+    description: "Daily-limit (up/down) event statistics"
+    lookback_natural_days: 365
+    filter_by_trading_calendar: true
+    filter_by_security_status: true
+  financial:
+    description: "Financial statements and indicators"
+    annual_reports_years: 5
+    quarterly_reports_count: 12
+  fund_flow:
+    description: "Individual stock fund flow"
+    scope: "all_available"
+    note: "Typically ~100 trading days via stock_individual_fund_flow"
+  spot_and_valuation:
+    description: "Real-time quotes and valuation snapshots"
+    scope: "execution_time_snapshot"
+
+# ---- Adjustment type rules ---------------------------------------------------
+adjustment_rules:
+  trend_and_ma:
+    adjust: "qfq"
+    description: "Trend analysis, moving averages, and returns"
+  limit_detection:
+    adjust: ""
+    description: "Price-limit detection must use raw prices"
+  long_term_wealth:
+    adjust: "hfq"
+    description: "Optional long-term wealth-curve study"
+    required: false
+  mixed_forbidden: true
+  mixed_forbidden_description: "Never mix different adjustment types within a single metric"
+
+# ---- Moving average windows --------------------------------------------------
+ma_windows:
+  price:
+    - 3
+    - 5
+    - 7
+    - 10
+    - 13
+    - 20
+    - 21
+  volume:
+    - 5
+    - 20
+
+# ---- Volume and price metrics ------------------------------------------------
+volume_price_metrics:
+  return_1d:
+    formula: "close / previous_close - 1"
+    description: "Single-day return"
+  volume_ratio_20:
+    formula: "volume_share / volume_ma_20"
+    description: "Volume relative to 20-day average"
+  volume_spike_threshold:
+    value: 2.0
+    description: "volume_ratio_20 >= 2.0 considered a volume spike"
+  large_move_threshold:
+    value: 0.05
+    description: "abs(return_1d) >= 0.05 considered a large up/down move"
+  volatility_window: 20
+  annual_trading_days: 252
+
+# ---- Activity scoring --------------------------------------------------------
+activity_scoring:
+  lookback_window: 120
+  method: "cross_sectional_quantile"
+  cross_section_universe: "16 test stocks"
+  save_component_scores: true
+  weights:
+    turnover_amount_quantile: 0.25
+    turnover_rate_quantile: 0.20
+    volatility_quantile: 0.20
+    volume_spike_frequency_quantile: 0.15
+    large_move_frequency_quantile: 0.10
+    limit_and_gap_event_frequency_quantile: 0.10
+
+# ---- Price limit detection ---------------------------------------------------
+price_limit_detection:
+  description: >
+    Price-limit detection must use raw (unadjusted) prices.
+    Never hard-code +/-10%. Must consider exchange, board, ST history,
+    listing status history, rule effective dates, tick size, yesterday close,
+    and actual daily rule.
+  priority:
+    - "1: Use API-provided limit_up_price / limit_down_price when available"
+    - "2: Otherwise compute theoretical limit from prev_close, rule table, security status, and tick size"
+    - "3: Apply tick_size / 2 as matching tolerance"
+    - "4: Recent limit-pool endpoints used for cross-validation only, not as sole annual source"
+  matching_tolerance:
+    value: 0.5
+    unit: "tick_size"
+  forward_return_windows:
+    - 1
+    - 3
+    - 5
+    - 10
+  forward_return_unit: "trading_days"
+
+# ---- Consolidation / oscillation analysis ------------------------------------
+consolidation_analysis:
+  windows:
+    - 20
+    - 40
+    - 60
+  primary_window: 40
+  trend_slope_definition: "OLS regression slope of log(close) on trading-day index"
+  required_fields:
+    - box_width
+    - trend_slope
+    - r_squared
+    - bollinger_bandwidth
+    - atr_over_close
+    - upper_touch_count
+    - lower_touch_count
+    - volume_trend_slope
+    - false_breakout_count
+    - long_shadow_frequency
+    - fund_flow_divergence
+  style_labels:
+    - "温和箱体型"
+    - "高波动震荡型"
+    - "放量冲击型"
+    - "低活跃盘整型"
+    - "趋势型"
+    - "证据不足"
+  output_requirements:
+    - "confidence score for every result"
+    - "explanation text for every result"
+  nomenclature:
+    rule: "All output related to major-player behavior must use qualifying language"
+    proper_term: "疑似主力行为特征"
+    prohibited: "Deterministic major-player conclusions"
+
+# ---- Fundamental analysis metrics --------------------------------------------
+fundamental_metrics:
+  required:
+    - revenue
+    - net_profit
+    - net_profit_parent
+    - revenue_yoy
+    - net_profit_yoy
+    - revenue_ttm
+    - net_profit_ttm
+    - gross_margin
+    - net_margin
+    - operating_cf_over_net_profit
+    - roe
+    - debt_to_asset_ratio
+  must_save:
+    - report_period
+    - announcement_date
+    - data_update_time
+    - revision_version
+    - is_cumulative
+  cumulative_rule:
+    description: "Cumulative P&L and cash-flow values must be converted to single-quarter before analysis"
+    stage0_note: "Stage 0 defines the rule only; conversion is implemented in later stages"
+
+# ---- Valuation metrics -------------------------------------------------------
+valuation_metrics:
+  pe_dynamic:
+    source: "stock_zh_a_spot_em snapshot"
+    type: "snapshot"
+  pb:
+    source: "stock_zh_a_spot_em snapshot"
+    type: "snapshot"
+  forbidden:
+    - "Backfilling historical valuations using current snapshots"
+  negative_pe_handling: "Mark as loss-making or unavailable; exclude from normal high/low ranking"
+
+# ---- P&L ratio definitions ---------------------------------------------------
+pl_ratio:
+  return_distribution:
+    formula: "mean_positive_return / abs(mean_negative_return)"
+    description: "Upside/downside return-distribution ratio"
+  strategy:
+    description: "Strategy win/loss ratio"
+    precondition: "Requires explicit entry, exit, stop-loss, and holding-period definitions"
+
+# ---- Data handling & reproducibility ------------------------------------------
+reproducibility:
+  raw_data:
+    rule: "Append-only; never overwrite historical fetches"
+  metadata:
+    required:
+      - interface_name
+      - parameters
+      - fetched_at
+      - akshare_version
+      - schema_hash
+  empty_vs_failure:
+    rule: "Empty DataFrame and call failure must be recorded separately"
+  run_id:
+    rule: "Every execution must generate a unique run_id"
+    format: "UUID4"
+  idempotency:
+    rule: "Database writes must be idempotent (upsert by primary key)"
+  investment_advice:
+    rule: "Never output investment advice"
+
+# ---- Numeric conventions -----------------------------------------------------
+numeric_conventions:
+  percentage_storage: "decimal"
+  percentage_example: "5% stored as 0.05"
+  currency: "CNY"
+  currency_unit: "yuan (元)"
+  volume_original: "lot (手)"
+  volume_converted: "share (股)"
+  volume_conversion: "1 lot = 100 shares"
