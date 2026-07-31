@@ -1,0 +1,29 @@
+{
+  "feature_file_payload_conflict": {
+    "status": "PASS",
+    "exception_type": "Stage6PayloadConflictError",
+    "error_code": "feature_payload_conflict",
+    "original_file_unchanged": true
+  },
+  "database_payload_conflict": {
+    "status": "PASS",
+    "exception_type": "Stage6PayloadConflictError",
+    "error_code": "feature_payload_conflict",
+    "table_name": "feat_price_daily",
+    "database_unchanged": true,
+    "primary_error_contains_rollback_failure": false
+  },
+  "different_run_same_path": {
+    "status": "PASS",
+    "error_code": "feature_run_path_conflict"
+  },
+  "different_run_new_path": {
+    "status": "PASS",
+    "persistence_status": "created",
+    "temporary_only": true
+  },
+  "incomplete_database": {
+    "status": "PASS",
+    "error_code": "incomplete_existing_stage6_artifact"
+  }
+}

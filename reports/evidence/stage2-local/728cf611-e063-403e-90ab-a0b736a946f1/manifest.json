@@ -1,0 +1,158 @@
+{
+  "run_id": "728cf611-e063-403e-90ab-a0b736a946f1",
+  "created_at": "2026-07-29T02:43:36.245213+00:00",
+  "as_of_date": "2026-07-27",
+  "sample_symbol": "600763",
+  "probe_count": 12,
+  "status_counts": {
+    "success": 12
+  },
+  "pool_date": "2026-07-24",
+  "pool_date_source": "cli",
+  "results": [
+    {
+      "probe_id": "stock_daily_qfq",
+      "status": "success",
+      "error_type": "",
+      "row_count": 61,
+      "column_count": 12,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "push2his.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\stock_daily_qfq.sample.json"
+    },
+    {
+      "probe_id": "stock_daily_raw",
+      "status": "success",
+      "error_type": "",
+      "row_count": 61,
+      "column_count": 12,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "push2his.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\stock_daily_raw.sample.json"
+    },
+    {
+      "probe_id": "stock_spot",
+      "status": "success",
+      "error_type": "",
+      "row_count": 5884,
+      "column_count": 23,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "push2.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\stock_spot.sample.json"
+    },
+    {
+      "probe_id": "financial_abstract",
+      "status": "success",
+      "error_type": "",
+      "row_count": 80,
+      "column_count": 114,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "quotes.sina.cn",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\financial_abstract.sample.json"
+    },
+    {
+      "probe_id": "financial_indicator",
+      "status": "success",
+      "error_type": "",
+      "row_count": 21,
+      "column_count": 86,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "money.finance.sina.com.cn",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\financial_indicator.sample.json"
+    },
+    {
+      "probe_id": "balance_sheet_report",
+      "status": "success",
+      "error_type": "",
+      "row_count": 112,
+      "column_count": 319,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "emweb.securities.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\balance_sheet_report.sample.json"
+    },
+    {
+      "probe_id": "profit_sheet_report",
+      "status": "success",
+      "error_type": "",
+      "row_count": 112,
+      "column_count": 203,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "emweb.securities.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\profit_sheet_report.sample.json"
+    },
+    {
+      "probe_id": "cashflow_sheet_report",
+      "status": "success",
+      "error_type": "",
+      "row_count": 101,
+      "column_count": 254,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "emweb.securities.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\cashflow_sheet_report.sample.json"
+    },
+    {
+      "probe_id": "individual_fund_flow",
+      "status": "success",
+      "error_type": "",
+      "row_count": 120,
+      "column_count": 13,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "push2his.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\individual_fund_flow.sample.json"
+    },
+    {
+      "probe_id": "limit_up_pool",
+      "status": "success",
+      "error_type": "",
+      "row_count": 40,
+      "column_count": 16,
+      "attempt_count": 1,
+      "pool_date": "2026-07-24",
+      "pool_date_source": "cli",
+      "target_host": "push2ex.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\limit_up_pool.sample.json"
+    },
+    {
+      "probe_id": "limit_down_pool",
+      "status": "success",
+      "error_type": "",
+      "row_count": 25,
+      "column_count": 16,
+      "attempt_count": 1,
+      "pool_date": "2026-07-24",
+      "pool_date_source": "cli",
+      "target_host": "push2ex.eastmoney.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\limit_down_pool.sample.json"
+    },
+    {
+      "probe_id": "crypto_spot",
+      "status": "success",
+      "error_type": "",
+      "row_count": 10,
+      "column_count": 9,
+      "attempt_count": 1,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "datacenter-api.jin10.com",
+      "sample_path": "reports\\evidence\\stage2-local\\728cf611-e063-403e-90ab-a0b736a946f1\\crypto_spot.sample.json"
+    }
+  ]
+}

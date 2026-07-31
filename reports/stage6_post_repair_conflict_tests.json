@@ -1,0 +1,44 @@
+{
+  "feature_file_payload": {
+    "exception_type": "Stage6PayloadConflictError",
+    "error_code": "feature_payload_conflict",
+    "original_artifacts_unchanged": true,
+    "temporary_files_remaining": 0,
+    "status": "PASS"
+  },
+  "database_payload": {
+    "exception_type": "Stage6PayloadConflictError",
+    "error_code": "feature_payload_conflict",
+    "table_name": "feat_price_daily",
+    "primary_is_rollback_error": false,
+    "original_artifacts_unchanged": true,
+    "status": "PASS"
+  },
+  "different_run_same_path": {
+    "exception_type": "Stage6ArtifactIdentityConflictError",
+    "error_code": "feature_run_path_conflict",
+    "status": "PASS"
+  },
+  "partial_artifacts": {
+    "directory_only": {
+      "error_code": "incomplete_existing_stage6_artifact",
+      "status": "PASS"
+    },
+    "partial_parquet": {
+      "error_code": "incomplete_existing_stage6_artifact",
+      "status": "PASS"
+    },
+    "database_only": {
+      "error_code": "incomplete_existing_stage6_artifact",
+      "status": "PASS"
+    },
+    "missing_manifest": {
+      "error_code": "incomplete_existing_stage6_artifact",
+      "status": "PASS"
+    },
+    "database_missing_tables": {
+      "error_code": "incomplete_existing_stage6_artifact",
+      "status": "PASS"
+    }
+  }
+}

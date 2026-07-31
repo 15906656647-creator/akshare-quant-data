@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "akshare-data-test"
+version = "0.1.0"
+description = "AKShare Quantitative Finance Data Test – Stage 1"
+requires-python = ">=3.9"
+dependencies = [
+    "akshare",
+    "pandas",
+    "numpy",
+    "pyarrow",
+    "duckdb",
+    "sqlalchemy",
+    "pydantic",
+    "pyyaml",
+    "python-dotenv",
+    "tenacity",
+    "matplotlib",
+    "openpyxl",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pandera",
+]
+
+[project.scripts]
+akshare-data-test = "akshare_data_test.cli:main"
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,105 @@
+{
+  "checked_at": "2026-07-29T06:50:45.461532+00:00",
+  "proxy_detected": false,
+  "proxy_environment": {
+    "HTTP_PROXY": false,
+    "HTTPS_PROXY": false,
+    "ALL_PROXY": false,
+    "NO_PROXY": false
+  },
+  "ca_environment_configured": false,
+  "ca_environment": {
+    "REQUESTS_CA_BUNDLE": false,
+    "SSL_CERT_FILE": false
+  },
+  "hosts": [
+    {
+      "host": "push2his.eastmoney.com",
+      "dns_status": "pass",
+      "resolved_addresses": [
+        "140.207.67.156"
+      ],
+      "tcp_443_status": "pass",
+      "tls_status": "pass",
+      "error_layer": "",
+      "error_type": "",
+      "error_summary": ""
+    },
+    {
+      "host": "push2.eastmoney.com",
+      "dns_status": "pass",
+      "resolved_addresses": [
+        "47.112.165.11"
+      ],
+      "tcp_443_status": "pass",
+      "tls_status": "pass",
+      "error_layer": "",
+      "error_type": "",
+      "error_summary": ""
+    },
+    {
+      "host": "quotes.sina.cn",
+      "dns_status": "pass",
+      "resolved_addresses": [
+        "106.63.15.52",
+        "116.133.8.236",
+        "49.7.36.205"
+      ],
+      "tcp_443_status": "pass",
+      "tls_status": "pass",
+      "error_layer": "",
+      "error_type": "",
+      "error_summary": ""
+    },
+    {
+      "host": "money.finance.sina.com.cn",
+      "dns_status": "pass",
+      "resolved_addresses": [
+        "106.63.15.52",
+        "116.133.8.236",
+        "49.7.36.205"
+      ],
+      "tcp_443_status": "pass",
+      "tls_status": "pass",
+      "error_layer": "",
+      "error_type": "",
+      "error_summary": ""
+    },
+    {
+      "host": "emweb.securities.eastmoney.com",
+      "dns_status": "pass",
+      "resolved_addresses": [
+        "111.43.168.55",
+        "111.43.168.56",
+        "111.43.168.57",
+        "111.43.168.58",
+        "111.43.168.59",
+        "111.43.168.60",
+        "111.43.168.61",
+        "111.43.168.62"
+      ],
+      "tcp_443_status": "pass",
+      "tls_status": "pass",
+      "error_layer": "",
+      "error_type": "",
+      "error_summary": ""
+    },
+    {
+      "host": "datacenter-api.jin10.com",
+      "dns_status": "pass",
+      "resolved_addresses": [
+        "114.215.172.231",
+        "218.244.148.250",
+        "218.244.149.96",
+        "47.96.218.159",
+        "47.99.184.42"
+      ],
+      "tcp_443_status": "pass",
+      "tls_status": "pass",
+      "error_layer": "",
+      "error_type": "",
+      "error_summary": ""
+    }
+  ],
+  "overall_status": "PASS"
+}

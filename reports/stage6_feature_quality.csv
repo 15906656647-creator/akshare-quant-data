@@ -1,0 +1,10 @@
+﻿feature_group,row_count,duplicate_business_keys,null_required_keys,infinite_numeric_values,status
+price_daily,11602,0,0,0,PASS
+trend_daily,11602,0,0,0,PASS
+activity_daily,11602,0,0,0,PASS
+limit_event,3862,0,0,0,PASS
+financial_period,2688,0,0,0,PASS
+fund_flow_daily,1904,0,0,0,PASS
+style_daily,11602,0,0,0,PASS
+current_snapshot,16,0,0,0,PASS
+suspected_behavior_evidence,16,0,0,0,PASS

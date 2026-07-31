@@ -1,0 +1,10 @@
+﻿transform_run_id,source_dataset,source_field,canonical_field,data_type,source_unit,target_unit,scale_factor,nullable,required,mapping_status,mapping_evidence,notes
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,序号,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,最高,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,最低,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,今开,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,昨收,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,涨速,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,5分钟涨跌,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,60日涨跌幅,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_zh_a_spot_em,年初至今涨跌幅,,source,unknown,unknown,1.0,True,False,unmapped,Preserved in source_payload_json; no canonical guess,

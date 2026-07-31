@@ -1,0 +1,48 @@
+﻿transform_run_id,dataset_id,check_name,severity,status,issue_count,message
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_qfq,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_qfq,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_qfq,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_qfq,ohlc_relationship,ERROR,PASS,0,OHLC relationships
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_qfq,future_trade_date,ERROR,PASS,0,No daily date later than as_of_date
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_qfq,volume_conversion,ERROR,PASS,0,volume_share = volume_lot * 100
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_raw,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_raw,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_raw,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_raw,ohlc_relationship,ERROR,PASS,0,OHLC relationships
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_raw,future_trade_date,ERROR,PASS,0,No daily date later than as_of_date
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_daily_raw,volume_conversion,ERROR,PASS,0,volume_share = volume_lot * 100
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_spot_full_market,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_spot_full_market,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_spot_full_market,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_spot_target_16,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_spot_target_16,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_spot_target_16,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,stock_spot_target_16,target_symbol_count,ERROR,PASS,0,Exactly 16 target symbols
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_abstract,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_abstract,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_abstract,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_abstract,announcement_date_unknown,WARN,WARN,95600,Unknown announcement date is not point-in-time safe
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_abstract,numeric_conversion_failed,WARN,PASS,0,Raw value preserved; unknown or unsupported unit was not guessed
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_indicator,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_indicator,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_indicator,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_indicator,announcement_date_unknown,WARN,WARN,28560,Unknown announcement date is not point-in-time safe
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_indicator,numeric_conversion_failed,WARN,PASS,0,Raw value preserved; unknown or unsupported unit was not guessed
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_balance_sheet,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_balance_sheet,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_balance_sheet,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_balance_sheet,announcement_date_unknown,WARN,PASS,0,Unknown announcement date is not point-in-time safe
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_balance_sheet,numeric_conversion_failed,WARN,PASS,0,Raw value preserved; unknown or unsupported unit was not guessed
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_profit_statement,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_profit_statement,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_profit_statement,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_profit_statement,announcement_date_unknown,WARN,PASS,0,Unknown announcement date is not point-in-time safe
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_profit_statement,numeric_conversion_failed,WARN,PASS,0,Raw value preserved; unknown or unsupported unit was not guessed
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_cash_flow_statement,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_cash_flow_statement,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_cash_flow_statement,null_primary_key,ERROR,PASS,0,Business key fields must be non-null
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_cash_flow_statement,announcement_date_unknown,WARN,PASS,0,Unknown announcement date is not point-in-time safe
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,financial_statement_cash_flow_statement,numeric_conversion_failed,WARN,PASS,0,Raw value preserved; unknown or unsupported unit was not guessed
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,fund_flow,non_empty,ERROR,PASS,0,Clean dataset must be non-empty
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,fund_flow,duplicate_business_key,ERROR,PASS,0,Stable business key must be unique
+31635b34-d1ee-46d4-9c0f-32ae3f30d567,fund_flow,null_primary_key,ERROR,PASS,0,Business key fields must be non-null

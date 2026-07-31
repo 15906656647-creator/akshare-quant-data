@@ -1,0 +1,12 @@
+field,column_exists,target_row_count,non_null_count,numeric_parseable_count,missing_symbols
+代码,true,16,16,16,
+名称,true,16,16,0,
+最新价,true,16,16,16,
+成交额,true,16,16,16,
+振幅,true,16,16,16,
+量比,true,16,16,16,
+换手率,true,16,16,16,
+市盈率-动态,true,16,16,16,
+市净率,true,16,16,16,
+总市值,true,16,16,16,
+流通市值,true,16,16,16,

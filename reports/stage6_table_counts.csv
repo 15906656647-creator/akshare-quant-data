@@ -1,0 +1,10 @@
+﻿table_name,row_count
+feat_price_daily,11602
+feat_trend_daily,11602
+feat_activity_daily,11602
+feat_limit_event,3862
+feat_financial_period,2688
+feat_fund_flow_daily,1904
+feat_style_daily,11602
+feat_suspected_behavior_evidence,16
+feat_current_snapshot,16

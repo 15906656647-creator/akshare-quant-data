@@ -1,0 +1,319 @@
+{
+  "stage": 6,
+  "acceptance_status": "FAIL",
+  "can_enter_stage7": false,
+  "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "as_of_date": "2026-07-27",
+  "source_database": {
+    "path": "database/akshare_data_test_stage5_repaired.duckdb",
+    "size": 143929344,
+    "sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026",
+    "selected_from_stage5_final_acceptance": true,
+    "read_only_verified": true,
+    "unchanged": true
+  },
+  "feature_database": {
+    "path": "database/stage6/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/akshare_features.duckdb",
+    "size": 12595200,
+    "sha256": "f7630f1a103acf7726c51ee396ea359fde731e1ba153b640f5b3ac4f2874cb5e",
+    "read_only_verified": true,
+    "unchanged": true
+  },
+  "pre_gate": {
+    "pip_check": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "compileall": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": 186,
+      "duration_seconds": 82.94,
+      "offline_socket_guard": true
+    },
+    "doctor": {
+      "status": "PASS",
+      "exit_code": 0,
+      "package_checks": "14/14",
+      "config_checks": "9/9",
+      "filesystem_checks": "20/20",
+      "path": "reports/stage6_acceptance_pre_gate.json"
+    },
+    "stage0_hashes": {
+      "status": "PASS",
+      "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+      "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+      "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+    },
+    "stage5_final_acceptance": {
+      "status": "PASS",
+      "can_enter_stage6": true,
+      "source": "reports/stage5_final_reaudit.json"
+    }
+  },
+  "input_immutability": {
+    "status": "PASS",
+    "stage3_raw": {
+      "expected": 34,
+      "verified": 34,
+      "hash_matches": 34
+    },
+    "stage4_raw": {
+      "expected": 96,
+      "verified": 96,
+      "hash_matches": 96
+    },
+    "stage5_clean": {
+      "expected": 10,
+      "verified": 10,
+      "hash_matches": 10
+    },
+    "stage5_database_hash_unchanged": true,
+    "formal_feature_files_unchanged": true,
+    "formal_feature_database_unchanged": true,
+    "formal_manifest_unchanged": true
+  },
+  "manifest_validation": {
+    "status": "PASS",
+    "path": "reports/evidence/stage6/48af48ca-2707-4c53-ad51-745a17b6295d/manifest.json",
+    "size": 7325,
+    "sha256": "43ee09f2e3b892801200e06f9e1a2e2c437caf8805ae2e84ef8256f3b089a0fa",
+    "registered_files": 9,
+    "size_matches": 9,
+    "hash_matches": 9
+  },
+  "feature_definition_validation": {
+    "status": "PASS",
+    "registered_definitions": 109,
+    "missing_definitions": 0,
+    "unauthorized_formal_features": 0,
+    "ma_windows": [
+      3,
+      5,
+      7,
+      10,
+      13,
+      20,
+      21
+    ],
+    "other_parameters_from_frozen_config": true
+  },
+  "feature_file_validation": {
+    "status": "PASS",
+    "files": 9,
+    "readable": 9,
+    "duplicate_business_keys": 0,
+    "null_required_keys": 0,
+    "infinite_values": 0
+  },
+  "temporal_safety": {
+    "status": "PASS",
+    "historical_market_max_date": "2026-07-27",
+    "future_market_rows": 0,
+    "fund_flow_safe_max_date": "2026-07-27",
+    "future_fund_flow_rows": 0,
+    "fund_flow_2026_07_28_rows_used": 0,
+    "unknown_announcement_rows_in_source": 124160,
+    "unknown_announcement_rows_used": 0,
+    "future_announcement_rows_used": 0,
+    "spot_snapshot_at": "2026-07-29T11:35:34.785065+08:00",
+    "current_spot_rows_used_in_historical": 0,
+    "negative_shift_calls": 0,
+    "centered_rolling_calls": 0,
+    "leakage_error_count": 0
+  },
+  "adjustment_basis_validation": {
+    "status": "PASS",
+    "returns": "qfq",
+    "moving_averages": "qfq",
+    "trend": "qfq",
+    "limit_detection": "raw",
+    "mixed_basis_count": 0,
+    "percentages_are_decimal": true,
+    "money_unit": "CNY yuan"
+  },
+  "formula_validation": {
+    "status": "PASS",
+    "independent_expected_values": true,
+    "production_feature_functions_used_for_expected": false,
+    "tested_groups": 8,
+    "tested_features": 39,
+    "sample_count": 2835,
+    "pass_count": 2835,
+    "fail_count": 0,
+    "maximum_absolute_error": 0.0,
+    "maximum_relative_error": 0.0,
+    "absolute_tolerance": 1e-10,
+    "relative_tolerance": 1e-08,
+    "all_seven_moving_averages_passed": true
+  },
+  "limit_detection_validation": {
+    "status": "PASS",
+    "source_basis": "raw",
+    "row_count": 3862,
+    "uncertain_count": 3862,
+    "confirmed_count": 0,
+    "threshold_source": "security_rule_history_unavailable",
+    "guessed_threshold_count": 0
+  },
+  "financial_feature_validation": {
+    "status": "PASS",
+    "source_view": "v_financial_point_in_time_safe",
+    "row_count": 2688,
+    "feature_count": 12,
+    "unknown_announcement_rows_used": 0,
+    "future_announcement_rows_used": 0,
+    "point_in_time_safe": true,
+    "missing_periods_preserved_as_null": true
+  },
+  "fund_flow_validation": {
+    "status": "PASS",
+    "source_view": "v_stock_fund_flow_as_of_safe",
+    "complete_fact_rows": 1920,
+    "safe_input_rows": 1904,
+    "future_rows": 16,
+    "future_rows_used": 0,
+    "max_input_date": "2026-07-27"
+  },
+  "snapshot_separation_validation": {
+    "status": "PASS",
+    "snapshot_rows": 16,
+    "snapshot_at": "2026-07-29T11:35:34.785065+08:00",
+    "historical_flag_true_rows": 0,
+    "historical_feature_contamination_rows": 0
+  },
+  "database_validation": {
+    "status": "PASS",
+    "read_only_open": true,
+    "table_count": 14,
+    "view_count": 5,
+    "missing_objects": [],
+    "quality_blockers": 0,
+    "rebuildable_from_sql_and_parquet": true
+  },
+  "table_counts": {
+    "feat_price_daily": 11602,
+    "feat_trend_daily": 11602,
+    "feat_activity_daily": 11602,
+    "feat_limit_event": 3862,
+    "feat_financial_period": 2688,
+    "feat_fund_flow_daily": 1904,
+    "feat_style_daily": 11602,
+    "feat_suspected_behavior_evidence": 16,
+    "feat_current_snapshot": 16,
+    "feature_run": 1,
+    "feature_definition_registry": 109,
+    "feature_file_manifest": 9,
+    "feature_lineage": 9,
+    "feature_quality_issue": 9
+  },
+  "duplicate_key_validation": {
+    "status": "PASS",
+    "duplicate_business_keys": 0,
+    "null_required_keys": 0
+  },
+  "lineage_validation": {
+    "status": "PASS",
+    "records": 9,
+    "missing_records": 0,
+    "source_database_hash_matches": 9,
+    "feature_file_hash_matches": 9,
+    "personal_absolute_paths": 0
+  },
+  "quality_validation": {
+    "status": "PASS",
+    "quality_records": 9,
+    "unresolved_errors": 0,
+    "suspected_behavior_rows": 16,
+    "insufficient_evidence_rows": 16,
+    "deterministic_major_player_statements": 0,
+    "investment_advice_rows": 0
+  },
+  "idempotency_validation": {
+    "status": "FAIL",
+    "temporary_workspace_only": true,
+    "complete_nonempty_feature_tables": 9,
+    "complete_nonempty_metadata_tables": 5,
+    "first_persistence_status": "PASS",
+    "identical_replay_idempotent": false,
+    "identical_replay_error": "FileExistsError:stage6_database_already_exists_use_a_new_path_or_same_run_id",
+    "all_table_counts_unchanged": true,
+    "all_table_content_hashes_unchanged": true,
+    "feature_file_hashes_unchanged": true,
+    "metadata_duplicated": false,
+    "feature_file_payload_conflicts_rejected": true,
+    "database_payload_conflict_rejected": true
+  },
+  "transaction_validation": {
+    "status": "FAIL",
+    "rollback_verified": true,
+    "partial_write_found": false,
+    "temporary_leftover_table_count": 0,
+    "formal_products_modified": false,
+    "conflict_error_clear": false,
+    "observed_error": "TransactionException:TransactionContext Error: cannot rollback - no transaction is active"
+  },
+  "scope_boundary_check": {
+    "status": "PASS",
+    "final_rankings": 0,
+    "trading_signals": 0,
+    "investment_advice": 0,
+    "models_or_predictions": 0,
+    "stage7_artifacts": 0,
+    "formal_build_stage6_reexecuted": false,
+    "real_network_access": false
+  },
+  "security_check": {
+    "status": "PASS",
+    "effective_credentials": 0,
+    "personal_absolute_paths": 0,
+    "dot_env_tracked": false,
+    "lock_wal_temp_files": 0
+  },
+  "git_traceability": {
+    "status": "WARN",
+    "branch": "master",
+    "head": "9aea2edb60afdc8930953188149398b25c71675d",
+    "diff_check_exit_code": 0,
+    "stage6_files_untracked": true,
+    "checkpoint_recommended": true
+  },
+  "powershell_required": [],
+  "failures": [
+    "完整非空输入在同一 feature_run_id 和同一路径的第二次数据库持久化未幂等完成，而是抛出 FileExistsError。",
+    "数据库 payload 冲突虽然未留下部分写入，但根因错误被二次 rollback 的 TransactionException 覆盖，不满足明确冲突错误要求。"
+  ],
+  "warnings": [
+    "Ruff 未安装；本次未联网安装，记录为非阻断 WARN。",
+    "存在旧的非本次正式 run 的 database/akshare_features_stage6.duckdb；已隔离且未删除、未混用。",
+    "3,862 条涨跌停记录因历史证券规则不可获得而全部保留为 uncertain，未猜测阈值。",
+    "滚动窗口 warm-up NULL 为预期行为。",
+    "16 条疑似主力行为特征均为证据不足，置信度为空；未作确定性解释。",
+    "feature_quality_issue 为每个 Feature 组一条汇总记录，未单独登记 unknown-rule WARN；不确定性仍完整保留在 feat_limit_event。",
+    "建议的模块文件 storage/feature_store.py、storage/feature_duckdb_store.py、quality/feature_quality.py 不存在；对应职责集中于 stage6_build.py，列为结构性 WARN。",
+    "阶段1至阶段6的大量文件仍未纳入 Git 跟踪，建议修复失败后建立检查点。"
+  ],
+  "evidence": [
+    "docs/stage6_acceptance.md",
+    "reports/stage6_acceptance_pre_gate.json",
+    "reports/stage6_acceptance_input_immutability.csv",
+    "reports/stage6_acceptance_feature_files.csv",
+    "reports/stage6_acceptance_feature_definitions.csv",
+    "reports/stage6_acceptance_formula_validation.csv",
+    "reports/stage6_acceptance_temporal_safety.csv",
+    "reports/stage6_acceptance_database_objects.csv",
+    "reports/stage6_acceptance_table_counts.csv",
+    "reports/stage6_acceptance_lineage.csv",
+    "reports/stage6_acceptance_idempotency.csv",
+    "reports/stage6_acceptance_idempotency_detail.json",
+    "reports/stage6_acceptance_scope_boundary.csv",
+    "reports/stage6_acceptance_security.csv"
+  ]
+}

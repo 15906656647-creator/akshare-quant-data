@@ -1,0 +1,5 @@
+﻿check_id,match_count,evidence,status
+effective_credentials,0,,PASS
+personal_absolute_paths,0,,PASS
+dot_env_tracked,0,not tracked,PASS
+manifest_temp_wal_lock,0,manifest path scan,PASS

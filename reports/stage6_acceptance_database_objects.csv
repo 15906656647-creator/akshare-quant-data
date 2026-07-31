@@ -1,0 +1,20 @@
+﻿object_type,schema_name,object_name,expected,exists,row_count,status
+BASE TABLE,main,feat_activity_daily,True,True,11602,PASS
+BASE TABLE,main,feat_current_snapshot,True,True,16,PASS
+BASE TABLE,main,feat_financial_period,True,True,2688,PASS
+BASE TABLE,main,feat_fund_flow_daily,True,True,1904,PASS
+BASE TABLE,main,feat_limit_event,True,True,3862,PASS
+BASE TABLE,main,feat_price_daily,True,True,11602,PASS
+BASE TABLE,main,feat_style_daily,True,True,11602,PASS
+BASE TABLE,main,feat_suspected_behavior_evidence,True,True,16,PASS
+BASE TABLE,main,feat_trend_daily,True,True,11602,PASS
+BASE TABLE,main,feature_definition_registry,True,True,109,PASS
+BASE TABLE,main,feature_file_manifest,True,True,9,PASS
+BASE TABLE,main,feature_lineage,True,True,9,PASS
+BASE TABLE,main,feature_quality_issue,True,True,9,PASS
+BASE TABLE,main,feature_run,True,True,1,PASS
+VIEW,main,v_current_snapshot_features,True,True,16,PASS
+VIEW,main,v_feature_as_of_20260727,True,True,16,PASS
+VIEW,main,v_feature_latest_historical,True,True,16,PASS
+VIEW,main,v_feature_quality_blockers,True,True,0,PASS
+VIEW,main,v_suspected_behavior_evidence,True,True,16,PASS

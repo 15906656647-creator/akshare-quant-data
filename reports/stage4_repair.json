@@ -1,0 +1,17 @@
+{
+  "stage": 4,
+  "run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "repair_status": "PASS",
+  "previous_success_count": 83,
+  "selected_task_count": 13,
+  "repaired_success_count": 13,
+  "remaining_failed_count": 0,
+  "final_success_count": 96,
+  "final_failed_count": 0,
+  "final_raw_file_count": 96,
+  "historical_failure_evidence_preserved": true,
+  "before_repair_raw_unchanged_count": 83,
+  "manifest_raw_hash_verified_count": 96,
+  "pytest_passed_count": 143,
+  "verified_offline": true
+}

@@ -1,0 +1,19 @@
+schema_version: "1.0.0"
+stage: 5
+rules:
+  - {dataset: stock_daily, field: 成交量, source_unit: lot, target_unit: share, scale_factor: 100, evidence: "Stage 0 frozen rule: 1 lot = 100 shares"}
+  - {dataset: stock_daily, field: 成交额, source_unit: CNY_yuan, target_unit: CNY_yuan, scale_factor: 1, evidence: "AKShare interface definition"}
+  - {dataset: stock_daily, field: 振幅, source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "AKShare interface definition"}
+  - {dataset: stock_daily, field: 涨跌幅, source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "AKShare interface definition"}
+  - {dataset: stock_daily, field: 换手率, source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "AKShare interface definition"}
+  - {dataset: stock_spot, field: 成交量, source_unit: lot, target_unit: share, scale_factor: 100, evidence: "Stage 0 frozen rule: 1 lot = 100 shares"}
+  - {dataset: stock_spot, field: 涨跌幅, source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "AKShare interface definition"}
+  - {dataset: stock_spot, field: 振幅, source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "AKShare interface definition"}
+  - {dataset: stock_spot, field: 换手率, source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "AKShare interface definition"}
+  - {dataset: fund_flow, field: "*净占比", source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "AKShare individual fund-flow interface definition"}
+  - {dataset: financial_statement, field: "*_YOY", source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "Eastmoney report schema suffix explicitly denotes YoY percent"}
+  - {dataset: financial_metric, field: "*(%)", source_unit: percent_point, target_unit: decimal, scale_factor: 0.01, evidence: "Source field explicitly includes (%)"}
+unknown_unit_policy:
+  convert: false
+  preserve_raw_value: true
+  severity: WARN

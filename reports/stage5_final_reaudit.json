@@ -1,0 +1,572 @@
+{
+  "stage": 5,
+  "status": "PASS",
+  "can_enter_stage6": true,
+  "stage6_database_path": "database/akshare_data_test_stage5_repaired.duckdb",
+  "as_of_date": "2026-07-27",
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "pre_gate": {
+    "pip_check": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": 168,
+      "offline_socket_guard": true
+    },
+    "compileall": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "doctor": {
+      "status": "PASS",
+      "exit_code": 0,
+      "path": "reports/stage5_final_reaudit_doctor.json"
+    },
+    "ruff": "WARN: not installed; not required"
+  },
+  "formal_database": {
+    "path": "database/akshare_data_test.duckdb",
+    "size": 142880768,
+    "sha256": "d00f8d6017f5f74b3945f158af70153aef378af0c39f867f5dbd1c1cb1b3c372",
+    "tables": [
+      "data_lineage",
+      "data_quality_issue",
+      "dim_security",
+      "etl_run",
+      "fact_financial_abstract",
+      "fact_financial_indicator",
+      "fact_financial_statement",
+      "fact_stock_daily",
+      "fact_stock_fund_flow",
+      "fact_stock_spot",
+      "field_mapping_registry",
+      "source_file_manifest"
+    ],
+    "views": [
+      "v_financial_all",
+      "v_financial_announcement_unknown",
+      "v_financial_point_in_time_safe",
+      "v_financial_potential_lookahead",
+      "v_latest_stock_spot",
+      "v_stock_daily_qfq",
+      "v_stock_daily_raw"
+    ],
+    "quality_columns": [
+      "transform_run_id",
+      "dataset_id",
+      "check_name",
+      "severity",
+      "status",
+      "issue_count",
+      "message"
+    ],
+    "mapping_columns": [
+      "transform_run_id",
+      "source_dataset",
+      "source_field",
+      "canonical_field",
+      "data_type",
+      "source_unit",
+      "target_unit",
+      "scale_factor",
+      "nullable",
+      "required",
+      "mapping_status",
+      "mapping_evidence",
+      "notes"
+    ],
+    "indexes": [],
+    "counts": {
+      "data_lineage": 130,
+      "data_quality_issue": 47,
+      "dim_security": 16,
+      "etl_run": 1,
+      "fact_financial_abstract": 95600,
+      "fact_financial_indicator": 28560,
+      "fact_financial_statement": 863226,
+      "fact_stock_daily": 23204,
+      "fact_stock_fund_flow": 1920,
+      "fact_stock_spot": 5900,
+      "field_mapping_registry": 1024,
+      "source_file_manifest": 130
+    },
+    "transform_run": {
+      "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+      "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+      "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+      "as_of_date": "2026-07-27"
+    },
+    "fact_hashes": {
+      "fact_financial_abstract": "6f2a24644235cb973d784ff7ed581688f071aa9552e5ea981de08543b5fdcd36",
+      "fact_financial_indicator": "3739a53df71f0830eb52c5958a6e8144a41fdf3f5b94ea8bc9fa8a9228f1d807",
+      "fact_financial_statement": "5cb16ffdcec9d9c52db81c80390bab74451905822b8e0521d676ea6ad9af49a4",
+      "fact_stock_daily": "90f67465e9d1758ea072b9e53bea15e36dc39c580c357f82854e65f9856283f9",
+      "fact_stock_fund_flow": "c1186c92bb4f024a41228b53ff978e00a68361bb9116ae4f3073c4ff81b49f8e",
+      "fact_stock_spot": "06ddfaf9ca1ac10f0a327e5b45d48d8e4090140b727fbc7faea8b1c1b37d9c39"
+    },
+    "contains_issue_key": false,
+    "contains_mapping_key": false,
+    "contains_required_unique_indexes": false,
+    "contains_fund_flow_safe_view": false,
+    "migration_needed": true,
+    "formal_database_repair_applied": false
+  },
+  "candidate_database": {
+    "path": "database/akshare_data_test_stage5_repaired.duckdb",
+    "size": 143929344,
+    "sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026",
+    "tables": [
+      "data_lineage",
+      "data_quality_issue",
+      "dim_security",
+      "etl_run",
+      "fact_financial_abstract",
+      "fact_financial_indicator",
+      "fact_financial_statement",
+      "fact_stock_daily",
+      "fact_stock_fund_flow",
+      "fact_stock_spot",
+      "field_mapping_registry",
+      "source_file_manifest"
+    ],
+    "views": [
+      "v_financial_all",
+      "v_financial_announcement_unknown",
+      "v_financial_point_in_time_safe",
+      "v_financial_potential_lookahead",
+      "v_latest_stock_spot",
+      "v_stock_daily_qfq",
+      "v_stock_daily_raw",
+      "v_stock_fund_flow_as_of_safe"
+    ],
+    "quality_columns": [
+      "transform_run_id",
+      "dataset_id",
+      "check_name",
+      "severity",
+      "status",
+      "issue_count",
+      "message",
+      "issue_code",
+      "symbol",
+      "field_name",
+      "business_key_json",
+      "source_file",
+      "source_row_number",
+      "issue_scope",
+      "issue_key",
+      "record_hash"
+    ],
+    "mapping_columns": [
+      "transform_run_id",
+      "source_dataset",
+      "source_field",
+      "canonical_field",
+      "data_type",
+      "source_unit",
+      "target_unit",
+      "scale_factor",
+      "nullable",
+      "required",
+      "mapping_status",
+      "mapping_evidence",
+      "notes",
+      "mapping_key",
+      "record_hash"
+    ],
+    "indexes": [
+      {
+        "schema_name": "main",
+        "table_name": "data_quality_issue",
+        "index_name": "uq_data_quality_issue_issue_key",
+        "is_unique": true,
+        "expressions": "[issue_key]"
+      },
+      {
+        "schema_name": "main",
+        "table_name": "field_mapping_registry",
+        "index_name": "uq_field_mapping_registry_mapping_key",
+        "is_unique": true,
+        "expressions": "[mapping_key]"
+      }
+    ],
+    "counts": {
+      "data_lineage": 130,
+      "data_quality_issue": 47,
+      "dim_security": 16,
+      "etl_run": 1,
+      "fact_financial_abstract": 95600,
+      "fact_financial_indicator": 28560,
+      "fact_financial_statement": 863226,
+      "fact_stock_daily": 23204,
+      "fact_stock_fund_flow": 1920,
+      "fact_stock_spot": 5900,
+      "field_mapping_registry": 1024,
+      "source_file_manifest": 130
+    },
+    "transform_run": {
+      "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+      "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+      "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+      "as_of_date": "2026-07-27"
+    },
+    "fact_hashes": {
+      "fact_financial_abstract": "6f2a24644235cb973d784ff7ed581688f071aa9552e5ea981de08543b5fdcd36",
+      "fact_financial_indicator": "3739a53df71f0830eb52c5958a6e8144a41fdf3f5b94ea8bc9fa8a9228f1d807",
+      "fact_financial_statement": "5cb16ffdcec9d9c52db81c80390bab74451905822b8e0521d676ea6ad9af49a4",
+      "fact_stock_daily": "90f67465e9d1758ea072b9e53bea15e36dc39c580c357f82854e65f9856283f9",
+      "fact_stock_fund_flow": "c1186c92bb4f024a41228b53ff978e00a68361bb9116ae4f3073c4ff81b49f8e",
+      "fact_stock_spot": "06ddfaf9ca1ac10f0a327e5b45d48d8e4090140b727fbc7faea8b1c1b37d9c39"
+    },
+    "schema_version": "stage5_metadata_idempotency_v2",
+    "migration_applied": true,
+    "migration_summary": {
+      "tables": [
+        "data_lineage",
+        "data_quality_issue",
+        "dim_security",
+        "etl_run",
+        "fact_financial_abstract",
+        "fact_financial_indicator",
+        "fact_financial_statement",
+        "fact_stock_daily",
+        "fact_stock_fund_flow",
+        "fact_stock_spot",
+        "field_mapping_registry",
+        "source_file_manifest"
+      ],
+      "views": [
+        "v_financial_all",
+        "v_financial_announcement_unknown",
+        "v_financial_point_in_time_safe",
+        "v_financial_potential_lookahead",
+        "v_latest_stock_spot",
+        "v_stock_daily_qfq",
+        "v_stock_daily_raw",
+        "v_stock_fund_flow_as_of_safe"
+      ],
+      "counts": {
+        "data_lineage": 130,
+        "data_quality_issue": 47,
+        "dim_security": 16,
+        "etl_run": 1,
+        "fact_financial_abstract": 95600,
+        "fact_financial_indicator": 28560,
+        "fact_financial_statement": 863226,
+        "fact_stock_daily": 23204,
+        "fact_stock_fund_flow": 1920,
+        "fact_stock_spot": 5900,
+        "field_mapping_registry": 1024,
+        "source_file_manifest": 130
+      },
+      "metadata_migration": {
+        "field_mapping_registry": 1024,
+        "data_quality_issue": 47
+      },
+      "quality_upsert": {
+        "inserted": 0,
+        "unchanged": 47
+      },
+      "mapping_upsert": {
+        "inserted": 0,
+        "unchanged": 1024
+      }
+    },
+    "required_columns_present": true,
+    "required_unique_indexes_present": true,
+    "required_views_present": true,
+    "status": "PASS"
+  },
+  "table_validation": [
+    {
+      "table_name": "data_lineage",
+      "row_count": 130,
+      "expected_row_count": 130,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "a007b16e42df04a511e4790da44130a12e18e0191317d054307db61c630599a7",
+      "content_hash": "e6d49c0201652c2774ef170a1d5733d20697b208c4bfa2c111f23c64f85bfa9a",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "data_quality_issue",
+      "row_count": 47,
+      "expected_row_count": 47,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "f8f82a00c9627fcc030718bd0ec65e255842e5a94dac7d9befa791ad07bd4ffb",
+      "content_hash": "c95e1fee32178b5b8d59ab064ef84da7c7b2a0b7074e899cbb49db3da08612e1",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "dim_security",
+      "row_count": 16,
+      "expected_row_count": 16,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "479cbe49313013b79dacdc5a793d5737c6ff3ae33a046cab36836498fde7bea5",
+      "content_hash": "0d32ecdd2e78f8a379a7fc21e0d075368b2f7a828929e9bd8be6f3df30d5c65a",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "etl_run",
+      "row_count": 1,
+      "expected_row_count": 1,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "5d810b4449a7bf0fa793567a893c2e780a07c47528a7e0bc9b0fe9b0f370e5ff",
+      "content_hash": "8e3b70fa2d9f3c0f926202f507770ff4fc38d4613b0c7df7139d3244f9b15864",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "fact_financial_abstract",
+      "row_count": 95600,
+      "expected_row_count": 95600,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "dc761e014a0c45ad7a015fe98a5f3a02125950e4b7c158389240668dc75c1872",
+      "content_hash": "6f2a24644235cb973d784ff7ed581688f071aa9552e5ea981de08543b5fdcd36",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "fact_financial_indicator",
+      "row_count": 28560,
+      "expected_row_count": 28560,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "83a14542cb117ea1051ab9da7bf131454cad08d6d1c17f2dbc6c8389891041ea",
+      "content_hash": "3739a53df71f0830eb52c5958a6e8144a41fdf3f5b94ea8bc9fa8a9228f1d807",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "fact_financial_statement",
+      "row_count": 863226,
+      "expected_row_count": 863226,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "abcb0ee5ab2fbf80ccca3bc7c20a77a063e001e95ef5c68983d9bea92d0cdeae",
+      "content_hash": "5cb16ffdcec9d9c52db81c80390bab74451905822b8e0521d676ea6ad9af49a4",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "fact_stock_daily",
+      "row_count": 23204,
+      "expected_row_count": 23204,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "ac19e9c3f1d43603d354d772b94ed9ac2ba39fa4742775edcbb33039411c11e1",
+      "content_hash": "90f67465e9d1758ea072b9e53bea15e36dc39c580c357f82854e65f9856283f9",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "fact_stock_fund_flow",
+      "row_count": 1920,
+      "expected_row_count": 1920,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "922ec600eb79d11ac823d5bd34479f2d25cc270a18294e2e39a9a468a2037a6f",
+      "content_hash": "c1186c92bb4f024a41228b53ff978e00a68361bb9116ae4f3073c4ff81b49f8e",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "fact_stock_spot",
+      "row_count": 5900,
+      "expected_row_count": 5900,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "b86238ec68ecb883132269bdde229da7113f760016072fe13d1425c04cf2e988",
+      "content_hash": "06ddfaf9ca1ac10f0a327e5b45d48d8e4090140b727fbc7faea8b1c1b37d9c39",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "field_mapping_registry",
+      "row_count": 1024,
+      "expected_row_count": 1024,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "390b9fd01615465864308b0894c55409812b75b09b703294209c1f79600f2ddb",
+      "content_hash": "f25d535b105fd0561caf5208f26d63e40c38844dddd5927a088a037bb324d834",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "table_name": "source_file_manifest",
+      "row_count": 130,
+      "expected_row_count": 130,
+      "duplicate_key_count": 0,
+      "null_key_count": 0,
+      "business_key_hash": "19c3e94b7b730c8af18f2998d1c63d239f36895e6dead16f31a00eee9e33c890",
+      "content_hash": "d2e3a53b733cf97244e01e8e124dc378ec58f5aa2d657942c1f25bb657e6acab",
+      "fact_content_unchanged": true,
+      "status": "PASS"
+    }
+  ],
+  "full_idempotency": {
+    "status": "PASS",
+    "complete_inputs": {
+      "clean_datasets": 10,
+      "data_quality_issue": 47,
+      "field_mapping_registry": 1024,
+      "source_file_manifest": 130,
+      "data_lineage": 130
+    },
+    "data_quality_issue": "47 -> 47",
+    "field_mapping_registry": "1024 -> 1024",
+    "all_twelve_row_counts_unchanged": true,
+    "all_twelve_business_key_hashes_unchanged": true,
+    "all_twelve_content_hashes_unchanged": true
+  },
+  "conflict_and_transaction": {
+    "status": "PASS",
+    "repair_exit_code": 0,
+    "conflict_tests": {
+      "status": "PASS",
+      "same_mapping_key_same_hash": {
+        "status": "PASS",
+        "inserted": 0,
+        "unchanged": 1024
+      },
+      "same_mapping_key_different_hash": {
+        "status": "PASS",
+        "error": "idempotency_payload_conflict:field_mapping_registry:affe4a850c3ed7214ad05df96d7498488675a8581dd76c9da57a7dab953113a8"
+      },
+      "same_issue_key_same_hash": {
+        "status": "PASS",
+        "inserted": 0,
+        "unchanged": 47
+      },
+      "same_issue_key_different_hash": {
+        "status": "PASS",
+        "error": "idempotency_payload_conflict:data_quality_issue:7c45a4b9b7a64f8ae511cde241c8867c11b2e391046bcf0278c637bbcce4a0cc"
+      },
+      "different_transform_run_id": {
+        "status": "PASS"
+      }
+    },
+    "transaction": {
+      "status": "PASS",
+      "mapping_conflict_rolled_back": true,
+      "quality_conflict_rolled_back": true,
+      "partial_write_found": false,
+      "tables_compared": 12
+    },
+    "same_key_same_content": "skipped",
+    "same_key_different_content": "rejected",
+    "partial_write_found": false,
+    "all_twelve_table_hashes_restored": true
+  },
+  "view_validation": {
+    "fund_flow": {
+      "fact_rows": 1920,
+      "future_rows": 16,
+      "safe_rows": 1904,
+      "safe_future_rows": 0,
+      "status": "PASS"
+    },
+    "financial_views": {
+      "base_scope": "v_financial_all: UNION ALL of fact_financial_abstract, fact_financial_indicator, fact_financial_statement",
+      "base_rows": 987386,
+      "safe_rows": 863226,
+      "unknown_rows": 124160,
+      "lookahead_rows": 0,
+      "safe_unknown_intersection": 0,
+      "safe_lookahead_intersection": 0,
+      "unknown_lookahead_intersection": 0,
+      "uncovered_rows": 0,
+      "safe_contains_unknown": 0,
+      "safe_contains_future": 0,
+      "status": "PASS"
+    },
+    "lineage": {
+      "records": 130,
+      "raw_and_clean_hash_verified": 130,
+      "status": "PASS"
+    }
+  },
+  "immutability": {
+    "stage0": "PASS",
+    "stage3_raw": "PASS",
+    "stage4_raw": "PASS",
+    "stage5_clean": "PASS",
+    "formal_database": "PASS",
+    "formal_manifest": "PASS",
+    "repair_appendix": "PASS"
+  },
+  "stage0_hashes": {
+    "config/universe.yml": {
+      "expected": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+      "actual": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+      "match": true
+    },
+    "config/metric_definition.yml": {
+      "expected": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+      "actual": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+      "match": true
+    },
+    "docs/stage0_scope.md": {
+      "expected": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+      "actual": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+      "match": true
+    }
+  },
+  "raw_validation": {
+    "stage3": {
+      "expected": 34,
+      "verified": 34,
+      "status": "PASS"
+    },
+    "stage4": {
+      "expected": 96,
+      "verified": 96,
+      "status": "PASS"
+    }
+  },
+  "clean_validation": {
+    "expected": 10,
+    "verified": 10,
+    "status": "PASS"
+  },
+  "manifest_validation": {
+    "formal_manifest_sha256": "e61f0bfc7b147e203a2c88042592cc9f9993b4f720f266103e69ecbe8fc11c92",
+    "repair_appendix_sha256": "a84bd321336a1180eefb7271cb3ca93556e2b6bb194eeddffcac8a3cc3fc8744",
+    "run_ids_consistent": true
+  },
+  "scope_boundary": {
+    "feature_files": [],
+    "stage6_database_objects": [],
+    "real_network_access": false,
+    "status": "PASS"
+  },
+  "powershell_required": [],
+  "warnings": [
+    "Original formal database remains on the legacy metadata schema; the versioned repaired candidate is the only approved Stage 6 database.",
+    "src/akshare_data_test/storage/duckdb_store.py requested by the acceptance prompt does not exist; the actual loader is in src/akshare_data_test/stage5_build.py.",
+    "Stage 1-5 implementation and evidence files remain largely untracked in Git.",
+    "Ruff is not installed and was not installed for this audit."
+  ],
+  "report_files": [
+    "docs/stage5_final_reaudit.md",
+    "reports/stage5_final_reaudit.json",
+    "reports/stage5_formal_database_schema.csv",
+    "reports/stage5_candidate_database_validation.csv",
+    "reports/stage5_final_full_idempotency.csv",
+    "reports/stage5_final_view_validation.csv",
+    "reports/stage5_final_transaction_validation.json",
+    "reports/evidence/stage5/31635b34-d1ee-46d4-9c0f-32ae3f30d567/manifest.final_database_candidate.json"
+  ]
+}

@@ -1,0 +1,15 @@
+﻿source_dataset,mapping_status,field_count,required_count,mapped_required_count,unmapped_required_count,ambiguous_count,status
+stock_balance_sheet_by_report_em,mapped,6,0,0,0,0,PASS
+stock_balance_sheet_by_report_em,passthrough,313,0,0,0,0,PASS
+stock_cash_flow_sheet_by_report_em,mapped,6,0,0,0,0,PASS
+stock_cash_flow_sheet_by_report_em,passthrough,248,0,0,0,0,PASS
+stock_financial_abstract,mapped,2,0,0,0,0,PASS
+stock_financial_abstract,passthrough,112,0,0,0,0,PASS
+stock_financial_analysis_indicator,mapped,1,0,0,0,0,PASS
+stock_financial_analysis_indicator,passthrough,85,0,0,0,0,PASS
+stock_individual_fund_flow,mapped,13,2,2,0,0,PASS
+stock_profit_sheet_by_report_em,mapped,6,0,0,0,0,PASS
+stock_profit_sheet_by_report_em,passthrough,197,0,0,0,0,PASS
+stock_zh_a_hist,mapped,12,8,8,0,0,PASS
+stock_zh_a_spot_em,mapped,14,2,2,0,0,PASS
+stock_zh_a_spot_em,unmapped,9,0,0,0,0,PASS

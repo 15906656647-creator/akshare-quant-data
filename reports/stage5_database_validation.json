@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "checks": {
+    "dim_security_a_share_count": 16,
+    "daily_qfq_symbols": 16,
+    "daily_raw_symbols": 16,
+    "spot_target_symbols": 16,
+    "financial_abstract_symbols": 16,
+    "financial_indicator_symbols": 16,
+    "financial_statement_symbols": 16,
+    "fund_flow_symbols": 16,
+    "safe_unknown_count": 0,
+    "lookahead_logic_errors": 0
+  },
+  "duplicate_keys": {
+    "fact_stock_daily": 0,
+    "fact_stock_spot": 0,
+    "fact_financial_abstract": 0,
+    "fact_financial_indicator": 0,
+    "fact_financial_statement": 0,
+    "fact_stock_fund_flow": 0
+  },
+  "null_primary_keys": {
+    "fact_stock_daily": 0,
+    "fact_stock_spot": 0,
+    "fact_financial_abstract": 0,
+    "fact_financial_indicator": 0,
+    "fact_financial_statement": 0,
+    "fact_stock_fund_flow": 0
+  }
+}

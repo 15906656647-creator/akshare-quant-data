@@ -1,0 +1,24 @@
+-- Stage 6 logical schema contract.
+-- Physical column types are created from the versioned Parquet artifacts by
+-- src/akshare_data_test/stage6_build.py so this file remains rebuild guidance.
+--
+-- Required metadata tables:
+--   feature_run
+--   feature_definition_registry
+--   feature_file_manifest
+--   feature_lineage
+--   feature_quality_issue
+--
+-- Required feature tables:
+--   feat_price_daily
+--   feat_trend_daily
+--   feat_activity_daily
+--   feat_limit_event
+--   feat_financial_period
+--   feat_fund_flow_daily
+--   feat_style_daily
+--   feat_suspected_behavior_evidence
+--   feat_current_snapshot
+--
+-- Each feature table has a unique index on its documented business key.
+-- The source Stage 5 database is never attached read/write.

@@ -1,0 +1,7 @@
+﻿check_type,scope,finding_count,status,details
+effective_credential,project text excluding .venv/.git/Raw,0,PASS,"no effective API key, token, password, cookie, authorization header, or proxy credential found"
+credential_url_placeholder,tests,1,PASS,one deliberately invalid redacted proxy fixture in tests/test_stage2_repair.py; not an effective credential
+personal_absolute_path,"environment reports, lock file, audit helper",14,WARN,environment diagnostics and one untracked helper/lock line contain local drive-qualified paths; Stage2-4 evidence manifests remain relative-path only
+business_manifest_absolute_path,Stage2-4 evidence manifests,0,PASS,all evidence paths are project-relative
+log_cookie_or_proxy_credential,logs,0,PASS,no cookie or credential-bearing proxy URL found
+dotenv_commit,git index,0,PASS,.env is not tracked; workspace contains only .env.example

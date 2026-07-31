@@ -1,0 +1,19 @@
+{
+  "temporary_only": true,
+  "complete_feature_tables": 9,
+  "complete_metadata_tables": 5,
+  "metadata_nonempty": true,
+  "identical_replay_idempotent": false,
+  "identical_replay_error": "FileExistsError:stage6_database_already_exists_use_a_new_path_or_same_run_id",
+  "all_counts_unchanged": true,
+  "all_hashes_unchanged": true,
+  "feature_files_hash_unchanged": true,
+  "feature_file_payload_conflict_rejected": true,
+  "database_payload_conflict_rejected": true,
+  "database_conflict_error": "TransactionException:TransactionContext Error: cannot rollback - no transaction is active",
+  "transaction_rollback_verified": true,
+  "partial_write_found": false,
+  "first_validation_status": "PASS",
+  "database_conflict_error_clear": false,
+  "temporary_leftover_table_count": 0
+}

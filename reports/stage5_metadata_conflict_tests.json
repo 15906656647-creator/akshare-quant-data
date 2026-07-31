@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "same_mapping_key_same_hash": {
+    "status": "PASS",
+    "inserted": 0,
+    "unchanged": 1024
+  },
+  "same_mapping_key_different_hash": {
+    "status": "PASS",
+    "error": "idempotency_payload_conflict:field_mapping_registry:affe4a850c3ed7214ad05df96d7498488675a8581dd76c9da57a7dab953113a8"
+  },
+  "same_issue_key_same_hash": {
+    "status": "PASS",
+    "inserted": 0,
+    "unchanged": 47
+  },
+  "same_issue_key_different_hash": {
+    "status": "PASS",
+    "error": "idempotency_payload_conflict:data_quality_issue:7c45a4b9b7a64f8ae511cde241c8867c11b2e391046bcf0278c637bbcce4a0cc"
+  },
+  "different_transform_run_id": {
+    "status": "PASS"
+  }
+}

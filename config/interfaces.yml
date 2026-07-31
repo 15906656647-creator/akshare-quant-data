@@ -1,0 +1,206 @@
+schema_version: "1.0.0"
+probe_version: "1.0.0"
+
+sample_symbol: "600763"
+sample_symbol_em: "SH600763"
+sample_market_lower: "sh"
+
+as_of_date: "2026-07-27"
+smoke_history_natural_days: 90
+
+max_sample_rows: 20
+
+probes:
+  - probe_id: stock_daily_qfq
+    interface_name: stock_zh_a_hist
+    category: history
+    enabled: true
+    scope: single_symbol
+    symbol_format: plain
+    parameter_policy:
+      symbol: "600763"
+      period: daily
+      start_date: resolve
+      end_date: resolve
+      adjust: qfq
+    expected_columns:
+      - 日期
+      - 股票代码
+      - 开盘
+      - 收盘
+      - 最高
+      - 最低
+      - 成交量
+      - 成交额
+    required_columns:
+      - 日期
+      - 股票代码
+      - 开盘
+      - 收盘
+      - 最高
+      - 最低
+      - 成交量
+      - 成交额
+    notes: "Daily qfq (前复权) bars for sample symbol, short window"
+
+  - probe_id: stock_daily_raw
+    interface_name: stock_zh_a_hist
+    category: history
+    enabled: true
+    scope: single_symbol
+    symbol_format: plain
+    parameter_policy:
+      symbol: "600763"
+      period: daily
+      start_date: resolve
+      end_date: resolve
+      adjust: ""
+    expected_columns:
+      - 日期
+      - 股票代码
+      - 开盘
+      - 收盘
+      - 最高
+      - 最低
+      - 成交量
+      - 成交额
+    required_columns:
+      - 日期
+      - 股票代码
+      - 开盘
+      - 收盘
+      - 最高
+      - 最低
+      - 成交量
+      - 成交额
+    notes: "Daily raw (不复权) bars for sample symbol, short window"
+
+  - probe_id: stock_spot
+    interface_name: stock_zh_a_spot_em
+    category: realtime
+    enabled: true
+    scope: full_market
+    symbol_format: none
+    parameter_policy: {}
+    expected_columns:
+      - 代码
+      - 名称
+      - 最新价
+      - 成交额
+      - 换手率
+      - 市盈率-动态
+      - 市净率
+    required_columns:
+      - 代码
+      - 名称
+      - 最新价
+    notes: "Full-market real-time snapshot; filter to 16 test stocks for evidence"
+
+  - probe_id: financial_abstract
+    interface_name: stock_financial_abstract
+    category: financial
+    enabled: true
+    scope: single_symbol
+    symbol_format: plain
+    parameter_policy:
+      symbol: "600763"
+    expected_columns: []
+    required_columns: []
+    notes: "Financial abstract for sample symbol"
+
+  - probe_id: financial_indicator
+    interface_name: stock_financial_analysis_indicator
+    category: financial
+    enabled: true
+    scope: single_symbol
+    symbol_format: plain
+    parameter_policy:
+      symbol: "600763"
+      start_year: resolve
+    expected_columns: []
+    required_columns: []
+    notes: "Financial analysis indicator for sample symbol"
+
+  - probe_id: balance_sheet_report
+    interface_name: stock_balance_sheet_by_report_em
+    category: financial
+    enabled: true
+    scope: single_symbol
+    symbol_format: em
+    parameter_policy:
+      symbol: "SH600763"
+    expected_columns: []
+    required_columns: []
+    notes: "Balance sheet by report period for sample symbol (EM format)"
+
+  - probe_id: profit_sheet_report
+    interface_name: stock_profit_sheet_by_report_em
+    category: financial
+    enabled: true
+    scope: single_symbol
+    symbol_format: em
+    parameter_policy:
+      symbol: "SH600763"
+    expected_columns: []
+    required_columns: []
+    notes: "Profit sheet by report period for sample symbol (EM format)"
+
+  - probe_id: cashflow_sheet_report
+    interface_name: stock_cash_flow_sheet_by_report_em
+    category: financial
+    enabled: true
+    scope: single_symbol
+    symbol_format: em
+    parameter_policy:
+      symbol: "SH600763"
+    expected_columns: []
+    required_columns: []
+    notes: "Cash flow sheet by report period for sample symbol (EM format)"
+
+  - probe_id: individual_fund_flow
+    interface_name: stock_individual_fund_flow
+    category: fund_flow
+    enabled: true
+    scope: single_symbol
+    symbol_format: market_split
+    parameter_policy:
+      stock: "600763"
+      market: "sh"
+    expected_columns: []
+    required_columns: []
+    notes: "Individual stock fund flow for sample symbol"
+
+  - probe_id: limit_up_pool
+    interface_name: stock_zt_pool_em
+    category: limit_event
+    enabled: true
+    scope: full_market
+    symbol_format: none
+    parameter_policy:
+      date: resolve_pool_date
+    expected_columns: []
+    required_columns: []
+    notes: "Limit-up pool for resolved pool date; full-market call once"
+
+  - probe_id: limit_down_pool
+    interface_name: stock_zt_pool_dtgc_em
+    category: limit_event
+    enabled: true
+    scope: full_market
+    symbol_format: none
+    parameter_policy:
+      date: resolve_pool_date
+    expected_columns: []
+    required_columns: []
+    notes: "Limit-down pool for resolved pool date; full-market call once"
+
+  - probe_id: crypto_spot
+    interface_name: crypto_js_spot
+    category: crypto
+    enabled: true
+    scope: single_call
+    symbol_format: none
+    parameter_policy: {}
+    expected_columns: []
+    required_columns: []
+    notes: "Crypto real-time spot; check for ETHUSDT capability"

@@ -1,0 +1,170 @@
+{
+  "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "as_of_date": "2026-07-27",
+  "source_database_path": "database/akshare_data_test_stage5_repaired.duckdb",
+  "source_database_sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026",
+  "feature_config_sha256": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+  "started_at": "2026-07-30T04:02:21.828045+00:00",
+  "finished_at": "2026-07-30T04:02:30.215800+00:00",
+  "status": "PASS",
+  "python_version": "3.11.4",
+  "duckdb_version": "1.5.5",
+  "pandas_version": "3.0.5",
+  "git_commit": "9aea2edb60afdc8930953188149398b25c71675d",
+  "feature_files": [
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "price_daily",
+      "feature_file": "data/feature/price_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 868721,
+      "sha256": "6c063a6f3fbcf4b5dd8f8423585e7d4da2309c8643465f78978a4d732f447383",
+      "row_count": 11602,
+      "idempotent_existing_payload": false
+    },
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "trend_daily",
+      "feature_file": "data/feature/trend_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 562344,
+      "sha256": "fd67ecfacfc95ce5d0282f99c0dbeac08f4ca0a072875b3aa9272af9b027be3e",
+      "row_count": 11602,
+      "idempotent_existing_payload": false
+    },
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "activity_daily",
+      "feature_file": "data/feature/activity_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 339859,
+      "sha256": "8c8a7f216d71518f4aa02ca5557e83fbd30e32fe97115bbf7dd070d7d7437f13",
+      "row_count": 11602,
+      "idempotent_existing_payload": false
+    },
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "limit_event",
+      "feature_file": "data/feature/limit_event/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 82865,
+      "sha256": "8687b28a9f6810f517ef9a237c8e308c8938ba7213850b3bbf845417a57626b4",
+      "row_count": 3862,
+      "idempotent_existing_payload": false
+    },
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "financial_period",
+      "feature_file": "data/feature/financial_period/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 33490,
+      "sha256": "90a2386a96f6869bbde5290aecd6b93e93d8e9409696db9cfc9880ebb2f91ae5",
+      "row_count": 2688,
+      "idempotent_existing_payload": false
+    },
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "fund_flow_daily",
+      "feature_file": "data/feature/fund_flow_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 34439,
+      "sha256": "ad485e4ec537fa7dd3adaf2a51e9acb5d5c11c7ee984018a65b7a374d7fc21d3",
+      "row_count": 1904,
+      "idempotent_existing_payload": false
+    },
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "style_daily",
+      "feature_file": "data/feature/style_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 1833590,
+      "sha256": "ce2fa18deda12c673d7503ace9d5e04df5f67aff754b8c574f4d67e02f339ce4",
+      "row_count": 11602,
+      "idempotent_existing_payload": false
+    },
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "current_snapshot",
+      "feature_file": "data/feature/current_snapshot/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 9886,
+      "sha256": "77b9c443a5139b9a3a081957aaab65c2319dfb9234596e5f6418964afef314b5",
+      "row_count": 16,
+      "idempotent_existing_payload": false
+    },
+    {
+      "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+      "feature_group": "suspected_behavior_evidence",
+      "feature_file": "data/feature/suspected_behavior_evidence/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet",
+      "byte_size": 10869,
+      "sha256": "8691ef4975363824412af0cc9b03954c3e9572036e821ea165d3c4c375b2ddd1",
+      "row_count": 16,
+      "idempotent_existing_payload": false
+    }
+  ],
+  "report_files": [
+    {
+      "path": "reports/stage6_feature_coverage.csv",
+      "byte_size": 1669,
+      "sha256": "e97daa05e4853023f41abe4510743ecd7aa531806894bd8416f77c4bceb59f89"
+    },
+    {
+      "path": "reports/stage6_feature_definition.csv",
+      "byte_size": 37011,
+      "sha256": "4135f830223d5360bbeba380ff374f1aed8df721544de5e913533142e329abfe"
+    },
+    {
+      "path": "reports/stage6_feature_quality.csv",
+      "byte_size": 396,
+      "sha256": "8863e6584be1daff38f95a9ce5db13ebf55ffaf0d77eed5241996ed69d9449e1"
+    },
+    {
+      "path": "reports/stage6_formula_validation.csv",
+      "byte_size": 369,
+      "sha256": "28bcfdbf80d8bd7613b558b7a153cad94ba748687db2f6fe8c61ae7f9e43c845"
+    },
+    {
+      "path": "reports/stage6_temporal_leakage_check.csv",
+      "byte_size": 448,
+      "sha256": "2ba8e0cb700657fea9dbadb9ac0d7518298a8287963de456e99882efa688ba04"
+    },
+    {
+      "path": "reports/stage6_limit_detection.csv",
+      "byte_size": 38,
+      "sha256": "662f6cbdf8fe5de1b7f1136471d81a47c5b343d28679b21c51ad5efe530b0d84"
+    },
+    {
+      "path": "reports/stage6_financial_feature_coverage.csv",
+      "byte_size": 668,
+      "sha256": "4bb1fa0cb7099919083d49d46e9982983bd8e7c391fe126234297e8000bf9fc6"
+    },
+    {
+      "path": "reports/stage6_current_snapshot_separation.csv",
+      "byte_size": 202,
+      "sha256": "6122ced89d3d13a3283c847e8259b6bd0550288c706013415521b01206bc98d3"
+    },
+    {
+      "path": "reports/stage6_idempotency_check.json",
+      "byte_size": 2029,
+      "sha256": "4444cc0d8aac59b5c17917e2c100dcbc5aaeda91f970060c75420937b9a4d87c"
+    },
+    {
+      "path": "reports/stage6_database_validation.json",
+      "byte_size": 1939,
+      "sha256": "89899098af26bb8b1cd876f77689504dff2151133e05e5d00f67c049ca8736ce"
+    },
+    {
+      "path": "reports/stage6_table_counts.csv",
+      "byte_size": 265,
+      "sha256": "6e0ca866855b03387ea60c7e0cf0051a220e013bc25c12d712d07cadfe06a27a"
+    },
+    {
+      "path": "reports/stage6_run.json",
+      "byte_size": 10383,
+      "sha256": "8b4993275cb09b4d12f7ca0b0817203c04ce1a13d7c4e34d750641cad94b2e34"
+    },
+    {
+      "path": "docs/stage6_feature_build.md",
+      "byte_size": 2444,
+      "sha256": "e7e954e13ac3363ca467c6502c3cd33c9954fb2167565b882e259ad07a1731e1"
+    }
+  ],
+  "feature_database_path": "database/stage6/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/akshare_features.duckdb",
+  "feature_database_sha256": "f7630f1a103acf7726c51ee396ea359fde731e1ba153b640f5b3ac4f2874cb5e",
+  "feature_database_byte_size": 12595200
+}

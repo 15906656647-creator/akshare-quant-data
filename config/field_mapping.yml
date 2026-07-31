@@ -1,0 +1,71 @@
+schema_version: "1.0.0"
+stage: 5
+mapping_policy:
+  preserve_unmapped: true
+  ambiguous_fields_are_not_guessed: true
+  financial_wide_fields: passthrough
+  source_derived_code: sha256_16
+record_defaults:
+  source_dataset: "inherited from datasets key"
+  source_field: "inherited from field key"
+  source_unit: unknown
+  target_unit: unknown
+  scale_factor: 1
+  notes: ""
+
+datasets:
+  stock_daily:
+    日期: {canonical_field: trade_date, data_type: date, mapping_status: mapped, required: true, nullable: false, mapping_evidence: "AKShare stock_zh_a_hist documented field"}
+    股票代码: {canonical_field: symbol, data_type: string, mapping_status: mapped, required: true, nullable: false, mapping_evidence: "AKShare stock_zh_a_hist documented field"}
+    开盘: {canonical_field: open, data_type: float64, mapping_status: mapped, required: true, nullable: true, mapping_evidence: "AKShare stock_zh_a_hist documented field"}
+    收盘: {canonical_field: close, data_type: float64, mapping_status: mapped, required: true, nullable: true, mapping_evidence: "AKShare stock_zh_a_hist documented field"}
+    最高: {canonical_field: high, data_type: float64, mapping_status: mapped, required: true, nullable: true, mapping_evidence: "AKShare stock_zh_a_hist documented field"}
+    最低: {canonical_field: low, data_type: float64, mapping_status: mapped, required: true, nullable: true, mapping_evidence: "AKShare stock_zh_a_hist documented field"}
+    成交量: {canonical_field: volume_lot, data_type: float64, mapping_status: mapped, required: true, nullable: true, mapping_evidence: "AKShare A-share history interface volume unit is lot"}
+    成交额: {canonical_field: amount_cny, data_type: float64, mapping_status: mapped, required: true, nullable: true, mapping_evidence: "AKShare A-share history interface amount unit is CNY yuan"}
+    振幅: {canonical_field: amplitude, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    涨跌幅: {canonical_field: pct_change, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    涨跌额: {canonical_field: price_change, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is CNY per share"}
+    换手率: {canonical_field: turnover_rate, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+
+  stock_spot:
+    代码: {canonical_field: symbol, data_type: string, mapping_status: mapped, required: true, nullable: false, mapping_evidence: "AKShare stock_zh_a_spot_em documented field"}
+    名称: {canonical_field: name, data_type: string, mapping_status: mapped, required: true, nullable: true, mapping_evidence: "AKShare stock_zh_a_spot_em documented field"}
+    最新价: {canonical_field: latest_price, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare documented field"}
+    涨跌幅: {canonical_field: pct_change, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    涨跌额: {canonical_field: price_change, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare documented field"}
+    成交量: {canonical_field: volume_lot, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare A-share spot volume unit is lot"}
+    成交额: {canonical_field: amount_cny, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare A-share spot amount unit is CNY yuan"}
+    振幅: {canonical_field: amplitude, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    换手率: {canonical_field: turnover_rate, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    量比: {canonical_field: volume_ratio, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare documented dimensionless field"}
+    市盈率-动态: {canonical_field: pe_dynamic, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare documented snapshot field"}
+    市净率: {canonical_field: pb, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare documented snapshot field"}
+    总市值: {canonical_field: market_cap_cny, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field unit is CNY yuan"}
+    流通市值: {canonical_field: float_market_cap_cny, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field unit is CNY yuan"}
+
+  fund_flow:
+    日期: {canonical_field: trade_date, data_type: date, mapping_status: mapped, required: true, nullable: false, mapping_evidence: "AKShare documented field"}
+    收盘价: {canonical_field: close, data_type: float64, mapping_status: mapped, required: true, nullable: true, mapping_evidence: "AKShare documented field"}
+    涨跌幅: {canonical_field: pct_change, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    主力净流入-净额: {canonical_field: main_net_inflow_cny, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "Neutral canonical name; AKShare field unit is CNY yuan"}
+    主力净流入-净占比: {canonical_field: main_net_inflow_ratio, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    超大单净流入-净额: {canonical_field: super_large_net_inflow_cny, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field unit is CNY yuan"}
+    超大单净流入-净占比: {canonical_field: super_large_net_inflow_ratio, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    大单净流入-净额: {canonical_field: large_net_inflow_cny, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field unit is CNY yuan"}
+    大单净流入-净占比: {canonical_field: large_net_inflow_ratio, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    中单净流入-净额: {canonical_field: medium_net_inflow_cny, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field unit is CNY yuan"}
+    中单净流入-净占比: {canonical_field: medium_net_inflow_ratio, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+    小单净流入-净额: {canonical_field: small_net_inflow_cny, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field unit is CNY yuan"}
+    小单净流入-净占比: {canonical_field: small_net_inflow_ratio, data_type: float64, mapping_status: mapped, required: false, nullable: true, mapping_evidence: "AKShare field is percent points"}
+
+financial_metadata:
+  SECURITY_CODE: symbol
+  REPORT_DATE: report_period
+  NOTICE_DATE: announcement_date
+  UPDATE_DATE: source_update_date
+  REPORT_TYPE: report_type
+  CURRENCY: currency
+  日期: report_period
+  指标: metric_name_source
+  选项: metric_category_source

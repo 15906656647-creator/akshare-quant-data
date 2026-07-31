@@ -1,0 +1,54 @@
+# Virtual environment
+.venv/
+venv/
+
+# Secrets
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Test cache
+.pytest_cache/
+*.coverage
+
+# Logs
+logs/*.log
+logs/**/*.log
+
+# DuckDB databases and temp files
+database/*.duckdb
+database/*.duckdb.wal
+database/**/*.duckdb
+*.duckdb.wal
+*.duckdb.tmp
+
+# Generated data (append-only policy in later stages)
+data/raw/*
+data/clean/*
+data/feature/*
+data/export/*
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# Temporary report writes
+reports/*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keep .gitkeep files
+!.gitkeep

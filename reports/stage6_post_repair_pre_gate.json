@@ -1,0 +1,28 @@
+{
+  "pip_check": {
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  "pytest": {
+    "exit_code": 0,
+    "passed": 200,
+    "status": "PASS"
+  },
+  "compileall": {
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  "show_config": {
+    "exit_code": 0,
+    "stock_count": 16,
+    "crypto": "ETHUSDT",
+    "status": "PASS"
+  },
+  "doctor": {
+    "exit_code": 0,
+    "status": "PASS",
+    "path": "reports/stage6_post_repair_acceptance_doctor.json"
+  },
+  "network_access": false,
+  "ruff": "WARN:not_installed"
+}

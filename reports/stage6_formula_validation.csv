@@ -1,0 +1,8 @@
+﻿feature,sample_eligible_count,required_samples_per_symbol,tolerance,max_abs_error,status
+return_1d,11586,5,1e-12,0.0,PASS
+moving_averages,11282,5,1e-12,0.0,PASS
+rolling_volatility,11282,5,1e-12,0.0,PASS
+activity_score,9394,5,1e-12,0.0,PASS
+fund_flow_direct,1904,5,1e-12,0.0,PASS
+financial_features,2688,5,1e-12,0.0,PASS
+style_features,10978,5,1e-12,0.0,PASS

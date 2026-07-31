@@ -1,0 +1,27 @@
+﻿category,check_name,value,status,notes
+data_quality_report,PASS,45,PASS,
+data_quality_report,WARN,2,PASS,
+raw,stage3_hash_match,34/34,PASS,
+raw,stage4_hash_match,96/96,PASS,
+clean,manifest_hash_match,10/10,PASS,
+mapping,required_unmapped,0,PASS,
+mapping,duplicate_source_keys,0,PASS,
+unit_conversion,stock_daily_qfq,0,PASS,"{""volume"": 0, ""amplitude"": 0, ""pct_change"": 0, ""turnover_rate"": 0, ""amount"": 0}"
+unit_conversion,stock_daily_raw,0,PASS,"{""volume"": 0, ""amplitude"": 0, ""pct_change"": 0, ""turnover_rate"": 0, ""amount"": 0}"
+unit_conversion,stock_spot_full_market,0,PASS,"{""volume"": 0, ""pct_change"": 0, ""amplitude"": 0, ""turnover_rate"": 0, ""amount"": 0, ""market_cap"": 0, ""float_market_cap"": 0}"
+unit_conversion,stock_spot_target_16,0,PASS,"{""volume"": 0, ""pct_change"": 0, ""amplitude"": 0, ""turnover_rate"": 0, ""amount"": 0, ""market_cap"": 0, ""float_market_cap"": 0}"
+unit_conversion,fund_flow,0,PASS,"{""pct_change"": 0, ""main_net_inflow_ratio"": 0, ""super_large_net_inflow_ratio"": 0, ""large_net_inflow_ratio"": 0, ""medium_net_inflow_ratio"": 0, ""small_net_inflow_ratio"": 0}"
+unit_conversion,financial_abstract,0,PASS,"{""conversion_errors"": 0, ""unknown_unit_conversion_errors"": 0, ""percent_rows"": 0, ""unknown_unit_rows"": 95600}"
+unit_conversion,financial_indicator,0,PASS,"{""conversion_errors"": 0, ""unknown_unit_conversion_errors"": 0, ""percent_rows"": 12768, ""unknown_unit_rows"": 2016}"
+unit_conversion,financial_statement_balance_sheet,0,PASS,"{""conversion_errors"": 0, ""unknown_unit_conversion_errors"": 0, ""percent_rows"": 177688, ""unknown_unit_rows"": 0}"
+unit_conversion,financial_statement_profit_statement,0,PASS,"{""conversion_errors"": 0, ""unknown_unit_conversion_errors"": 0, ""percent_rows"": 113525, ""unknown_unit_rows"": 0}"
+unit_conversion,financial_statement_cash_flow_statement,0,PASS,"{""conversion_errors"": 0, ""unknown_unit_conversion_errors"": 0, ""percent_rows"": 140400, ""unknown_unit_rows"": 0}"
+point_in_time,safe_unknown,0,PASS,
+point_in_time,safe_future,0,PASS,
+database,required_objects_missing,0,PASS,
+lineage,failed_records,0,PASS,
+idempotency,fact_rows_added,0,PASS,complete-input replay on temp copy
+idempotency,data_quality_issue_rows_added,47,FAIL,47 -> 94 on identical full-input replay
+idempotency,field_mapping_registry_rows_added,1024,FAIL,1024 -> 2048 on identical full-input replay
+transaction,rollback_nonempty_tables,0,PASS,injected duplicate fact key; all 12 tables rolled back to 0
+formal_artifacts,formal_db_modified_by_temp_tests,0,PASS,

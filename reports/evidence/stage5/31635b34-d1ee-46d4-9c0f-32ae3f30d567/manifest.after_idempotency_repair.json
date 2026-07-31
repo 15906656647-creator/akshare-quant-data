@@ -1,0 +1,53 @@
+{
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "as_of_date": "2026-07-27",
+  "status": "PASS",
+  "code_commit": "9aea2edb60afdc8930953188149398b25c71675d",
+  "working_tree_dirty": true,
+  "parent_manifest": {
+    "path": "reports/evidence/stage5/31635b34-d1ee-46d4-9c0f-32ae3f30d567/manifest.json",
+    "size": 3625,
+    "sha256": "e61f0bfc7b147e203a2c88042592cc9f9993b4f720f266103e69ecbe8fc11c92"
+  },
+  "repair_report": "reports/stage5_idempotency_repair.json",
+  "formal_database": {
+    "path": "database/akshare_data_test.duckdb",
+    "size": 142880768,
+    "sha256": "d00f8d6017f5f74b3945f158af70153aef378af0c39f867f5dbd1c1cb1b3c372",
+    "modified": false
+  },
+  "report_files": [
+    {
+      "path": "reports/stage5_idempotency_repair.json",
+      "size": 10465,
+      "sha256": "a4681a15d6ed3494a96eb21ea16c3b96a090c5baaf91c82790a22be428e9af94"
+    },
+    {
+      "path": "reports/stage5_full_idempotency_validation.csv",
+      "size": 3911,
+      "sha256": "ef9c2a6b353aa47223e49c76c98f55504c14ca1c3f6ff4bbd5d101ff008782b7"
+    },
+    {
+      "path": "reports/stage5_metadata_conflict_tests.json",
+      "size": 695,
+      "sha256": "fa126b767657d9b615f3325c89728f0564f89b5e4ba3aa9e42c157f3c8d446ca"
+    },
+    {
+      "path": "reports/stage5_transaction_repair_test.json",
+      "size": 165,
+      "sha256": "5b288024a712ce35229c6a417d37489ea0feae98e21e701d4613ef93973520e5"
+    },
+    {
+      "path": "docs/stage5_idempotency_repair.md",
+      "size": 4703,
+      "sha256": "ac036cc8e7cca650ba86baf15e502824dc2f2aa00cdf29a16bd9c08f0657391d"
+    },
+    {
+      "path": "reports/stage5_idempotency_repair_doctor.json",
+      "size": 1886,
+      "sha256": "aff6a3247f91ae399dcc3d3f813de082681bd3ec700b10c38d27f8160e612196"
+    }
+  ]
+}

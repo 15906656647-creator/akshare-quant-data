@@ -1,0 +1,7 @@
+﻿category,match_count,paths,severity,status
+final_ranking,0,,ERROR,PASS
+trading_signal,0,,ERROR,PASS
+model,0,,ERROR,PASS
+stage7,0,,ERROR,PASS
+real_network_access,0,none; local-only acceptance,ERROR,PASS
+formal_build_stage6_reexecuted,0,not executed,ERROR,PASS

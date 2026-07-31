@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "path": "database/stage6/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/akshare_features.duckdb",
+  "size": 12595200,
+  "sha256": "f7630f1a103acf7726c51ee396ea359fde731e1ba153b640f5b3ac4f2874cb5e",
+  "table_count": 14,
+  "view_count": 5,
+  "tables": [
+    "feat_activity_daily",
+    "feat_current_snapshot",
+    "feat_financial_period",
+    "feat_fund_flow_daily",
+    "feat_limit_event",
+    "feat_price_daily",
+    "feat_style_daily",
+    "feat_suspected_behavior_evidence",
+    "feat_trend_daily",
+    "feature_definition_registry",
+    "feature_file_manifest",
+    "feature_lineage",
+    "feature_quality_issue",
+    "feature_run"
+  ],
+  "views": [
+    "v_current_snapshot_features",
+    "v_feature_as_of_20260727",
+    "v_feature_latest_historical",
+    "v_feature_quality_blockers",
+    "v_suspected_behavior_evidence"
+  ],
+  "table_counts": {
+    "feat_price_daily": 11602,
+    "feat_trend_daily": 11602,
+    "feat_activity_daily": 11602,
+    "feat_limit_event": 3862,
+    "feat_financial_period": 2688,
+    "feat_fund_flow_daily": 1904,
+    "feat_style_daily": 11602,
+    "feat_suspected_behavior_evidence": 16,
+    "feat_current_snapshot": 16
+  },
+  "duplicate_business_keys": {
+    "feat_price_daily": 0,
+    "feat_trend_daily": 0,
+    "feat_activity_daily": 0,
+    "feat_limit_event": 0,
+    "feat_financial_period": 0,
+    "feat_fund_flow_daily": 0,
+    "feat_style_daily": 0,
+    "feat_suspected_behavior_evidence": 0,
+    "feat_current_snapshot": 0
+  },
+  "null_required_keys": {
+    "feat_price_daily": 0,
+    "feat_trend_daily": 0,
+    "feat_activity_daily": 0,
+    "feat_limit_event": 0,
+    "feat_financial_period": 0,
+    "feat_fund_flow_daily": 0,
+    "feat_style_daily": 0,
+    "feat_suspected_behavior_evidence": 0,
+    "feat_current_snapshot": 0
+  },
+  "quality_blockers": 0,
+  "rebuildable_from_sql_and_parquet": true
+}

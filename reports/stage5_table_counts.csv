@@ -1,0 +1,13 @@
+﻿table,row_count
+data_lineage,130
+data_quality_issue,47
+dim_security,16
+etl_run,1
+fact_financial_abstract,95600
+fact_financial_indicator,28560
+fact_financial_statement,863226
+fact_stock_daily,23204
+fact_stock_fund_flow,1920
+fact_stock_spot,5900
+field_mapping_registry,1024
+source_file_manifest,130

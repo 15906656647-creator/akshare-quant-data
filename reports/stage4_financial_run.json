@@ -1,0 +1,27 @@
+{
+  "stage": 4,
+  "run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "status": "PASS",
+  "as_of_date": "2026-07-27",
+  "start_year": "2021",
+  "started_at": "2026-07-29T16:18:56.412024+08:00",
+  "finished_at": "2026-07-29T16:19:26.403645+08:00",
+  "python_version": "3.11.4",
+  "akshare_version": "1.18.80",
+  "stock_count": 16,
+  "interface_count": 6,
+  "expected_task_count": 96,
+  "success_count": 96,
+  "empty_count": 0,
+  "failed_count": 0,
+  "core_financial_symbol_count": 16,
+  "statement_success_count": 48,
+  "fund_flow_success_count": 16,
+  "potential_lookahead_count": 0,
+  "warnings": [
+    "Fund-flow results expose a limited upstream window.",
+    "Raw is current retrieval output, not strict historical point-in-time data."
+  ],
+  "errors": [],
+  "resume_selected_task_count": 0
+}

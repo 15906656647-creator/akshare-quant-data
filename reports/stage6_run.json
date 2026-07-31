@@ -1,0 +1,265 @@
+{
+  "stage": 6,
+  "status": "PASS",
+  "can_enter_stage7": true,
+  "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "as_of_date": "2026-07-27",
+  "source_database": "database/akshare_data_test_stage5_repaired.duckdb",
+  "source_database_sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026",
+  "source_database_unchanged": true,
+  "feature_config_sha256": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+  "ma_windows": [
+    3,
+    5,
+    7,
+    10,
+    13,
+    20,
+    21
+  ],
+  "activity_weight_sum": 1.0,
+  "feature_groups": {
+    "price_daily": {
+      "feature_group": "price_daily",
+      "feature_count": 11,
+      "row_count": 11602,
+      "symbol_count": 16,
+      "min_date": "2023-07-27 00:00:00",
+      "max_date": "2026-07-27 00:00:00",
+      "null_count": 1008,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/price_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    },
+    "trend_daily": {
+      "feature_group": "trend_daily",
+      "feature_count": 8,
+      "row_count": 11602,
+      "symbol_count": 16,
+      "min_date": "2023-07-27 00:00:00",
+      "max_date": "2026-07-27 00:00:00",
+      "null_count": 1152,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/trend_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    },
+    "activity_daily": {
+      "feature_group": "activity_daily",
+      "feature_count": 13,
+      "row_count": 11602,
+      "symbol_count": 16,
+      "min_date": "2023-07-27 00:00:00",
+      "max_date": "2026-07-27 00:00:00",
+      "null_count": 25760,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/activity_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    },
+    "limit_event": {
+      "feature_group": "limit_event",
+      "feature_count": 10,
+      "row_count": 3862,
+      "symbol_count": 16,
+      "min_date": "2025-07-28 00:00:00",
+      "max_date": "2026-07-27 00:00:00",
+      "null_count": 11586,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/limit_event/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    },
+    "financial_period": {
+      "feature_group": "financial_period",
+      "feature_count": 12,
+      "row_count": 2688,
+      "symbol_count": 16,
+      "min_date": "2021-12-31 00:00:00",
+      "max_date": "2026-03-31 00:00:00",
+      "null_count": 0,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/financial_period/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    },
+    "fund_flow_daily": {
+      "feature_group": "fund_flow_daily",
+      "feature_count": 2,
+      "row_count": 1904,
+      "symbol_count": 16,
+      "min_date": "2026-01-13 00:00:00",
+      "max_date": "2026-07-27 00:00:00",
+      "null_count": 0,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/fund_flow_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    },
+    "style_daily": {
+      "feature_group": "style_daily",
+      "feature_count": 36,
+      "row_count": 11602,
+      "symbol_count": 16,
+      "min_date": "2023-07-27 00:00:00",
+      "max_date": "2026-07-27 00:00:00",
+      "null_count": 94222,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/style_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    },
+    "current_snapshot": {
+      "feature_group": "current_snapshot",
+      "feature_count": 6,
+      "row_count": 16,
+      "symbol_count": 16,
+      "min_date": "2026-07-29 03:35:34.785065+00:00",
+      "max_date": "2026-07-29 03:35:34.785065+00:00",
+      "null_count": 0,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/current_snapshot/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    },
+    "suspected_behavior_evidence": {
+      "feature_group": "suspected_behavior_evidence",
+      "feature_count": 11,
+      "row_count": 16,
+      "symbol_count": 16,
+      "min_date": "2026-07-27 00:00:00",
+      "max_date": "2026-07-27 00:00:00",
+      "null_count": 64,
+      "quality_status": "PASS",
+      "feature_path": "data/feature/suspected_behavior_evidence/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet"
+    }
+  },
+  "temporal_safety": {
+    "status": "PASS",
+    "historical_market_max_date": "2026-07-27 00:00:00",
+    "fund_flow_safe_max_date": "2026-07-27 00:00:00",
+    "used_2026_07_28_fund_flow": false,
+    "unknown_financial_rows_excluded": 124160,
+    "future_financial_rows_excluded": 0,
+    "spot_min": "2026-07-29 11:35:34.785065+08",
+    "spot_max": "2026-07-29 11:35:34.785065+08",
+    "spot_separated": true,
+    "error_count": 0
+  },
+  "formula_validation": {
+    "status": "PASS",
+    "checks": 7
+  },
+  "quality": {
+    "status": "PASS",
+    "duplicate_business_keys": 0,
+    "null_required_keys": 0,
+    "infinite_numeric_values": 0
+  },
+  "idempotency": {
+    "status": "PASS",
+    "all_row_counts_unchanged": true,
+    "all_content_hashes_unchanged": true,
+    "feature_file_sha256_unchanged": true,
+    "first_content_hashes": {
+      "price_daily": "d593dc261a08d971a5617cdd6e4f8c9a02d87566ac895bcab7290f4269d106b4",
+      "trend_daily": "bed365b1ec293870e3ea6604e72bbb71cd2c228921cd25cf6d21b98828acd83a",
+      "activity_daily": "1ea5d5b4154319abebb9f2fde3990bfce31cc2f441b8607ca168236ed956f581",
+      "limit_event": "eb024a77449585c0ae4fab6ecf14fe19b9fae25b7aae5d2f96d10cc2790b58d0",
+      "financial_period": "ba982e4395ce56e7e5d21fc1b88cc3065d237f8b10ae31ae8456f8568e2bfe0d",
+      "fund_flow_daily": "027dbf46e673d42f83ae7add235b7178a2311ff7a25d354b16e97dd904cee223",
+      "style_daily": "b02993ef1d09936290d09dd03d1a44b77309dc6b652833446dba0a4cac126319",
+      "current_snapshot": "d205a8a3389e9f80e93f5de03ea8cf90a713ddb69a1467c5bcf77dd07071aa12",
+      "suspected_behavior_evidence": "458ec815d770f8be1ee856def142aaa91cb6e65ce4a86d7c244e2c5d0fcf7274"
+    },
+    "second_content_hashes": {
+      "price_daily": "d593dc261a08d971a5617cdd6e4f8c9a02d87566ac895bcab7290f4269d106b4",
+      "trend_daily": "bed365b1ec293870e3ea6604e72bbb71cd2c228921cd25cf6d21b98828acd83a",
+      "activity_daily": "1ea5d5b4154319abebb9f2fde3990bfce31cc2f441b8607ca168236ed956f581",
+      "limit_event": "eb024a77449585c0ae4fab6ecf14fe19b9fae25b7aae5d2f96d10cc2790b58d0",
+      "financial_period": "ba982e4395ce56e7e5d21fc1b88cc3065d237f8b10ae31ae8456f8568e2bfe0d",
+      "fund_flow_daily": "027dbf46e673d42f83ae7add235b7178a2311ff7a25d354b16e97dd904cee223",
+      "style_daily": "b02993ef1d09936290d09dd03d1a44b77309dc6b652833446dba0a4cac126319",
+      "current_snapshot": "d205a8a3389e9f80e93f5de03ea8cf90a713ddb69a1467c5bcf77dd07071aa12",
+      "suspected_behavior_evidence": "458ec815d770f8be1ee856def142aaa91cb6e65ce4a86d7c244e2c5d0fcf7274"
+    },
+    "payload_conflict_error": "feature_payload_conflict",
+    "payload_conflict_detected": true,
+    "transaction_rolled_back": true,
+    "partial_write_found": false
+  },
+  "database": {
+    "status": "PASS",
+    "path": "database/stage6/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/akshare_features.duckdb",
+    "size": 12595200,
+    "sha256": "f7630f1a103acf7726c51ee396ea359fde731e1ba153b640f5b3ac4f2874cb5e",
+    "table_count": 14,
+    "view_count": 5,
+    "tables": [
+      "feat_activity_daily",
+      "feat_current_snapshot",
+      "feat_financial_period",
+      "feat_fund_flow_daily",
+      "feat_limit_event",
+      "feat_price_daily",
+      "feat_style_daily",
+      "feat_suspected_behavior_evidence",
+      "feat_trend_daily",
+      "feature_definition_registry",
+      "feature_file_manifest",
+      "feature_lineage",
+      "feature_quality_issue",
+      "feature_run"
+    ],
+    "views": [
+      "v_current_snapshot_features",
+      "v_feature_as_of_20260727",
+      "v_feature_latest_historical",
+      "v_feature_quality_blockers",
+      "v_suspected_behavior_evidence"
+    ],
+    "table_counts": {
+      "feat_price_daily": 11602,
+      "feat_trend_daily": 11602,
+      "feat_activity_daily": 11602,
+      "feat_limit_event": 3862,
+      "feat_financial_period": 2688,
+      "feat_fund_flow_daily": 1904,
+      "feat_style_daily": 11602,
+      "feat_suspected_behavior_evidence": 16,
+      "feat_current_snapshot": 16
+    },
+    "duplicate_business_keys": {
+      "feat_price_daily": 0,
+      "feat_trend_daily": 0,
+      "feat_activity_daily": 0,
+      "feat_limit_event": 0,
+      "feat_financial_period": 0,
+      "feat_fund_flow_daily": 0,
+      "feat_style_daily": 0,
+      "feat_suspected_behavior_evidence": 0,
+      "feat_current_snapshot": 0
+    },
+    "null_required_keys": {
+      "feat_price_daily": 0,
+      "feat_trend_daily": 0,
+      "feat_activity_daily": 0,
+      "feat_limit_event": 0,
+      "feat_financial_period": 0,
+      "feat_fund_flow_daily": 0,
+      "feat_style_daily": 0,
+      "feat_suspected_behavior_evidence": 0,
+      "feat_current_snapshot": 0
+    },
+    "quality_blockers": 0,
+    "rebuildable_from_sql_and_parquet": true
+  },
+  "immutability": {
+    "stage0_frozen_files_checked": 3,
+    "raw_files_checked": 130,
+    "raw_unchanged": true,
+    "clean_files_checked": 10,
+    "clean_unchanged": true,
+    "stage5_database_unchanged": true
+  },
+  "failures": [],
+  "warnings": [
+    "Ruff availability is checked separately; dependencies were not changed.",
+    "Historical ST/board/listing-rule data is unavailable; limit detection remains uncertain rather than guessed.",
+    "Frozen style/confidence thresholds are absent; style and 疑似主力行为特征 outputs explicitly state insufficient evidence.",
+    "Current spot valuation is later than the historical as_of_date and is stored only as a separate current snapshot."
+  ],
+  "powershell_required": [],
+  "network_access": false,
+  "started_at": "2026-07-30T04:02:21.828045+00:00",
+  "finished_at": "2026-07-30T04:02:30.215800+00:00",
+  "elapsed_seconds": 8.39
+}

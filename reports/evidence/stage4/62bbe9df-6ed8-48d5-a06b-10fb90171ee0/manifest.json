@@ -1,0 +1,545 @@
+{
+  "run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "created_at": "2026-07-29T16:20:18.620560+08:00",
+  "as_of_date": "2026-07-27",
+  "start_year": "2021",
+  "python_version": "3.11.4",
+  "akshare_version": "1.18.80",
+  "git_commit": "",
+  "stock_count": 16,
+  "interface_count": 6,
+  "expected_task_count": 96,
+  "status_counts": {
+    "success": 96
+  },
+  "raw_file_count": 96,
+  "raw_files": [
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=000100/data.parquet",
+      "size": 293957,
+      "sha256": "f161f12f99090996cde81bce019406a6e3d697fc2a69488a3b6e0a81e57a40b0"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 256447,
+      "sha256": "ffde58844351b337d436d69924c253035975ffad2c2ebb4ed2f63398e2546fda"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002129/data.parquet",
+      "size": 266040,
+      "sha256": "bd06972c56b0ef3922e7e015064499da44f6c98cce1c08856f3d06918f7b28c8"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002230/data.parquet",
+      "size": 258225,
+      "sha256": "d1973337c76bf21b8836b7910c805faee017fb0dc1a71b50b033522a7b449d8b"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002361/data.parquet",
+      "size": 241268,
+      "sha256": "8b1e6d5e98d63aa8c60e8f798d7815ece63cd7a8a2d15fbedd2a4915bd67aec4"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002600/data.parquet",
+      "size": 249826,
+      "sha256": "0fdd787d381a681a4f5fc0027429622fabec366fb712517f0c46fd46bcae43e7"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300274/data.parquet",
+      "size": 244530,
+      "sha256": "3e387cda9d34608bbc999cccd4b6f68ff59677b3e54e98a1fd3feffbc6a5cb85"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300433/data.parquet",
+      "size": 236350,
+      "sha256": "103becde25a39a1c73785ddf5bb7e95b724852633b0bee6e9bddc4851745cda9"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600231/data.parquet",
+      "size": 273743,
+      "sha256": "3dff36290fb9aa85365534f175ff9ecbfd0901430cbbe2c57c22d1b0a1afed88"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600438/data.parquet",
+      "size": 278626,
+      "sha256": "585df03d616e146ab04df7dd59e9929557b7c5117f4af681c844fed4cb98902a"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600763/data.parquet",
+      "size": 260921,
+      "sha256": "b80a7c775278ecfd5787c7c5848d303004716b6dd31f4a432eb8c5a84c48b81a"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601012/data.parquet",
+      "size": 254988,
+      "sha256": "a885f394331f07ae46110a55ebfa4d1427e2ee8594bd02c2d35b42364dd2a14e"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601500/data.parquet",
+      "size": 223591,
+      "sha256": "cf88774607e424ef8a8abc7ecabc99e46b4fd6a861198275a2b02c86fb684ed2"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601636/data.parquet",
+      "size": 245171,
+      "sha256": "3bed8e37e0221f88bf90329bcbd365ba480843bd568a6f15b49d69757506fed6"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603259/data.parquet",
+      "size": 226833,
+      "sha256": "08481181d47b1759911593d221827b7a2d7fe8c08c8ef8251b8b88137ab05af1"
+    },
+    {
+      "path": "data/raw/stock_balance_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603799/data.parquet",
+      "size": 250076,
+      "sha256": "31712bb3d67acdff35b3fad1fe8017ff5f3bd7a9722d0d509d2dd08fb7174145"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=000100/data.parquet",
+      "size": 239804,
+      "sha256": "4d73f2352e79e9b8d7ecc023b379727e8216edb48ddcfd48b2d80b978a779f67"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 215886,
+      "sha256": "1541ef5575d94be88d613e24f794fd570a16d7fa680e759a4301bb9dc4206d57"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002129/data.parquet",
+      "size": 218471,
+      "sha256": "37b97920906e7367ffa9054414f2d41b0aa65f8ceae16032b3fef8f5d12a4f9a"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002230/data.parquet",
+      "size": 213354,
+      "sha256": "50cebd875069ab9c833eec918e6722d4ef49179ecdaaad21887efd7875c77718"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002361/data.parquet",
+      "size": 203546,
+      "sha256": "ce10819fa4aeb460164d301e3a47de78f36a65f2adc4eee9709678bb3a9f5c38"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002600/data.parquet",
+      "size": 208684,
+      "sha256": "b577392bfbe66a9e2132b9a009e0a0a16a978d07ac412d6d52942429a6e6f6a8"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300274/data.parquet",
+      "size": 204157,
+      "sha256": "6408f8ca479fff18a744739cfe35b914615d6c79eea9eb6410865fcc8934cc86"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300433/data.parquet",
+      "size": 193959,
+      "sha256": "9ff511e983dda62f091e8aff20ff0a173dd34a59984473636c11d4c56b228a99"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600231/data.parquet",
+      "size": 222735,
+      "sha256": "8d5457de62012e08b462a1711bf235a625c9977c489df6ac91b6e492c8f30335"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600438/data.parquet",
+      "size": 228632,
+      "sha256": "5b398d10a34d002de601a2fe2385cc6200ed56134573b2118736a19065b9af17"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600763/data.parquet",
+      "size": 216107,
+      "sha256": "90add681a8794ee98c89682c871acfacba282cb916e8e0c13d469a2b82bfb6fa"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601012/data.parquet",
+      "size": 210306,
+      "sha256": "54b7e06df64ca391488971d9c7a2a702ff34a393fe1d2ef54f2d042940500bf0"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601500/data.parquet",
+      "size": 185636,
+      "sha256": "4348c969eb15c6feea71cf8860797d87e77454324bd7e1f76947665995c6b9b1"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601636/data.parquet",
+      "size": 204148,
+      "sha256": "ac12065469bf7a0972ee98ea41edf44dc8134473fde7bfe7b359e43cbf52d8fa"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603259/data.parquet",
+      "size": 186105,
+      "sha256": "9ea4dd19d54f7e4ef6d6f164b9e9665370dc4954e90d003cec4ced0a3c9fb2e1"
+    },
+    {
+      "path": "data/raw/stock_cash_flow_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603799/data.parquet",
+      "size": 205083,
+      "sha256": "8fdc35c2ca3883652a07c5b56e38b78256c0d36380b134276a8160cbe83dd226"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=000100/data.parquet",
+      "size": 112486,
+      "sha256": "ab4eb341d072a1feaf67b302d21f08f134c7aa9a0997bc9787394df4c10870c4"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 98379,
+      "sha256": "574c3df4be07a319816a241e67504ec88c605a328d60063337d275fd61a78640"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002129/data.parquet",
+      "size": 95670,
+      "sha256": "e2000d615119568449f15e4f7aa12f2934a6bc6e8f49bbf37f5626a7ff353dda"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002230/data.parquet",
+      "size": 91091,
+      "sha256": "cdfea7a3e49b7e0eb3731ff348608d606384874aad5e3ab09e87f9ec005cf5a8"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002361/data.parquet",
+      "size": 81608,
+      "sha256": "eb8afc0588c139462d957a225956978424026269f2d97eeeea6794db3f6ad918"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002600/data.parquet",
+      "size": 77638,
+      "sha256": "6018920df3f64f9b7ef5c0c5b46f2e9e12905db5f7bf22eac8c59adefca82651"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300274/data.parquet",
+      "size": 75233,
+      "sha256": "81c3d664daf55f94b496fa7e687c9ac8ac9cda3c4b81f10a092d8eeff8f3b393"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300433/data.parquet",
+      "size": 61048,
+      "sha256": "f71727ef924564f3000c3339b7eca0555a15e55c2df46b0d46fb304a51b41423"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600231/data.parquet",
+      "size": 118982,
+      "sha256": "2cb046bf0c6a488c6fdafdd8d7210ddd75d11cee513bbb07bd2e63abf7738829"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600438/data.parquet",
+      "size": 110916,
+      "sha256": "89dfac436dc4e395b7a25bbe1cb48f4e1ebc3880e63b8585cd10e136c757daa0"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600763/data.parquet",
+      "size": 121953,
+      "sha256": "8c959c1a0f9c66f0f0bbffac187f069faffdb0541fee254aeb2c1f8e1f9b7bf0"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601012/data.parquet",
+      "size": 79677,
+      "sha256": "c8c123dae18d0484de9ab10456e55e1aa70cd9b4761f58ebff959af63bffb291"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601500/data.parquet",
+      "size": 55165,
+      "sha256": "d3bd59b8c9f03594a38b352083c33b6420ecc4d4c85f63dfa15da871ae14e41f"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601636/data.parquet",
+      "size": 76158,
+      "sha256": "e8448fed0b4f55e62fcf5685c106749cc43deca3bc686356b40fccfdfd83dd0f"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603259/data.parquet",
+      "size": 48239,
+      "sha256": "29ea2f73f46a7ae468f43223f5ef73ee8232abbc7f76e9426978611d699c9e86"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603799/data.parquet",
+      "size": 73835,
+      "sha256": "40218a1fd54470ec78900caf36d00ec7517ab4a691ff279058bd7139dd28ca09"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=000100/data.parquet",
+      "size": 80695,
+      "sha256": "6192306ae27c0ea3be20f44d0f1b80d42ae4d8e642277b0d35fad841ab585d02"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 80542,
+      "sha256": "e30dd8761517813d618ca85a016b549ecad878f9da896aee6363056ae90cf45e"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002129/data.parquet",
+      "size": 81112,
+      "sha256": "50ff506bc850a70181eafa9a53376d2ae727fe822a66af6f9eed7e1d52180366"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002230/data.parquet",
+      "size": 80882,
+      "sha256": "72b6541d5302366a284b22fb1003ce30f502e8240b262336aab23fc8d7c9e44e"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002361/data.parquet",
+      "size": 80056,
+      "sha256": "b349e2da87a3c8d9bf38d37a11e53206c8b362eb21464b8d068371313b705d73"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002600/data.parquet",
+      "size": 80602,
+      "sha256": "9757234f6bcd1fd38804e6c0ce72488aa9e381c9b6b54f2713d920f2e64df15b"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300274/data.parquet",
+      "size": 80849,
+      "sha256": "71b2190dd5de4f713a4be499fb85bc56f1460f96996b9a2e3ad1cf45ceb1890f"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300433/data.parquet",
+      "size": 80862,
+      "sha256": "26cdf96a78ff411ca85fcb89b148f20d69491f96be51ebfdcd68ff45aa4eb60f"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600231/data.parquet",
+      "size": 79886,
+      "sha256": "1dac3056866bd992806444dfb1bfa3ee01be9cd3567ac1a85e63226c67782c7e"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600438/data.parquet",
+      "size": 80034,
+      "sha256": "8fbb8c77a277cc27c1738b6387e013e8aa09c9354cce88244fa1aae8937d6800"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600763/data.parquet",
+      "size": 80032,
+      "sha256": "15f341167df818ba3541baa4e8533251f0c9bcf8c7e115deab53af0b2c3cef91"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601012/data.parquet",
+      "size": 81141,
+      "sha256": "6e73f10c8ae65583ff1910fec1882a7acc7b85d92d8474a66ed64762467ee706"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601500/data.parquet",
+      "size": 80419,
+      "sha256": "498a5a2fa98753a04c2505901d68624ffc325176652275ecab211df97dccd65e"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601636/data.parquet",
+      "size": 80418,
+      "sha256": "57648dd4565bb241677d78680104fb6d219df4d9748a592d535ae1ffbf0291b4"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603259/data.parquet",
+      "size": 80330,
+      "sha256": "5cb27f3eaa30869056879c4e8a9ad58d8245d076e80aa421e524303638b782b7"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603799/data.parquet",
+      "size": 80280,
+      "sha256": "a902e4653477c8c9f710d2a5b0f072662bf6cc98c10293fa6bf321e3b0945f4f"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=000100/data.parquet",
+      "size": 20197,
+      "sha256": "4b1e64559f6afb6d6283d5840cdfeec78f28cf52077516fb20d8241dcc9755e7"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 20308,
+      "sha256": "71700b7692e285c7d67855692d2eed589240b63ca5df7355b6a66d643b0eeb72"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002129/data.parquet",
+      "size": 20444,
+      "sha256": "5e256afca6cb5c085cee2cc86976e84ba60179dbc2fc24b17986bfab69a2ccca"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002230/data.parquet",
+      "size": 20517,
+      "sha256": "b46817d07a4c4105b15d6c7023d2b347ff107a1ef641f911a906bc918ca5fbe8"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002361/data.parquet",
+      "size": 20509,
+      "sha256": "939fb23374d623c9fe1c55ab9c65baf67d31ac4ddb3112e3ca9420ec791bdbb7"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002600/data.parquet",
+      "size": 20526,
+      "sha256": "4c94d79ce009d29555c50711821a5baa14e0628b1687da750155dee38187f666"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300274/data.parquet",
+      "size": 20618,
+      "sha256": "ca16eef65e55cfc7dd5f685b5f3ca9a8503b7a8b98edd9b89c567a381852a198"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300433/data.parquet",
+      "size": 20593,
+      "sha256": "2389eae2076d4912b993e5052d2d0ff3029dee3952f9f7e72affb7199fc49c6e"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600231/data.parquet",
+      "size": 19988,
+      "sha256": "0920654c2289212a66563bc8e85a4aaa98d8041f1a52b79035687e21d119334b"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600438/data.parquet",
+      "size": 20522,
+      "sha256": "8c1eb989bf57ccf6cddf2ca97bc2312eb58d520cc2ff482a61efcbc751f21910"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600763/data.parquet",
+      "size": 20531,
+      "sha256": "4a55ba05392cbb118f5aa9665e0f2d0e9d52fa33be237170307af218b0d0f8f1"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601012/data.parquet",
+      "size": 20448,
+      "sha256": "d3af6307af95a563fe8182ce5b77ac9bad43f956bf55bda695cfece7774b4ef7"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601500/data.parquet",
+      "size": 20037,
+      "sha256": "a6c886cdc24c3b075dfcb130121c69f83f4decfa62c7e42bcf2c1e8b0360fc7b"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601636/data.parquet",
+      "size": 20419,
+      "sha256": "7b0879ca1ba02acd342eae14b5c12b7c35ce9ccaf69aa9795696cbc385df6cb9"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603259/data.parquet",
+      "size": 20565,
+      "sha256": "44efdbc97064a747f3e6c91a1dadb39958bca95edfe0c6c54b9d168cd7d0971c"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603799/data.parquet",
+      "size": 20608,
+      "sha256": "f2233f6a9386580bfc7ef2433bd3d13caad7827cd6c5c91e5cbf7fa46a8a0045"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=000100/data.parquet",
+      "size": 181209,
+      "sha256": "d5f1e614cf23a3150f17254dd555c4309592c56adda5c569a67db01093541be9"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 167897,
+      "sha256": "2f33d39543b8cf3b73951b4300d3dbb6dcdc90c5d932cdee4f09ac610a78eed6"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002129/data.parquet",
+      "size": 169019,
+      "sha256": "b6315297fdd86a0f7fa224ba8d05a3322d16e5d83a61b29a85a5ab927d98a406"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002230/data.parquet",
+      "size": 164613,
+      "sha256": "6c355d2d47b56867e2f5b8163f195be7f0b3f5f2ffc45bc0088ead8e76f82df1"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002361/data.parquet",
+      "size": 155949,
+      "sha256": "079b5d1a27bda70e8e9777984639030a2e29afe827bfdadba7922d34cb84ab10"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002600/data.parquet",
+      "size": 163147,
+      "sha256": "43179d25512274717b5d9407683aa9bc8b2d35327d85c2efcd46bde1a98491c8"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300274/data.parquet",
+      "size": 159344,
+      "sha256": "2054c0df86f5136e7785131783c512daa8ec4a68cb30d98cacf50bdea292f530"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300433/data.parquet",
+      "size": 156562,
+      "sha256": "b6235e3738a81ecbcd4241a15b842fb72a7f9f4e51c863c541e475cd56f15754"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600231/data.parquet",
+      "size": 169585,
+      "sha256": "d6fd09213bac00ce04f21a4763395fd2ad9d625849f2a22cb541260286e570cb"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600438/data.parquet",
+      "size": 177131,
+      "sha256": "73e978fb0ca8f81e7858aac696856393630fab5a325b7926451b5a830c1aac22"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600763/data.parquet",
+      "size": 172703,
+      "sha256": "95ff0031526a2f563a890ca777aadded06b5ef47bb2b83178308c084a3ab878c"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601012/data.parquet",
+      "size": 162803,
+      "sha256": "0ab57daab4419013353d0aa53dd6e8257af5154ba08e315f506d3d274395fbbc"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601500/data.parquet",
+      "size": 149445,
+      "sha256": "66c5297bb142c96f37aac41fc6697d749bc5b889085529c54ff95ebe94639417"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601636/data.parquet",
+      "size": 158938,
+      "sha256": "103e4beff6305f0e39d0e5f16e9687f29962e35b8bb0b4489a6fcd98d8977742"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603259/data.parquet",
+      "size": 148949,
+      "sha256": "986c27620deb22dc7366f85b7bc3a57d197ce6df9c05ec5b05ba3d0d9f01e1b6"
+    },
+    {
+      "path": "data/raw/stock_profit_sheet_by_report_em/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603799/data.parquet",
+      "size": 160220,
+      "sha256": "68fa1b361f5beacaadc7b56b48a49fb24390166110d66b9c72fcd629a9663e01"
+    }
+  ],
+  "report_files": [
+    {
+      "path": "reports/stage4_financial_coverage.csv",
+      "size": 629539,
+      "sha256": "c6efc66e7eae3e0b117260402d17bcf48390016523e02bfcce26f03410a11316"
+    },
+    {
+      "path": "reports/stage4_financial_run.json",
+      "size": 822,
+      "sha256": "140362f9d91643a353070144cbaf0a866f0dfe649ef0e406fcf876d2501a4275"
+    },
+    {
+      "path": "reports/stage4_core_field_availability.csv",
+      "size": 58556,
+      "sha256": "f5660f0206b616faa7d4b2512e65d3b736357dc3dc054e3e2b1a58e30cffbf86"
+    },
+    {
+      "path": "reports/stage4_fund_flow_coverage.csv",
+      "size": 5149,
+      "sha256": "8e61c911bfabd9a13e7a4f6149aad0293934c0b83cb5ffaae715227542bf6c5e"
+    },
+    {
+      "path": "reports/stage4_point_in_time_risk.csv",
+      "size": 818748,
+      "sha256": "e65baca10dcdc37ba5a738c659c78ea6b68683b0e4bb62e44953334b882f3d5c"
+    },
+    {
+      "path": "docs/stage4_financial_fetch.md",
+      "size": 443,
+      "sha256": "c53301a86636d34580b74a482185845e5a8f1f8f4a37c3aa5c74f6c3281d368a"
+    },
+    {
+      "path": "reports/stage4_repair_task_results.csv",
+      "size": 5908,
+      "sha256": "124dd3c6448488784c05946dc40b947c319a295dce52c611375b87875dcf4037"
+    },
+    {
+      "path": "reports/stage4_repair.json",
+      "size": 498,
+      "sha256": "40603d2f3d7e9cb916fcc00104b8d898851a68e706b43502a8785ee312e70cb8"
+    },
+    {
+      "path": "docs/stage4_repair.md",
+      "size": 602,
+      "sha256": "329264c20dd6d45466f83223f5c9944240aec1893f9b55180d92fd5c1a756b88"
+    }
+  ]
+}

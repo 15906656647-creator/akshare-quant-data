@@ -1,0 +1,216 @@
+{
+  "run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "created_at": "2026-07-29T14:52:48.614644+08:00",
+  "as_of_date": "2026-07-27",
+  "start_year": "2021",
+  "python_version": "3.11.4",
+  "akshare_version": "1.18.80",
+  "git_commit": "",
+  "stock_count": 16,
+  "interface_count": 6,
+  "expected_task_count": 96,
+  "status_counts": {
+    "success": 33,
+    "failed": 63
+  },
+  "raw_file_count": 33,
+  "raw_files": [
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=000100/data.parquet",
+      "size": 112486,
+      "sha256": "ab4eb341d072a1feaf67b302d21f08f134c7aa9a0997bc9787394df4c10870c4"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 98379,
+      "sha256": "574c3df4be07a319816a241e67504ec88c605a328d60063337d275fd61a78640"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002129/data.parquet",
+      "size": 95670,
+      "sha256": "e2000d615119568449f15e4f7aa12f2934a6bc6e8f49bbf37f5626a7ff353dda"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002230/data.parquet",
+      "size": 91091,
+      "sha256": "cdfea7a3e49b7e0eb3731ff348608d606384874aad5e3ab09e87f9ec005cf5a8"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002361/data.parquet",
+      "size": 81608,
+      "sha256": "eb8afc0588c139462d957a225956978424026269f2d97eeeea6794db3f6ad918"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002600/data.parquet",
+      "size": 77638,
+      "sha256": "6018920df3f64f9b7ef5c0c5b46f2e9e12905db5f7bf22eac8c59adefca82651"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300274/data.parquet",
+      "size": 75233,
+      "sha256": "81c3d664daf55f94b496fa7e687c9ac8ac9cda3c4b81f10a092d8eeff8f3b393"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300433/data.parquet",
+      "size": 61048,
+      "sha256": "f71727ef924564f3000c3339b7eca0555a15e55c2df46b0d46fb304a51b41423"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600231/data.parquet",
+      "size": 118982,
+      "sha256": "2cb046bf0c6a488c6fdafdd8d7210ddd75d11cee513bbb07bd2e63abf7738829"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600438/data.parquet",
+      "size": 110916,
+      "sha256": "89dfac436dc4e395b7a25bbe1cb48f4e1ebc3880e63b8585cd10e136c757daa0"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600763/data.parquet",
+      "size": 121953,
+      "sha256": "8c959c1a0f9c66f0f0bbffac187f069faffdb0541fee254aeb2c1f8e1f9b7bf0"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601012/data.parquet",
+      "size": 79677,
+      "sha256": "c8c123dae18d0484de9ab10456e55e1aa70cd9b4761f58ebff959af63bffb291"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601500/data.parquet",
+      "size": 55165,
+      "sha256": "d3bd59b8c9f03594a38b352083c33b6420ecc4d4c85f63dfa15da871ae14e41f"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601636/data.parquet",
+      "size": 76158,
+      "sha256": "e8448fed0b4f55e62fcf5685c106749cc43deca3bc686356b40fccfdfd83dd0f"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603259/data.parquet",
+      "size": 48239,
+      "sha256": "29ea2f73f46a7ae468f43223f5ef73ee8232abbc7f76e9426978611d699c9e86"
+    },
+    {
+      "path": "data/raw/stock_financial_abstract/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603799/data.parquet",
+      "size": 73835,
+      "sha256": "40218a1fd54470ec78900caf36d00ec7517ab4a691ff279058bd7139dd28ca09"
+    },
+    {
+      "path": "data/raw/stock_financial_analysis_indicator/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 80542,
+      "sha256": "e30dd8761517813d618ca85a016b549ecad878f9da896aee6363056ae90cf45e"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=000100/data.parquet",
+      "size": 20197,
+      "sha256": "4b1e64559f6afb6d6283d5840cdfeec78f28cf52077516fb20d8241dcc9755e7"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002067/data.parquet",
+      "size": 20308,
+      "sha256": "71700b7692e285c7d67855692d2eed589240b63ca5df7355b6a66d643b0eeb72"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002129/data.parquet",
+      "size": 20444,
+      "sha256": "5e256afca6cb5c085cee2cc86976e84ba60179dbc2fc24b17986bfab69a2ccca"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002230/data.parquet",
+      "size": 20517,
+      "sha256": "b46817d07a4c4105b15d6c7023d2b347ff107a1ef641f911a906bc918ca5fbe8"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002361/data.parquet",
+      "size": 20509,
+      "sha256": "939fb23374d623c9fe1c55ab9c65baf67d31ac4ddb3112e3ca9420ec791bdbb7"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=002600/data.parquet",
+      "size": 20526,
+      "sha256": "4c94d79ce009d29555c50711821a5baa14e0628b1687da750155dee38187f666"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300274/data.parquet",
+      "size": 20618,
+      "sha256": "ca16eef65e55cfc7dd5f685b5f3ca9a8503b7a8b98edd9b89c567a381852a198"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=300433/data.parquet",
+      "size": 20593,
+      "sha256": "2389eae2076d4912b993e5052d2d0ff3029dee3952f9f7e72affb7199fc49c6e"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600231/data.parquet",
+      "size": 19988,
+      "sha256": "0920654c2289212a66563bc8e85a4aaa98d8041f1a52b79035687e21d119334b"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600438/data.parquet",
+      "size": 20522,
+      "sha256": "8c1eb989bf57ccf6cddf2ca97bc2312eb58d520cc2ff482a61efcbc751f21910"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=600763/data.parquet",
+      "size": 20531,
+      "sha256": "4a55ba05392cbb118f5aa9665e0f2d0e9d52fa33be237170307af218b0d0f8f1"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601012/data.parquet",
+      "size": 20448,
+      "sha256": "d3af6307af95a563fe8182ce5b77ac9bad43f956bf55bda695cfece7774b4ef7"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601500/data.parquet",
+      "size": 20037,
+      "sha256": "a6c886cdc24c3b075dfcb130121c69f83f4decfa62c7e42bcf2c1e8b0360fc7b"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=601636/data.parquet",
+      "size": 20419,
+      "sha256": "7b0879ca1ba02acd342eae14b5c12b7c35ce9ccaf69aa9795696cbc385df6cb9"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603259/data.parquet",
+      "size": 20565,
+      "sha256": "44efdbc97064a747f3e6c91a1dadb39958bca95edfe0c6c54b9d168cd7d0971c"
+    },
+    {
+      "path": "data/raw/stock_individual_fund_flow/run_id=62bbe9df-6ed8-48d5-a06b-10fb90171ee0/symbol=603799/data.parquet",
+      "size": 20608,
+      "sha256": "f2233f6a9386580bfc7ef2433bd3d13caad7827cd6c5c91e5cbf7fa46a8a0045"
+    }
+  ],
+  "report_files": [
+    {
+      "path": "reports/stage4_financial_coverage.csv",
+      "size": 90295,
+      "sha256": "df9ed01199a06d510aa827d5511f165a69e930ed8dbfc3cc654ac5a17c8464c7"
+    },
+    {
+      "path": "reports/stage4_financial_run.json",
+      "size": 4241,
+      "sha256": "a1450f26c880dcef49ea1633904230867c7e03f929f403bc6257b7cedb39c1c2"
+    },
+    {
+      "path": "reports/stage4_core_field_availability.csv",
+      "size": 35252,
+      "sha256": "630c900ce1451474b215dc1cda55c6b983acdcde7a7bc7ac48ef5848da3a3e04"
+    },
+    {
+      "path": "reports/stage4_fund_flow_coverage.csv",
+      "size": 5149,
+      "sha256": "8e61c911bfabd9a13e7a4f6149aad0293934c0b83cb5ffaae715227542bf6c5e"
+    },
+    {
+      "path": "reports/stage4_point_in_time_risk.csv",
+      "size": 4412,
+      "sha256": "04fc06b1e7f959baa7ab7bbf2082542013fb6a2cfb6abb3175aabbd85ef10cb2"
+    },
+    {
+      "path": "docs/stage4_financial_fetch.md",
+      "size": 446,
+      "sha256": "3b9a832c3f110927ce906210a8a5885c8a0e8d751ef8920e01337292b2983ade"
+    }
+  ]
+}

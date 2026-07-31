@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "mapping_conflict_rolled_back": true,
+  "quality_conflict_rolled_back": true,
+  "partial_write_found": false,
+  "tables_compared": 12
+}

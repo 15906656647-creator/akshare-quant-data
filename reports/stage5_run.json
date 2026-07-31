@@ -1,0 +1,145 @@
+{
+  "stage": 5,
+  "status": "PASS",
+  "can_enter_stage6": true,
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "as_of_date": "2026-07-27",
+  "started_at": "2026-07-29T12:37:45.987436+00:00",
+  "finished_at": "2026-07-29T12:39:19.503778+00:00",
+  "raw_validation": {
+    "stage3": "34/34",
+    "stage4": "96/96"
+  },
+  "clean_datasets": {
+    "stock_daily_qfq": 11602,
+    "stock_daily_raw": 11602,
+    "stock_spot_full_market": 5884,
+    "stock_spot_target_16": 16,
+    "financial_abstract": 95600,
+    "financial_indicator": 28560,
+    "financial_statement_balance_sheet": 355376,
+    "financial_statement_profit_statement": 227050,
+    "financial_statement_cash_flow_statement": 280800,
+    "fund_flow": 1920
+  },
+  "database": {
+    "path": "database/akshare_data_test.duckdb",
+    "status": "PASS",
+    "checks": {
+      "dim_security_a_share_count": 16,
+      "daily_qfq_symbols": 16,
+      "daily_raw_symbols": 16,
+      "spot_target_symbols": 16,
+      "financial_abstract_symbols": 16,
+      "financial_indicator_symbols": 16,
+      "financial_statement_symbols": 16,
+      "fund_flow_symbols": 16,
+      "safe_unknown_count": 0,
+      "lookahead_logic_errors": 0
+    },
+    "duplicate_keys": {
+      "fact_stock_daily": 0,
+      "fact_stock_spot": 0,
+      "fact_financial_abstract": 0,
+      "fact_financial_indicator": 0,
+      "fact_financial_statement": 0,
+      "fact_stock_fund_flow": 0
+    },
+    "null_primary_keys": {
+      "fact_stock_daily": 0,
+      "fact_stock_spot": 0,
+      "fact_financial_abstract": 0,
+      "fact_financial_indicator": 0,
+      "fact_financial_statement": 0,
+      "fact_stock_fund_flow": 0
+    }
+  },
+  "field_mapping": {
+    "passthrough": 955,
+    "mapped": 60,
+    "unmapped": 9,
+    "unknown_unit_fields": 127
+  },
+  "unit_conversion": {
+    "rows": 12
+  },
+  "point_in_time": [
+    {
+      "check": "announcement_unknown",
+      "row_count": 124160,
+      "status": "WARN"
+    },
+    {
+      "check": "potential_lookahead",
+      "row_count": 0,
+      "status": "PASS"
+    },
+    {
+      "check": "safe_view_unknown",
+      "row_count": 0,
+      "status": "PASS"
+    },
+    {
+      "check": "lookahead_logic_errors",
+      "row_count": 0,
+      "status": "PASS"
+    }
+  ],
+  "quality": {
+    "PASS": 45,
+    "WARN": 2
+  },
+  "idempotency": {
+    "status": "PASS",
+    "same_source_second_load_added_fact_rows": false,
+    "before_counts": {
+      "data_lineage": 130,
+      "data_quality_issue": 47,
+      "dim_security": 16,
+      "etl_run": 1,
+      "fact_financial_abstract": 95600,
+      "fact_financial_indicator": 28560,
+      "fact_financial_statement": 863226,
+      "fact_stock_daily": 23204,
+      "fact_stock_fund_flow": 1920,
+      "fact_stock_spot": 5900,
+      "field_mapping_registry": 1024,
+      "source_file_manifest": 130
+    },
+    "after_counts": {
+      "data_lineage": 130,
+      "data_quality_issue": 47,
+      "dim_security": 16,
+      "etl_run": 1,
+      "fact_financial_abstract": 95600,
+      "fact_financial_indicator": 28560,
+      "fact_financial_statement": 863226,
+      "fact_stock_daily": 23204,
+      "fact_stock_fund_flow": 1920,
+      "fact_stock_spot": 5900,
+      "field_mapping_registry": 1024,
+      "source_file_manifest": 130
+    },
+    "clean_overwritten": false,
+    "transaction_rollback_test": "covered_by_automated_test"
+  },
+  "tests": {
+    "stage5_new_tests": 18,
+    "full_pytest": "161 passed in 22.82s",
+    "socket_blocking": "PASS",
+    "raw_immutability": "PASS",
+    "clean_atomic_write": "PASS",
+    "duckdb_transaction_rollback": "PASS",
+    "idempotency": "PASS",
+    "sql_rebuild": "PASS",
+    "compileall": "PASS",
+    "ruff": "WARN: module not installed"
+  },
+  "failures": [],
+  "warnings": [
+    "Unknown announcement dates remain unavailable and are excluded from the point-in-time-safe view"
+  ],
+  "powershell_required": []
+}

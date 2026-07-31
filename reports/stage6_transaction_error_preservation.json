@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "primary_exception_type": "Stage6PayloadConflictError",
+  "primary_error_code": "feature_payload_conflict",
+  "primary_error_preserved": true,
+  "secondary_rollback_error_recorded": true,
+  "secondary_error_notes": [
+    "secondary rollback failure: cannot rollback - no transaction is active"
+  ],
+  "transaction_rollback_verified": true,
+  "partial_write_found": false
+}

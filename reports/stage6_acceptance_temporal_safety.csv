@@ -1,0 +1,10 @@
+﻿check_id,feature_group,source_table_or_view,expected_rule,actual_result,violation_count,severity,status,evidence
+market_cutoff,historical,v_stock_daily_qfq,trade_date <= 2026-07-27,2026-07-27 00:00:00,0,ERROR,PASS,2026-07-27 00:00:00
+rolling_no_center,historical,stage6_features.py,center is never true,center_true_calls=0,0,ERROR,PASS,center_true_calls=0
+rolling_no_future_shift,historical,stage6_features.py,no negative shift,negative_shift_calls=0,0,ERROR,PASS,negative_shift_calls=0
+fund_safe_view,fund_flow_daily,v_stock_fund_flow_as_of_safe,future usage = 0,full=1920; safe=1904; feature_max=2026-07-27 00:00:00,0,ERROR,PASS,full=1920; safe=1904; feature_max=2026-07-27 00:00:00
+fund_20260728_excluded,fund_flow_daily,v_stock_fund_flow_as_of_safe,2026-07-28 usage = 0,fact_future=16,0,ERROR,PASS,fact_future=16
+financial_known_announcement,financial_period,v_financial_point_in_time_safe,announcement known,unknown_source=124160,0,ERROR,PASS,unknown_source=124160
+financial_no_future_announcement,financial_period,v_financial_point_in_time_safe,announcement <= 2026-07-27,lookahead_source=0,0,ERROR,PASS,lookahead_source=0
+spot_separate,current_snapshot,fact_stock_spot,current spot absent from historical view,spot_columns_in_historical=0,0,ERROR,PASS,spot_columns_in_historical=0
+spot_historical_flag,current_snapshot,fact_stock_spot,is_historical_as_of=false,true_rows=0,0,ERROR,PASS,true_rows=0

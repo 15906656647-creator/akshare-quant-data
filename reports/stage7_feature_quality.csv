@@ -1,0 +1,30 @@
+﻿check_name,status,severity,observed_value,expected_value,details,run_id,calculated_at
+input_primary_key_unique,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+output_primary_key_unique,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+input_output_row_count_equal,PASS,ERROR,11602,11602,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+qfq_only,PASS,ERROR,['qfq'],['qfq'],,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+dates_monotonic_by_symbol,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+all_ma_columns_present,PASS,ERROR,[],[],,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+ma_3_full_window,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+ma_5_full_window,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+ma_7_full_window,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+ma_10_full_window,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+ma_13_full_window,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+ma_20_full_window,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+ma_21_full_window,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+no_cross_symbol_shift,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+no_infinite_features,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+volume_ratio_nonnegative,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+scores_in_unit_interval,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+scored_rows_complete,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+activity_business_key_unique,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+activity_score_decomposition,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+score_metadata_present,PASS,ERROR,True,True,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+no_extra_symbols,PASS,ERROR,0,0,extra=,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+target_symbol_coverage,PASS,WARNING,16,16,missing=,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+minimum_activity_observations,PASS,WARNING,0,0,symbols=,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+no_extra_activity_symbols,PASS,ERROR,0,0,extra=,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+activity_as_of_matches_latest_trade,PASS,ERROR,0,0,,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+database_feature_run_id_current,PASS,ERROR,1,1,formal DuckDB post-write verification,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+database_activity_run_id_current,PASS,ERROR,1,1,formal DuckDB post-write verification,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00
+database_activity_row_count,PASS,ERROR,16,16,formal DuckDB post-write verification,3252ae5d-f0b9-42ad-a27e-f20cc8128718,2026-07-30 08:51:25.338633+00:00

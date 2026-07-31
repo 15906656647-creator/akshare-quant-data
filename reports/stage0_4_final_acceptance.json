@@ -1,0 +1,384 @@
+{
+  "audit": "stage0_4_independent_final_acceptance",
+  "audit_date": "2026-07-29",
+  "overall_status": "PASS",
+  "can_enter_stage5": true,
+  "network_calls_made": false,
+  "powershell_required": [],
+  "stage0": {
+    "status": "PASS",
+    "as_of_date": "2026-07-27",
+    "stock_count": 16,
+    "symbols": [
+      "002067",
+      "002600",
+      "002230",
+      "600763",
+      "603259",
+      "603799",
+      "601012",
+      "600438",
+      "002361",
+      "601500",
+      "600231",
+      "300274",
+      "601636",
+      "002129",
+      "000100",
+      "300433"
+    ],
+    "crypto": {
+      "requested_pair": "ETHUSDT",
+      "exact_match_required": true,
+      "allow_pair_substitution": false
+    },
+    "hash_validation": {
+      "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+      "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+      "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+    },
+    "failures": [],
+    "warnings": [
+      "CODEX_STAGE0_PROMPT.md is absent (documentation WARN)."
+    ]
+  },
+  "stage1": {
+    "status": "PASS",
+    "python": {
+      "version": "3.11.4",
+      "bits": 64,
+      "venv": ".venv",
+      "base_prefix": "[local base interpreter path redacted]"
+    },
+    "pip_check": {
+      "exit_code": 0
+    },
+    "required_imports": {
+      "passed": 14,
+      "total": 14
+    },
+    "requirements_lock": {
+      "pinned_packages": 58,
+      "version_matches": 58,
+      "mismatches": 0
+    },
+    "show_config": {
+      "default": "PASS",
+      "override": "PASS"
+    },
+    "doctor": {
+      "status": "PASS",
+      "report": "reports/stage0_4_acceptance_doctor.json"
+    },
+    "pytest": {
+      "passed": 143,
+      "failed": 0,
+      "skipped": 0
+    },
+    "ruff": {
+      "installed": false,
+      "status": "WARN"
+    },
+    "failures": [],
+    "warnings": [
+      "Ruff is not installed.",
+      "requirements-lock editable-project line contains a local, mojibake path."
+    ]
+  },
+  "stage2": {
+    "engineering_status": "PASS",
+    "live_interface_status": "PASS",
+    "local_run_id": "728cf611-e063-403e-90ab-a0b736a946f1",
+    "probe_count": 12,
+    "unique_interface_count": 11,
+    "status_counts": {
+      "success": 12
+    },
+    "nonempty_count": 12,
+    "network_preflight": {
+      "status": "PASS",
+      "host_count": 6
+    },
+    "pool_validation": [
+      {
+        "probe_id": "limit_up_pool",
+        "status": "success",
+        "row_count": "40",
+        "pool_date": "2026-07-24",
+        "pool_date_source": "cli"
+      },
+      {
+        "probe_id": "limit_down_pool",
+        "status": "success",
+        "row_count": "25",
+        "pool_date": "2026-07-24",
+        "pool_date_source": "cli"
+      }
+    ],
+    "crypto_validation": {
+      "probe_status": "success",
+      "row_count": 10,
+      "requested_pair": "ETHUSDT",
+      "capability_result": "unsupported",
+      "substitution_used": false
+    },
+    "evidence_validation": {
+      "sample_files": 12,
+      "schema_files": 12,
+      "missing": 0
+    },
+    "failures": [],
+    "warnings": [
+      "ETHUSDT exact pair is unsupported; no substitute was used.",
+      "docs/stage2_repair.md is absent; docs/stage2_repair_and_retest.md exists."
+    ]
+  },
+  "stage3": {
+    "status": "PASS",
+    "run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+    "coverage_count": 49,
+    "coverage_unique_count": 49,
+    "daily_success": 32,
+    "spot_success_records": 17,
+    "raw_file_count": 34,
+    "manifest_raw_count": 34,
+    "manifest_report_count": 4,
+    "hash_validation": {
+      "manifest_entries_checked": 38,
+      "mismatches": 0
+    },
+    "parquet_validation": {
+      "checked": 34,
+      "nonempty_readable_pass": 34
+    },
+    "quality_validation": {
+      "daily_files": 32,
+      "error_files": 0,
+      "qfq_raw_date_key_match_symbols": 16,
+      "spot_full_market_rows": 5884,
+      "spot_target_symbols": 16,
+      "missing_target_symbols": 0,
+      "special_gap_symbols": {
+        "600438": 10,
+        "601500": 4
+      }
+    },
+    "failures": [],
+    "warnings": [
+      "600438 and 601500 have suspension-like gaps with identical qfq/raw keys.",
+      "CODEX_STAGE3_PROMPT.md is absent."
+    ]
+  },
+  "stage4": {
+    "status": "PASS",
+    "run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+    "coverage_count": 96,
+    "coverage_unique_symbol_interface": 96,
+    "success_count": 96,
+    "failed_count": 0,
+    "empty_count": 0,
+    "nonempty_success_count": 96,
+    "interface_counts": {
+      "balance_sheet_report": 16,
+      "cashflow_sheet_report": 16,
+      "financial_abstract": 16,
+      "financial_indicator": 16,
+      "individual_fund_flow": 16,
+      "profit_sheet_report": 16
+    },
+    "raw_file_count": 96,
+    "manifest_raw_count": 96,
+    "manifest_report_count": 9,
+    "hash_validation": {
+      "manifest_entries_checked": 105,
+      "mismatches": 0
+    },
+    "parquet_validation": {
+      "checked": 96,
+      "nonempty_readable_pass": 96
+    },
+    "repair_validation": {
+      "original_failed_tasks": 13,
+      "repaired_nonempty_success": 13,
+      "before_repair_raw_count": 83,
+      "before_repair_raw_unchanged": 83
+    },
+    "historical_failure_evidence": {
+      "initial_failure_coverage": true,
+      "initial_failure_manifest": true,
+      "initial_failure_run": true,
+      "manifest_before_repair": true
+    },
+    "output_logs": {
+      "resume_stdout": true,
+      "resume_stderr": true,
+      "task_log_files": 26
+    },
+    "point_in_time": {
+      "rows": 3566,
+      "potential_lookahead_count": 0,
+      "announcement_date_unavailable_count": 32,
+      "future_report_error_count": 0
+    },
+    "fund_flow_window": {
+      "symbols": 16,
+      "rows_per_symbol_min": 120,
+      "rows_per_symbol_max": 120,
+      "min_date": "2026-01-13",
+      "max_date": "2026-07-28",
+      "complete_multiyear_claimed": false
+    },
+    "failures": [],
+    "warnings": [
+      "32 point-in-time rows have announcement date unavailable and are explicitly marked unavailable/WARN.",
+      "Fund-flow window is upstream-limited and reaches 2026-07-28.",
+      "CODEX_STAGE4_PROMPT.md, docs/stage4_acceptance.md, and reports/stage4_acceptance.json are absent; final Raw/run/repair evidence is present."
+    ]
+  },
+  "scope_boundary_check": {
+    "status": "PASS",
+    "clean_business_files": 0,
+    "feature_business_files": 0,
+    "export_business_files": 0,
+    "business_database_files": 0,
+    "stage5_business_outputs": 0
+  },
+  "security_check": {
+    "status": "PASS",
+    "effective_credentials": 0,
+    "manifest_absolute_paths": 0,
+    "log_credential_findings": 0,
+    "personal_absolute_path_files": 14,
+    "warnings": [
+      "Local absolute paths exist in environment diagnostic reports/lock/helper; no effective credential and no absolute path in Stage2-4 manifests."
+    ]
+  },
+  "git_traceability": {
+    "status": "WARN",
+    "branch": "master",
+    "head": "9aea2edb60afdc8930953188149398b25c71675d",
+    "tracked_counts": {
+      "config": 2,
+      "src": 0,
+      "tests": 1,
+      "reports": 0,
+      "docs": 1
+    },
+    "modified": [
+      "AGENTS.md"
+    ],
+    "untracked_key_areas": [
+      "src/",
+      "reports/",
+      "Stage1-4 tests/docs",
+      "data/",
+      "logs/",
+      "_accept_verify.py"
+    ],
+    "diff_check_exit_code": 0,
+    "checkpoint_recommended": true
+  },
+  "commands": [
+    {
+      "name": "pip_check",
+      "command": ".venv\\Scripts\\python.exe -m pip check",
+      "started_at": "2026-07-29T20:11:37.510943+08:00",
+      "duration_seconds": 0.544,
+      "exit_code": 0,
+      "result": "No broken requirements found."
+    },
+    {
+      "name": "imports",
+      "command": ".venv\\Scripts\\python.exe -c <14 required imports>",
+      "started_at": "2026-07-29T20:11:38.055095+08:00",
+      "duration_seconds": 2.052,
+      "exit_code": 0,
+      "result": "14/14 importable"
+    },
+    {
+      "name": "show_config_default",
+      "command": ".venv\\Scripts\\python.exe run_pipeline.py show-config --as-of-date 2026-07-27",
+      "started_at": "2026-07-29T20:11:40.108183+08:00",
+      "duration_seconds": 0.151,
+      "exit_code": 0,
+      "result": "16 stocks; ETHUSDT exact_match true"
+    },
+    {
+      "name": "show_config_override",
+      "command": ".venv\\Scripts\\python.exe run_pipeline.py show-config --as-of-date 2026-07-20",
+      "started_at": "2026-07-29T20:11:40.259669+08:00",
+      "duration_seconds": 0.146,
+      "exit_code": 0,
+      "result": "override resolved to 2026-07-20"
+    },
+    {
+      "name": "doctor_invalid_option",
+      "command": ".venv\\Scripts\\python.exe run_pipeline.py doctor --as-of-date 2026-07-27 --report reports/stage0_4_acceptance_doctor.json",
+      "started_at": "2026-07-29T20:11:40.405162+08:00",
+      "duration_seconds": 0.135,
+      "exit_code": 2,
+      "result": "unsupported --report option; corrected immediately"
+    },
+    {
+      "name": "doctor",
+      "command": ".venv\\Scripts\\python.exe run_pipeline.py doctor --as-of-date 2026-07-27 --output reports/stage0_4_acceptance_doctor.json",
+      "started_at": "2026-07-29T20:12:16.441667+08:00",
+      "duration_seconds": 2.066,
+      "exit_code": 0,
+      "result": "PASS; 14/14 packages, 9/9 config, 20/20 filesystem, DuckDB memory OK"
+    },
+    {
+      "name": "pytest",
+      "command": ".venv\\Scripts\\python.exe -m pytest -q",
+      "started_at": "2026-07-29T20:11:40.540323+08:00",
+      "duration_seconds": 20.146,
+      "exit_code": 0,
+      "result": "143 passed in 19.44s; no skips reported"
+    },
+    {
+      "name": "ruff_check",
+      "command": ".venv\\Scripts\\python.exe -m ruff check .",
+      "started_at": "2026-07-29T20:12:00.686734+08:00",
+      "duration_seconds": 0.059,
+      "exit_code": 1,
+      "result": "No module named ruff; WARN by acceptance rule"
+    },
+    {
+      "name": "ruff_format_check",
+      "command": ".venv\\Scripts\\python.exe -m ruff format --check .",
+      "started_at": "2026-07-29T20:12:00.745510+08:00",
+      "duration_seconds": 0.057,
+      "exit_code": 1,
+      "result": "No module named ruff; WARN by acceptance rule"
+    },
+    {
+      "name": "raw_integrity_recheck",
+      "command": "offline Python SHA-256 + Parquet metadata validation against Stage3/4 manifests",
+      "started_at": "2026-07-29T20:14:05.168557+08:00",
+      "duration_seconds": 0.377,
+      "exit_code": 0,
+      "result": "130/130 Raw pass"
+    }
+  ],
+  "failures": [],
+  "warnings": [
+    "Ruff is not installed; lint/format checks were not available and no dependency was installed.",
+    "CODEX_STAGE0_PROMPT.md, CODEX_STAGE3_PROMPT.md, CODEX_STAGE4_PROMPT.md, docs/stage2_repair.md, docs/stage4_acceptance.md, and reports/stage4_acceptance.json are absent; equivalent stage reports/evidence were independently validated.",
+    "600438 has 10 and 601500 has 4 suspension-like missing trading dates versus the reference calendar; qfq/raw date keys are identical for both.",
+    "ETHUSDT exact-pair capability is unsupported; no substitute pair was used. The crypto market probe itself returned 10 non-empty rows.",
+    "Stage4 has 32 records with announcement_date unavailable; they are explicitly marked unavailable/WARN rather than point-in-time safe.",
+    "Fund-flow Raw records the upstream window as returned (120 rows per symbol, through 2026-07-28) and explicitly does not claim complete multi-year history.",
+    "Local drive-qualified paths occur in environment doctor reports, requirements-lock.txt, and an untracked audit helper; no effective credential was found and Stage2-4 manifests use relative paths.",
+    "Git delivery traceability is weak: only Stage0 is committed; src/reports and nearly all Stage1-4 tests/docs are untracked, AGENTS.md is modified, and _accept_verify.py is an untracked helper. Create a reviewed Git checkpoint before further delivery.",
+    "One attempted doctor invocation used unsupported --report and exited 2; it was corrected to --output and the required doctor gate passed."
+  ],
+  "evidence": [
+    "reports/stage0_4_acceptance_doctor.json",
+    "reports/stage0_4_file_integrity.csv",
+    "reports/stage0_4_raw_validation.csv",
+    "reports/stage0_4_daily_quality.csv",
+    "reports/stage0_4_stage4_task_matrix.csv",
+    "reports/stage0_4_scope_boundary.csv",
+    "reports/stage0_4_security_scan.csv"
+  ]
+}

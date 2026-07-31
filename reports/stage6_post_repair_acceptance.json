@@ -1,0 +1,231 @@
+{
+  "stage": 6,
+  "acceptance_type": "post_repair_independent_acceptance",
+  "acceptance_status": "PASS",
+  "can_enter_stage7": true,
+  "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "as_of_date": "2026-07-27",
+  "source_database": {
+    "path": "database/akshare_data_test_stage5_repaired.duckdb",
+    "sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026",
+    "unchanged": true
+  },
+  "formal_stage6_database": {
+    "path": "database/stage6/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/akshare_features.duckdb",
+    "sha256": "f7630f1a103acf7726c51ee396ea359fde731e1ba153b640f5b3ac4f2874cb5e",
+    "unchanged": true
+  },
+  "formal_manifest": {
+    "path": "reports/evidence/stage6/48af48ca-2707-4c53-ad51-745a17b6295d/manifest.json",
+    "sha256": "43ee09f2e3b892801200e06f9e1a2e2c437caf8805ae2e84ef8256f3b089a0fa",
+    "unchanged": true
+  },
+  "pre_gate": {
+    "pip_check": {
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "pytest": {
+      "exit_code": 0,
+      "passed": 200,
+      "status": "PASS"
+    },
+    "compileall": {
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "show_config": {
+      "exit_code": 0,
+      "stock_count": 16,
+      "crypto": "ETHUSDT",
+      "status": "PASS"
+    },
+    "doctor": {
+      "exit_code": 0,
+      "status": "PASS",
+      "path": "reports/stage6_post_repair_acceptance_doctor.json"
+    },
+    "network_access": false,
+    "ruff": "WARN:not_installed"
+  },
+  "input_immutability": {
+    "checked": 156,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "formal_artifact_validation": {
+    "feature_files": 9,
+    "feature_files_passed": 9,
+    "tables": 14,
+    "tables_passed": 14,
+    "database_table_count": 14,
+    "database_view_count": 5,
+    "status": "PASS"
+  },
+  "production_path_validation": {
+    "build_calls_artifact_resolver": true,
+    "build_calls_atomic_parquet": true,
+    "build_calls_database_persistence": true,
+    "build_reuses_existing_metadata": true,
+    "database_no_unconditional_file_exists_error": true,
+    "database_existing_payload_is_verified": true,
+    "rollback_preserves_original": true,
+    "rollback_uses_transaction_state": true,
+    "create_uses_bare_raise": true,
+    "cli_reaches_build_stage6": true,
+    "no_test_only_switch_required": true,
+    "status": "PASS"
+  },
+  "temporal_safety": {
+    "historical_market_max_date": "2026-07-27",
+    "future_market_rows": 0,
+    "fund_2026_07_28_rows_used": 0,
+    "unknown_announcement_rows_used": 0,
+    "future_announcement_rows_used": 0,
+    "current_spot_rows_used_in_historical": 0,
+    "negative_shift_calls": 0,
+    "centered_rolling_calls": 0,
+    "leakage_error_count": 0,
+    "status": "PASS"
+  },
+  "formula_validation": {
+    "sample_count": 2835,
+    "failure_count": 0,
+    "production_feature_function_used_for_expected": false,
+    "ma_windows": [
+      3,
+      5,
+      7,
+      10,
+      13,
+      20,
+      21
+    ],
+    "all_seven_moving_averages_passed": true,
+    "adjustment_basis_passed": "True",
+    "status": "PASS"
+  },
+  "idempotency_validation": {
+    "complete_non_empty_input": true,
+    "initial_resolver_action": "create_new",
+    "first_status": "created",
+    "second_resolver_action": "reuse_identical",
+    "second_status": "idempotent_reuse",
+    "second_exit_code": 0,
+    "feature_files_added": 0,
+    "feature_files_rewritten": 0,
+    "feature_file_mtime_changes": 0,
+    "database_rows_added": 0,
+    "metadata_rows_added": 0,
+    "all_table_counts_match": true,
+    "all_table_hashes_match": true,
+    "all_file_hashes_match": true,
+    "all_file_mtimes_match": true,
+    "database_file_unchanged": true,
+    "manifest_unchanged": true
+  },
+  "conflict_validation": {
+    "feature_file_payload": {
+      "exception_type": "Stage6PayloadConflictError",
+      "error_code": "feature_payload_conflict",
+      "original_artifacts_unchanged": true,
+      "temporary_files_remaining": 0,
+      "status": "PASS"
+    },
+    "database_payload": {
+      "exception_type": "Stage6PayloadConflictError",
+      "error_code": "feature_payload_conflict",
+      "table_name": "feat_price_daily",
+      "primary_is_rollback_error": false,
+      "original_artifacts_unchanged": true,
+      "status": "PASS"
+    },
+    "different_run_same_path": {
+      "exception_type": "Stage6ArtifactIdentityConflictError",
+      "error_code": "feature_run_path_conflict",
+      "status": "PASS"
+    },
+    "partial_artifacts": {
+      "directory_only": {
+        "error_code": "incomplete_existing_stage6_artifact",
+        "status": "PASS"
+      },
+      "partial_parquet": {
+        "error_code": "incomplete_existing_stage6_artifact",
+        "status": "PASS"
+      },
+      "database_only": {
+        "error_code": "incomplete_existing_stage6_artifact",
+        "status": "PASS"
+      },
+      "missing_manifest": {
+        "error_code": "incomplete_existing_stage6_artifact",
+        "status": "PASS"
+      },
+      "database_missing_tables": {
+        "error_code": "incomplete_existing_stage6_artifact",
+        "status": "PASS"
+      }
+    }
+  },
+  "transaction_validation": {
+    "primary_exception_type": "Stage6PayloadConflictError",
+    "primary_error_code": "feature_payload_conflict",
+    "secondary_error_notes": [
+      "secondary rollback failure: cannot rollback - no transaction is active"
+    ],
+    "secondary_only": true,
+    "rollback_transaction_failed_as_expected": true,
+    "partial_target_exists": false,
+    "temporary_database_count": 0,
+    "status": "PASS"
+  },
+  "non_blocking_results": {
+    "limit_uncertain": 3862,
+    "suspected_behavior_insufficient": 16,
+    "suspected_behavior_confidence_nonnull": 0,
+    "warmup_null_preserved": true
+  },
+  "lineage_and_manifest": {
+    "formal_manifest_unchanged": true,
+    "repair_parent_manifest": "reports/evidence/stage6/48af48ca-2707-4c53-ad51-745a17b6295d/manifest.json",
+    "repair_report_hash_mismatches": 0,
+    "personal_absolute_paths": 0,
+    "status": "PASS"
+  },
+  "scope_boundary_check": {
+    "status": "PASS",
+    "network_access": false,
+    "formal_build_stage6_executed": false
+  },
+  "security_check": {
+    "status": "PASS",
+    "dot_env_tracked": false,
+    "manifest_personal_absolute_paths": 0
+  },
+  "powershell_required": [],
+  "failures": [],
+  "warnings": [
+    "Ruff is not installed; no network installation was performed.",
+    "3862 limit-event rows remain uncertain because historical security rules are unavailable.",
+    "16 suspected-behavior rows remain evidence-insufficient with NULL confidence.",
+    "Stage 1-6 files remain largely untracked in Git."
+  ],
+  "evidence": [
+    "docs/stage6_post_repair_acceptance.md",
+    "reports/stage6_post_repair_acceptance.json",
+    "reports/stage6_post_repair_pre_gate.json",
+    "reports/stage6_post_repair_input_immutability.csv",
+    "reports/stage6_post_repair_feature_validation.csv",
+    "reports/stage6_post_repair_table_validation.csv",
+    "reports/stage6_post_repair_temporal_safety.csv",
+    "reports/stage6_post_repair_formula_validation.csv",
+    "reports/stage6_post_repair_idempotency_tables.csv",
+    "reports/stage6_post_repair_idempotency_files.csv",
+    "reports/stage6_post_repair_conflict_tests.json",
+    "reports/stage6_post_repair_transaction_validation.json",
+    "reports/stage6_post_repair_scope_boundary.csv",
+    "reports/stage6_post_repair_security.csv"
+  ]
+}

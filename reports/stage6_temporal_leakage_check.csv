@@ -1,0 +1,11 @@
+﻿check_name,severity,status,error_count
+historical_market_max_date,ERROR,PASS,0
+fund_flow_safe_view_only,ERROR,PASS,0
+2026_07_28_fund_flow_excluded,ERROR,PASS,0
+financial_announcement_known,ERROR,PASS,0
+financial_announcement_not_future,ERROR,PASS,0
+spot_separate_from_historical,ERROR,PASS,0
+rolling_center_false,ERROR,PASS,0
+negative_shift_absent,ERROR,PASS,0
+cross_symbol_alignment,ERROR,PASS,0
+natural_day_fill_absent,ERROR,PASS,0

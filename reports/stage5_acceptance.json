@@ -1,0 +1,469 @@
+{
+  "stage": 5,
+  "acceptance_status": "FAIL",
+  "can_enter_stage6": false,
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "as_of_date": "2026-07-27",
+  "pre_gate": {
+    "pip_check": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "pytest": {
+      "status": "PASS",
+      "passed": 161,
+      "offline_socket_guard": true
+    },
+    "doctor": {
+      "status": "PASS",
+      "path": "reports/stage5_acceptance_doctor.json"
+    },
+    "stage0_hashes": {
+      "config/universe.yml": {
+        "expected": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+        "actual": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+        "match": true
+      },
+      "config/metric_definition.yml": {
+        "expected": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+        "actual": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+        "match": true
+      },
+      "docs/stage0_scope.md": {
+        "expected": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+        "actual": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+        "match": true
+      }
+    },
+    "stage3_acceptance": "PASS",
+    "stage4_acceptance": "PASS via stage0_4 final acceptance and independent 96/96 Raw validation"
+  },
+  "raw_immutability": {
+    "stage3_expected": 34,
+    "stage3_verified": 34,
+    "stage3_hash_match": 34,
+    "stage4_expected": 96,
+    "stage4_verified": 96,
+    "stage4_hash_match": 96
+  },
+  "manifest_validation": {
+    "json_parse": true,
+    "transform_run_id": true,
+    "market_source_run_id": true,
+    "fundamental_source_run_id": true,
+    "as_of_date": false,
+    "clean_files_registered": true,
+    "clean_hashes_match": true,
+    "report_files_registered": false,
+    "relative_paths": true,
+    "database_hash_match": true,
+    "status_present": false,
+    "status": "WARN"
+  },
+  "field_mapping_validation": {
+    "counts": {
+      "mapped": 60,
+      "passthrough": 955,
+      "unmapped": 9,
+      "ambiguous": 0,
+      "deprecated": 0
+    },
+    "required_unmapped": 0,
+    "duplicate_source_keys": 0,
+    "guessing_found": false
+  },
+  "unit_conversion_validation": {
+    "stock_daily_qfq": {
+      "volume": 0,
+      "amplitude": 0,
+      "pct_change": 0,
+      "turnover_rate": 0,
+      "amount": 0
+    },
+    "stock_daily_raw": {
+      "volume": 0,
+      "amplitude": 0,
+      "pct_change": 0,
+      "turnover_rate": 0,
+      "amount": 0
+    },
+    "stock_spot_full_market": {
+      "volume": 0,
+      "pct_change": 0,
+      "amplitude": 0,
+      "turnover_rate": 0,
+      "amount": 0,
+      "market_cap": 0,
+      "float_market_cap": 0
+    },
+    "stock_spot_target_16": {
+      "volume": 0,
+      "pct_change": 0,
+      "amplitude": 0,
+      "turnover_rate": 0,
+      "amount": 0,
+      "market_cap": 0,
+      "float_market_cap": 0
+    },
+    "fund_flow": {
+      "pct_change": 0,
+      "main_net_inflow_ratio": 0,
+      "super_large_net_inflow_ratio": 0,
+      "large_net_inflow_ratio": 0,
+      "medium_net_inflow_ratio": 0,
+      "small_net_inflow_ratio": 0
+    },
+    "financial_abstract": {
+      "conversion_errors": 0,
+      "unknown_unit_conversion_errors": 0,
+      "percent_rows": 0,
+      "unknown_unit_rows": 95600
+    },
+    "financial_indicator": {
+      "conversion_errors": 0,
+      "unknown_unit_conversion_errors": 0,
+      "percent_rows": 12768,
+      "unknown_unit_rows": 2016
+    },
+    "financial_statement_balance_sheet": {
+      "conversion_errors": 0,
+      "unknown_unit_conversion_errors": 0,
+      "percent_rows": 177688,
+      "unknown_unit_rows": 0
+    },
+    "financial_statement_profit_statement": {
+      "conversion_errors": 0,
+      "unknown_unit_conversion_errors": 0,
+      "percent_rows": 113525,
+      "unknown_unit_rows": 0
+    },
+    "financial_statement_cash_flow_statement": {
+      "conversion_errors": 0,
+      "unknown_unit_conversion_errors": 0,
+      "percent_rows": 140400,
+      "unknown_unit_rows": 0
+    }
+  },
+  "clean_validation": {
+    "files": 10,
+    "passed": 10
+  },
+  "daily_validation": {
+    "stock_daily_qfq": {
+      "symbols": 16,
+      "six_digit": true,
+      "future_dates": 0,
+      "ohlc_errors": 0,
+      "negative_volume_amount": 0,
+      "duplicates": 0
+    },
+    "stock_daily_raw": {
+      "symbols": 16,
+      "six_digit": true,
+      "future_dates": 0,
+      "ohlc_errors": 0,
+      "negative_volume_amount": 0,
+      "duplicates": 0
+    },
+    "date_key_difference": 0
+  },
+  "spot_validation": {
+    "stock_spot_full_market": {
+      "rows": 5884,
+      "symbols": 5884,
+      "snapshots": [
+        "2026-07-29T11:35:34.785065+08:00"
+      ],
+      "null_as_zero_evidence": false,
+      "valuation_non_null": {
+        "pe_dynamic": 5538,
+        "pb": 5538,
+        "market_cap_cny": 5538,
+        "float_market_cap_cny": 5538
+      }
+    },
+    "stock_spot_target_16": {
+      "rows": 16,
+      "symbols": 16,
+      "snapshots": [
+        "2026-07-29T11:35:34.785065+08:00"
+      ],
+      "null_as_zero_evidence": false,
+      "valuation_non_null": {
+        "pe_dynamic": 16,
+        "pb": 16,
+        "market_cap_cny": 16,
+        "float_market_cap_cny": 16
+      }
+    }
+  },
+  "financial_validation": {
+    "financial_abstract": {
+      "symbols": 16,
+      "rows": 95600,
+      "duplicates": 0,
+      "announcement_unknown": 95600,
+      "potential_lookahead": 0
+    },
+    "financial_indicator": {
+      "symbols": 16,
+      "rows": 28560,
+      "duplicates": 0,
+      "announcement_unknown": 28560,
+      "potential_lookahead": 0
+    },
+    "financial_statement_balance_sheet": {
+      "symbols": 16,
+      "rows": 355376,
+      "duplicates": 0,
+      "announcement_unknown": 0,
+      "potential_lookahead": 0
+    },
+    "financial_statement_profit_statement": {
+      "symbols": 16,
+      "rows": 227050,
+      "duplicates": 0,
+      "announcement_unknown": 0,
+      "potential_lookahead": 0
+    },
+    "financial_statement_cash_flow_statement": {
+      "symbols": 16,
+      "rows": 280800,
+      "duplicates": 0,
+      "announcement_unknown": 0,
+      "potential_lookahead": 0
+    }
+  },
+  "statement_validation": {
+    "financial_statement_balance_sheet": {
+      "symbols": 16,
+      "rows": 355376,
+      "duplicates": 0,
+      "announcement_unknown": 0,
+      "potential_lookahead": 0
+    },
+    "financial_statement_profit_statement": {
+      "symbols": 16,
+      "rows": 227050,
+      "duplicates": 0,
+      "announcement_unknown": 0,
+      "potential_lookahead": 0
+    },
+    "financial_statement_cash_flow_statement": {
+      "symbols": 16,
+      "rows": 280800,
+      "duplicates": 0,
+      "announcement_unknown": 0,
+      "potential_lookahead": 0
+    }
+  },
+  "fund_flow_validation": {
+    "symbols": 16,
+    "rows": 1920,
+    "date_min": "2026-01-13",
+    "date_max": "2026-07-28",
+    "duplicates": 0,
+    "raw_date_sequence_match": true
+  },
+  "point_in_time_validation": {
+    "point_in_time_safe": 863226,
+    "announcement_unknown": 124160,
+    "potential_lookahead": 0,
+    "safe_unknown": 0,
+    "safe_future": 0
+  },
+  "database_validation": {
+    "path": "database/akshare_data_test.duckdb",
+    "size": 142880768,
+    "sha256": "d00f8d6017f5f74b3945f158af70153aef378af0c39f867f5dbd1c1cb1b3c372",
+    "readonly_open": true,
+    "database_size": [
+      {
+        "database_name": "akshare_data_test",
+        "database_size": "136.5 MiB",
+        "block_size": 262144,
+        "total_blocks": 546,
+        "used_blocks": 544,
+        "free_blocks": 2,
+        "wal_size": "0 bytes",
+        "memory_usage": "7.0 MiB",
+        "memory_limit": "12.5 GiB"
+      }
+    ],
+    "tables": 12,
+    "views": 7,
+    "required_missing": []
+  },
+  "table_counts": {
+    "dim_security": 16,
+    "etl_run": 1,
+    "source_file_manifest": 130,
+    "data_lineage": 130,
+    "data_quality_issue": 47,
+    "field_mapping_registry": 1024,
+    "fact_stock_daily": 23204,
+    "fact_stock_spot": 5900,
+    "fact_financial_abstract": 95600,
+    "fact_financial_indicator": 28560,
+    "fact_financial_statement": 863226,
+    "fact_stock_fund_flow": 1920
+  },
+  "duplicate_key_validation": {
+    "dim_security": 0,
+    "etl_run": 0,
+    "source_file_manifest": 0,
+    "data_lineage": 0,
+    "data_quality_issue": 0,
+    "field_mapping_registry": 0,
+    "fact_stock_daily": 0,
+    "fact_stock_spot": 0,
+    "fact_financial_abstract": 0,
+    "fact_financial_indicator": 0,
+    "fact_financial_statement": 0,
+    "fact_stock_fund_flow": 0
+  },
+  "null_required_key_validation": {
+    "dim_security": 0,
+    "etl_run": 0,
+    "source_file_manifest": 0,
+    "data_lineage": 0,
+    "data_quality_issue": 0,
+    "field_mapping_registry": 0,
+    "fact_stock_daily": 0,
+    "fact_stock_spot": 0,
+    "fact_financial_abstract": 0,
+    "fact_financial_indicator": 0,
+    "fact_financial_statement": 0,
+    "fact_stock_fund_flow": 0
+  },
+  "lineage_validation": {
+    "records": 130,
+    "passed": 130,
+    "missing": 0
+  },
+  "quality_issue_validation": {
+    "csv_rows": 47,
+    "db_rows": 47,
+    "status_counts": {
+      "PASS": 45,
+      "WARN": 2
+    }
+  },
+  "idempotency_validation": {
+    "actual_offline_temp_copy": true,
+    "facts_added": 0,
+    "data_quality_issue_before": 47,
+    "data_quality_issue_after": 94,
+    "field_mapping_registry_before": 1024,
+    "field_mapping_registry_after": 2048,
+    "status": "FAIL",
+    "formal_database_hash_unchanged": true,
+    "temporary_copy_removed": true
+  },
+  "transaction_validation": {
+    "actual_offline_temp_database": true,
+    "injected_error": "ConstraintException",
+    "all_table_counts_after_rollback_zero": true,
+    "status": "PASS"
+  },
+  "scope_boundary_check": {
+    "status": "PASS",
+    "feature_files": [],
+    "stage6_database_objects": []
+  },
+  "security_check": {
+    "effective_credentials_found": 0,
+    "personal_absolute_paths_in_stage5_manifest": false,
+    "env_tracked": false,
+    "status": "PASS"
+  },
+  "git_traceability": {
+    "branch": "master",
+    "commit": "9aea2edb60afdc8930953188149398b25c71675d",
+    "stage5_untracked": true
+  },
+  "powershell_required": [],
+  "failures": [
+    "完整同源输入在临时数据库副本重放时，data_quality_issue 新增47行（47→94），field_mapping_registry 新增1,024行（1,024→2,048）；数据库写入并非全表幂等，且既有stage5_idempotency_check.json的PASS通过传入空质量/映射表掩盖了该问题。"
+  ],
+  "warnings": [
+    "CODEX_STAGE5_PROMPT.md缺失，使用用户附件作为验收契约。",
+    "docs/stage4_acceptance.md与reports/stage4_acceptance.json缺失；以docs/stage0_4_final_acceptance.md及Stage4 repair/manifest实证替代。",
+    "Ruff未安装，未临时安装。",
+    "正式Stage5 manifest缺少as_of_date、status及report_files登记；10个Clean文件和数据库的大小/SHA-256仍全部匹配。",
+    "data_lineage未直接存储source_file_sha256、clean_file_sha256、target_table、loaded_at；本次通过source_file_manifest、Stage5 manifest、dataset映射和etl_run完成外部关联。",
+    "Stage1-5关键源码、配置、SQL、测试、报告、Raw/Clean和数据库大量未纳入Git，交付可追溯性较弱。",
+    "资金流Raw/Clean最晚日期为2026-07-28，晚于业务基准日一天；与阶段4正式Raw一致，且未伪称多年历史。"
+  ],
+  "evidence": [
+    "reports/stage5_acceptance_raw_immutability.csv",
+    "reports/stage5_acceptance_clean_validation.csv",
+    "reports/stage5_acceptance_database_objects.csv",
+    "reports/stage5_acceptance_table_counts.csv",
+    "reports/stage5_acceptance_quality_summary.csv",
+    "reports/stage5_acceptance_mapping_summary.csv",
+    "reports/stage5_acceptance_lineage_validation.csv",
+    "reports/stage5_acceptance_doctor.json",
+    "docs/stage5_acceptance.md"
+  ],
+  "actual_commands": [
+    {
+      "command": ".venv\\Scripts\\python.exe -m pip check",
+      "exit_code": 0,
+      "elapsed_seconds": 3.284,
+      "network": false,
+      "modified_formal_artifacts": false,
+      "result": "PASS"
+    },
+    {
+      "command": ".venv\\Scripts\\python.exe -m pytest -q",
+      "exit_code": 0,
+      "elapsed_seconds": 24.156,
+      "network": false,
+      "modified_formal_artifacts": false,
+      "result": "161 passed; autouse socket guard"
+    },
+    {
+      "command": ".venv\\Scripts\\python.exe run_pipeline.py show-config --as-of-date 2026-07-27",
+      "exit_code": 0,
+      "elapsed_seconds": 0.14,
+      "network": false,
+      "modified_formal_artifacts": false,
+      "result": "16 stocks; ETHUSDT exact match"
+    },
+    {
+      "command": ".venv\\Scripts\\python.exe run_pipeline.py doctor --as-of-date 2026-07-27 --output reports/stage5_acceptance_doctor.json",
+      "exit_code": 0,
+      "elapsed_seconds": 1.91,
+      "network": false,
+      "modified_formal_artifacts": false,
+      "result": "PASS"
+    },
+    {
+      "command": ".venv\\Scripts\\python.exe run_pipeline.py validate-stage5 --as-of-date 2026-07-27 --database-path database/akshare_data_test.duckdb",
+      "exit_code": 0,
+      "elapsed_seconds": 0.819,
+      "network": false,
+      "modified_formal_artifacts": false,
+      "result": "read-only validator PASS"
+    },
+    {
+      "command": "independent Raw/Clean/mapping/unit/DuckDB/lineage verifier",
+      "exit_code": 0,
+      "elapsed_seconds": null,
+      "network": false,
+      "modified_formal_artifacts": false,
+      "result": "core data checks PASS; acceptance files refreshed"
+    },
+    {
+      "command": "temporary DuckDB complete-input replay and rollback injection",
+      "exit_code": 0,
+      "elapsed_seconds": 4.468,
+      "network": false,
+      "modified_formal_artifacts": false,
+      "result": "idempotency FAIL; transaction rollback PASS; formal DB hash unchanged"
+    }
+  ]
+}

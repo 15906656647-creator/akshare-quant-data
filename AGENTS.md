@@ -61,3 +61,14 @@
 
 - This project is for research and testing only.
 - **Never output investment advice** in any form.
+
+
+## Stage 1 additions (environment and project skeleton)
+
+- Virtual environment: `.venv` at project root; activate before any command.
+- Dependency install: `pip install -e ".[dev]"` (editable install).
+- Lock file: `requirements-lock.txt` is auto-generated from the actual venv.
+- CLI entry: `python run_pipeline.py <command>` or `akshare-data-test <command>`.
+- Available commands: `doctor` (offline env check) and `show-config` (safe config summary).
+- Run tests: `pytest` from the project root with the venv activated.
+- Stage 0 files (`config/universe.yml`, `config/metric_definition.yml`, `docs/stage0_scope.md`) are frozen; verify hash integrity before and after each stage.

@@ -1,0 +1,10 @@
+﻿feature_group,feature_count,row_count,symbol_count,min_date,max_date,null_count,quality_status,feature_path
+price_daily,11,11602,16,2023-07-27 00:00:00,2026-07-27 00:00:00,1008,PASS,data/feature/price_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet
+trend_daily,8,11602,16,2023-07-27 00:00:00,2026-07-27 00:00:00,1152,PASS,data/feature/trend_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet
+activity_daily,13,11602,16,2023-07-27 00:00:00,2026-07-27 00:00:00,25760,PASS,data/feature/activity_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet
+limit_event,10,3862,16,2025-07-28 00:00:00,2026-07-27 00:00:00,11586,PASS,data/feature/limit_event/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet
+financial_period,12,2688,16,2021-12-31 00:00:00,2026-03-31 00:00:00,0,PASS,data/feature/financial_period/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet
+fund_flow_daily,2,1904,16,2026-01-13 00:00:00,2026-07-27 00:00:00,0,PASS,data/feature/fund_flow_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet
+style_daily,36,11602,16,2023-07-27 00:00:00,2026-07-27 00:00:00,94222,PASS,data/feature/style_daily/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet
+current_snapshot,6,16,16,2026-07-29 03:35:34.785065+00:00,2026-07-29 03:35:34.785065+00:00,0,PASS,data/feature/current_snapshot/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet
+suspected_behavior_evidence,11,16,16,2026-07-27 00:00:00,2026-07-27 00:00:00,64,PASS,data/feature/suspected_behavior_evidence/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/data.parquet

@@ -1,0 +1,40 @@
+{
+  "stage": 4,
+  "run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "status": "PARTIAL",
+  "as_of_date": "2026-07-27",
+  "start_year": "2021",
+  "started_at": "2026-07-29T15:00:44.819001+08:00",
+  "finished_at": "2026-07-29T15:04:58.062329+08:00",
+  "python_version": "3.11.4",
+  "akshare_version": "1.18.80",
+  "stock_count": 16,
+  "interface_count": 6,
+  "expected_task_count": 96,
+  "success_count": 83,
+  "empty_count": 0,
+  "failed_count": 13,
+  "core_financial_symbol_count": 13,
+  "statement_success_count": 38,
+  "fund_flow_success_count": 16,
+  "potential_lookahead_count": 0,
+  "warnings": [
+    "Fund-flow results expose a limited upstream window.",
+    "Raw is current retrieval output, not strict historical point-in-time data."
+  ],
+  "errors": [
+    "601636/cashflow_sheet_report: invalid_parameter",
+    "002129/financial_indicator: invalid_parameter",
+    "002129/balance_sheet_report: invalid_parameter",
+    "002129/profit_sheet_report: invalid_parameter",
+    "002129/cashflow_sheet_report: invalid_parameter",
+    "000100/financial_indicator: invalid_parameter",
+    "000100/balance_sheet_report: invalid_parameter",
+    "000100/profit_sheet_report: invalid_parameter",
+    "000100/cashflow_sheet_report: invalid_parameter",
+    "300433/financial_indicator: invalid_parameter",
+    "300433/balance_sheet_report: invalid_parameter",
+    "300433/profit_sheet_report: invalid_parameter",
+    "300433/cashflow_sheet_report: invalid_parameter"
+  ]
+}

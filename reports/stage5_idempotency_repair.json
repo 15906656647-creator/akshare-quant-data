@@ -1,0 +1,264 @@
+{
+  "stage": 5,
+  "repair": "metadata_full_table_idempotency",
+  "status": "PASS",
+  "can_enter_stage6": true,
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "as_of_date": "2026-07-27",
+  "complete_inputs": {
+    "clean_datasets": 10,
+    "data_quality_issue": 47,
+    "field_mapping_registry": 1024,
+    "source_file_manifest": 130,
+    "data_lineage": 130
+  },
+  "first_load": {
+    "metadata_migration": {
+      "field_mapping_registry": 1024,
+      "data_quality_issue": 47
+    },
+    "quality_upsert": {
+      "inserted": 0,
+      "unchanged": 47
+    },
+    "mapping_upsert": {
+      "inserted": 0,
+      "unchanged": 1024
+    },
+    "snapshot": {
+      "data_lineage": {
+        "row_count": 130,
+        "content_hash": "e6d49c0201652c2774ef170a1d5733d20697b208c4bfa2c111f23c64f85bfa9a",
+        "business_key_hash": "a007b16e42df04a511e4790da44130a12e18e0191317d054307db61c630599a7"
+      },
+      "data_quality_issue": {
+        "row_count": 47,
+        "content_hash": "c95e1fee32178b5b8d59ab064ef84da7c7b2a0b7074e899cbb49db3da08612e1",
+        "business_key_hash": "f8f82a00c9627fcc030718bd0ec65e255842e5a94dac7d9befa791ad07bd4ffb"
+      },
+      "dim_security": {
+        "row_count": 16,
+        "content_hash": "0d32ecdd2e78f8a379a7fc21e0d075368b2f7a828929e9bd8be6f3df30d5c65a",
+        "business_key_hash": "479cbe49313013b79dacdc5a793d5737c6ff3ae33a046cab36836498fde7bea5"
+      },
+      "etl_run": {
+        "row_count": 1,
+        "content_hash": "8e3b70fa2d9f3c0f926202f507770ff4fc38d4613b0c7df7139d3244f9b15864",
+        "business_key_hash": "5d810b4449a7bf0fa793567a893c2e780a07c47528a7e0bc9b0fe9b0f370e5ff"
+      },
+      "fact_financial_abstract": {
+        "row_count": 95600,
+        "content_hash": "6f2a24644235cb973d784ff7ed581688f071aa9552e5ea981de08543b5fdcd36",
+        "business_key_hash": "dc761e014a0c45ad7a015fe98a5f3a02125950e4b7c158389240668dc75c1872"
+      },
+      "fact_financial_indicator": {
+        "row_count": 28560,
+        "content_hash": "3739a53df71f0830eb52c5958a6e8144a41fdf3f5b94ea8bc9fa8a9228f1d807",
+        "business_key_hash": "83a14542cb117ea1051ab9da7bf131454cad08d6d1c17f2dbc6c8389891041ea"
+      },
+      "fact_financial_statement": {
+        "row_count": 863226,
+        "content_hash": "5cb16ffdcec9d9c52db81c80390bab74451905822b8e0521d676ea6ad9af49a4",
+        "business_key_hash": "abcb0ee5ab2fbf80ccca3bc7c20a77a063e001e95ef5c68983d9bea92d0cdeae"
+      },
+      "fact_stock_daily": {
+        "row_count": 23204,
+        "content_hash": "90f67465e9d1758ea072b9e53bea15e36dc39c580c357f82854e65f9856283f9",
+        "business_key_hash": "ac19e9c3f1d43603d354d772b94ed9ac2ba39fa4742775edcbb33039411c11e1"
+      },
+      "fact_stock_fund_flow": {
+        "row_count": 1920,
+        "content_hash": "c1186c92bb4f024a41228b53ff978e00a68361bb9116ae4f3073c4ff81b49f8e",
+        "business_key_hash": "922ec600eb79d11ac823d5bd34479f2d25cc270a18294e2e39a9a468a2037a6f"
+      },
+      "fact_stock_spot": {
+        "row_count": 5900,
+        "content_hash": "06ddfaf9ca1ac10f0a327e5b45d48d8e4090140b727fbc7faea8b1c1b37d9c39",
+        "business_key_hash": "b86238ec68ecb883132269bdde229da7113f760016072fe13d1425c04cf2e988"
+      },
+      "field_mapping_registry": {
+        "row_count": 1024,
+        "content_hash": "f25d535b105fd0561caf5208f26d63e40c38844dddd5927a088a037bb324d834",
+        "business_key_hash": "390b9fd01615465864308b0894c55409812b75b09b703294209c1f79600f2ddb"
+      },
+      "source_file_manifest": {
+        "row_count": 130,
+        "content_hash": "d2e3a53b733cf97244e01e8e124dc378ec58f5aa2d657942c1f25bb657e6acab",
+        "business_key_hash": "19c3e94b7b730c8af18f2998d1c63d239f36895e6dead16f31a00eee9e33c890"
+      }
+    }
+  },
+  "second_load": {
+    "quality_upsert": {
+      "inserted": 0,
+      "unchanged": 47
+    },
+    "mapping_upsert": {
+      "inserted": 0,
+      "unchanged": 1024
+    },
+    "snapshot": {
+      "data_lineage": {
+        "row_count": 130,
+        "content_hash": "e6d49c0201652c2774ef170a1d5733d20697b208c4bfa2c111f23c64f85bfa9a",
+        "business_key_hash": "a007b16e42df04a511e4790da44130a12e18e0191317d054307db61c630599a7"
+      },
+      "data_quality_issue": {
+        "row_count": 47,
+        "content_hash": "c95e1fee32178b5b8d59ab064ef84da7c7b2a0b7074e899cbb49db3da08612e1",
+        "business_key_hash": "f8f82a00c9627fcc030718bd0ec65e255842e5a94dac7d9befa791ad07bd4ffb"
+      },
+      "dim_security": {
+        "row_count": 16,
+        "content_hash": "0d32ecdd2e78f8a379a7fc21e0d075368b2f7a828929e9bd8be6f3df30d5c65a",
+        "business_key_hash": "479cbe49313013b79dacdc5a793d5737c6ff3ae33a046cab36836498fde7bea5"
+      },
+      "etl_run": {
+        "row_count": 1,
+        "content_hash": "8e3b70fa2d9f3c0f926202f507770ff4fc38d4613b0c7df7139d3244f9b15864",
+        "business_key_hash": "5d810b4449a7bf0fa793567a893c2e780a07c47528a7e0bc9b0fe9b0f370e5ff"
+      },
+      "fact_financial_abstract": {
+        "row_count": 95600,
+        "content_hash": "6f2a24644235cb973d784ff7ed581688f071aa9552e5ea981de08543b5fdcd36",
+        "business_key_hash": "dc761e014a0c45ad7a015fe98a5f3a02125950e4b7c158389240668dc75c1872"
+      },
+      "fact_financial_indicator": {
+        "row_count": 28560,
+        "content_hash": "3739a53df71f0830eb52c5958a6e8144a41fdf3f5b94ea8bc9fa8a9228f1d807",
+        "business_key_hash": "83a14542cb117ea1051ab9da7bf131454cad08d6d1c17f2dbc6c8389891041ea"
+      },
+      "fact_financial_statement": {
+        "row_count": 863226,
+        "content_hash": "5cb16ffdcec9d9c52db81c80390bab74451905822b8e0521d676ea6ad9af49a4",
+        "business_key_hash": "abcb0ee5ab2fbf80ccca3bc7c20a77a063e001e95ef5c68983d9bea92d0cdeae"
+      },
+      "fact_stock_daily": {
+        "row_count": 23204,
+        "content_hash": "90f67465e9d1758ea072b9e53bea15e36dc39c580c357f82854e65f9856283f9",
+        "business_key_hash": "ac19e9c3f1d43603d354d772b94ed9ac2ba39fa4742775edcbb33039411c11e1"
+      },
+      "fact_stock_fund_flow": {
+        "row_count": 1920,
+        "content_hash": "c1186c92bb4f024a41228b53ff978e00a68361bb9116ae4f3073c4ff81b49f8e",
+        "business_key_hash": "922ec600eb79d11ac823d5bd34479f2d25cc270a18294e2e39a9a468a2037a6f"
+      },
+      "fact_stock_spot": {
+        "row_count": 5900,
+        "content_hash": "06ddfaf9ca1ac10f0a327e5b45d48d8e4090140b727fbc7faea8b1c1b37d9c39",
+        "business_key_hash": "b86238ec68ecb883132269bdde229da7113f760016072fe13d1425c04cf2e988"
+      },
+      "field_mapping_registry": {
+        "row_count": 1024,
+        "content_hash": "f25d535b105fd0561caf5208f26d63e40c38844dddd5927a088a037bb324d834",
+        "business_key_hash": "390b9fd01615465864308b0894c55409812b75b09b703294209c1f79600f2ddb"
+      },
+      "source_file_manifest": {
+        "row_count": 130,
+        "content_hash": "d2e3a53b733cf97244e01e8e124dc378ec58f5aa2d657942c1f25bb657e6acab",
+        "business_key_hash": "19c3e94b7b730c8af18f2998d1c63d239f36895e6dead16f31a00eee9e33c890"
+      }
+    }
+  },
+  "all_twelve_tables_unchanged": true,
+  "conflict_tests": {
+    "status": "PASS",
+    "same_mapping_key_same_hash": {
+      "status": "PASS",
+      "inserted": 0,
+      "unchanged": 1024
+    },
+    "same_mapping_key_different_hash": {
+      "status": "PASS",
+      "error": "idempotency_payload_conflict:field_mapping_registry:affe4a850c3ed7214ad05df96d7498488675a8581dd76c9da57a7dab953113a8"
+    },
+    "same_issue_key_same_hash": {
+      "status": "PASS",
+      "inserted": 0,
+      "unchanged": 47
+    },
+    "same_issue_key_different_hash": {
+      "status": "PASS",
+      "error": "idempotency_payload_conflict:data_quality_issue:7c45a4b9b7a64f8ae511cde241c8867c11b2e391046bcf0278c637bbcce4a0cc"
+    },
+    "different_transform_run_id": {
+      "status": "PASS"
+    }
+  },
+  "transaction": {
+    "status": "PASS",
+    "mapping_conflict_rolled_back": true,
+    "quality_conflict_rolled_back": true,
+    "partial_write_found": false,
+    "tables_compared": 12
+  },
+  "immutability": {
+    "stage3_raw": {
+      "expected": 34,
+      "verified": 34,
+      "status": "PASS"
+    },
+    "stage4_raw": {
+      "expected": 96,
+      "verified": 96,
+      "status": "PASS"
+    },
+    "stage5_clean": {
+      "expected": 10,
+      "verified": 10,
+      "status": "PASS"
+    },
+    "formal_database": {
+      "before_sha256": "d00f8d6017f5f74b3945f158af70153aef378af0c39f867f5dbd1c1cb1b3c372",
+      "after_sha256": "d00f8d6017f5f74b3945f158af70153aef378af0c39f867f5dbd1c1cb1b3c372",
+      "unchanged": true
+    },
+    "parent_manifest": {
+      "before_sha256": "e61f0bfc7b147e203a2c88042592cc9f9993b4f720f266103e69ecbe8fc11c92",
+      "after_sha256": "e61f0bfc7b147e203a2c88042592cc9f9993b4f720f266103e69ecbe8fc11c92",
+      "unchanged": true
+    }
+  },
+  "fund_flow_as_of_protection": {
+    "full_fact_after_as_of_rows": 16,
+    "safe_view_rows": 1904,
+    "safe_view_after_as_of_rows": 0,
+    "raw_rows_preserved": true,
+    "status": "PASS"
+  },
+  "scope_boundary": {
+    "feature_files": [],
+    "network_access": false
+  },
+  "test_validation": {
+    "pip_check": "PASS",
+    "pre_repair_pytest": "161 passed",
+    "post_repair_pytest": "168 passed",
+    "new_stage5_tests": 7,
+    "complete_nonempty_replay": "PASS",
+    "transaction_rollback": "PASS",
+    "socket_blocking": "PASS",
+    "compileall": "PASS",
+    "git_diff_check": "PASS",
+    "ruff": "WARN: module not installed"
+  },
+  "formal_database_modified": false,
+  "parent_manifest_modified": false,
+  "powershell_required": [],
+  "warnings": [
+    "Ruff is not installed; dependencies were not changed.",
+    "The repaired schema was validated on temporary database copies; the formal database remains byte-for-byte unchanged.",
+    "The Git baseline still has many untracked Stage 1-5 files."
+  ],
+  "evidence": [
+    "reports/stage5_full_idempotency_validation.csv",
+    "reports/stage5_metadata_conflict_tests.json",
+    "reports/stage5_transaction_repair_test.json",
+    "docs/stage5_idempotency_repair.md"
+  ],
+  "repair_manifest": {
+    "path": "reports/evidence/stage5/31635b34-d1ee-46d4-9c0f-32ae3f30d567/manifest.after_idempotency_repair.json"
+  }
+}

@@ -1,0 +1,15 @@
+symbol,missing_date,comparison_basis,qfq_missing,raw_missing,consecutive_missing_days,assessment
+600438,2026-02-25,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-02-26,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-02-27,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-03-02,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-03-03,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-03-04,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-03-05,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-03-06,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-03-09,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+600438,2026-03-10,16_stock_date_union,true,true,10,WARN_consistent_suspension_like
+601500,2025-03-27,16_stock_date_union,true,true,4,WARN_consistent_suspension_like
+601500,2025-03-28,16_stock_date_union,true,true,4,WARN_consistent_suspension_like
+601500,2025-03-31,16_stock_date_union,true,true,4,WARN_consistent_suspension_like
+601500,2025-04-01,16_stock_date_union,true,true,4,WARN_consistent_suspension_like

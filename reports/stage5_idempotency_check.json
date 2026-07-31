@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "same_source_second_load_added_fact_rows": false,
+  "before_counts": {
+    "data_lineage": 130,
+    "data_quality_issue": 47,
+    "dim_security": 16,
+    "etl_run": 1,
+    "fact_financial_abstract": 95600,
+    "fact_financial_indicator": 28560,
+    "fact_financial_statement": 863226,
+    "fact_stock_daily": 23204,
+    "fact_stock_fund_flow": 1920,
+    "fact_stock_spot": 5900,
+    "field_mapping_registry": 1024,
+    "source_file_manifest": 130
+  },
+  "after_counts": {
+    "data_lineage": 130,
+    "data_quality_issue": 47,
+    "dim_security": 16,
+    "etl_run": 1,
+    "fact_financial_abstract": 95600,
+    "fact_financial_indicator": 28560,
+    "fact_financial_statement": 863226,
+    "fact_stock_daily": 23204,
+    "fact_stock_fund_flow": 1920,
+    "fact_stock_spot": 5900,
+    "field_mapping_registry": 1024,
+    "source_file_manifest": 130
+  },
+  "clean_overwritten": false,
+  "transaction_rollback_test": "covered_by_automated_test"
+}

@@ -1,0 +1,10 @@
+﻿check_id,expected,actual,violation_count,severity,status
+historical_market_max,2026-07-27,2026-07-27,0,ERROR,PASS
+future_market_rows,0,0,0,ERROR,PASS
+fund_safe_max,2026-07-27,2026-07-27,0,ERROR,PASS
+fund_20260728_used,0,0,0,ERROR,PASS
+unknown_announcement_used,0,0,0,ERROR,PASS
+future_announcement_used,0,0,0,ERROR,PASS
+current_spot_in_historical,0,0,0,ERROR,PASS
+negative_shift_calls,0,0,0,ERROR,PASS
+centered_rolling_calls,0,0,0,ERROR,PASS

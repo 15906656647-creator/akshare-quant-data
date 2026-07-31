@@ -1,0 +1,5 @@
+﻿check,row_count,status
+announcement_unknown,124160,WARN
+potential_lookahead,0,PASS
+safe_view_unknown,0,PASS
+lookahead_logic_errors,0,PASS

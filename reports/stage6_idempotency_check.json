@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "all_row_counts_unchanged": true,
+  "all_content_hashes_unchanged": true,
+  "feature_file_sha256_unchanged": true,
+  "first_content_hashes": {
+    "price_daily": "d593dc261a08d971a5617cdd6e4f8c9a02d87566ac895bcab7290f4269d106b4",
+    "trend_daily": "bed365b1ec293870e3ea6604e72bbb71cd2c228921cd25cf6d21b98828acd83a",
+    "activity_daily": "1ea5d5b4154319abebb9f2fde3990bfce31cc2f441b8607ca168236ed956f581",
+    "limit_event": "eb024a77449585c0ae4fab6ecf14fe19b9fae25b7aae5d2f96d10cc2790b58d0",
+    "financial_period": "ba982e4395ce56e7e5d21fc1b88cc3065d237f8b10ae31ae8456f8568e2bfe0d",
+    "fund_flow_daily": "027dbf46e673d42f83ae7add235b7178a2311ff7a25d354b16e97dd904cee223",
+    "style_daily": "b02993ef1d09936290d09dd03d1a44b77309dc6b652833446dba0a4cac126319",
+    "current_snapshot": "d205a8a3389e9f80e93f5de03ea8cf90a713ddb69a1467c5bcf77dd07071aa12",
+    "suspected_behavior_evidence": "458ec815d770f8be1ee856def142aaa91cb6e65ce4a86d7c244e2c5d0fcf7274"
+  },
+  "second_content_hashes": {
+    "price_daily": "d593dc261a08d971a5617cdd6e4f8c9a02d87566ac895bcab7290f4269d106b4",
+    "trend_daily": "bed365b1ec293870e3ea6604e72bbb71cd2c228921cd25cf6d21b98828acd83a",
+    "activity_daily": "1ea5d5b4154319abebb9f2fde3990bfce31cc2f441b8607ca168236ed956f581",
+    "limit_event": "eb024a77449585c0ae4fab6ecf14fe19b9fae25b7aae5d2f96d10cc2790b58d0",
+    "financial_period": "ba982e4395ce56e7e5d21fc1b88cc3065d237f8b10ae31ae8456f8568e2bfe0d",
+    "fund_flow_daily": "027dbf46e673d42f83ae7add235b7178a2311ff7a25d354b16e97dd904cee223",
+    "style_daily": "b02993ef1d09936290d09dd03d1a44b77309dc6b652833446dba0a4cac126319",
+    "current_snapshot": "d205a8a3389e9f80e93f5de03ea8cf90a713ddb69a1467c5bcf77dd07071aa12",
+    "suspected_behavior_evidence": "458ec815d770f8be1ee856def142aaa91cb6e65ce4a86d7c244e2c5d0fcf7274"
+  },
+  "payload_conflict_error": "feature_payload_conflict",
+  "payload_conflict_detected": true,
+  "transaction_rolled_back": true,
+  "partial_write_found": false
+}

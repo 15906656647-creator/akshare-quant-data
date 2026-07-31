@@ -1,0 +1,108 @@
+{
+  "stage": 5,
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "as_of_date": "2026-07-27",
+  "status": "PASS",
+  "original_database_path": "database/akshare_data_test.duckdb",
+  "original_database_sha256": "d00f8d6017f5f74b3945f158af70153aef378af0c39f867f5dbd1c1cb1b3c372",
+  "candidate_database_path": "database/akshare_data_test_stage5_repaired.duckdb",
+  "candidate_database_sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026",
+  "schema_version": "stage5_metadata_idempotency_v2",
+  "migration_applied": true,
+  "table_counts": {
+    "data_lineage": 130,
+    "data_quality_issue": 47,
+    "dim_security": 16,
+    "etl_run": 1,
+    "fact_financial_abstract": 95600,
+    "fact_financial_indicator": 28560,
+    "fact_financial_statement": 863226,
+    "fact_stock_daily": 23204,
+    "fact_stock_fund_flow": 1920,
+    "fact_stock_spot": 5900,
+    "field_mapping_registry": 1024,
+    "source_file_manifest": 130
+  },
+  "view_counts": {
+    "total": 8,
+    "required": 7
+  },
+  "full_idempotency_status": "PASS",
+  "transaction_status": "PASS",
+  "raw_immutability_status": "PASS",
+  "clean_immutability_status": "PASS",
+  "report_files": [
+    "docs/stage5_final_reaudit.md",
+    "reports/stage5_final_reaudit.json",
+    "reports/stage5_formal_database_schema.csv",
+    "reports/stage5_candidate_database_validation.csv",
+    "reports/stage5_final_full_idempotency.csv",
+    "reports/stage5_final_view_validation.csv",
+    "reports/stage5_final_transaction_validation.json",
+    "reports/stage5_final_reaudit_doctor.json"
+  ],
+  "files": [
+    {
+      "path": "database/akshare_data_test_stage5_repaired.duckdb",
+      "size": 143929344,
+      "sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026"
+    },
+    {
+      "path": "database/akshare_data_test.duckdb",
+      "size": 142880768,
+      "sha256": "d00f8d6017f5f74b3945f158af70153aef378af0c39f867f5dbd1c1cb1b3c372"
+    },
+    {
+      "path": "reports/evidence/stage5/31635b34-d1ee-46d4-9c0f-32ae3f30d567/manifest.json",
+      "size": 3625,
+      "sha256": "e61f0bfc7b147e203a2c88042592cc9f9993b4f720f266103e69ecbe8fc11c92"
+    },
+    {
+      "path": "reports/evidence/stage5/31635b34-d1ee-46d4-9c0f-32ae3f30d567/manifest.after_idempotency_repair.json",
+      "size": 1951,
+      "sha256": "a84bd321336a1180eefb7271cb3ca93556e2b6bb194eeddffcac8a3cc3fc8744"
+    },
+    {
+      "path": "docs/stage5_final_reaudit.md",
+      "size": 4840,
+      "sha256": "fb946ec4f28ce974abc8c2d42d8b276ac10832408f2f803064f0ca84d6f8fa17"
+    },
+    {
+      "path": "reports/stage5_final_reaudit.json",
+      "size": 19426,
+      "sha256": "b2775a836c3c484307c3ab0f6d78ac070948b83017f95d431e8ef172a27b7142"
+    },
+    {
+      "path": "reports/stage5_formal_database_schema.csv",
+      "size": 1237,
+      "sha256": "0175611ef96c110b48d9c7230e0a4ac432ae2c8840335a2cc08c86626e1fb038"
+    },
+    {
+      "path": "reports/stage5_candidate_database_validation.csv",
+      "size": 2217,
+      "sha256": "90796054e3930198388e971068dfb0c6c3f54e8b48051420d72bd7a4bc947431"
+    },
+    {
+      "path": "reports/stage5_final_full_idempotency.csv",
+      "size": 3911,
+      "sha256": "ef9c2a6b353aa47223e49c76c98f55504c14ca1c3f6ff4bbd5d101ff008782b7"
+    },
+    {
+      "path": "reports/stage5_final_view_validation.csv",
+      "size": 1361,
+      "sha256": "e259974f5ba2a19cd55aa27ec2a9f469b0c19e43cd39f9842ad4915d6e0dceed"
+    },
+    {
+      "path": "reports/stage5_final_transaction_validation.json",
+      "size": 1173,
+      "sha256": "a8b3fcfe585fea3d75295b1aa6f00824d7d8a22676ce949101077236bffd5b74"
+    },
+    {
+      "path": "reports/stage5_final_reaudit_doctor.json",
+      "size": 1886,
+      "sha256": "a9d022becd0e867214ec282fd2c6446649e67f4395bb5048eb3d8bb5811cefed"
+    }
+  ]
+}

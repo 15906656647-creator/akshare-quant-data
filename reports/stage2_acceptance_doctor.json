@@ -1,0 +1,65 @@
+{
+  "status": "pass",
+  "checked_at": "2026-07-28T06:31:28.169074+00:00",
+  "python": {
+    "version": "3.11.4 | packaged by Anaconda, Inc. | (main, Jul  5 2023, 13:38:37) [MSC v.1916 64 bit (AMD64)]",
+    "executable": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+    "64bit": true,
+    "implementation": "cpython"
+  },
+  "packages": {
+    "akshare": "1.18.80",
+    "pandas": "3.0.5",
+    "numpy": "2.4.6",
+    "pyarrow": "25.0.0",
+    "duckdb": "1.5.5",
+    "sqlalchemy": "2.0.51",
+    "pydantic": "2.13.4",
+    "yaml": "6.0.3",
+    "dotenv": "",
+    "tenacity": "",
+    "matplotlib": "3.11.1",
+    "openpyxl": "3.1.5",
+    "pytest": "9.1.1",
+    "pandera": "0.32.1"
+  },
+  "config_checks": {
+    "universe_parses": true,
+    "universe_has_schema_version": true,
+    "stock_count_is_16": true,
+    "all_symbols_are_6char_strings": true,
+    "ethusdt_exact_match_required": true,
+    "ethusdt_no_substitution": true,
+    "metrics_parses": true,
+    "metrics_has_schema_version": true,
+    "ma_windows_match": true
+  },
+  "filesystem_checks": {
+    "config_exists": true,
+    "config_writable": true,
+    "data/raw_exists": true,
+    "data/raw_writable": true,
+    "data/clean_exists": true,
+    "data/clean_writable": true,
+    "data/feature_exists": true,
+    "data/feature_writable": true,
+    "data/export_exists": true,
+    "data/export_writable": true,
+    "database_exists": true,
+    "database_writable": true,
+    "logs_exists": true,
+    "logs_writable": true,
+    "reports_exists": true,
+    "reports_writable": true,
+    "sql_exists": true,
+    "sql_writable": true,
+    "run_pipeline_exists": true,
+    "pyproject_exists": true
+  },
+  "duckdb_check": {
+    "memory_connect": true,
+    "select_1": true
+  },
+  "resolved_as_of_date": "2026-07-27",
+  "errors": []
+}

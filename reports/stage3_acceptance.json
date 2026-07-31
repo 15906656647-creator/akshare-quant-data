@@ -1,0 +1,196 @@
+{
+  "stage": 3,
+  "acceptance_status": "PASS",
+  "can_enter_stage4": true,
+  "run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "pre_gate": {
+    "pip_check": {
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 4.375
+    },
+    "pytest": {
+      "status": "PASS",
+      "exit_code": 0,
+      "passed": 121,
+      "elapsed_seconds": 16.409,
+      "real_network_access": false
+    },
+    "doctor": {
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 5.554,
+      "evidence": "reports/stage3_acceptance_doctor.json"
+    },
+    "stage0_hashes": {
+      "config/universe.yml": "0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65",
+      "config/metric_definition.yml": "13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4",
+      "docs/stage0_scope.md": "18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615",
+      "matches_frozen_baseline": true
+    }
+  },
+  "coverage_validation": {
+    "status": "PASS",
+    "parseable": true,
+    "row_count": 49,
+    "run_id_match_count": 49,
+    "qfq_count": 16,
+    "raw_count": 16,
+    "full_market_spot_count": 1,
+    "target_spot_count": 16,
+    "history_success_count": 32,
+    "unique_history_task_count": 32,
+    "positive_row_count_records": 49,
+    "existing_raw_path_records": 49,
+    "nonempty_schema_hash_records": 49,
+    "empty_error_fields_records": 49,
+    "quality_pass_records": 49,
+    "warning_count_sum": 0,
+    "error_count_sum": 0
+  },
+  "raw_file_validation": {
+    "status": "PASS",
+    "manifest_raw_file_count": 34,
+    "history_file_count": 32,
+    "spot_file_count": 2,
+    "existing_file_count": 34,
+    "readable_parquet_count": 34,
+    "size_match_count": 34,
+    "sha256_match_count": 34,
+    "project_relative_path_count": 34,
+    "run_partition_match_count": 34,
+    "personal_absolute_paths_found": 0,
+    "sensitive_values_found": 0,
+    "raw_columns_preserved": true
+  },
+  "daily_validation": {
+    "status": "PASS",
+    "file_count": 32,
+    "nonempty_count": 32,
+    "required_columns_pass_count": 32,
+    "parseable_date_count": 32,
+    "expected_min_date_count": 32,
+    "expected_max_date_count": 32,
+    "ascending_date_count": 32,
+    "date_key_match_symbol_count": 16,
+    "row_count_match_symbol_count": 16,
+    "duplicate_count": 0,
+    "ohlc_error_count": 0,
+    "negative_volume_count": 0,
+    "negative_amount_count": 0,
+    "per_symbol": [
+      {"symbol": "000100", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "002067", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "002129", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "002230", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "002361", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "002600", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "300274", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "300433", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "600231", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "600438", "qfq_rows": 716, "raw_rows": 716, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "600763", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "601012", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "601500", "qfq_rows": 722, "raw_rows": 722, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "601636", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "603259", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true},
+      {"symbol": "603799", "qfq_rows": 726, "raw_rows": 726, "min_date": "2023-07-27", "max_date": "2026-07-27", "date_key_match": true}
+    ]
+  },
+  "missing_date_analysis": {
+    "status": "PASS_WITH_WARNINGS",
+    "comparison_basis": "16_stock_date_union",
+    "600438": {
+      "missing_date_count": 10,
+      "qfq_raw_consistent": true,
+      "continuous_trading_date_blocks": 1,
+      "maximum_consecutive_missing_trading_dates": 10,
+      "assessment": "WARN: single suspension-like block; no adjustment-specific or random gap"
+    },
+    "601500": {
+      "missing_date_count": 4,
+      "qfq_raw_consistent": true,
+      "continuous_trading_date_blocks": 1,
+      "maximum_consecutive_missing_trading_dates": 4,
+      "assessment": "WARN: single suspension-like block; no adjustment-specific or random gap"
+    },
+    "evidence": "reports/stage3_acceptance_missing_dates.csv"
+  },
+  "spot_validation": {
+    "status": "PASS",
+    "snapshot_at": "2026-07-29T11:35:34.785065+08:00",
+    "snapshot_is_not_business_date": true,
+    "full_market_rows": 5884,
+    "target_rows": 16,
+    "unique_target_codes": 16,
+    "missing_target_codes": [],
+    "full_market_raw_preserved": true,
+    "target_columns_equal_full_market_columns": true,
+    "key_field_count": 11,
+    "all_key_columns_exist": true,
+    "all_key_fields_non_null_for_16_targets": true,
+    "all_numeric_key_fields_parseable_for_16_targets": true,
+    "evidence": "reports/stage3_acceptance_spot_completeness.csv"
+  },
+  "raw_store_validation": {
+    "status": "PASS",
+    "run_id_partitioned": true,
+    "existing_final_file_rejected": true,
+    "temporary_file_then_atomic_replace": true,
+    "temporary_file_cleaned_on_failure": true,
+    "raw_transformations_found": false,
+    "targeted_tests": "4 passed as part of 41-test boundary subset"
+  },
+  "test_change_review": {
+    "status": "PASS_WITH_EVIDENCE_LIMITATION",
+    "stage0_hash_assertion_retained": true,
+    "clean_feature_export_empty_assertions_retained": true,
+    "raw_allowlist_limited_to_stage3_interfaces": true,
+    "business_ddl_assertion_retained": true,
+    "network_call_scans_retained": true,
+    "unconditional_skip_or_xfail_found": false,
+    "key_gate_weakened": false,
+    "git_diff_available": false,
+    "git_diff_limitation": "tests/test_stage1_structure.py is untracked in the current Git baseline; review used current assertions and Stage 1 documentation."
+  },
+  "scope_boundary_check": {
+    "status": "PASS",
+    "stage4_batch_collector_found": false,
+    "stage2_sample_probe_code_found": true,
+    "clean_data_files_found": 0,
+    "feature_data_files_found": 0,
+    "export_data_files_found": 0,
+    "business_database_files_found": 0,
+    "technical_or_analysis_feature_implementation_found": false
+  },
+  "documentation_consistency": {
+    "status": "PASS_WITH_WARNING",
+    "history_task_count_match": true,
+    "qfq_success_count_match": true,
+    "raw_success_count_match": true,
+    "raw_file_count_match": true,
+    "coverage_row_count_match": true,
+    "full_market_row_count_match": true,
+    "target_stock_count_match": true,
+    "pytest_claim_independently_confirmed": 121,
+    "warning": "docs/stage3_market_fetch.md does not embed the pytest count, but the independent offline run confirms 121 passed."
+  },
+  "failures": [],
+  "warnings": [
+    "600438 is missing one 10-trading-date block from 2026-02-25 through 2026-03-10 in both qfq and raw; this is suspension-like and not an adjustment mismatch.",
+    "601500 is missing one 4-trading-date block from 2025-03-27 through 2025-04-01 in both qfq and raw; this is suspension-like and not an adjustment mismatch.",
+    "Git cannot provide a historical diff for tests/test_stage1_structure.py because the file is untracked; current assertions and Stage 1 documentation show no key gate weakening.",
+    "docs/stage3_market_fetch.md omits the pytest count; independent acceptance confirms 121 passed."
+  ],
+  "evidence": [
+    "reports/stage3_acceptance_doctor.json",
+    "reports/stage3_market_coverage.csv",
+    "reports/stage3_market_run.json",
+    "reports/stage3_spot_field_availability.csv",
+    "reports/evidence/stage3/39a6996e-36d7-4b73-b0b8-c38da4ae672e/manifest.json",
+    "reports/stage3_acceptance_missing_dates.csv",
+    "reports/stage3_acceptance_spot_completeness.csv",
+    "data/raw/stock_zh_a_hist/",
+    "data/raw/stock_zh_a_spot_em/"
+  ]
+}

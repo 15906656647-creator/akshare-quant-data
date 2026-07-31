@@ -1,0 +1,108 @@
+{
+  "stage": 6,
+  "repair_status": "PASS",
+  "stage6_status": "REPAIR_PASS_PENDING_INDEPENDENT_ACCEPTANCE",
+  "can_enter_stage7": false,
+  "feature_run_id": "48af48ca-2707-4c53-ad51-745a17b6295d",
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "as_of_date": "2026-07-27",
+  "source_database": {
+    "path": "database/akshare_data_test_stage5_repaired.duckdb",
+    "sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026",
+    "unchanged": true
+  },
+  "formal_database": {
+    "path": "database/stage6/feature_run_id=48af48ca-2707-4c53-ad51-745a17b6295d/akshare_features.duckdb",
+    "sha256": "f7630f1a103acf7726c51ee396ea359fde731e1ba153b640f5b3ac4f2874cb5e",
+    "unchanged": true
+  },
+  "formal_manifest": {
+    "path": "reports/evidence/stage6/48af48ca-2707-4c53-ad51-745a17b6295d/manifest.json",
+    "sha256": "43ee09f2e3b892801200e06f9e1a2e2c437caf8805ae2e84ef8256f3b089a0fa",
+    "unchanged": true
+  },
+  "full_nonempty_replay": {
+    "first_status": "created",
+    "second_status": "idempotent_reuse",
+    "second_exit_code": 0,
+    "feature_files_added_on_second_run": 0,
+    "feature_files_rewritten_on_second_run": 0,
+    "database_rows_added_on_second_run": 0,
+    "metadata_rows_added_on_second_run": 0,
+    "database_sha256_unchanged": true,
+    "database_mtime_unchanged": true,
+    "complete_nonempty_feature_tables": 9,
+    "complete_definition_rows": 109,
+    "complete_manifest_rows": 9,
+    "complete_lineage_rows": 9,
+    "complete_quality_rows": 9
+  },
+  "table_validation": {
+    "table_count": 14,
+    "passed": 14,
+    "status": "PASS"
+  },
+  "file_validation": {
+    "file_count": 9,
+    "passed": 9,
+    "status": "PASS"
+  },
+  "conflict_validation": {
+    "feature_file_payload_conflict": {
+      "status": "PASS",
+      "exception_type": "Stage6PayloadConflictError",
+      "error_code": "feature_payload_conflict",
+      "original_file_unchanged": true
+    },
+    "database_payload_conflict": {
+      "status": "PASS",
+      "exception_type": "Stage6PayloadConflictError",
+      "error_code": "feature_payload_conflict",
+      "table_name": "feat_price_daily",
+      "database_unchanged": true,
+      "primary_error_contains_rollback_failure": false
+    },
+    "different_run_same_path": {
+      "status": "PASS",
+      "error_code": "feature_run_path_conflict"
+    },
+    "different_run_new_path": {
+      "status": "PASS",
+      "persistence_status": "created",
+      "temporary_only": true
+    },
+    "incomplete_database": {
+      "status": "PASS",
+      "error_code": "incomplete_existing_stage6_artifact"
+    }
+  },
+  "transaction_error_preservation": {
+    "status": "PASS",
+    "primary_exception_type": "Stage6PayloadConflictError",
+    "primary_error_code": "feature_payload_conflict",
+    "primary_error_preserved": true,
+    "secondary_rollback_error_recorded": true,
+    "secondary_error_notes": [
+      "secondary rollback failure: cannot rollback - no transaction is active"
+    ],
+    "transaction_rollback_verified": true,
+    "partial_write_found": false
+  },
+  "input_immutability": {
+    "checked": 152,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "temporal_regression": {
+    "failed": 0,
+    "status": "PASS"
+  },
+  "formula_regression": {
+    "samples": 2835,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "network_access": false,
+  "formal_build_stage6_executed": false,
+  "powershell_required": []
+}

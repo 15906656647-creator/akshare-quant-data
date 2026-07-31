@@ -1,0 +1,158 @@
+{
+  "run_id": "189f06d4-0778-4ff8-a65d-fc0e6aa087d6",
+  "created_at": "2026-07-29T02:23:30.352101+00:00",
+  "as_of_date": "2026-07-27",
+  "sample_symbol": "600763",
+  "probe_count": 12,
+  "status_counts": {
+    "failed": 12
+  },
+  "pool_date": "2026-07-24",
+  "pool_date_source": "cli",
+  "results": [
+    {
+      "probe_id": "stock_daily_qfq",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "push2his.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "stock_daily_raw",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "push2his.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "stock_spot",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "82.push2.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "financial_abstract",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "quotes.sina.cn",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "financial_indicator",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "money.finance.sina.com.cn",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "balance_sheet_report",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "emweb.securities.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "profit_sheet_report",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "emweb.securities.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "cashflow_sheet_report",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "emweb.securities.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "individual_fund_flow",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "push2his.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "limit_up_pool",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "2026-07-24",
+      "pool_date_source": "cli",
+      "target_host": "push2ex.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "limit_down_pool",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "2026-07-24",
+      "pool_date_source": "cli",
+      "target_host": "push2ex.eastmoney.com",
+      "sample_path": ""
+    },
+    {
+      "probe_id": "crypto_spot",
+      "status": "failed",
+      "error_type": "connection_error",
+      "row_count": null,
+      "column_count": null,
+      "attempt_count": 2,
+      "pool_date": "",
+      "pool_date_source": "",
+      "target_host": "datacenter-api.jin10.com",
+      "sample_path": ""
+    }
+  ]
+}

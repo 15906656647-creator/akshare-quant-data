@@ -1,0 +1,83 @@
+{
+  "transform_run_id": "31635b34-d1ee-46d4-9c0f-32ae3f30d567",
+  "created_at": "2026-07-29T12:39:35.117542+00:00",
+  "market_source_run_id": "39a6996e-36d7-4b73-b0b8-c38da4ae672e",
+  "fundamental_source_run_id": "62bbe9df-6ed8-48d5-a06b-10fb90171ee0",
+  "clean_files": [
+    {
+      "dataset_id": "stock_daily_qfq",
+      "path": "data/clean/stock_daily/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/adjust=qfq/data.parquet",
+      "size": 540167,
+      "sha256": "9f529d5d5c203ae7a8a8a8d59d8165ff6b339557902f382ee68754d4a0787ace",
+      "rows": 11602
+    },
+    {
+      "dataset_id": "stock_daily_raw",
+      "path": "data/clean/stock_daily/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/adjust=raw/data.parquet",
+      "size": 540408,
+      "sha256": "5460b64ae891de258c48d3fdd2d6c37df22daa52072e845552365639f42c461e",
+      "rows": 11602
+    },
+    {
+      "dataset_id": "stock_spot_full_market",
+      "path": "data/clean/stock_spot/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/full_market.parquet",
+      "size": 1404771,
+      "sha256": "eec74e3c17364654520a5789d773b5d6758d1b32b494194851c0f7f0bffb7b38",
+      "rows": 5884
+    },
+    {
+      "dataset_id": "stock_spot_target_16",
+      "path": "data/clean/stock_spot/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/target_16.parquet",
+      "size": 21132,
+      "sha256": "b54291ef5399aa5fec9c335e26d479929f53ed4935c72300ac40bdcbd2ac3716",
+      "rows": 16
+    },
+    {
+      "dataset_id": "financial_abstract",
+      "path": "data/clean/financial_abstract/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/data.parquet",
+      "size": 1540919,
+      "sha256": "7ce98aa99f3c1d17a75f7ecfa089c6572642a69229a7176644b3c747ed770875",
+      "rows": 95600
+    },
+    {
+      "dataset_id": "financial_indicator",
+      "path": "data/clean/financial_indicator/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/data.parquet",
+      "size": 420832,
+      "sha256": "59b70acbd226d3755fbff29cc289b021ac585395116e2313a4fea4774b1c8fff",
+      "rows": 28560
+    },
+    {
+      "dataset_id": "financial_statement_balance_sheet",
+      "path": "data/clean/financial_statement/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/statement_type=balance_sheet/data.parquet",
+      "size": 2532633,
+      "sha256": "fedc3fa38fa82201dc3758864544bb96317a54f87c2cd01b4fba19627122939b",
+      "rows": 355376
+    },
+    {
+      "dataset_id": "financial_statement_profit_statement",
+      "path": "data/clean/financial_statement/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/statement_type=profit_statement/data.parquet",
+      "size": 1556104,
+      "sha256": "27d390b8d6e65fa02be350473b0f0c83e8d92069d2a0dee15fd1fe74960163ea",
+      "rows": 227050
+    },
+    {
+      "dataset_id": "financial_statement_cash_flow_statement",
+      "path": "data/clean/financial_statement/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/statement_type=cash_flow_statement/data.parquet",
+      "size": 2124207,
+      "sha256": "313d9a1eea97435220a9bb8799b40ca77ed9e0e8a6573371f65cb69b3503147c",
+      "rows": 280800
+    },
+    {
+      "dataset_id": "fund_flow",
+      "path": "data/clean/fund_flow/transform_run_id=31635b34-d1ee-46d4-9c0f-32ae3f30d567/data.parquet",
+      "size": 153682,
+      "sha256": "53973e72eee897742d52f964e3907bdd20447f044f69271b4828a0f3bad7836e",
+      "rows": 1920
+    }
+  ],
+  "database": {
+    "path": "database/akshare_data_test.duckdb",
+    "size": 142880768,
+    "sha256": "d00f8d6017f5f74b3945f158af70153aef378af0c39f867f5dbd1c1cb1b3c372"
+  }
+}

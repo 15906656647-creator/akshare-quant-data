@@ -1,0 +1,9 @@
+﻿check_type,target,finding_count,status,details
+forbidden_output_directory,data/clean,0,PASS,no business artifacts
+forbidden_output_directory,data/feature,0,PASS,no business artifacts
+forbidden_output_directory,data/features,0,PASS,no business artifacts
+forbidden_output_directory,data/export,0,PASS,no business artifacts
+forbidden_output_directory,data/exports,0,PASS,no business artifacts
+forbidden_output_directory,database,0,PASS,no business artifacts
+forbidden_output_directory,db,0,PASS,no business artifacts
+business_database,project tree,0,PASS,none

@@ -1,0 +1,13 @@
+﻿table_name,actual_row_count,expected_minimum,expected_exact,distinct_symbol_count,duplicate_business_key_count,null_required_key_count,status
+dim_security,16,1,16,16,0,0,PASS
+etl_run,1,1,1,,0,0,PASS
+source_file_manifest,130,1,130,,0,0,PASS
+data_lineage,130,1,130,,0,0,PASS
+data_quality_issue,47,1,47,,0,0,PASS
+field_mapping_registry,1024,1,1024,,0,0,PASS
+fact_stock_daily,23204,1,23204,16,0,0,PASS
+fact_stock_spot,5900,1,5900,5884,0,0,PASS
+fact_financial_abstract,95600,1,95600,16,0,0,PASS
+fact_financial_indicator,28560,1,28560,16,0,0,PASS
+fact_financial_statement,863226,1,863226,16,0,0,PASS
+fact_stock_fund_flow,1920,1,1920,16,0,0,PASS

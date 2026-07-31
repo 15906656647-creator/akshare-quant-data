@@ -1,0 +1,13 @@
+﻿dataset,field,source_unit,target_unit,scale_factor,converted_row_count,warning_count
+stock_daily_qfq,volume_lot,lot,share,100.0,11602,0
+stock_daily_qfq,pct_change,percent_point,decimal,0.01,11602,0
+stock_daily_raw,volume_lot,lot,share,100.0,11602,0
+stock_daily_raw,pct_change,percent_point,decimal,0.01,11602,0
+stock_spot_full_market,volume_lot,lot,share,100.0,5524,0
+stock_spot_target_16,volume_lot,lot,share,100.0,16,0
+financial_abstract,explicit_percent_fields,percent_point,decimal,0.01,0,95600
+financial_indicator,explicit_percent_fields,percent_point,decimal,0.01,12768,2016
+financial_statement_balance_sheet,explicit_percent_fields,percent_point,decimal,0.01,177688,0
+financial_statement_profit_statement,explicit_percent_fields,percent_point,decimal,0.01,113525,0
+financial_statement_cash_flow_statement,explicit_percent_fields,percent_point,decimal,0.01,140400,0
+fund_flow,*_ratio,percent_point,decimal,0.01,9600,0

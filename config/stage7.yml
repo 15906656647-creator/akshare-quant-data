@@ -1,0 +1,6 @@
+# Stage 7 settings that are not part of the frozen Stage 0 metric contract.
+schema_version: "1.0.0"
+gap_abs_threshold: 0.03
+minimum_scoring_observations: 60
+score_version: "activity_v1_pre_limit_event"
+event_component_source: "gap_proxy"

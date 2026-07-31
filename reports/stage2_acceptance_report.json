@@ -1,0 +1,15 @@
+{
+  "stage": 2,
+  "acceptance_status": "BLOCKED",
+  "engineering_status": "PASS",
+  "live_interface_status": "BLOCKED",
+  "can_enter_stage3": false,
+  "checked_at": "2026-07-28T06:32:56.571978+00:00",
+  "failures": [],
+  "warnings": [
+    "Stage 3+ pattern found: sqlalchemy",
+    "  -> Unexpected dependency_failure reason for limit_up_pool",
+    "  -> Unexpected dependency_failure reason for limit_down_pool"
+  ],
+  "run_id": "c4d1a7b9-02ae-4f68-bec9-6e815ef1edb5"
+}

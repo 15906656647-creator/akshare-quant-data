@@ -1,0 +1,162 @@
+{
+  "stage": 1,
+  "acceptance_status": "PASS",
+  "can_enter_stage2": true,
+  "checked_at": "2026-07-28T09:40:00+08:00",
+  "environment": {
+    "python_version": "3.11.4",
+    "python_bits": 64,
+    "python_implementation": "cpython",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "venv_path": ".venv",
+    "is_venv_isolated": true,
+    "python_deviation": "优选 Python 3.12，当前为 3.11.4（>=3.9 通过）"
+  },
+  "required_files": {
+    "all_present": true,
+    "missing": [],
+    "required_dirs": {
+      "all_present": true,
+      "missing": []
+    }
+  },
+  "package_imports": {
+    "all_importable": true,
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "details": {
+      "akshare": "1.18.80",
+      "pandas": "3.0.5",
+      "numpy": "2.4.6",
+      "pyarrow": "25.0.0",
+      "duckdb": "1.5.5",
+      "sqlalchemy": "2.0.51",
+      "pydantic": "2.13.4",
+      "pyyaml": "6.0.3",
+      "dotenv": "imported (no __version__)",
+      "tenacity": "9.1.4",
+      "matplotlib": "3.11.1",
+      "openpyxl": "3.1.5",
+      "pytest": "9.1.1",
+      "pandera": "0.32.1"
+    }
+  },
+  "pip_check": {
+    "exit_code": 0,
+    "output": "No broken requirements found.",
+    "passed": true
+  },
+  "pytest": {
+    "exit_code": 0,
+    "collected": 74,
+    "passed": 74,
+    "failed": 0,
+    "skipped": 0,
+    "xfail": 0,
+    "passed": true
+  },
+  "ruff": {
+    "installed": false,
+    "note": "Ruff not in Stage 1 requirements; recorded as deviation only"
+  },
+  "show_config": {
+    "exit_code_baseline": 0,
+    "exit_code_override": 0,
+    "stocks_shown": 16,
+    "crypto_shown": "ETHUSDT",
+    "date_baseline": "2026-07-27",
+    "date_override": "2026-07-20",
+    "no_secrets_in_output": true,
+    "no_network_call": true,
+    "passed": true
+  },
+  "doctor": {
+    "exit_code": 0,
+    "status": "pass",
+    "packages": "14/14",
+    "config_checks": "9/9",
+    "filesystem_checks": "20/20",
+    "duckdb": "OK",
+    "json_generated": true,
+    "no_secrets_in_json": true,
+    "passed": true
+  },
+  "stage0_config_validation": {
+    "stock_count": 16,
+    "all_symbols_string": true,
+    "all_len6": true,
+    "no_duplicates": true,
+    "exchange_mapping_ok": true,
+    "ethusdt_exact_match": true,
+    "ethusdt_no_substitution": true,
+    "ma_windows_match": true,
+    "trend_qfq": true,
+    "limit_raw": true,
+    "weight_sum_1": true,
+    "as_of_date": "2026-07-27",
+    "passed": true
+  },
+  "stage0_hash_validation": {
+    "passed": true,
+    "files": {
+      "config/universe.yml": {
+        "before": "0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65",
+        "after": "0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65",
+        "match": true,
+        "source": "docs/stage1_environment.md"
+      },
+      "config/metric_definition.yml": {
+        "before": "13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4",
+        "after": "13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4",
+        "match": true,
+        "source": "docs/stage1_environment.md"
+      },
+      "docs/stage0_scope.md": {
+        "before": "18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615",
+        "after": "18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615",
+        "match": true,
+        "source": "docs/stage1_environment.md"
+      }
+    }
+  },
+  "network_isolation": {
+    "passed": true,
+    "doctor_socket_block_test_passes": true,
+    "no_akshare_data_calls": true,
+    "no_real_http_calls": true
+  },
+  "scope_boundary_check": {
+    "passed": true,
+    "no_akshare_data_calls": true,
+    "no_stage2_adapters": true,
+    "no_business_ddl": true,
+    "no_raw_data_files": true,
+    "duckdb_only_memory": true
+  },
+  "sensitive_information_check": {
+    "passed": true,
+    "findings": "All matches are security rule declarations or test cases. No actual credentials found."
+  },
+  "documentation_consistency": {
+    "passed": true,
+    "python_version_match": true,
+    "akshare_version_match": true,
+    "test_count_match": true,
+    "doctor_result_match": true,
+    "stage0_hash_match": true,
+    "pip_check_match": true,
+    "show_config_match": true
+  },
+  "failures": [],
+  "warnings": [
+    "Python 3.11.4 instead of preferred 3.12 (>= 3.9 minimum met)",
+    "Ruff not installed (not required by Stage 1 spec)"
+  ],
+  "evidence": [
+    "reports/stage1_acceptance_doctor.json",
+    "reports/stage1_environment_check.json",
+    "docs/stage1_environment.md",
+    "docs/stage0_scope.md"
+  ]
+}

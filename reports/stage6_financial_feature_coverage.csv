@@ -1,0 +1,13 @@
+﻿feature_name,row_count,available_count,symbol_count,min_report_period,max_report_period
+debt_to_asset_ratio,224,224,16,2021-12-31,2026-03-31
+gross_margin,224,224,16,2021-12-31,2026-03-31
+net_margin,224,224,16,2021-12-31,2026-03-31
+net_profit,224,224,16,2021-12-31,2026-03-31
+net_profit_parent,224,224,16,2021-12-31,2026-03-31
+net_profit_ttm,224,224,16,2021-12-31,2026-03-31
+net_profit_yoy,224,224,16,2021-12-31,2026-03-31
+operating_cf_over_net_profit,224,224,16,2021-12-31,2026-03-31
+revenue,224,224,16,2021-12-31,2026-03-31
+revenue_ttm,224,224,16,2021-12-31,2026-03-31
+revenue_yoy,224,224,16,2021-12-31,2026-03-31
+roe,224,224,16,2021-12-31,2026-03-31

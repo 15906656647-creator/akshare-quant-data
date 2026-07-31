@@ -1,0 +1,17 @@
+﻿validation_type,view_name,base_scope,row_count,intersection_count,uncovered_count,status
+required_view,v_financial_announcement_unknown,"v_financial_all union of financial abstract, indicator and statement facts",,,,PASS
+required_view,v_financial_point_in_time_safe,"v_financial_all union of financial abstract, indicator and statement facts",,,,PASS
+required_view,v_financial_potential_lookahead,"v_financial_all union of financial abstract, indicator and statement facts",,,,PASS
+required_view,v_latest_stock_spot,Stage 5 fact table,,,,PASS
+required_view,v_stock_daily_qfq,Stage 5 fact table,,,,PASS
+required_view,v_stock_daily_raw,Stage 5 fact table,,,,PASS
+required_view,v_stock_fund_flow_as_of_safe,fact_stock_fund_flow joined to etl_run by transform_run_id,,,,PASS
+row_set,v_financial_all,v_financial_all,987386,,,PASS
+row_set,v_financial_point_in_time_safe,v_financial_all,863226,,,PASS
+row_set,v_financial_announcement_unknown,v_financial_all,124160,,,PASS
+row_set,v_financial_potential_lookahead,v_financial_all,0,,,PASS
+row_set,safe_unknown_intersection,v_financial_all,0,0,,PASS
+row_set,safe_lookahead_intersection,v_financial_all,0,0,,PASS
+row_set,unknown_lookahead_intersection,v_financial_all,0,0,,PASS
+row_set,financial_uncovered,v_financial_all,0,,0,PASS
+row_set,v_stock_fund_flow_as_of_safe,fact_stock_fund_flow,1904,,,PASS

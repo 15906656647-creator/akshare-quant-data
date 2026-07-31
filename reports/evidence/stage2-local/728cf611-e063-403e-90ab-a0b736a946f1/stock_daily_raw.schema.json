@@ -1,0 +1,31 @@
+{
+  "columns": [
+    "日期",
+    "股票代码",
+    "开盘",
+    "收盘",
+    "最高",
+    "最低",
+    "成交量",
+    "成交额",
+    "振幅",
+    "涨跌幅",
+    "涨跌额",
+    "换手率"
+  ],
+  "dtypes": [
+    "object",
+    "str",
+    "float64",
+    "float64",
+    "float64",
+    "float64",
+    "int64",
+    "float64",
+    "float64",
+    "float64",
+    "float64",
+    "float64"
+  ],
+  "schema_hash": "cdf8438b502dd0eddefd5bca145eab2525da68622991feea92fa6fa31fa89aeb"
+}

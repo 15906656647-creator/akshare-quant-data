@@ -1,0 +1,143 @@
+{
+  "status": "PASS",
+  "run_id": "3252ae5d-f0b9-42ad-a27e-f20cc8128718",
+  "calculated_at": "2026-07-30T08:51:25.338633+00:00",
+  "as_of_date": "2026-07-27",
+  "source_database": "database/akshare_data_test_stage5_repaired.duckdb",
+  "source_table": "main.fact_stock_daily",
+  "output_database": "database/akshare_features_stage7.duckdb",
+  "input_rows": 11602,
+  "feature_rows": 11602,
+  "activity_profiles": 16,
+  "symbol_count": 16,
+  "target_symbol_count": 16,
+  "missing_symbols": [],
+  "excluded_non_target_symbols": [],
+  "lookback_days": 120,
+  "date_range": {
+    "min": "2023-07-27",
+    "max": "2026-07-27"
+  },
+  "feature_missing_rate": {
+    "ma_3": 0.0027581451473883815,
+    "ma_5": 0.005516290294776763,
+    "ma_7": 0.008274435442165143,
+    "ma_10": 0.012411653163247716,
+    "ma_13": 0.016548870884330286,
+    "ma_20": 0.026202378900189623,
+    "ma_21": 0.027581451473883814,
+    "return_1d": 0.0013790725736941907,
+    "volume_ratio_20": 0.026202378900189623,
+    "intraday_range": 0.0013790725736941907,
+    "gap_return": 0.0013790725736941907,
+    "volatility_20": 0.027581451473883814
+  },
+  "missing_metric_values": 672,
+  "infinite_values_cleaned": 0,
+  "quality_checks_total": 29,
+  "quality_checks_passed": 29,
+  "quality_checks_failed": 0,
+  "quality_warnings": 0,
+  "score_version": "activity_v1_pre_limit_event",
+  "event_component_source": "gap_proxy",
+  "activity_ranking": [
+    {
+      "symbol": "002361",
+      "activity_score": 0.9078124999999999,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "300274",
+      "activity_score": 0.8171875000000002,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "300433",
+      "activity_score": 0.7546875000000001,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "002129",
+      "activity_score": 0.721875,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "000100",
+      "activity_score": 0.709375,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "601636",
+      "activity_score": 0.6562500000000001,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "002600",
+      "activity_score": 0.6125,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "603799",
+      "activity_score": 0.6046874999999999,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "002067",
+      "activity_score": 0.5640625,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "603259",
+      "activity_score": 0.5140625,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "601012",
+      "activity_score": 0.384375,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "600438",
+      "activity_score": 0.3578125,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "002230",
+      "activity_score": 0.29531250000000003,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "600231",
+      "activity_score": 0.265625,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "600763",
+      "activity_score": 0.2125,
+      "observation_count": 120,
+      "score_status": "scored"
+    },
+    {
+      "symbol": "601500",
+      "activity_score": 0.12187500000000001,
+      "observation_count": 120,
+      "score_status": "scored"
+    }
+  ],
+  "write_seconds": 0.10546919999978854,
+  "elapsed_seconds": 0.38050180000209366
+}

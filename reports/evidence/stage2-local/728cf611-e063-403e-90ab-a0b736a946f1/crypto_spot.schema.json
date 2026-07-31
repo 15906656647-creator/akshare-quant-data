@@ -1,0 +1,25 @@
+{
+  "columns": [
+    "市场",
+    "交易品种",
+    "最近报价",
+    "涨跌额",
+    "涨跌幅",
+    "24小时最高",
+    "24小时最低",
+    "24小时成交量",
+    "更新时间"
+  ],
+  "dtypes": [
+    "str",
+    "str",
+    "float64",
+    "float64",
+    "float64",
+    "float64",
+    "float64",
+    "float64",
+    "str"
+  ],
+  "schema_hash": "95f7ddfdaaba7a35d692c9eaa41a72cac9c4ba5c0af0fedc49992242cf0aa819"
+}

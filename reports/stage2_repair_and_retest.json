@@ -1,0 +1,108 @@
+{
+  "stage": 2,
+  "task": "repair_and_retest",
+  "checked_at": "2026-07-29",
+  "engineering_status": "PASS",
+  "network_status": "BLOCKED",
+  "live_interface_status": "BLOCKED",
+  "can_enter_stage3": false,
+  "fixes": {
+    "pool_date_cli_supported": true,
+    "limit_pool_decoupled": true,
+    "network_preflight_added": true,
+    "root_exception_recorded": true,
+    "wording_corrected": true
+  },
+  "frozen_file_hashes": {
+    "config/universe.yml": "0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65",
+    "config/metric_definition.yml": "13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4",
+    "docs/stage0_scope.md": "18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615"
+  },
+  "missing_requested_files": [
+    "CODEX_STAGE0_PROMPT.md",
+    "docs/stage0_2_codex_audit.md",
+    "reports/stage0_2_codex_audit.json"
+  ],
+  "tests": {
+    "pre_gate_pip_check": {
+      "exit_code": 0,
+      "result": "No broken requirements found"
+    },
+    "pre_gate_pytest": {
+      "exit_code": 0,
+      "passed": 86
+    },
+    "doctor": {
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "post_repair_pytest": {
+      "exit_code": 0,
+      "passed": 105
+    },
+    "invalid_pool_date": {
+      "exit_code": 2,
+      "result": "rejected"
+    }
+  },
+  "network_preflight": {
+    "overall_status": "BLOCKED",
+    "proxy_detected": false,
+    "ca_environment_configured": false,
+    "dns_pass": 6,
+    "tcp_443_pass": 0,
+    "tcp_443_fail": 6,
+    "tls_pass": 0,
+    "tls_not_tested": 6,
+    "root_error": "WinError 10013"
+  },
+  "smoke_test": {
+    "run_id": "1033978f-9a42-405a-af86-67560de9ac55",
+    "as_of_date": "2026-07-27",
+    "pool_date": "2026-07-24",
+    "pool_date_source": "cli",
+    "probe_count": 12,
+    "status_counts": {
+      "failed": 12
+    },
+    "error_type_counts": {
+      "connection_error": 12
+    },
+    "core_market_success": 0,
+    "core_market_required": 3,
+    "financial_success": 0,
+    "financial_required_minimum": 1,
+    "ethusdt_capability": "UNVERIFIED"
+  },
+  "capability_matrix": [
+    {"probe_id": "stock_daily_qfq", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "push2his.eastmoney.com"},
+    {"probe_id": "stock_daily_raw", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "push2his.eastmoney.com"},
+    {"probe_id": "stock_spot", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "82.push2.eastmoney.com"},
+    {"probe_id": "financial_abstract", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "quotes.sina.cn"},
+    {"probe_id": "financial_indicator", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "money.finance.sina.com.cn"},
+    {"probe_id": "balance_sheet_report", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "emweb.securities.eastmoney.com"},
+    {"probe_id": "profit_sheet_report", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "emweb.securities.eastmoney.com"},
+    {"probe_id": "cashflow_sheet_report", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "emweb.securities.eastmoney.com"},
+    {"probe_id": "individual_fund_flow", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "push2his.eastmoney.com"},
+    {"probe_id": "limit_up_pool", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "pool_date": "2026-07-24", "pool_date_source": "cli", "target_host": "push2ex.eastmoney.com"},
+    {"probe_id": "limit_down_pool", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "pool_date": "2026-07-24", "pool_date_source": "cli", "target_host": "push2ex.eastmoney.com"},
+    {"probe_id": "crypto_spot", "status": "failed", "error_type": "connection_error", "attempt_count": 2, "target_host": "datacenter-api.jin10.com"}
+  ],
+  "failures": [
+    "All six preflight hosts failed TCP 443 with WinError 10013",
+    "Core market probes succeeded 0/3",
+    "Financial probes succeeded 0/5"
+  ],
+  "warnings": [
+    "TLS and HTTP/upstream parsing could not be evaluated because TCP 443 failed",
+    "Important Stage 1 and Stage 2 files remain untracked in Git"
+  ],
+  "evidence": [
+    "reports/stage2_repair_doctor.json",
+    "reports/stage2_network_preflight.json",
+    "docs/stage2_network_preflight.md",
+    "reports/interface_smoke_test_repaired.csv",
+    "reports/evidence/stage2-repaired/1033978f-9a42-405a-af86-67560de9ac55/manifest.json",
+    "docs/stage2_repair_and_retest.md"
+  ]
+}
