@@ -6,7 +6,7 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from .config import load_universe, resolve_as_of_date
+from .config import load_metrics, load_universe, resolve_as_of_date
 from .doctor import run_doctor
 from .logging_config import setup_logging
 from .paths import project_root
@@ -389,6 +389,67 @@ def _cmd_build_features(args):
     return exit_code
 
 
+def _cmd_analyze_limit_events(args):
+    """Run or validate the fully offline Stage 8 event analysis."""
+    setup_logging(level=args.log_level)
+    try:
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        import pandas as pd
+        from .stage8_build import analyze_stage8, validate_stage8_inputs
+
+        root = project_root()
+        config_path = root / args.config
+        source_database = root / args.source_database
+        output_database = root / args.output_database
+        end = pd.Timestamp(as_of).normalize()
+        start = (
+            pd.Timestamp(args.start_date).normalize()
+            if args.start_date
+            else end
+            - pd.Timedelta(
+                days=int(
+                    load_metrics().raw["data_ranges"]["limit_event"][
+                        "lookback_natural_days"
+                    ]
+                )
+            )
+        )
+        if args.validate_only:
+            result = validate_stage8_inputs(
+                config_path=config_path,
+                source_database=source_database,
+                output_database=output_database,
+                start_date=start,
+                end_date=end,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+            return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
+        report, exit_code = analyze_stage8(
+            root=root,
+            config_path=config_path,
+            source_database=source_database,
+            output_database=output_database,
+            as_of_date=end,
+            start_date=start,
+            run_id=args.run_id,
+            dry_run=args.dry_run,
+        )
+        print("Stage 8 limit-event analysis: " + report["run_status"])
+        print("  publication_status: " + report["publication_status"])
+        print("  formal_events: " + str(report["formal_event_count"]))
+        print("  provisional: " + str(report["candidate_count"]))
+        print("  unresolved: " + str(report["unresolved_count"]))
+        print("  run_id: " + report["run_id"])
+        if report["blocking_reasons"]:
+            print("  blockers: " + "; ".join(report["blocking_reasons"]))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 8 error: {exc}", file=sys.stderr)
+        return 1
+
+
 def _generate_summary_md(results, run_id, overall, as_of):
     sp = Path("reports/interface_smoke_test_summary.md")
     sl = []
@@ -534,6 +595,32 @@ def main():
     b7.add_argument("--lookback-days", type=int, default=None)
     b7.add_argument("--run-id", default=None)
     b7.add_argument("--log-level", default="INFO")
+    b8 = sub.add_parser(
+        "analyze-limit-events",
+        help="Analyze Stage 8 daily-limit events from raw prices fully offline",
+    )
+    b8.add_argument("--as-of-date", required=True)
+    b8.add_argument("--start-date", default=None)
+    b8.add_argument("--config", default="config/stage8.yml")
+    b8.add_argument(
+        "--source-database",
+        default="database/akshare_data_test_stage5_repaired.duckdb",
+    )
+    b8.add_argument(
+        "--output-database",
+        default="database/akshare_limit_events_stage8.duckdb",
+    )
+    b8.add_argument("--run-id", default=None)
+    mode = b8.add_mutually_exclusive_group()
+    mode.add_argument("--dry-run", action="store_true", default=False)
+    mode.add_argument("--validate-only", action="store_true", default=False)
+    b8.add_argument("--log-level", default="INFO")
+    b8.add_argument(
+        "--debug",
+        action="store_true",
+        default=False,
+        help="Show a traceback for Stage 8 internal errors",
+    )
     args = parser.parse_args()
     if args.command == "doctor":
         sys.exit(_cmd_doctor(args))
@@ -564,6 +651,8 @@ def main():
         sys.exit(_cmd_verify_stage6_idempotency_repair(args))
     elif args.command == "build-features":
         sys.exit(_cmd_build_features(args))
+    elif args.command == "analyze-limit-events":
+        sys.exit(_cmd_analyze_limit_events(args))
     else:
         parser.print_help()
         sys.exit(0)

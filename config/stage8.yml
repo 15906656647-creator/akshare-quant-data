@@ -1,0 +1,17 @@
+# Stage 8 price-limit event settings.
+# Historical rules/statuses are intentionally empty until authoritative,
+# auditable sources are supplied. Never infer them from price movements.
+schema_version: "1.0.0"
+price_adjust_type: "raw"
+rounding_rules:
+  supported:
+    - half_up
+    - half_even
+formal_evidence_status: "verified"
+formal_quality_status: "pass"
+unresolved_policy: "block_formal_annual_statistics"
+rule_records: []
+security_status_records: []
+source_notes:
+  limit_pool_usage: "cross_validation_only"
+  gap_proxy_usage: "candidate_feature_only_not_formal_event"

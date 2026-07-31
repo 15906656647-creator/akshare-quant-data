@@ -10,12 +10,16 @@
 - **阶段 2**：接口盘点与冒烟测试
 - **阶段 3**：行情与实时估值 Raw 抓取
 - **阶段 4**：财务与资金流 Raw 抓取
+- **阶段 5**：Clean 数据与 DuckDB
+- **阶段 6**：技术及量价特征
+- **阶段 7**：均线、量价与活跃度特征
+- **阶段 8**：涨跌停统计与事件研究工程实现（正式发布仍阻塞）
 
 ## 当前完成阶段
 
-阶段 4：16只A股的财务摘要、财务分析指标、三大财务报表和个股资金流
-共96项 Raw 已完成抓取和证据留存。正式运行
-`62bbe9df-6ed8-48d5-a06b-10fb90171ee0` 已通过离线验收。
+阶段 7 基线已冻结。阶段 8 已实现离线、fail-closed 的事件识别、质量门禁、
+run 版本化存储和只读预检；由于权威历史涨跌停规则及证券状态历史仍缺失，
+正式全年统计保持 `BLOCKED`，fixture 结果不得作为正式结论。
 
 ## Python / 虚拟环境
 
@@ -49,6 +53,22 @@ python run_pipeline.py show-config --as-of-date 2026-07-27
 
 # 阶段3行情 Raw 抓取（会访问真实网络）
 python run_pipeline.py fetch-market --as-of-date 2026-07-27
+
+# 阶段8只读预检：不创建输出数据库，不访问网络
+python run_pipeline.py analyze-limit-events `
+  --as-of-date 2026-07-27 `
+  --validate-only
+
+# 阶段8离线 dry-run：读取 raw 数据但不写数据库或报告
+python run_pipeline.py analyze-limit-events `
+  --as-of-date 2026-07-27 `
+  --dry-run
+
+# 仅排查内部错误时显式显示 traceback
+python run_pipeline.py analyze-limit-events `
+  --as-of-date 2026-07-27 `
+  --validate-only `
+  --debug
 ```
 
 ## 目录结构
@@ -66,16 +86,12 @@ src/             — Python 包源码
 tests/           — 自动化测试
 ```
 
-## 当前阶段限制
+## 阶段 8 安全限制
 
-阶段 4：
-- 仅保存财务摘要、财务分析指标、三大财务报表和个股资金流 Raw；
-- Raw 数据按 `run_id` 追加保存；
-- 不创建 Clean、Feature 或正式业务数据库；
-- 不计算单季度、TTM、同比、环比或财务比率；
-- 不进行确定性资金行为解释。
-
-## 下一阶段
-
-阶段 4 已验收通过；如需进入阶段 5，必须另开独立任务实施数据清洗、
-字段映射与数据库建设。
+- 涨跌停识别只读取 `raw/unadjusted` 真实交易价格。
+- `validate-only` 以 DuckDB 只读模式检查文件、表、字段、口径、日期范围和重复键。
+- 缺少权威规则、ST/板块/上市状态历史时返回 `BLOCKED`，不把未计算解释为 0。
+- `gap_proxy`、candidate、proxy 和 unresolved 永不进入正式年度统计。
+- 写后门禁交叉核对 DuckDB、JSON、CSV 和 Markdown；null 与数值 0 严格区分。
+- 阶段 8 输出数据库必须与阶段 7 数据库分离；测试数据库仅放临时目录。
+- 项目仅用于研究测试，不构成投资建议。
