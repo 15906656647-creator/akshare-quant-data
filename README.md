@@ -14,12 +14,16 @@
 - **阶段 6**：技术及量价特征
 - **阶段 7**：均线、量价与活跃度特征
 - **阶段 8**：涨跌停统计与事件研究工程实现（正式发布仍阻塞）
+- **阶段 9**：横盘震荡、疑似洗盘特征与量价风格工程实现
 
 ## 当前完成阶段
 
 阶段 7 基线已冻结。阶段 8 已实现离线、fail-closed 的事件识别、质量门禁、
 run 版本化存储和只读预检；由于权威历史涨跌停规则及证券状态历史仍缺失，
 正式全年统计保持 `BLOCKED`，fixture 结果不得作为正式结论。
+阶段 9 核心分析独立使用 qfq OHLCV，不把阶段 8 的 NULL/not_calculated
+转换为 0；可选事件辅助字段始终按 formal、candidate、proxy、gap_proxy 和
+unresolved 分开保存。
 
 ## Python / 虚拟环境
 
@@ -69,6 +73,17 @@ python run_pipeline.py analyze-limit-events `
   --as-of-date 2026-07-27 `
   --validate-only `
   --debug
+
+# 阶段9只读预检
+python run_pipeline.py analyze-style `
+  --as-of-date 2026-07-27 `
+  --validate-only
+
+# 阶段9离线 dry-run，不写数据库或报告
+python run_pipeline.py analyze-style `
+  --as-of-date 2026-07-27 `
+  --windows 20 40 60 `
+  --dry-run
 ```
 
 ## 目录结构
@@ -95,3 +110,11 @@ tests/           — 自动化测试
 - 写后门禁交叉核对 DuckDB、JSON、CSV 和 Markdown；null 与数值 0 严格区分。
 - 阶段 8 输出数据库必须与阶段 7 数据库分离；测试数据库仅放临时目录。
 - 项目仅用于研究测试，不构成投资建议。
+
+## 阶段 9 口径
+
+- 使用 qfq、按证券有效交易行计算 20/40/60 日窗口，主窗口为 40 日。
+- 所有 as-of 特征只使用截止日及以前数据；假突破只计已完成的 1～3 个交易日确认。
+- 停牌、零成交及非法 OHLC 行不占窗口；样本不足输出 `insufficient_history`。
+- 输出是横盘震荡风格、疑似洗盘特征、量价行为特征和疑似主力行为特征的统计描述。
+- 不输出确定性主力行为、交易信号或投资建议。

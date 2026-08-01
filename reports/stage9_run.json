@@ -1,0 +1,16 @@
+{
+  "run_id": null,
+  "run_status": "IMPLEMENTED_NOT_FORMALLY_RUN",
+  "publication_status": "not_calculated",
+  "output_type": "implementation_validation",
+  "as_of_date": "2026-07-27",
+  "windows": [20, 40, 60],
+  "primary_window": 40,
+  "symbol_count": null,
+  "feature_row_count": null,
+  "profile_row_count": null,
+  "stage8_publication_status": "blocked",
+  "stage8_formal_events_used": false,
+  "note": "No formal Stage 9 analysis was executed. Null/not_calculated is unknown, not zero."
+}
+

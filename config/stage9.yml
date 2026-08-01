@@ -1,0 +1,92 @@
+schema_version: "1.1.0"
+model_version: "stage9_style_rules_v2"
+price_adjust_type: "qfq"
+windows: [20, 40, 60]
+primary_window: 40
+annualization_days: 252
+minimum_history_by_window:
+  20: 20
+  40: 40
+  60: 60
+box:
+  touch_box_fraction: 0.08
+  touch_atr_fraction: 0.50
+  minimum_relative_distance: 0.005
+  middle_zone_lower: 0.25
+  middle_zone_upper: 0.75
+  breakout_lookback: 20
+trend:
+  flat_slope_abs: 0.0015
+  trend_slope_abs: 0.004
+  trend_r_squared: 0.65
+volatility:
+  bollinger_std_multiplier: 2.0
+  large_move_threshold: 0.05
+  high_atr_ratio: 0.035
+  low_atr_ratio: 0.018
+  wide_box_threshold: 0.25
+  narrow_box_threshold: 0.15
+volume:
+  moving_average_window: 20
+  spike_ratio_threshold: 2.0
+  high_turnover_threshold: 0.05
+  contraction_ratio_threshold: 0.85
+candlestick:
+  long_shadow_ratio: 0.45
+  large_body_ratio: 0.60
+  small_body_ratio: 0.20
+  high_low_range_threshold: 0.05
+breakout:
+  confirmation_days: 3
+classification:
+  minimum_score: 0.35
+  mixed_score_margin: 0.08
+  low_activity_amount_quantile: 0.35
+  low_activity_turnover: 0.02
+  volume_spike_frequency: 0.10
+  false_breakout_frequency: 0.08
+  maximum_confidence: 0.95
+  numeric_epsilon: 1.0e-12
+  scales:
+    gentle_box_target_fraction: 0.70
+    touch_count: 4.0
+    shadow_frequency: 0.30
+    breakout_count: 3.0
+  confidence:
+    insufficient_history_multiplier: 0.20
+    strength_base: 0.35
+    strength_weight: 0.65
+    margin_base: 0.55
+    margin_weight: 0.45
+  weights:
+    gentle_box:
+      flat: 0.30
+      inverse_r_squared: 0.20
+      box: 0.20
+      low_atr: 0.15
+      touches: 0.15
+    high_volatility:
+      flat: 0.25
+      box: 0.20
+      atr: 0.25
+      shadows: 0.15
+      large_moves: 0.15
+    volume_shock:
+      volume_spike: 0.75
+      false_breakout: 0.10
+      breakout_count: 0.10
+      flat: 0.05
+    low_activity:
+      flat: 0.25
+      low_atr: 0.20
+      narrow_box: 0.20
+      low_turnover: 0.20
+      contraction: 0.15
+    trend:
+      slope: 0.45
+      r_squared: 0.35
+      box_position: 0.20
+stage8:
+  use_optional_auxiliary: true
+  require_formal_publication_status: "formal"
+  blocked_formal_value: null
