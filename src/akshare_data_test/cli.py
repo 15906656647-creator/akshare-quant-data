@@ -450,6 +450,51 @@ def _cmd_analyze_limit_events(args):
         return 1
 
 
+def _cmd_analyze_style(args):
+    """Run or validate the fully offline Stage 9 style analysis."""
+    setup_logging(level=args.log_level)
+    try:
+        import pandas as pd
+        from .stage9_build import analyze_stage9, validate_stage9_inputs
+
+        as_of = pd.Timestamp(resolve_as_of_date(cli_date=args.as_of_date)).normalize()
+        root = project_root()
+        config_path = root / args.config
+        input_database = root / args.input_database
+        output_database = root / args.output_database
+        symbols = [str(item).zfill(6) for item in args.symbols] if args.symbols else None
+        windows = list(args.windows) if args.windows else None
+        start = pd.Timestamp(args.start_date).normalize() if args.start_date else None
+        stage8_database = root / args.stage8_database if args.stage8_database else None
+        if args.validate_only:
+            result = validate_stage9_inputs(
+                config_path=config_path, input_database=input_database,
+                output_database=output_database, as_of_date=as_of, symbols=symbols,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+            return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
+        report, exit_code = analyze_stage9(
+            root=root, config_path=config_path, input_database=input_database,
+            output_database=output_database, as_of_date=as_of,
+            start_date=start, symbols=symbols, windows=windows,
+            stage8_database=stage8_database, run_id=args.run_id,
+            dry_run=args.dry_run,
+        )
+        print("Stage 9 style analysis: " + report["run_status"])
+        print("  publication_status: " + report["publication_status"])
+        print("  profiles: " + str(report["profile_row_count"]))
+        print("  stage8_publication_status: " + report["stage8_publication_status"])
+        print("  run_id: " + report["run_id"])
+        if report["blocking_reasons"]:
+            print("  blockers: " + "; ".join(report["blocking_reasons"]))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 9 error: {exc}", file=sys.stderr)
+        return 1
+
+
 def _generate_summary_md(results, run_id, overall, as_of):
     sp = Path("reports/interface_smoke_test_summary.md")
     sl = []
@@ -621,6 +666,33 @@ def main():
         default=False,
         help="Show a traceback for Stage 8 internal errors",
     )
+    b9 = sub.add_parser(
+        "analyze-style",
+        help="Analyze Stage 9 sideways and volume-price styles fully offline",
+    )
+    b9.add_argument("--as-of-date", required=True)
+    b9.add_argument("--start-date", default=None)
+    b9.add_argument("--config", default="config/stage9.yml")
+    b9.add_argument(
+        "--input-database",
+        default="database/akshare_data_test_stage5_repaired.duckdb",
+    )
+    b9.add_argument(
+        "--output-database",
+        default="database/akshare_style_stage9.duckdb",
+    )
+    b9.add_argument("--stage8-database", default=None)
+    b9.add_argument("--symbols", nargs="+", default=None)
+    b9.add_argument("--windows", nargs="+", type=int, default=None)
+    b9.add_argument("--run-id", default=None)
+    mode9 = b9.add_mutually_exclusive_group()
+    mode9.add_argument("--dry-run", action="store_true", default=False)
+    mode9.add_argument("--validate-only", action="store_true", default=False)
+    b9.add_argument("--log-level", default="INFO")
+    b9.add_argument(
+        "--debug", action="store_true", default=False,
+        help="Show a traceback for Stage 9 internal errors",
+    )
     args = parser.parse_args()
     if args.command == "doctor":
         sys.exit(_cmd_doctor(args))
@@ -653,6 +725,8 @@ def main():
         sys.exit(_cmd_build_features(args))
     elif args.command == "analyze-limit-events":
         sys.exit(_cmd_analyze_limit_events(args))
+    elif args.command == "analyze-style":
+        sys.exit(_cmd_analyze_style(args))
     else:
         parser.print_help()
         sys.exit(0)
