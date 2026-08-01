@@ -495,6 +495,49 @@ def _cmd_analyze_style(args):
         return 1
 
 
+def _cmd_analyze_fundamental(args):
+    """Run or validate the fully offline Stage 10 fundamental analysis."""
+    setup_logging(level=args.log_level)
+    try:
+        import pandas as pd
+        from .stage10_build import analyze_stage10, validate_stage10_inputs
+
+        as_of = pd.Timestamp(resolve_as_of_date(cli_date=args.as_of_date)).normalize()
+        root = project_root()
+        config_path = root / args.config
+        input_database = root / args.input_database
+        output_database = root / args.output_database
+        input_manifest = root / args.input_manifest
+        symbols = [str(item).zfill(6) for item in args.symbols] if args.symbols else None
+        if args.validate_only:
+            result = validate_stage10_inputs(
+                config_path=config_path, input_database=input_database,
+                output_database=output_database, as_of_date=as_of, symbols=symbols,
+                input_manifest=input_manifest,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+            return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
+        report, exit_code = analyze_stage10(
+            root=root, config_path=config_path, input_database=input_database,
+            output_database=output_database, as_of_date=as_of, symbols=symbols,
+            run_id=args.run_id, dry_run=args.dry_run,
+            input_manifest=input_manifest,
+        )
+        print("Stage 10 fundamental analysis: " + report["run_status"])
+        print("  publication_status: " + report["publication_status"])
+        print("  summaries: " + str(report["summary_row_count"]))
+        print("  valuation_scope: " + report["valuation_scope"])
+        print("  run_id: " + report["run_id"])
+        if report["blocking_reasons"]:
+            print("  blockers: " + "; ".join(report["blocking_reasons"]))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 10 error: {exc}", file=sys.stderr)
+        return 1
+
+
 def _generate_summary_md(results, run_id, overall, as_of):
     sp = Path("reports/interface_smoke_test_summary.md")
     sl = []
@@ -693,6 +736,35 @@ def main():
         "--debug", action="store_true", default=False,
         help="Show a traceback for Stage 9 internal errors",
     )
+    b10 = sub.add_parser(
+        "analyze-fundamental",
+        help="Analyze Stage 10 fundamentals and current valuation snapshots offline",
+    )
+    b10.add_argument("--as-of-date", required=True)
+    b10.add_argument("--config", default="config/stage10.yml")
+    b10.add_argument(
+        "--input-database",
+        default="database/akshare_data_test_stage5_repaired.duckdb",
+    )
+    b10.add_argument(
+        "--input-manifest",
+        default="reports/stage5_verified_manifest.json",
+        help="Verified Stage 5 provenance manifest",
+    )
+    b10.add_argument(
+        "--output-database",
+        default="database/akshare_fundamental_stage10.duckdb",
+    )
+    b10.add_argument("--symbols", nargs="+", default=None)
+    b10.add_argument("--run-id", default=None)
+    mode10 = b10.add_mutually_exclusive_group()
+    mode10.add_argument("--dry-run", action="store_true", default=False)
+    mode10.add_argument("--validate-only", action="store_true", default=False)
+    b10.add_argument("--log-level", default="INFO")
+    b10.add_argument(
+        "--debug", action="store_true", default=False,
+        help="Show a traceback for Stage 10 internal errors",
+    )
     args = parser.parse_args()
     if args.command == "doctor":
         sys.exit(_cmd_doctor(args))
@@ -727,6 +799,8 @@ def main():
         sys.exit(_cmd_analyze_limit_events(args))
     elif args.command == "analyze-style":
         sys.exit(_cmd_analyze_style(args))
+    elif args.command == "analyze-fundamental":
+        sys.exit(_cmd_analyze_fundamental(args))
     else:
         parser.print_help()
         sys.exit(0)

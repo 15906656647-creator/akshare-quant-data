@@ -15,6 +15,7 @@
 - **阶段 7**：均线、量价与活跃度特征
 - **阶段 8**：涨跌停统计与事件研究工程实现（正式发布仍阻塞）
 - **阶段 9**：横盘震荡、疑似洗盘特征与量价风格工程实现
+- **阶段 10**：基本面与当前估值快照分析工程实现
 
 ## 当前完成阶段
 
@@ -84,6 +85,19 @@ python run_pipeline.py analyze-style `
   --as-of-date 2026-07-27 `
   --windows 20 40 60 `
   --dry-run
+
+# 阶段10只读预检
+python run_pipeline.py analyze-fundamental `
+  --as-of-date 2026-07-27 `
+  --input-manifest reports/stage5_verified_manifest.json `
+  --validate-only
+
+# 阶段10离线 dry-run，不写数据库或报告
+python run_pipeline.py analyze-fundamental `
+  --as-of-date 2026-07-27 `
+  --input-manifest reports/stage5_verified_manifest.json `
+  --symbols 002067 002600 `
+  --dry-run
 ```
 
 ## 目录结构
@@ -118,3 +132,12 @@ tests/           — 自动化测试
 - 停牌、零成交及非法 OHLC 行不占窗口；样本不足输出 `insufficient_history`。
 - 输出是横盘震荡风格、疑似洗盘特征、量价行为特征和疑似主力行为特征的统计描述。
 - 不输出确定性主力行为、交易信号或投资建议。
+
+## 阶段 10 口径
+
+- 只读取阶段 5 中公告日期不晚于显式 `as-of-date` 的财务事实和估值快照，不访问网络。
+- 同一报告期的不同来源运行按版本保留；同一标准指标的源字段按配置优先级唯一选取，并保存来源和冲突标记；利润表和现金流量表累计值按 Q1、H1、Q1-Q3、全年转换为单季度。
+- 最近四个完整季度用于 TTM；缺少前期累计、上年同期或完整四季度时保持空值并保存原因。
+- PE/PB 只作为 `current valuation snapshot`；负 PE 标记 `loss-making`，缺失 PE/PB 不填 0，也不伪造历史估值。
+- `validate-only` 只读并要求通过验证的 Stage 5 manifest 与 PASS `etl_run` 一致，`dry-run` 不写数据库或报告；正式写入使用独立 Stage 10 DuckDB 和事务。
+- 基本面评分和解释只描述真实指标，不给出价值高低、交易信号或投资建议。

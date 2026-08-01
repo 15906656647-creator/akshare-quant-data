@@ -1,0 +1,62 @@
+schema_version: "1.0.0"
+model_version: "stage10_fundamental_v1"
+calculation_version: "stage10_calculation_v1"
+source_name: "AKShare"
+valuation_type: "snapshot"
+statement_mappings:
+  balance_sheet:
+    total_assets:
+      priority: [TOTAL_ASSETS]
+    total_liabilities:
+      priority: [TOTAL_LIABILITIES]
+    shareholders_equity:
+      priority: [TOTAL_EQUITY]
+  profit_statement:
+    revenue:
+      priority: [TOTAL_OPERATE_INCOME, OPERATE_INCOME]
+    operating_cost:
+      priority: [TOTAL_OPERATE_COST, OPERATE_COST]
+    operating_profit:
+      priority: [OPERATE_PROFIT]
+    total_profit:
+      priority: [TOTAL_PROFIT]
+    net_profit:
+      priority: [NETPROFIT]
+    parent_net_profit:
+      priority: [PARENT_NETPROFIT]
+    deducted_parent_net_profit:
+      priority: [DEDUCT_PARENT_NETPROFIT]
+    eps:
+      priority: [BASIC_EPS]
+  cash_flow_statement:
+    operating_cashflow:
+      priority: [NETCASH_OPERATE]
+flow_statement_types: [profit_statement, cash_flow_statement]
+required_items:
+  - total_assets
+  - total_liabilities
+  - shareholders_equity
+  - revenue
+  - operating_cost
+  - operating_profit
+  - total_profit
+  - net_profit
+  - parent_net_profit
+  - deducted_parent_net_profit
+  - operating_cashflow
+  - eps
+ratio_ranges:
+  gross_margin: [-5.0, 5.0]
+  net_margin: [-5.0, 5.0]
+  roe: [-10.0, 10.0]
+  asset_liability_ratio: [0.0, 5.0]
+score:
+  profitability:
+    gross_margin_positive: 35
+    net_margin_positive: 35
+    roe_positive: 30
+  financial_health:
+    asset_liability_ratio_below: 0.70
+    leverage_score: 50
+    operating_cashflow_positive: 25
+    cashflow_profit_ratio_positive: 25

@@ -1,0 +1,23 @@
+{
+  "run_id": null,
+  "run_status": "IMPLEMENTED_NOT_FORMALLY_RUN",
+  "publication_status": "not_calculated",
+  "output_type": "implementation_validation",
+  "as_of_date": "2026-07-27",
+  "symbol_count": null,
+  "raw_row_count": null,
+  "fact_row_count": null,
+  "indicator_row_count": null,
+  "summary_row_count": null,
+  "valuation_row_count": null,
+  "summary_count": null,
+  "indicator_count": null,
+  "quality_passed": null,
+  "quality_failed": null,
+  "blocking_reasons": [
+    "verified Stage 5 manifest unavailable"
+  ],
+  "config_hash": null,
+  "valuation_scope": "current valuation snapshot",
+  "note": "No formal Stage 10 data run was executed. Null/not_calculated is unknown, not zero."
+}
