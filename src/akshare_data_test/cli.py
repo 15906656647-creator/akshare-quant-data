@@ -662,6 +662,40 @@ def _cmd_validate_crypto(args):
         return 1
 
 
+def _cmd_analyze_stage12(args):
+    """Run Stage 12 from explicit local inputs and emit JSON-only stdout."""
+    setup_logging(level=args.log_level)
+    try:
+        import pandas as pd
+        from .stage12_analysis import analyze_stage12
+
+        as_of = pd.Timestamp(resolve_as_of_date(cli_date=args.as_of_date)).normalize()
+        root = project_root()
+        price_path = root / args.price_input
+        fundamental_path = root / args.fundamental_input if args.fundamental_input else None
+        if not price_path.is_file():
+            raise ValueError(f"price input does not exist: {price_path}")
+        prices = pd.read_csv(price_path, dtype={"instrument": str, "symbol": str})
+        fundamentals = None
+        if fundamental_path is not None:
+            if not fundamental_path.is_file():
+                raise ValueError(f"fundamental input does not exist: {fundamental_path}")
+            fundamentals = pd.read_csv(fundamental_path, dtype={"instrument": str, "symbol": str})
+        report, exit_code = analyze_stage12(
+            root=root, as_of_date=as_of, price_frame=prices,
+            fundamental_frame=fundamentals, config_path=root / args.config,
+            output_database=root / args.output_database, run_id=args.run_id,
+            dry_run=args.dry_run, reports_dir=root / args.reports_dir,
+        )
+        print(json.dumps(report, ensure_ascii=False, sort_keys=True, allow_nan=False))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 12 error: {exc}", file=sys.stderr)
+        return 1
+
+
 def _generate_summary_md(results, run_id, overall, as_of):
     sp = Path("reports/interface_smoke_test_summary.md")
     sl = []
@@ -913,6 +947,20 @@ def main():
     mode11.add_argument("--validate-only", action="store_true", default=False)
     b11.add_argument("--log-level", default="INFO")
     b11.add_argument("--debug", action="store_true", default=False)
+    b12 = sub.add_parser(
+        "analyze-stage12",
+        help="Run reproducible Stage 12 stock analyses from local CSV inputs",
+    )
+    b12.add_argument("--as-of-date", required=True)
+    b12.add_argument("--config", default="config/stage12.yml")
+    b12.add_argument("--price-input", required=True)
+    b12.add_argument("--fundamental-input", default=None)
+    b12.add_argument("--reports-dir", default="reports")
+    b12.add_argument("--output-database", default="database/akshare_stage12.duckdb")
+    b12.add_argument("--run-id", default=None)
+    b12.add_argument("--dry-run", action="store_true", default=False)
+    b12.add_argument("--log-level", default="INFO")
+    b12.add_argument("--debug", action="store_true", default=False)
     args = parser.parse_args()
     if args.command == "doctor":
         sys.exit(_cmd_doctor(args))
@@ -951,6 +999,8 @@ def main():
         sys.exit(_cmd_analyze_fundamental(args))
     elif args.command == "validate-crypto":
         sys.exit(_cmd_validate_crypto(args))
+    elif args.command == "analyze-stage12":
+        sys.exit(_cmd_analyze_stage12(args))
     else:
         parser.print_help()
         sys.exit(0)

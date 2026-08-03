@@ -1,0 +1,41 @@
+{
+  "as_of_date": "2026-07-27",
+  "blocking_reasons": [],
+  "canonical_sha256": "4f755345be7b778ed46610b58abefaac691cc4acec19f908d46a9c8ce5838543",
+  "completed_at": "2026-07-27T00:00:00+00:00",
+  "config_sha256": "9275cf63483bcd8250c1ed37ff858324cfa79244c2154070d7c9ed38f6cf9b30",
+  "database_write_status": "written",
+  "dry_run": false,
+  "input_row_counts": {
+    "fundamental_future_excluded": 1,
+    "fundamental_visible": 2,
+    "price_future_excluded": 1,
+    "price_visible": 250
+  },
+  "input_sha256": "4fb7f5a1f93de5ff9f57af776118fe54c1d2f3b046821ec7f0e274ce98b916d5",
+  "model_version": "stage12_analysis_v1",
+  "network_calls": 0,
+  "output_hashes": {
+    "active": "d8d70d53448f079595257c07ed6bb5dd79e9c9daaafca5d25f6578047701216a",
+    "breakouts": "a07daeba865056194d2cc8f178fe2b527b47c4dd653028b6a0329a3c2f428e1d",
+    "combined": "f87d0447f6828414d31b4cea2af7fa5b88b1ca61c019478ee115d44bb094d2d1",
+    "ranges": "7443eed54a5828ea30c5f64d255a43bb257df89a33285a62ffb30389089714ca"
+  },
+  "output_row_counts": {
+    "active": 2,
+    "breakouts": 2,
+    "combined": 2,
+    "quality": 17,
+    "ranges": 2
+  },
+  "output_type": "implementation_validation_fixture",
+  "price_adjust_type": "qfq",
+  "run_id": "stage12-fixture-20260727",
+  "stage": 12,
+  "started_at": "2026-07-27T00:00:00+00:00",
+  "status": "READY",
+  "warnings": [
+    "future_fundamental_rows_excluded:1",
+    "future_price_rows_excluded:1"
+  ]
+}

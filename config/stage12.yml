@@ -1,0 +1,60 @@
+schema_version: "1.0.0"
+model_version: "stage12_analysis_v1"
+price_adjust_type: "qfq"
+ranking_method: "average"
+missing_value_policy: "exclude_and_warn"
+active_stock:
+  lookback_days: 120
+  min_valid_days: 90
+  min_average_amount: 0.0
+  max_zero_volume_ratio: 0.10
+  score_threshold: 0.70
+  weights:
+    amount_percentile: 0.40
+    volume_percentile: 0.30
+    turnover_percentile: 0.30
+volume_breakout:
+  lookback_days: 20
+  min_history_days: 15
+  ratio_to_mean_threshold: 2.0
+  ratio_to_median_threshold: 2.0
+  zscore_threshold: 2.0
+  minimum_volume: 1.0
+  require_positive_return: false
+  require_amount_confirmation: false
+  amount_change_threshold: 0.0
+range_bound:
+  lookback_days: 40
+  min_history_days: 40
+  max_range_width_pct: 0.20
+  max_abs_slope_pct: 0.0015
+  max_trend_r2: 0.65
+  max_outside_ratio: 0.25
+  inner_quantile_lower: 0.10
+  inner_quantile_upper: 0.90
+fundamental_price_volume:
+  missing_subscore_policy: "renormalize_available"
+  signal_thresholds:
+    strong: 0.75
+    moderate: 0.55
+  fundamental_weights:
+    valuation_score: 0.20
+    profitability_score: 0.30
+    growth_score: 0.25
+    quality_score: 0.25
+  composite_weights:
+    fundamental_score: 0.35
+    activity_score: 0.20
+    volume_breakout_score: 0.15
+    range_bound_score: 0.10
+    price_momentum_score: 0.20
+output:
+  csv_encoding: "utf-8-sig"
+  stable_sort: true
+  float_precision: 12
+quality_gates:
+  require_unique_input_keys: true
+  require_unique_output_keys: true
+  require_finite_scores: true
+  require_no_future_data: true
+  require_all_instruments: true

@@ -7,6 +7,8 @@ import pandas as pd
 import pytest
 
 from akshare_data_test.style_features import (
+    compute_log_trend,
+    compute_range_width,
     compute_style_features,
     load_stage9_config,
 )
@@ -14,6 +16,16 @@ from akshare_data_test.style_features import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = load_stage9_config(ROOT / "config/stage9.yml")
+
+
+def test_shared_stage9_range_primitives_preserve_authoritative_behavior():
+    width, width_pct = compute_range_width(10.1, 9.9)
+    slope, normalized, r2 = compute_log_trend(pd.Series([10.0] * 40))
+    assert width == pytest.approx(0.2)
+    assert width_pct == pytest.approx(10.1 / 9.9 - 1.0)
+    assert slope == pytest.approx(0.0, abs=1e-15)
+    assert normalized == pytest.approx(0.0, abs=1e-15)
+    assert r2 == 1.0
 
 
 def daily(

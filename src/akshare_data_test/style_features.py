@@ -132,7 +132,16 @@ def _finite(value: object) -> float | None:
     return number if np.isfinite(number) else None
 
 
-def _regression(values: pd.Series) -> tuple[float | None, float | None, float | None]:
+def compute_range_width(high: float, low: float) -> tuple[float, float]:
+    """Return absolute width and the Stage 9 authoritative relative width."""
+    high_value, low_value = float(high), float(low)
+    if not np.isfinite([high_value, low_value]).all() or low_value <= 0 or high_value < low_value:
+        raise ValueError("Range bounds must be finite and satisfy 0 < low <= high")
+    return high_value - low_value, high_value / low_value - 1.0
+
+
+def compute_log_trend(values: pd.Series) -> tuple[float | None, float | None, float | None]:
+    """Compute the Stage 9 log-price OLS slope, daily return and R-squared."""
     y = pd.to_numeric(values, errors="coerce").to_numpy(dtype=float)
     if len(y) < 2 or not np.isfinite(y).all() or (y <= 0).any():
         return None, None, None
@@ -144,6 +153,11 @@ def _regression(values: pd.Series) -> tuple[float | None, float | None, float | 
     residual = float(np.sum((log_y - fitted) ** 2))
     r_squared = 1.0 if total == 0 else max(0.0, min(1.0, 1.0 - residual / total))
     return float(slope), float(np.expm1(slope)), r_squared
+
+
+def _regression(values: pd.Series) -> tuple[float | None, float | None, float | None]:
+    """Backward-compatible private alias for the shared Stage 9 calculation."""
+    return compute_log_trend(values)
 
 
 def _slope_stability(close: pd.Series) -> float | None:
@@ -332,7 +346,7 @@ def compute_style_features(
             if low <= 0 or high < low:
                 rows.append({**{name: None for name in STYLE_FEATURE_COLUMNS}, **base, "data_quality_status": "invalid_price_range"})
                 continue
-            box_width = high / low - 1.0
+            _, box_width = compute_range_width(high, low)
             position = (float(close.iloc[-1]) - low) / (high - low) if high > low else 0.5
             previous_close = close.shift(1)
             true_range = pd.concat([
@@ -348,7 +362,7 @@ def compute_style_features(
                 atr_ratio * float(config.raw["box"]["touch_atr_fraction"]),
             )
             positions = ((close - low) / (high - low)).fillna(0.5) if high > low else pd.Series(0.5, index=sample.index)
-            slope, normalized_slope, r_squared = _regression(close)
+            slope, normalized_slope, r_squared = compute_log_trend(close)
             returns = close.pct_change()
             realized = float(returns.std(ddof=1)) if returns.notna().sum() > 1 else 0.0
             direction = "flat"

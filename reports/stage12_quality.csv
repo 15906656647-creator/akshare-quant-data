@@ -1,0 +1,18 @@
+﻿run_id,check_name,severity,status,observed_value,expected_value,message,checked_at
+stage12-fixture-20260727,visible_price_rows_present,ERROR,PASS,250,>0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,price_input_keys_unique,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,future_price_rows_excluded,WARNING,PASS,1,excluded,Future rows are permitted as input evidence but excluded before every calculation,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,future_fundamental_rows_excluded,WARNING,PASS,1,excluded,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,active_instrument_coverage,ERROR,PASS,"['000001', '000002']","['000001', '000002']",,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,active_output_keys_unique,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,breakout_instrument_coverage,ERROR,PASS,"['000001', '000002']","['000001', '000002']",,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,breakout_output_keys_unique,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,range_instrument_coverage,ERROR,PASS,"['000001', '000002']","['000001', '000002']",,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,range_output_keys_unique,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,combined_instrument_coverage,ERROR,PASS,"['000001', '000002']","['000001', '000002']",,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,combined_output_keys_unique,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,history_windows_sufficient,ERROR,PASS,"{'active': 0, 'breakout': 0, 'range': 0}",0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,scores_finite_and_bounded,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,composite_scores_available,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,fundamental_point_in_time_safe,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00
+stage12-fixture-20260727,no_investment_advice,ERROR,PASS,0,0,,2026-07-27 00:00:00+00:00

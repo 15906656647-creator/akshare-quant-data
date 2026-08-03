@@ -1,0 +1,3 @@
+﻿instrument,as_of_date,observation_date,baseline_start,baseline_end,baseline_observations,current_volume,historical_mean_volume,historical_median_volume,historical_std_volume,volume_ratio_to_mean,volume_ratio_to_median,volume_zscore,price_return,amount_change,breakout_rule,is_volume_breakout,reason_codes
+000001,2026-07-27,2026-07-27,2026-06-29,2026-07-24,20,450,102,102,1.41421356237,4.41176470588,4.41176470588,246.073159853,0.00258416151596,3.38022206488,mean_and_median_and_zscore,True,"[""volume_breakout_confirmed""]"
+000002,2026-07-27,2026-07-27,2026-06-29,2026-07-24,20,104,102,102,1.41421356237,1.01960784314,1.01960784314,1.41421356237,0.0016051364366,0.0113294581496,mean_and_median_and_zscore,False,"[""volume_breakout_not_confirmed""]"
