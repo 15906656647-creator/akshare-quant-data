@@ -1,0 +1,258 @@
+===== current time / OS (exit 0) =====
+2026-08-02T13:57:00.242599+08:00 | Windows-10-10.0.26200-SP0
+
+===== git branch --show-current (exit 0) =====
+feature/stage11-ethusdt-validation
+
+===== git rev-parse HEAD (exit 0) =====
+d6b2b6a447f55c8f59f17f31ff1fd326dfc095c3
+
+===== git rev-parse stage10-verified-20260802^{commit} (exit 0) =====
+d6b2b6a447f55c8f59f17f31ff1fd326dfc095c3
+
+===== git merge-base --is-ancestor stage10-verified-20260802 HEAD (exit 0) =====
+
+
+===== git status --short --branch (exit 0) =====
+## feature/stage11-ethusdt-validation
+ M src/akshare_data_test/cli.py
+ M src/akshare_data_test/fundamental_analysis.py
+ M src/akshare_data_test/stage10_build.py
+ M tests/test_stage1_structure.py
+?? config/stage11.yml
+?? docs/stage11_implementation.md
+?? reports/assemble_stage11_remediation.py
+?? reports/run_stage11_remediation_tests.py
+?? reports/stage11_acceptance/
+?? reports/stage11_crypto_price.csv
+?? reports/stage11_crypto_price.json
+?? reports/stage11_independent_audit.md
+?? reports/stage11_quality.csv
+?? reports/stage11_reaudit/
+?? reports/stage11_remediation.md
+?? reports/stage11_remediation_fault_matrix.csv
+?? reports/stage11_remediation_live_result.json
+?? reports/stage11_remediation_live_verify.py
+?? reports/stage11_remediation_mapping.md
+?? reports/stage11_remediation_results.json
+?? reports/stage11_remediation_test.log
+?? reports/stage11_remediation_test_results.json
+?? reports/stage11_run.json
+?? reports/stage11_validation.md
+?? sql/stage11_schema.sql
+?? src/akshare_data_test/adapters/crypto_exchange.py
+?? src/akshare_data_test/assets.py
+?? src/akshare_data_test/crypto_evidence.py
+?? src/akshare_data_test/crypto_market.py
+?? src/akshare_data_test/quality/crypto_checks.py
+?? src/akshare_data_test/stage11_build.py
+?? src/akshare_data_test/storage/crypto_repository.py
+?? tests/test_stage11_crypto.py
+?? tests/test_stage11_remediation.py
+
+===== git diff --stat (exit 0) =====
+ src/akshare_data_test/cli.py                  | 150 ++++++++++++++++++++++++++
+ src/akshare_data_test/fundamental_analysis.py |  19 ++++
+ src/akshare_data_test/stage10_build.py        |  13 +++
+ tests/test_stage1_structure.py                |   6 ++
+ 4 files changed, 188 insertions(+)
+warning: in the working copy of 'src/akshare_data_test/cli.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/fundamental_analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/stage10_build.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_stage1_structure.py', LF will be replaced by CRLF the next time Git touches it
+
+===== git diff --name-status (exit 0) =====
+M	src/akshare_data_test/cli.py
+M	src/akshare_data_test/fundamental_analysis.py
+M	src/akshare_data_test/stage10_build.py
+M	tests/test_stage1_structure.py
+warning: in the working copy of 'src/akshare_data_test/cli.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/fundamental_analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/stage10_build.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_stage1_structure.py', LF will be replaced by CRLF the next time Git touches it
+
+===== git diff --check (exit 0) =====
+warning: in the working copy of 'src/akshare_data_test/cli.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/fundamental_analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/stage10_build.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_stage1_structure.py', LF will be replaced by CRLF the next time Git touches it
+
+===== git diff --numstat (exit 0) =====
+150	0	src/akshare_data_test/cli.py
+19	0	src/akshare_data_test/fundamental_analysis.py
+13	0	src/akshare_data_test/stage10_build.py
+6	0	tests/test_stage1_structure.py
+warning: in the working copy of 'src/akshare_data_test/cli.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/fundamental_analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/stage10_build.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_stage1_structure.py', LF will be replaced by CRLF the next time Git touches it
+
+===== git diff --ignore-space-at-eol --stat (exit 0) =====
+ src/akshare_data_test/cli.py                  | 150 ++++++++++++++++++++++++++
+ src/akshare_data_test/fundamental_analysis.py |  19 ++++
+ src/akshare_data_test/stage10_build.py        |  13 +++
+ tests/test_stage1_structure.py                |   6 ++
+ 4 files changed, 188 insertions(+)
+warning: in the working copy of 'src/akshare_data_test/cli.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/fundamental_analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/stage10_build.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_stage1_structure.py', LF will be replaced by CRLF the next time Git touches it
+
+===== git status --short --ignored (exit 0) =====
+ M src/akshare_data_test/cli.py
+ M src/akshare_data_test/fundamental_analysis.py
+ M src/akshare_data_test/stage10_build.py
+ M tests/test_stage1_structure.py
+?? config/stage11.yml
+?? docs/stage11_implementation.md
+?? reports/assemble_stage11_remediation.py
+?? reports/run_stage11_remediation_tests.py
+?? reports/stage11_acceptance/
+?? reports/stage11_crypto_price.csv
+?? reports/stage11_crypto_price.json
+?? reports/stage11_independent_audit.md
+?? reports/stage11_quality.csv
+?? reports/stage11_reaudit/
+?? reports/stage11_remediation.md
+?? reports/stage11_remediation_fault_matrix.csv
+?? reports/stage11_remediation_live_result.json
+?? reports/stage11_remediation_live_verify.py
+?? reports/stage11_remediation_mapping.md
+?? reports/stage11_remediation_results.json
+?? reports/stage11_remediation_test.log
+?? reports/stage11_remediation_test_results.json
+?? reports/stage11_run.json
+?? reports/stage11_validation.md
+?? sql/stage11_schema.sql
+?? src/akshare_data_test/adapters/crypto_exchange.py
+?? src/akshare_data_test/assets.py
+?? src/akshare_data_test/crypto_evidence.py
+?? src/akshare_data_test/crypto_market.py
+?? src/akshare_data_test/quality/crypto_checks.py
+?? src/akshare_data_test/stage11_build.py
+?? src/akshare_data_test/storage/crypto_repository.py
+?? tests/test_stage11_crypto.py
+?? tests/test_stage11_remediation.py
+!! .pytest_cache/
+!! .venv/
+!! data/
+!! database/
+!! logs/
+!! src/akshare_data_test.egg-info/
+!! src/akshare_data_test/__pycache__/
+!! src/akshare_data_test/adapters/__pycache__/
+!! src/akshare_data_test/cleaners/__pycache__/
+!! src/akshare_data_test/collectors/__pycache__/
+!! src/akshare_data_test/features/__pycache__/
+!! src/akshare_data_test/quality/__pycache__/
+!! src/akshare_data_test/storage/__pycache__/
+!! src/akshare_data_test/utils/__pycache__/
+!! tests/__pycache__/
+
+===== git check-attr text eol -- . (exit 0) =====
+.: text: unspecified
+.: eol: unspecified
+
+===== protected hashes =====
+[
+  {
+    "path": "config/universe.yml",
+    "initial_sha256": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "final_sha256": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "unchanged": true
+  },
+  {
+    "path": "config/metric_definition.yml",
+    "initial_sha256": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "final_sha256": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "unchanged": true
+  },
+  {
+    "path": "docs/stage0_scope.md",
+    "initial_sha256": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+    "final_sha256": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+    "unchanged": true
+  },
+  {
+    "path": "database/akshare_crypto_stage11.duckdb",
+    "initial_sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4",
+    "final_sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4",
+    "unchanged": true
+  },
+  {
+    "path": "data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/crypto_spot.parquet",
+    "initial_sha256": "93cdd5e3c6a89a684008e3792eab5cf2d60a1b9fcc2155fd3e4e3f387c0aac5b",
+    "final_sha256": "93cdd5e3c6a89a684008e3792eab5cf2d60a1b9fcc2155fd3e4e3f387c0aac5b",
+    "unchanged": true
+  },
+  {
+    "path": "data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/metadata.json",
+    "initial_sha256": "6ecbfdfb8a357aeabf7f92ed91ea43a14eb8883abef6089cd30b229c2c539e15",
+    "final_sha256": "6ecbfdfb8a357aeabf7f92ed91ea43a14eb8883abef6089cd30b229c2c539e15",
+    "unchanged": true
+  }
+]
+
+===== first acceptance directory hashes =====
+[
+  {
+    "path": "reports\\stage11_acceptance\\assemble_report.py",
+    "sha256": "14c08853f42d99dbf23df169b726fb51900a539fd8abc743f24beb8def592393"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\independent_audit.py",
+    "sha256": "7b0603850c78931cbfcf32928ad3e744497fd1cacb7102b0a4381666698eb080"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\independent_audit_evidence.json",
+    "sha256": "3999535b6a1eccd30ffb869c789ba6aca82ec969ce087239e9f1b70500d94a44"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\network_check.py",
+    "sha256": "46513474a46c7a63ca18b7ba54633444d671c05f310deaa46cd5b9b726f161b5"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\run_acceptance_tests.py",
+    "sha256": "a7b868a31071e973c3cb19e804298f7806162bffeb2ac3edf2e00c040c303344"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_acceptance_report.md",
+    "sha256": "d8ed28715a5e47dc1fa7bf78675851a6f244648535ebd30581db10abaea30156"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_acceptance_results.json",
+    "sha256": "a0bd990a9c5afd41dfe9abdf622732649f574f5597f51bf1b87c9b9de0a5882a"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_data_reconciliation.csv",
+    "sha256": "c9cdab106e089004d19704d3ea30edd9d3b48157fd3b07d18b3026c348e0585a"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_environment.txt",
+    "sha256": "4947d04dd0f377cb8dee7895a3ebbdd1102bd7e9f95804a08662a1cd9697934c"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_fault_injection.csv",
+    "sha256": "a2b97eb68d9785e76459e41fee7a4d752d889421042c6d2fe103e5a457f7a6cc"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_git_evidence.txt",
+    "sha256": "0cb6d578fd9a741c6ecdaed961c1cf2e7df95ea910904788e9d8723eb5a3539d"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_metric_recalculation.csv",
+    "sha256": "5521730880e06d43c3d495a47054df7c115f83f4ef561a1458d63f194287c0cc"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_network_evidence.json",
+    "sha256": "ac51ebe8c7dad9ad9ad45be2a3f1bdc5336732ba87144533e83ed5a1d0765c59"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\stage11_test_execution.log",
+    "sha256": "d4b6cb3710e65c46cf8805364d3bbe45a9cc3fd88d484aa772847c72eef807fe"
+  },
+  {
+    "path": "reports\\stage11_acceptance\\test_execution_results.json",
+    "sha256": "e058991e0021a593953e8bc758168107a320c3a5452e1d912b0fc897e398a7ba"
+  }
+]

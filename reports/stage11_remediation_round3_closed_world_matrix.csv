@@ -1,0 +1,10 @@
+﻿case_id,injection,entry,expected,actual,exit_code,blocked,status,error_code,unlisted_files,blocking_reasons,read_only,network_isolated,closed_world_status
+CW01,root orphan JSON,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,manifest_unlisted_file,orphan.json,manifest_unlisted_file: orphan.json,True,True,
+CW02,nested orphan JSON,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,manifest_unlisted_file,nested/orphan.json,manifest_unlisted_file: nested/orphan.json,True,True,
+CW03,backup sidecar,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,manifest_unlisted_file,response.json.bak,manifest_unlisted_file: response.json.bak,True,True,
+CW04,temporary sidecar,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,manifest_unlisted_file,response.json.tmp,manifest_unlisted_file: response.json.tmp,True,True,
+CW05,hidden file,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,manifest_unlisted_file,.unlisted,manifest_unlisted_file: .unlisted,True,True,
+CW06,empty unlisted file,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,manifest_unlisted_file,empty-file,manifest_unlisted_file: empty-file,True,True,
+CW07,binary unlisted file,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,manifest_unlisted_file,payload.bin,manifest_unlisted_file: payload.bin,True,True,
+CW08,multiple unlisted files,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,manifest_unlisted_file,.hidden | a/orphan.bin | z.tmp,manifest_unlisted_file: .hidden | manifest_unlisted_file: a/orphan.bin | manifest_unlisted_file: z.tmp,True,True,
+CW09,declared additional file with unsupported role,validate-crypto --validate-only,BLOCKED,BLOCKED,2,True,PASS,raw_manifest_unknown_role,,raw_manifest_unknown_role: sidecar,True,True,PASS

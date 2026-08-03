@@ -1,0 +1,96 @@
+{
+  "source": "OKX public history-candles via production adapter",
+  "endpoint": "https://www.okx.com/api/v5/market/history-candles",
+  "independent_data_checks": {
+    "row_count": 960,
+    "first_utc": "2026-06-18T00:00:00+00:00",
+    "last_utc": "2026-07-27T23:00:00+00:00",
+    "unique_timestamps": 960,
+    "hourly_deltas_only": true,
+    "all_utc": true,
+    "weekend_rows": 288,
+    "hours_present": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "ohlc_reasonable": true,
+    "volume_non_negative": true,
+    "confirmed": true,
+    "identity": {
+      "raw_instrument": [
+        "ETH-USDT"
+      ],
+      "data_provider": [
+        "okx_public_api"
+      ],
+      "raw_exchange": [
+        "OKX"
+      ],
+      "instrument_type": [
+        "spot"
+      ],
+      "bar_interval": [
+        "1h"
+      ]
+    }
+  },
+  "first_run": {
+    "exit_code": 0,
+    "status": "PASS",
+    "artifact_hash": "40779957b81a3667a9d16ff5608d75a82420cdf6a222a10fcd88acd1fa501751"
+  },
+  "second_run": {
+    "exit_code": 0,
+    "status": "PASS",
+    "artifact_hash": "40779957b81a3667a9d16ff5608d75a82420cdf6a222a10fcd88acd1fa501751"
+  },
+  "same_run_rerun_idempotent": true,
+  "database_counts": {
+    "raw.crypto_market_data": 960,
+    "clean.crypto_price_fact": 960,
+    "feature.crypto_indicator": 960,
+    "analysis.crypto_profile": 1,
+    "quality.stage11_quality_result": 19,
+    "audit.stage11_run": 1
+  },
+  "independent_annualized_hourly_volatility": 0.6621144489103213,
+  "database_annualized_hourly_volatility": 0.6621144489103213,
+  "volatility_absolute_error": 0.0,
+  "validate_only": {
+    "exit_code": 0,
+    "stdout": "{\n  \"status\": \"READY\",\n  \"blocking_reasons\": [],\n  \"config_hash\": \"1bff05997f21258c95d0bb4394e03a835948918e152dfeaa708eb316da29fd60\",\n  \"config_version\": \"1.1.0\",\n  \"symbol\": \"ETHUSDT\",\n  \"asset_type\": \"crypto\",\n  \"trading_calendar\": \"continuous_24_7\",\n  \"run_id\": \"stage11-independent-reaudit-20260727\",\n  \"row_count\": 960,\n  \"canonical_sha256\": \"6b006819780ba7fe1a0dfe92d62efdedd915946f1124f2122a2a52bba9537726\",\n  \"raw_evidence\": {\n    \"status\": \"READY\",\n    \"blocking_reasons\": [],\n    \"row_count\": 960,\n    \"schema_hash\": \"2afdc152401f74c853e5880429d0a44bf011a17599b0d67e9db3894efccb2229\",\n    \"raw_projection_sha256\": \"b9c4ea7113678070bfad2a4bc72cebf6623a7d759b42877f9a333803776eaff8\"\n  }\n}\n",
+    "stderr": "",
+    "read_only": true
+  },
+  "old_database": {
+    "exit_code": 2,
+    "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"blocking_reasons\": [\n    \"DuckDB artifact invalid: artifact contains no rows\",\n    \"DuckDB audit PASS record is missing or invalid\",\n    \"DuckDB profile row count must be 1\",\n    \"DuckDB quality results are missing or contain failure\"\n  ],\n  \"config_hash\": \"1bff05997f21258c95d0bb4394e03a835948918e152dfeaa708eb316da29fd60\",\n  \"config_version\": \"1.1.0\",\n  \"symbol\": \"ETHUSDT\",\n  \"asset_type\": \"crypto\",\n  \"trading_calendar\": \"continuous_24_7\",\n  \"run_id\": \"stage11-independent-reaudit-20260727\",\n  \"row_count\": 960,\n  \"canonical_sha256\": \"6b006819780ba7fe1a0dfe92d62efdedd915946f1124f2122a2a52bba9537726\",\n  \"raw_evidence\": {\n    \"status\": \"READY\",\n    \"blocking_reasons\": [],\n    \"row_count\": 960,\n    \"schema_hash\": \"2afdc152401f74c853e5880429d0a44bf011a17599b0d67e9db3894efccb2229\",\n    \"raw_projection_sha256\": \"b9c4ea7113678070bfad2a4bc72cebf6623a7d759b42877f9a333803776eaff8\"\n  }\n}\n",
+    "stderr": "",
+    "rejected": true,
+    "unchanged": true,
+    "sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4"
+  },
+  "temporary_workspace_removed_after_run": true
+}

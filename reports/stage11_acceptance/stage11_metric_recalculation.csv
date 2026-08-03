@@ -1,0 +1,17 @@
+﻿metric,project_value,independent_value,absolute_difference,relative_difference,tolerance,status,definition
+return_1bar,-0.0005597625761752933,-0.0005597625761752933,0.0,0.0,1e-12,PASS,direct formula component
+realized_volatility,0.007074259916241158,0.007074259916241158,0.0,0.0,1e-12,PASS,rolling 20 return std ddof=1
+annualized_volatility,0.6621144489103213,0.6621144489103213,0.0,0.0,1e-12,PASS,realized_volatility * sqrt(8760)
+true_range,13.870000000000118,13.870000000000118,0.0,0.0,1e-12,PASS,direct formula component
+atr,19.764285714285784,19.764285714285784,0.0,0.0,1e-12,PASS,rolling 14 mean of true range
+atr_ratio,0.010442928095892309,0.010442928095892309,0.0,0.0,1e-12,PASS,direct formula component
+bollinger_middle,1946.7530000000002,1946.7530000000002,0.0,0.0,1e-12,PASS,direct formula component
+bollinger_upper,1989.6642223550612,1989.6642223550612,0.0,0.0,1e-12,PASS,direct formula component
+bollinger_lower,1903.8417776449392,1903.8417776449392,0.0,0.0,1e-12,PASS,direct formula component
+bollinger_band_width,0.04408491714671671,0.044084917146716605,1.0408340855860843e-16,2.3609754831162293e-15,1e-12,PASS,(upper-lower)/middle; rolling 20 std ddof=0
+trend_slope,-0.0014717614331859867,-0.0014717614331859867,0.0,0.0,1e-12,PASS,expm1(OLS slope of log(close) over 20 bars)
+trend_r_squared,0.5847695497974639,0.5847695497974639,0.0,0.0,1e-12,PASS,direct formula component
+box_high,1981.26,1981.26,0.0,0.0,1e-12,PASS,direct formula component
+box_low,1892.12,1892.12,0.0,0.0,1e-12,PASS,direct formula component
+box_width,0.047111176880958894,0.047111176880958894,0.0,0.0,1e-12,PASS,prior 20 high / prior 20 low - 1
+false_breakout_count,32.0,32.0,0.0,0.0,1e-12,PASS,prior-20 box break then return inside within next 3 bars

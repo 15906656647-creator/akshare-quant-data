@@ -1,0 +1,63 @@
+===== manifest_contract =====
+$ .venv\Scripts\python.exe -m pytest tests/test_stage11_manifest_contract.py -q -ra
+......................                                                   [100%]
+22 passed in 10.56s
+exit code: 0
+
+===== stage11_remediation =====
+$ .venv\Scripts\python.exe -m pytest tests/test_stage11_remediation.py -q -ra
+.....................................................                    [100%]
+53 passed in 34.29s
+exit code: 0
+
+===== stage11 =====
+$ .venv\Scripts\python.exe -m pytest tests/test_stage11_crypto.py tests/test_stage11_remediation.py tests/test_stage11_manifest_contract.py -q -ra
+........................................................................ [ 83%]
+..............                                                           [100%]
+86 passed in 46.95s
+exit code: 0
+
+===== stage10 =====
+$ .venv\Scripts\python.exe -m pytest tests/test_stage10_financial.py tests/test_stage10_integration.py tests/test_stage10_repository.py -q -ra
+.............................................                            [100%]
+45 passed in 16.75s
+exit code: 0
+
+===== stage0 =====
+$ .venv\Scripts\python.exe tests/test_stage0_config.py
+35/35 checks passed
+ALL CHECKS PASSED
+exit code: 0
+
+===== full =====
+$ .venv\Scripts\python.exe -m pytest tests -q -ra
+........................................................................ [ 13%]
+........................................................................ [ 27%]
+........................................................................ [ 40%]
+........................................................................ [ 54%]
+........................................................................ [ 67%]
+........................................................................ [ 81%]
+........................................................................ [ 95%]
+..........................                                               [100%]
+530 passed in 162.88s (0:02:42)
+exit code: 0
+
+===== independent production-entry matrices =====
+Original fault injections: 28/28 blocked
+Manifest fault injections: 20/21 blocked
+Failure: M13 physical file exists but is unlisted
+Command entry: validate-crypto --validate-only
+Actual top-level status: READY
+Actual exit code: 0
+blocking_reasons: []
+Temporary workspace read-only after invocation: true
+Network isolated with invalid local HTTP/HTTPS/ALL proxy: true
+
+===== normal production validation =====
+Command entry: validate-crypto --validate-only
+status: READY
+exit code: 0
+row_count: 960
+read_only: true
+same_run_id price/raw hashes stable: true
+old database: BLOCKED, exit code 2, hash unchanged

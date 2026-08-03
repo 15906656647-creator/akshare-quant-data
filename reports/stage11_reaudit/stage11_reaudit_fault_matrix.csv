@@ -1,0 +1,29 @@
+﻿case_id,injection,entry,expected,actual,exit_code,blocked,status,evidence
+I01,非目标 instrument / ETH-USD,normalize_crypto_bars,BLOCKED,raw_instrument mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+I02,ETH-USDT-SWAP,normalize_crypto_bars,BLOCKED,raw_instrument mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+I03,错误或缺失 provider,normalize_crypto_bars,BLOCKED,data_provider/missing fields,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+I04,错误 exchange,normalize_crypto_bars,BLOCKED,raw_exchange mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+I05,instrument type 缺失/错误,normalize_crypto_bars,BLOCKED,identity missing/type mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+I06,interval 非 1h,normalize_crypto_bars,BLOCKED,bar_interval mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+I07,绕过适配器直接写 Repository,write_stage11_run,BLOCKED,repository second identity validation,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+R01,Raw 目录缺失,validate_raw_evidence,BLOCKED,directory missing,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+R02,request/response/metadata/manifest 任一缺失,validate_raw_evidence,BLOCKED,required file missing,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+R03,Raw 空响应,validate_raw_evidence,BLOCKED,required file empty/non-empty array,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+R04,Raw 损坏 JSON,validate_raw_evidence,BLOCKED,not valid JSON,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+R05,Raw 行数不一致,validate_raw_evidence,BLOCKED,response_row_count mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+R06,Raw schema hash 不一致,validate_raw_evidence,BLOCKED,response_schema_hash mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+R07,Raw content hash 不一致,validate_raw_evidence,BLOCKED,content hash mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+R08,manifest 文件清单遗漏必需文件,validate_raw_evidence,BLOCKED,READY; no blocking reason,0,False,FAIL,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+F01,CSV 删除一行,validate_stage11_inputs,BLOCKED,expected_bar_count,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+F02,CSV 修改 close,validate_stage11_inputs,BLOCKED,canonical row hashes mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+F03,JSON 修改 close,validate_stage11_inputs,BLOCKED,canonical row hashes mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+F04,DuckDB 修改 provider,SQL/validate_stage11_inputs,BLOCKED,constraint/identity invariants,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+F05,任一格式修改 instrument,validate_stage11_inputs,BLOCKED,identity invariants,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+F06,任一格式修改 timestamp,validate_stage11_inputs,BLOCKED,configured range/hash mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+F07,三格式主键集合不一致,validate_stage11_inputs,BLOCKED,canonical row hashes mismatch,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+Q01,NaN / Infinity / -Infinity,run_stage11_quality_checks,BLOCKED,numeric_finite,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+Q02,负成交量 / high<close / low>open,run_stage11_quality_checks,BLOCKED,volume_non_negative/ohlc_reasonable,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+Q03,缺K/重复/30分钟/范围外/未完成,run_stage11_quality_checks,BLOCKED,specific time/completion gates,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+S01,crypto Stage10,analyze_stage10 + CLI,not_applicable; reads=0,not_applicable; financial reads=0,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+S02,stock 路径保持,Stage10 regression,unchanged,45/45 Stage10 tests passed,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py
+S03,未知 asset_type,analyze_stage10,reject,ValueError unsupported asset_type,1,True,PASS,independent rerun of tests/test_stage11_remediation.py; R08 additionally executed by independent_fault_probe.py

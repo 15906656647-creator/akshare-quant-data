@@ -1,0 +1,223 @@
+{
+  "generated_at": "2026-08-02T03:50:14.566533+00:00",
+  "data_quality": {
+    "row_count": 960,
+    "min_timestamp": "2026-06-18T00:00:00+00:00",
+    "max_timestamp": "2026-07-27T23:00:00+00:00",
+    "unique_timestamps": 960,
+    "missing_intervals": 0,
+    "non_hour_differences": 0,
+    "duplicated_timestamps": 0,
+    "invalid_ohlc_count": 0,
+    "negative_volume_count": 0,
+    "non_finite_numeric_count": 0,
+    "invalid_timestamp_count": 0,
+    "provider_distribution": {
+      "okx_public_api": 960
+    },
+    "instrument_distribution": {
+      "ETHUSDT": 960
+    },
+    "exchange_distribution": {
+      "OKX": 960
+    },
+    "market_distribution": {
+      "spot": 960
+    },
+    "bar_interval_distribution": {
+      "1h": 960
+    },
+    "utc_day_counts": {
+      "2026-06-18T00:00:00+00:00": 24,
+      "2026-06-19T00:00:00+00:00": 24,
+      "2026-06-20T00:00:00+00:00": 24,
+      "2026-06-21T00:00:00+00:00": 24,
+      "2026-06-22T00:00:00+00:00": 24,
+      "2026-06-23T00:00:00+00:00": 24,
+      "2026-06-24T00:00:00+00:00": 24,
+      "2026-06-25T00:00:00+00:00": 24,
+      "2026-06-26T00:00:00+00:00": 24,
+      "2026-06-27T00:00:00+00:00": 24,
+      "2026-06-28T00:00:00+00:00": 24,
+      "2026-06-29T00:00:00+00:00": 24,
+      "2026-06-30T00:00:00+00:00": 24,
+      "2026-07-01T00:00:00+00:00": 24,
+      "2026-07-02T00:00:00+00:00": 24,
+      "2026-07-03T00:00:00+00:00": 24,
+      "2026-07-04T00:00:00+00:00": 24,
+      "2026-07-05T00:00:00+00:00": 24,
+      "2026-07-06T00:00:00+00:00": 24,
+      "2026-07-07T00:00:00+00:00": 24,
+      "2026-07-08T00:00:00+00:00": 24,
+      "2026-07-09T00:00:00+00:00": 24,
+      "2026-07-10T00:00:00+00:00": 24,
+      "2026-07-11T00:00:00+00:00": 24,
+      "2026-07-12T00:00:00+00:00": 24,
+      "2026-07-13T00:00:00+00:00": 24,
+      "2026-07-14T00:00:00+00:00": 24,
+      "2026-07-15T00:00:00+00:00": 24,
+      "2026-07-16T00:00:00+00:00": 24,
+      "2026-07-17T00:00:00+00:00": 24,
+      "2026-07-18T00:00:00+00:00": 24,
+      "2026-07-19T00:00:00+00:00": 24,
+      "2026-07-20T00:00:00+00:00": 24,
+      "2026-07-21T00:00:00+00:00": 24,
+      "2026-07-22T00:00:00+00:00": 24,
+      "2026-07-23T00:00:00+00:00": 24,
+      "2026-07-24T00:00:00+00:00": 24,
+      "2026-07-25T00:00:00+00:00": 24,
+      "2026-07-26T00:00:00+00:00": 24,
+      "2026-07-27T00:00:00+00:00": 24
+    }
+  },
+  "database": {
+    "counts": {
+      "raw": 960,
+      "clean": 960,
+      "indicators": 960,
+      "profile": 1,
+      "quality": 11,
+      "audit": 1
+    },
+    "run_ids": [
+      [
+        "stage11-ethusdt-20260727",
+        960
+      ]
+    ],
+    "source_distribution": [
+      [
+        "okx_public_api",
+        960
+      ]
+    ],
+    "symbol_distribution": [
+      [
+        "ETHUSDT",
+        960
+      ]
+    ],
+    "exchange_distribution": [
+      [
+        "OKX",
+        960
+      ]
+    ],
+    "market_distribution": [
+      [
+        "spot",
+        960
+      ]
+    ],
+    "interval_distribution": [
+      [
+        "1h",
+        960
+      ]
+    ],
+    "time_range": [
+      "2026-06-18 08:00:00+08",
+      "2026-07-28 07:00:00+08"
+    ]
+  },
+  "reconciliation": {
+    "checks": 21,
+    "failed": 0,
+    "rounded_hashes": {
+      "csv": "5c5d6e84d723b2f3b2ca93768b9ed493f178df04b2e5c36b628f1cb162322e47",
+      "json": "5c5d6e84d723b2f3b2ca93768b9ed493f178df04b2e5c36b628f1cb162322e47",
+      "duckdb": "5c5d6e84d723b2f3b2ca93768b9ed493f178df04b2e5c36b628f1cb162322e47"
+    }
+  },
+  "metrics": {
+    "checks": 16,
+    "failed": 0
+  },
+  "fault_injection": {
+    "checks": 29,
+    "blocked": 9,
+    "failed": 19
+  },
+  "idempotency": {
+    "counts_before": {
+      "raw": 960,
+      "clean": 960,
+      "indicators": 960,
+      "profile": 1,
+      "quality": 11,
+      "audit": 1
+    },
+    "counts_after_first": {
+      "raw": 960,
+      "clean": 960,
+      "indicators": 960,
+      "profile": 1,
+      "quality": 11,
+      "audit": 1
+    },
+    "counts_after_second": {
+      "raw": 960,
+      "clean": 960,
+      "indicators": 960,
+      "profile": 1,
+      "quality": 11,
+      "audit": 1
+    },
+    "counts_stable": true,
+    "hashes_stable": true,
+    "duplicate_key_counts": {
+      "raw": 0,
+      "clean": 0,
+      "indicators": 0,
+      "profile": 0,
+      "quality": 0,
+      "audit": 0
+    },
+    "other_run_preserved": true,
+    "failure_raised": true,
+    "rollback_preserved": true,
+    "status": "PASS"
+  },
+  "akshare_raw": {
+    "directory_exists": true,
+    "response_exists": true,
+    "metadata_exists": true,
+    "row_count": 10,
+    "column_count": 9,
+    "columns": [
+      "市场",
+      "交易品种",
+      "最近报价",
+      "涨跌额",
+      "涨跌幅",
+      "24小时最高",
+      "24小时最低",
+      "24小时成交量",
+      "更新时间"
+    ],
+    "eth_related_rows": 0,
+    "exact_ethusdt_rows": 0,
+    "eth_records": [],
+    "metadata": {
+      "status": "unsupported",
+      "exact_match": false,
+      "eth_matches": [],
+      "source": "AKShare.crypto_js_spot",
+      "row_count": 10,
+      "run_id": "stage11-ethusdt-20260727",
+      "interface": "crypto_js_spot",
+      "requested_pair": "ETHUSDT",
+      "exact_match_required": true
+    },
+    "metadata_missing_fields": [
+      "fetched_at",
+      "akshare_version",
+      "parameters",
+      "columns",
+      "schema_hash"
+    ],
+    "metadata_row_count_matches": true,
+    "parquet_sha256": "93cdd5e3c6a89a684008e3792eab5cf2d60a1b9fcc2155fd3e4e3f387c0aac5b",
+    "independent_status": "unsupported"
+  }
+}

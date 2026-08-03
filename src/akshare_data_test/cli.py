@@ -510,6 +510,15 @@ def _cmd_analyze_fundamental(args):
         input_manifest = root / args.input_manifest
         symbols = [str(item).zfill(6) for item in args.symbols] if args.symbols else None
         if args.validate_only:
+            if args.asset_type == "crypto":
+                report, exit_code = analyze_stage10(
+                    root=root, config_path=config_path, input_database=input_database,
+                    output_database=output_database, as_of_date=as_of, symbols=symbols,
+                    run_id=args.run_id, dry_run=True, input_manifest=input_manifest,
+                    asset_type=args.asset_type,
+                )
+                print(json.dumps(report, ensure_ascii=False, indent=2, default=str))
+                return exit_code
             result = validate_stage10_inputs(
                 config_path=config_path, input_database=input_database,
                 output_database=output_database, as_of_date=as_of, symbols=symbols,
@@ -522,9 +531,14 @@ def _cmd_analyze_fundamental(args):
             output_database=output_database, as_of_date=as_of, symbols=symbols,
             run_id=args.run_id, dry_run=args.dry_run,
             input_manifest=input_manifest,
+            asset_type=args.asset_type,
         )
         print("Stage 10 fundamental analysis: " + report["run_status"])
         print("  publication_status: " + report["publication_status"])
+        if report.get("status") == "not_applicable":
+            print("  reason: " + report["reason"])
+            print("  run_id: " + report["run_id"])
+            return exit_code
         print("  summaries: " + str(report["summary_row_count"]))
         print("  valuation_scope: " + report["valuation_scope"])
         print("  run_id: " + report["run_id"])
@@ -535,6 +549,116 @@ def _cmd_analyze_fundamental(args):
         if args.debug:
             raise
         print(f"Stage 10 error: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cmd_validate_crypto(args):
+    """Validate Stage 11 ETHUSDT support with offline input or explicit live fetch."""
+    setup_logging(level=args.log_level)
+    try:
+        import pandas as pd
+        from .stage11_build import analyze_stage11, validate_stage11_inputs
+
+        as_of = pd.Timestamp(resolve_as_of_date(cli_date=args.as_of_date)).normalize()
+        root = project_root()
+        config_path = root / args.config
+        output_database = root / args.output_database
+        input_csv = root / args.input_csv if args.input_csv else None
+        if args.validate_only:
+            reports_dir = root / args.reports_dir
+            run_id = args.run_id
+            if not run_id:
+                run_manifest = reports_dir / "stage11_run.json"
+                if run_manifest.is_file():
+                    run_id = json.loads(run_manifest.read_text(encoding="utf-8")).get("run_id")
+            csv_path = input_csv or reports_dir / "stage11_crypto_price.csv"
+            json_path = root / args.input_json if args.input_json else reports_dir / "stage11_crypto_price.json"
+            raw_dir = root / args.raw_evidence_dir if args.raw_evidence_dir else root / "data" / "raw" / "crypto_okx_history" / f"run_id={run_id}"
+            result = validate_stage11_inputs(
+                config_path=config_path, input_csv=csv_path, input_json=json_path,
+                output_database=output_database, raw_evidence_dir=raw_dir,
+                run_id=run_id, as_of_date=as_of, strict_artifacts=True,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+            return 0 if result["status"] == "READY" else 2
+        import uuid
+
+        requested_run_id = args.run_id or str(uuid.uuid4())
+        capability = None
+        if args.probe_akshare:
+            from .adapters.crypto_exchange import AkshareCryptoSpotAdapter
+            from .crypto_evidence import write_akshare_probe_evidence
+            import akshare as ak
+
+            spot_frame, assessed = AkshareCryptoSpotAdapter().fetch()
+            capability = {
+                "status": assessed.status, "exact_match": assessed.exact_match,
+                "eth_matches": list(assessed.eth_matches), "source": assessed.source,
+                "row_count": len(spot_frame),
+            }
+            if not args.dry_run:
+                evidence_dir = root / "data" / "raw" / "crypto_js_spot" / f"run_id={requested_run_id}"
+                write_akshare_probe_evidence(
+                    evidence_dir, run_id=requested_run_id, response=spot_frame,
+                    capability=capability, akshare_version=ak.__version__,
+                    fetched_at=pd.Timestamp.now(tz="UTC"),
+                )
+                capability["evidence_path"] = evidence_dir.relative_to(root).as_posix()
+        if input_csv is not None:
+            frame = pd.read_csv(input_csv)
+            source = args.source
+            if not args.raw_evidence_dir:
+                raise ValueError("--raw-evidence-dir is required with --input-csv")
+            raw_evidence_dir = root / args.raw_evidence_dir
+        elif args.fetch_live:
+            from .adapters.crypto_exchange import BinancePublicKlineAdapter, OkxPublicKlineAdapter
+            from .crypto_evidence import write_raw_evidence
+            from .crypto_market import identity_contract_from_config, load_stage11_config
+            import tempfile
+
+            end = as_of.tz_localize("UTC") + pd.Timedelta(days=1)
+            start = pd.Timestamp(args.start_time, tz="UTC") if args.start_time else end - pd.Timedelta(days=40)
+            adapter = BinancePublicKlineAdapter() if args.provider == "binance" else OkxPublicKlineAdapter()
+            frame = adapter.fetch(
+                symbol="ETHUSDT", interval=args.interval,
+                start_time=start.to_pydatetime(), end_time=end.to_pydatetime(),
+            )
+            source = "binance_public_api" if args.provider == "binance" else "okx_public_api"
+            identity = identity_contract_from_config(load_stage11_config(config_path)[0])
+            if args.dry_run:
+                temporary = tempfile.TemporaryDirectory(prefix="stage11-raw-evidence-")
+                raw_evidence_dir = Path(temporary.name)
+            else:
+                raw_evidence_dir = root / "data" / "raw" / "crypto_okx_history" / f"run_id={requested_run_id}"
+            write_raw_evidence(
+                raw_evidence_dir, run_id=requested_run_id, provider=source,
+                endpoint=adapter.endpoint,
+                request_parameters={
+                    "instId": "ETH-USDT", "bar": "1H",
+                    "start_time": start.isoformat(), "end_time": end.isoformat(),
+                },
+                response=frame, identity=identity,
+                fetched_at=pd.Timestamp.now(tz="UTC"),
+            )
+        else:
+            raise ValueError("provide --input-csv or explicitly opt in with --fetch-live")
+        report, exit_code = analyze_stage11(
+            root=root, as_of_date=as_of, input_frame=frame, interval=args.interval,
+            source=source, config_path=config_path, output_database=output_database,
+            run_id=requested_run_id, dry_run=args.dry_run,
+            akshare_capability=capability,
+            raw_evidence_dir=raw_evidence_dir,
+        )
+        print("Stage 11 crypto validation: " + report["run_status"])
+        print("  symbol: " + report["symbol"])
+        print("  rows: " + str(report["row_count"]))
+        print("  fundamental_analysis: " + report["fundamental_analysis_status"])
+        print("  run_id: " + report["run_id"])
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 11 error: {exc}", file=sys.stderr)
         return 1
 
 
@@ -757,6 +881,7 @@ def main():
     )
     b10.add_argument("--symbols", nargs="+", default=None)
     b10.add_argument("--run-id", default=None)
+    b10.add_argument("--asset-type", choices=["equity", "crypto"], default="equity")
     mode10 = b10.add_mutually_exclusive_group()
     mode10.add_argument("--dry-run", action="store_true", default=False)
     mode10.add_argument("--validate-only", action="store_true", default=False)
@@ -765,6 +890,29 @@ def main():
         "--debug", action="store_true", default=False,
         help="Show a traceback for Stage 10 internal errors",
     )
+    b11 = sub.add_parser(
+        "validate-crypto",
+        help="Validate Stage 11 ETHUSDT 24/7 data and indicator adaptation",
+    )
+    b11.add_argument("--as-of-date", required=True)
+    b11.add_argument("--config", default="config/stage11.yml")
+    b11.add_argument("--input-csv", default=None)
+    b11.add_argument("--input-json", default=None)
+    b11.add_argument("--raw-evidence-dir", default=None)
+    b11.add_argument("--reports-dir", default="reports")
+    b11.add_argument("--source", default="okx_public_api")
+    b11.add_argument("--interval", choices=["1h", "1d"], default="1h")
+    b11.add_argument("--start-time", default=None)
+    b11.add_argument("--fetch-live", action="store_true", default=False)
+    b11.add_argument("--provider", choices=["binance", "okx"], default="okx")
+    b11.add_argument("--probe-akshare", action="store_true", default=False)
+    b11.add_argument("--output-database", default="database/akshare_crypto_stage11.duckdb")
+    b11.add_argument("--run-id", default=None)
+    mode11 = b11.add_mutually_exclusive_group()
+    mode11.add_argument("--dry-run", action="store_true", default=False)
+    mode11.add_argument("--validate-only", action="store_true", default=False)
+    b11.add_argument("--log-level", default="INFO")
+    b11.add_argument("--debug", action="store_true", default=False)
     args = parser.parse_args()
     if args.command == "doctor":
         sys.exit(_cmd_doctor(args))
@@ -801,6 +949,8 @@ def main():
         sys.exit(_cmd_analyze_style(args))
     elif args.command == "analyze-fundamental":
         sys.exit(_cmd_analyze_fundamental(args))
+    elif args.command == "validate-crypto":
+        sys.exit(_cmd_validate_crypto(args))
     else:
         parser.print_help()
         sys.exit(0)

@@ -1,0 +1,30 @@
+﻿id,category,injected_fault,expected_gate,actual_result,exit_code,blocked,status
+A1,time,delete middle bar,BLOCKED,time_continuity,1,True,PASS
+A2,time,duplicate one bar,BLOCKED,"primary_key_unique,time_continuity",1,True,PASS
+A3,time,offset timestamp 30 minutes,BLOCKED,time_continuity,1,True,PASS
+A4,time,swap adjacent input rows,BLOCKED,overall PASS,0,False,FAIL
+A5,time,prepend bar outside configured 40-day range,BLOCKED,overall PASS,0,False,FAIL
+B1,identity_source,input symbol ETH-USD,BLOCKED,status=PASS;exit=0;blockers=[],0,False,FAIL
+B2,identity_source,input derivative ETH-USDT-SWAP,BLOCKED,status=PASS;exit=0;blockers=[],0,False,FAIL
+B3,identity_source,source argument AKShare,BLOCKED,status=PASS;exit=0;blockers=[],0,False,FAIL
+B4,identity_source,source argument Binance,BLOCKED,status=PASS;exit=0;blockers=[],0,False,FAIL
+B5,identity_source,remove original symbol field,BLOCKED,status=PASS;exit=0;blockers=[],0,False,FAIL
+B6,identity_source,mix another exchange,BLOCKED,status=PASS;exit=0;blockers=[],0,False,FAIL
+C1,ohlcv,high < close,BLOCKED,ohlc_reasonable,1,True,PASS
+C2,ohlcv,low > open,BLOCKED,ohlc_reasonable,1,True,PASS
+C3,ohlcv,negative volume,BLOCKED,volume_non_negative,1,True,PASS
+C4,ohlcv,NaN close,BLOCKED,ohlc_reasonable,1,True,PASS
+C5,ohlcv,Infinity high,BLOCKED,overall PASS,0,False,FAIL
+C6,ohlcv,string close,BLOCKED,exception:TypeError:'>=' not supported between instances of 'float' and 'str',1,True,PASS
+D1,three_format,CSV delete row,BLOCKED,validate-only status=READY; artifacts are not inputs,0,False,FAIL
+D2,three_format,JSON modify close,BLOCKED,validate-only status=READY; artifacts are not inputs,0,False,FAIL
+D3,three_format,DuckDB modify provider,BLOCKED,validate-only status=READY; artifacts are not inputs,0,False,FAIL
+D4,three_format,timestamp timezone/hour changed,BLOCKED,validate-only status=READY; artifacts are not inputs,0,False,FAIL
+E1,raw_evidence,Raw directory missing,BLOCKED,validate-only status=READY; no Raw parameter/check,0,False,FAIL
+E2,raw_evidence,Raw response missing,BLOCKED,validate-only status=READY; no Raw parameter/check,0,False,FAIL
+E3,raw_evidence,Raw response empty,BLOCKED,validate-only status=READY; no Raw parameter/check,0,False,FAIL
+E4,raw_evidence,metadata row count mismatch,BLOCKED,validate-only status=READY; no Raw parameter/check,0,False,FAIL
+E5,raw_evidence,schema hash mismatch,BLOCKED,validate-only status=READY; no Raw parameter/check,0,False,FAIL
+F1,fundamental,crypto helper,not_applicable,not_applicable:fundamental_analysis is not_applicable for asset_type=crypto,1,True,PASS
+F2,fundamental,equity helper,unchanged,accepted,0,False,PASS
+F3,fundamental,crypto through Stage 10 production entry,not_applicable before financial reads,"signature=(*, root: 'Path', config_path: 'Path', input_database: 'Path', output_database: 'Path', as_of_date: 'pd.Timestamp', symbols: 'list[str] | None' = None, run_id: 'str | None' = None, dry_run: 'bool' = False, input_manifest: 'Path | None' = None) -> 'tuple[dict[str, Any], int]'; require_equity_asset not called by Stage10",0,False,FAIL

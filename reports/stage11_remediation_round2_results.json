@@ -1,0 +1,194 @@
+{
+  "schema_version": "stage11-remediation-round2-v1",
+  "generated_at": "2026-08-02T20:35:37.761589+08:00",
+  "implementation_status": "READY_FOR_THIRD_REAUDIT",
+  "previous_remaining_failure_addressed": true,
+  "original_fault_injections_blocked": 28,
+  "original_fault_injections_total": 28,
+  "manifest_fault_cases_blocked": 21,
+  "manifest_fault_cases_total": 21,
+  "tests": [
+    {
+      "suite": "manifest_contract",
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage11_manifest_contract.py"
+      ],
+      "exit_code": 0,
+      "passed": 22,
+      "summary": "22 passed in 6.12s"
+    },
+    {
+      "suite": "stage11_remediation",
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage11_remediation.py"
+      ],
+      "exit_code": 0,
+      "passed": 53,
+      "summary": "53 passed in 41.74s"
+    },
+    {
+      "suite": "stage11",
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage11_crypto.py",
+        "tests/test_stage11_remediation.py",
+        "tests/test_stage11_manifest_contract.py"
+      ],
+      "exit_code": 0,
+      "passed": 86,
+      "summary": "86 passed in 58.33s"
+    },
+    {
+      "suite": "stage10",
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage10_financial.py",
+        "tests/test_stage10_integration.py",
+        "tests/test_stage10_repository.py"
+      ],
+      "exit_code": 0,
+      "passed": 45,
+      "summary": "45 passed in 18.86s"
+    },
+    {
+      "suite": "full",
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests"
+      ],
+      "exit_code": 0,
+      "passed": 530,
+      "summary": "530 passed in 195.51s (0:03:15)"
+    },
+    {
+      "suite": "stage0",
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "tests/test_stage0_config.py"
+      ],
+      "exit_code": 0,
+      "passed": 35,
+      "summary": "ALL CHECKS PASSED"
+    }
+  ],
+  "normal_chain": {
+    "source": "preserved OKX 960-row Stage11 price artifact; no network request",
+    "manifest_entries": [
+      {
+        "role": "request",
+        "name": "request.json",
+        "sha256": "4f3ed6e5af4a2390755f27804f467ecb259639b16702b3952ddde61febd685e1",
+        "size_bytes": 343
+      },
+      {
+        "role": "response",
+        "name": "response.json",
+        "sha256": "2b47c066fceae16bbff4578748a2fefe636bd17af15ea191fb9860c599190156",
+        "size_bytes": 382554
+      },
+      {
+        "role": "metadata",
+        "name": "metadata.json",
+        "sha256": "60eae7c9f749d57fa86697855009cb77e6e528f59ca5dc0521d3e78dcefd036d",
+        "size_bytes": 864
+      }
+    ],
+    "first_run": {
+      "exit_code": 0,
+      "status": "PASS",
+      "artifact_hash": "bf8ec65b8c13a9120af23e5d82bcaaca4ca78add6fbb35bc7c6194b0f8588fa9"
+    },
+    "second_run": {
+      "exit_code": 0,
+      "status": "PASS",
+      "artifact_hash": "bf8ec65b8c13a9120af23e5d82bcaaca4ca78add6fbb35bc7c6194b0f8588fa9"
+    },
+    "same_run_id_idempotent": true,
+    "counts": {
+      "raw.crypto_market_data": 960,
+      "clean.crypto_price_fact": 960,
+      "feature.crypto_indicator": 960,
+      "analysis.crypto_profile": 1,
+      "quality.stage11_quality_result": 19,
+      "audit.stage11_run": 1
+    },
+    "cli_exit_code": 0,
+    "cli_payload": {
+      "status": "READY",
+      "blocking_reasons": [],
+      "config_hash": "1bff05997f21258c95d0bb4394e03a835948918e152dfeaa708eb316da29fd60",
+      "config_version": "1.1.0",
+      "symbol": "ETHUSDT",
+      "asset_type": "crypto",
+      "trading_calendar": "continuous_24_7",
+      "run_id": "stage11-remediation-round2-20260727",
+      "row_count": 960,
+      "canonical_sha256": "e1a9b0d9175ed536c6c57fe3731df5751fe19bb5c5f166d096612f952373af69",
+      "raw_evidence": {
+        "status": "READY",
+        "blocking_reasons": [],
+        "row_count": 960,
+        "schema_hash": "2afdc152401f74c853e5880429d0a44bf011a17599b0d67e9db3894efccb2229",
+        "raw_projection_sha256": "b9c4ea7113678070bfad2a4bc72cebf6623a7d759b42877f9a333803776eaff8"
+      }
+    },
+    "validate_only_read_only": true
+  },
+  "protected_files": [
+    {
+      "path": "config/universe.yml",
+      "initial_sha256": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+      "final_sha256": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+      "unchanged": true
+    },
+    {
+      "path": "config/metric_definition.yml",
+      "initial_sha256": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+      "final_sha256": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+      "unchanged": true
+    },
+    {
+      "path": "docs/stage0_scope.md",
+      "initial_sha256": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+      "final_sha256": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+      "unchanged": true
+    },
+    {
+      "path": "database/akshare_crypto_stage11.duckdb",
+      "initial_sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4",
+      "final_sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4",
+      "unchanged": true
+    },
+    {
+      "path": "data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/crypto_spot.parquet",
+      "initial_sha256": "93cdd5e3c6a89a684008e3792eab5cf2d60a1b9fcc2155fd3e4e3f387c0aac5b",
+      "final_sha256": "93cdd5e3c6a89a684008e3792eab5cf2d60a1b9fcc2155fd3e4e3f387c0aac5b",
+      "unchanged": true
+    },
+    {
+      "path": "data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/metadata.json",
+      "initial_sha256": "6ecbfdfb8a357aeabf7f92ed91ea43a14eb8883abef6089cd30b229c2c539e15",
+      "final_sha256": "6ecbfdfb8a357aeabf7f92ed91ea43a14eb8883abef6089cd30b229c2c539e15",
+      "unchanged": true
+    }
+  ],
+  "commit_performed": false,
+  "push_performed": false
+}

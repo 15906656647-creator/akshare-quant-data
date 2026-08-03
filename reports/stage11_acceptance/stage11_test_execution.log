@@ -1,0 +1,113 @@
+================================================================================
+{"scope": "Stage 11", "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage11_crypto.py -q", "collected": 11, "passed": 11, "failed": 0, "skipped": 0, "xfail": 0, "deselected": 0, "exit_code": 0, "started_at": "2026-08-02T03:54:22.306702+00:00", "completed_at": "2026-08-02T03:54:26.058123+00:00", "duration_seconds": 3.751421, "status": "PASS"}
+--- STDOUT ---
+...........                                                              [100%]
+11 passed in 3.31s
+
+--- STDERR ---
+
+================================================================================
+{"scope": "Stage 10", "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage10_financial.py tests/test_stage10_integration.py tests/test_stage10_repository.py -q", "collected": 45, "passed": 45, "failed": 0, "skipped": 0, "xfail": 0, "deselected": 0, "exit_code": 0, "started_at": "2026-08-02T03:54:26.058123+00:00", "completed_at": "2026-08-02T03:54:40.304611+00:00", "duration_seconds": 14.246488, "status": "PASS"}
+--- STDOUT ---
+.............................................                            [100%]
+45 passed in 13.75s
+
+--- STDERR ---
+
+================================================================================
+{"scope": "Stage 9", "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage9_audit.py tests/test_stage9_database_integration.py tests/test_stage9_quality.py tests/test_stage9_repository.py tests/test_stage9_validate_only.py tests/test_style_classification.py tests/test_style_features.py tests/test_false_breakouts.py -q", "collected": 43, "passed": 43, "failed": 0, "skipped": 0, "xfail": 0, "deselected": 0, "exit_code": 0, "started_at": "2026-08-02T03:54:40.304611+00:00", "completed_at": "2026-08-02T03:54:54.059965+00:00", "duration_seconds": 13.755354, "status": "PASS"}
+--- STDOUT ---
+...........................................                              [100%]
+43 passed in 13.27s
+
+--- STDERR ---
+
+================================================================================
+{"scope": "Stage 8", "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage8_analysis.py tests/test_stage8_audit.py tests/test_stage8_database_integration.py tests/test_stage8_quality.py tests/test_stage8_validate_only.py tests/test_limit_event_detection.py tests/test_limit_event_repository.py tests/test_limit_rules.py -q", "collected": 134, "passed": 134, "failed": 0, "skipped": 0, "xfail": 0, "deselected": 0, "exit_code": 0, "started_at": "2026-08-02T03:54:54.059965+00:00", "completed_at": "2026-08-02T03:55:10.059408+00:00", "duration_seconds": 15.999443, "status": "PASS"}
+--- STDOUT ---
+........................................................................ [ 53%]
+..............................................................           [100%]
+134 passed in 15.53s
+
+--- STDERR ---
+
+================================================================================
+{"scope": "Stage 7", "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage7_audit.py tests/test_stage7_database_integration.py tests/test_activity_score.py tests/test_stock_daily_features.py -q", "collected": 22, "passed": 22, "failed": 0, "skipped": 0, "xfail": 0, "deselected": 0, "exit_code": 0, "started_at": "2026-08-02T03:55:10.059408+00:00", "completed_at": "2026-08-02T03:55:12.660319+00:00", "duration_seconds": 2.600911, "status": "PASS"}
+--- STDOUT ---
+......................                                                   [100%]
+22 passed in 2.14s
+
+--- STDERR ---
+
+================================================================================
+{"scope": "Stage 0", "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" tests/test_stage0_config.py", "collected": 35, "passed": 35, "failed": 0, "skipped": 0, "xfail": 0, "deselected": 0, "exit_code": 0, "started_at": "2026-08-02T03:55:12.660319+00:00", "completed_at": "2026-08-02T03:55:12.931958+00:00", "duration_seconds": 0.271639, "status": "PASS"}
+--- STDOUT ---
+PASS: 1a. universe.yml parses
+PASS: 1b. metric_definition.yml parses
+PASS: 2. Stock count is 16
+PASS: 3a. All symbols are strings
+PASS: 3b. All symbols are length 6
+PASS: 4. No duplicate symbols
+PASS: 4b. Symbols match expected 16-stock list
+PASS: 5a. All mapping fields present
+PASS: 5b. Exchange mapping correct
+PASS: 5c. symbol_em mapping correct
+PASS: 5d. market_lower mapping correct
+PASS: 6a. ETHUSDT requested_pair present
+PASS: 6b. ETHUSDT exact_match_required is true
+PASS: 6c. ETHUSDT allow_pair_substitution is false
+PASS: 6d. ETHUSDT result_enum correct
+PASS: 6e. ETHUSDT base_asset is ETH
+PASS: 6f. ETHUSDT quote_asset is USDT
+PASS: 7. MA windows match [3,5,7,10,13,20,21]
+PASS: 8. Activity weights sum to 1.0
+PASS: 9a. Trend/MA uses qfq
+PASS: 9b. Limit detection uses raw
+PASS: 9c. Mixed forbidden is true
+PASS: 10. No network/akshare calls in config files
+PASS: 11. Test file has no network access
+PASS: 12a. universe.yml as_of_date is 2026-07-27
+PASS: 12b. metric_definition.yml as_of_date is 2026-07-27
+PASS: 13a. universe.yml has schema_version
+PASS: 13b. metric_definition.yml has schema_version
+PASS: 14a. Volume conversion rule present
+PASS: 14b. Percentage stored as decimal
+PASS: 14c. Currency is CNY
+PASS: 14d. Currency unit is yuan
+PASS: 15. Style labels match expected set
+PASS: 16. Consolidation has >= 10 required fields
+PASS: 17. At least 12 fundamental metrics
+
+35/35 checks passed
+ALL CHECKS PASSED
+
+--- STDERR ---
+
+================================================================================
+{"scope": "Full", "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest -q", "collected": 455, "passed": 455, "failed": 0, "skipped": 0, "xfail": 0, "deselected": 0, "exit_code": 0, "started_at": "2026-08-02T03:55:12.931958+00:00", "completed_at": "2026-08-02T03:56:46.569907+00:00", "duration_seconds": 93.637949, "status": "PASS"}
+--- STDOUT ---
+........................................................................ [ 15%]
+........................................................................ [ 31%]
+........................................................................ [ 47%]
+........................................................................ [ 63%]
+........................................................................ [ 79%]
+........................................................................ [ 94%]
+.......................                                                  [100%]
+455 passed in 93.00s (0:01:33)
+
+--- STDERR ---
+
+================================================================================
+{"scope": "validate-only", "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" run_pipeline.py validate-crypto --as-of-date 2026-07-27 --config config/stage11.yml --validate-only", "collected": 0, "passed": 0, "failed": 0, "skipped": 0, "xfail": 0, "deselected": 0, "exit_code": 0, "started_at": "2026-08-02T03:56:46.569907+00:00", "completed_at": "2026-08-02T03:56:47.247795+00:00", "duration_seconds": 0.677888, "status": "PASS"}
+--- STDOUT ---
+{
+  "status": "READY",
+  "blocking_reasons": [],
+  "config_hash": "39062dbc633d44ce4ef4c485fe91117dcfe69baf91f7e612743ff587b9214866",
+  "config_version": "1.0.0",
+  "symbol": "ETHUSDT",
+  "asset_type": "crypto",
+  "trading_calendar": "continuous_24_7"
+}
+
+--- STDERR ---

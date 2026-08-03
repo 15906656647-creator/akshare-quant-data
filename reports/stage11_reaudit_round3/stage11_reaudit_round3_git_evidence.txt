@@ -1,0 +1,73 @@
+STAGE 11 THIRD RE-AUDIT - GIT AND INTEGRITY EVIDENCE
+
+Branch:
+feature/stage11-ethusdt-validation
+
+HEAD before and after:
+d6b2b6a447f55c8f59f17f31ff1fd326dfc095c3
+
+Staged changes before and after:
+none (git diff --cached --name-status exit 0, empty stdout)
+
+Tracked unstaged changes present before this audit and unchanged by it:
+M src/akshare_data_test/cli.py
+M src/akshare_data_test/fundamental_analysis.py
+M src/akshare_data_test/stage10_build.py
+M tests/test_stage1_structure.py
+
+git diff --stat before and after:
+ src/akshare_data_test/cli.py                  | 150 ++++++++++++++++++++++++++
+ src/akshare_data_test/fundamental_analysis.py |  19 ++++
+ src/akshare_data_test/stage10_build.py        |  13 +++
+ tests/test_stage1_structure.py                |   6 ++
+ 4 files changed, 188 insertions(+)
+
+git diff --name-status before and after:
+M src/akshare_data_test/cli.py
+M src/akshare_data_test/fundamental_analysis.py
+M src/akshare_data_test/stage10_build.py
+M tests/test_stage1_structure.py
+
+git diff --check:
+exit code 0; no whitespace error on stdout.
+Observation only: Git warned that LF will be replaced by CRLF next time it touches the four tracked files above. No line-ending conversion was performed.
+
+Protected SHA-256 before and after (all unchanged):
+config/universe.yml
+0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65
+
+config/metric_definition.yml
+13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4
+
+docs/stage0_scope.md
+18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615
+
+database/akshare_crypto_stage11.duckdb
+6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4
+
+data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/crypto_spot.parquet
+93cdd5e3c6a89a684008e3792eab5cf2d60a1b9fcc2155fd3e4e3f387c0aac5b
+
+data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/metadata.json
+6ecbfdfb8a357aeabf7f92ed91ea43a14eb8883abef6089cd30b229c2c539e15
+
+reports/stage11_crypto_price.csv
+d04c7092fc239ae8f08df683b4057696b402231a887710a578b54b447f512283
+
+reports/stage11_crypto_price.json
+de95ceff3d06054a0462fd41d29b3c23c6ca05a8a7ce04c1766a60fa7b0c2606
+
+Existing evidence tree hashes before and after (unchanged):
+reports/stage11_acceptance/
+fa6fae865ef02d4e921267427158737a1624d0bd3312b7e57e3df1465090316f
+
+reports/stage11_reaudit/
+315eb49cd8960dd4e539af6eca412da93a5fffd98b1fba63e1dd5ddb5f2d78da
+
+All reports/stage11_remediation* file hashes matched before and after.
+All src/akshare_data_test/**/*.py hashes matched before and after.
+
+Audit-created repository paths:
+reports/stage11_reaudit_round3/ only
+
+No git add, commit, push, reset, clean, or line-ending conversion was executed.

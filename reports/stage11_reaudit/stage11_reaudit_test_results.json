@@ -1,0 +1,189 @@
+[
+  {
+    "suite": "stage11_remediation",
+    "targets": [
+      "tests/test_stage11_remediation.py"
+    ],
+    "command": [
+      "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_stage11_remediation.py"
+    ],
+    "started_at": "2026-08-02T13:52:17.018195+08:00",
+    "exit_code": 0,
+    "summary": "53 passed in 25.09s",
+    "counts": {
+      "passed": 53
+    }
+  },
+  {
+    "suite": "stage11",
+    "targets": [
+      "tests/test_stage11_crypto.py",
+      "tests/test_stage11_remediation.py"
+    ],
+    "command": [
+      "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_stage11_crypto.py",
+      "tests/test_stage11_remediation.py"
+    ],
+    "started_at": "2026-08-02T13:52:42.617554+08:00",
+    "exit_code": 0,
+    "summary": "64 passed in 30.68s",
+    "counts": {
+      "passed": 64
+    }
+  },
+  {
+    "suite": "stage10",
+    "targets": [
+      "tests\\test_stage10_financial.py",
+      "tests\\test_stage10_integration.py",
+      "tests\\test_stage10_repository.py"
+    ],
+    "command": [
+      "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests\\test_stage10_financial.py",
+      "tests\\test_stage10_integration.py",
+      "tests\\test_stage10_repository.py"
+    ],
+    "started_at": "2026-08-02T13:53:13.800764+08:00",
+    "exit_code": 0,
+    "summary": "45 passed in 14.70s",
+    "counts": {
+      "passed": 45
+    }
+  },
+  {
+    "suite": "stage9",
+    "targets": [
+      "tests/test_stage9_audit.py",
+      "tests/test_stage9_database_integration.py",
+      "tests/test_stage9_quality.py",
+      "tests/test_stage9_repository.py",
+      "tests/test_stage9_validate_only.py",
+      "tests/test_style_classification.py",
+      "tests/test_style_features.py",
+      "tests/test_false_breakouts.py"
+    ],
+    "command": [
+      "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_stage9_audit.py",
+      "tests/test_stage9_database_integration.py",
+      "tests/test_stage9_quality.py",
+      "tests/test_stage9_repository.py",
+      "tests/test_stage9_validate_only.py",
+      "tests/test_style_classification.py",
+      "tests/test_style_features.py",
+      "tests/test_false_breakouts.py"
+    ],
+    "started_at": "2026-08-02T13:53:28.984383+08:00",
+    "exit_code": 0,
+    "summary": "43 passed in 13.52s",
+    "counts": {
+      "passed": 43
+    }
+  },
+  {
+    "suite": "stage8",
+    "targets": [
+      "tests/test_stage8_analysis.py",
+      "tests/test_stage8_audit.py",
+      "tests/test_stage8_database_integration.py",
+      "tests/test_stage8_quality.py",
+      "tests/test_stage8_validate_only.py",
+      "tests/test_limit_event_detection.py",
+      "tests/test_limit_event_repository.py",
+      "tests/test_limit_rules.py"
+    ],
+    "command": [
+      "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_stage8_analysis.py",
+      "tests/test_stage8_audit.py",
+      "tests/test_stage8_database_integration.py",
+      "tests/test_stage8_quality.py",
+      "tests/test_stage8_validate_only.py",
+      "tests/test_limit_event_detection.py",
+      "tests/test_limit_event_repository.py",
+      "tests/test_limit_rules.py"
+    ],
+    "started_at": "2026-08-02T13:53:42.992190+08:00",
+    "exit_code": 0,
+    "summary": "134 passed in 16.04s",
+    "counts": {
+      "passed": 134
+    }
+  },
+  {
+    "suite": "stage7",
+    "targets": [
+      "tests/test_stage7_audit.py",
+      "tests/test_stage7_database_integration.py",
+      "tests/test_activity_score.py",
+      "tests/test_stock_daily_features.py"
+    ],
+    "command": [
+      "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_stage7_audit.py",
+      "tests/test_stage7_database_integration.py",
+      "tests/test_activity_score.py",
+      "tests/test_stock_daily_features.py"
+    ],
+    "started_at": "2026-08-02T13:53:59.567317+08:00",
+    "exit_code": 0,
+    "summary": "22 passed in 2.24s",
+    "counts": {
+      "passed": 22
+    }
+  },
+  {
+    "suite": "stage0",
+    "targets": [
+      "tests/test_stage0_config.py"
+    ],
+    "command": [
+      "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+      "tests/test_stage0_config.py"
+    ],
+    "started_at": "2026-08-02T13:54:02.311659+08:00",
+    "exit_code": 0,
+    "summary": "ALL CHECKS PASSED",
+    "counts": {}
+  },
+  {
+    "suite": "full",
+    "targets": [
+      "tests"
+    ],
+    "command": [
+      "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "tests"
+    ],
+    "started_at": "2026-08-02T13:54:02.591201+08:00",
+    "exit_code": 0,
+    "summary": "508 passed in 122.77s (0:02:02)",
+    "counts": {
+      "passed": 508
+    }
+  }
+]

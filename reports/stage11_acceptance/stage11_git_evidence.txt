@@ -1,0 +1,114 @@
+captured_at=2026-08-02T12:01:51.760732+08:00
+branch=feature/stage11-ethusdt-validation
+HEAD=d6b2b6a447f55c8f59f17f31ff1fd326dfc095c3
+stage10_tag=d6b2b6a447f55c8f59f17f31ff1fd326dfc095c3
+stage10_is_ancestor_exit=0
+
+--- status --short --branch ---
+## feature/stage11-ethusdt-validation
+ M src/akshare_data_test/cli.py
+ M src/akshare_data_test/fundamental_analysis.py
+ M tests/test_stage1_structure.py
+?? config/stage11.yml
+?? docs/stage11_implementation.md
+?? reports/stage11_acceptance/
+?? reports/stage11_crypto_price.csv
+?? reports/stage11_crypto_price.json
+?? reports/stage11_independent_audit.md
+?? reports/stage11_quality.csv
+?? reports/stage11_run.json
+?? reports/stage11_validation.md
+?? sql/stage11_schema.sql
+?? src/akshare_data_test/adapters/crypto_exchange.py
+?? src/akshare_data_test/assets.py
+?? src/akshare_data_test/crypto_market.py
+?? src/akshare_data_test/quality/crypto_checks.py
+?? src/akshare_data_test/stage11_build.py
+?? src/akshare_data_test/storage/crypto_repository.py
+?? tests/test_stage11_crypto.py
+
+--- status --short ---
+ M src/akshare_data_test/cli.py
+ M src/akshare_data_test/fundamental_analysis.py
+ M tests/test_stage1_structure.py
+?? config/stage11.yml
+?? docs/stage11_implementation.md
+?? reports/stage11_acceptance/
+?? reports/stage11_crypto_price.csv
+?? reports/stage11_crypto_price.json
+?? reports/stage11_independent_audit.md
+?? reports/stage11_quality.csv
+?? reports/stage11_run.json
+?? reports/stage11_validation.md
+?? sql/stage11_schema.sql
+?? src/akshare_data_test/adapters/crypto_exchange.py
+?? src/akshare_data_test/assets.py
+?? src/akshare_data_test/crypto_market.py
+?? src/akshare_data_test/quality/crypto_checks.py
+?? src/akshare_data_test/stage11_build.py
+?? src/akshare_data_test/storage/crypto_repository.py
+?? tests/test_stage11_crypto.py
+
+--- tracked diff --stat ---
+ src/akshare_data_test/cli.py                  | 107 ++++++++++++++++++++++++++
+ src/akshare_data_test/fundamental_analysis.py |  17 ++++
+ tests/test_stage1_structure.py                |   6 ++
+ 3 files changed, 130 insertions(+)
+
+--- tracked diff --name-status ---
+M	src/akshare_data_test/cli.py
+M	src/akshare_data_test/fundamental_analysis.py
+M	tests/test_stage1_structure.py
+
+--- diff --check stdout ---
+(clean)
+
+--- diff --check stderr ---
+warning: in the working copy of 'src/akshare_data_test/cli.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/akshare_data_test/fundamental_analysis.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_stage1_structure.py', LF will be replaced by CRLF the next time Git touches it
+
+
+--- staged files ---
+(none)
+
+--- untracked files ---
+config/stage11.yml
+docs/stage11_implementation.md
+reports/stage11_acceptance/assemble_report.py
+reports/stage11_acceptance/independent_audit.py
+reports/stage11_acceptance/independent_audit_evidence.json
+reports/stage11_acceptance/network_check.py
+reports/stage11_acceptance/run_acceptance_tests.py
+reports/stage11_acceptance/stage11_acceptance_report.md
+reports/stage11_acceptance/stage11_acceptance_results.json
+reports/stage11_acceptance/stage11_data_reconciliation.csv
+reports/stage11_acceptance/stage11_environment.txt
+reports/stage11_acceptance/stage11_fault_injection.csv
+reports/stage11_acceptance/stage11_git_evidence.txt
+reports/stage11_acceptance/stage11_metric_recalculation.csv
+reports/stage11_acceptance/stage11_network_evidence.json
+reports/stage11_acceptance/stage11_test_execution.log
+reports/stage11_acceptance/test_execution_results.json
+reports/stage11_crypto_price.csv
+reports/stage11_crypto_price.json
+reports/stage11_independent_audit.md
+reports/stage11_quality.csv
+reports/stage11_run.json
+reports/stage11_validation.md
+sql/stage11_schema.sql
+src/akshare_data_test/adapters/crypto_exchange.py
+src/akshare_data_test/assets.py
+src/akshare_data_test/crypto_market.py
+src/akshare_data_test/quality/crypto_checks.py
+src/akshare_data_test/stage11_build.py
+src/akshare_data_test/storage/crypto_repository.py
+tests/test_stage11_crypto.py
+
+--- relevant ignored evidence ---
+!! database/
+
+--- frozen SHA-256 ---
+config/universe.yml	current=0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65	reference=0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65	match=True	source=reports/stage1_acceptance_report.json
+config/metric_definition.yml	current=13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4	reference=13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4	match=True	source=reports/stage1_acceptance_report.json
+docs/stage0_scope.md	current=18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615	reference=18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615	match=True	source=reports/stage1_acceptance_report.json

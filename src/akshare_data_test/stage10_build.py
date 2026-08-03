@@ -15,6 +15,7 @@ from .fundamental_analysis import (
     build_fundamental_summary, calculate_fundamental_indicators,
     cumulative_to_single_quarter, load_stage10_config,
     normalize_financial_statements, normalize_valuation_snapshot,
+    FundamentalAnalysisNotApplicable, require_equity_asset,
 )
 from .quality.fundamental_checks import (
     indicator_report_projection, run_stage10_quality_checks,
@@ -273,10 +274,22 @@ def analyze_stage10(
     output_database: Path, as_of_date: pd.Timestamp, symbols: list[str] | None = None,
     run_id: str | None = None, dry_run: bool = False,
     input_manifest: Path | None = None,
+    asset_type: str = "equity",
 ) -> tuple[dict[str, Any], int]:
     """Execute Stage 10 fully offline and return its manifest and exit code."""
     started_at = _utc_now()
     run_id = run_id or str(uuid.uuid4())
+    try:
+        require_equity_asset(asset_type)
+    except FundamentalAnalysisNotApplicable as exc:
+        return {
+            "run_id": run_id, "status": exc.status,
+            "run_status": "NOT_APPLICABLE", "publication_status": "not_applicable",
+            "asset_type": "crypto", "reason": str(exc),
+            "financial_adapter_called": False, "financial_repository_accessed": False,
+            "financial_results": {}, "quality_failed": 0,
+            "started_at": started_at.isoformat(), "completed_at": _utc_now().isoformat(),
+        }, 0
     config, config_hash = load_stage10_config(config_path)
     selected_symbols = symbols or [item.symbol for item in load_universe().stocks]
     selected_symbols = sorted({str(symbol).zfill(6) for symbol in selected_symbols})

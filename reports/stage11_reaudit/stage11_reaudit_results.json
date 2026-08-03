@@ -1,0 +1,625 @@
+{
+  "schema_version": "stage11-second-independent-reaudit-v1",
+  "generated_at": "2026-08-02T13:57:02.202707+08:00",
+  "final_status": "FAIL",
+  "previous_failures_closed": 25,
+  "previous_failures_total": 26,
+  "fault_injections_blocked": 27,
+  "fault_injections_total": 28,
+  "critical_findings": [
+    {
+      "id": "REAUDIT-RAW-MANIFEST-01",
+      "severity": "CRITICAL",
+      "finding": "manifest evidence_files does not require the exact request/response/metadata set; omission and duplicates are accepted as READY",
+      "evidence": [
+        {
+          "case_id": "raw_manifest_omits_required_file",
+          "entry": "validate_raw_evidence production entry",
+          "expected": "BLOCKED",
+          "actual_status": "READY",
+          "blocked": false,
+          "blocking_reasons": []
+        },
+        {
+          "case_id": "raw_manifest_duplicate_file_entry",
+          "entry": "validate_raw_evidence production entry",
+          "expected": "BLOCKED",
+          "actual_status": "READY",
+          "blocked": false,
+          "blocking_reasons": []
+        },
+        {
+          "case_id": "raw_manifest_unexpected_file_entry",
+          "entry": "validate_raw_evidence production entry",
+          "expected": "BLOCKED",
+          "actual_status": "BLOCKED",
+          "blocked": true,
+          "blocking_reasons": [
+            "Raw manifest file missing: ../request.json"
+          ]
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "suite": "stage11_remediation",
+      "targets": [
+        "tests/test_stage11_remediation.py"
+      ],
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage11_remediation.py"
+      ],
+      "started_at": "2026-08-02T13:52:17.018195+08:00",
+      "exit_code": 0,
+      "summary": "53 passed in 25.09s",
+      "counts": {
+        "passed": 53
+      }
+    },
+    {
+      "suite": "stage11",
+      "targets": [
+        "tests/test_stage11_crypto.py",
+        "tests/test_stage11_remediation.py"
+      ],
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage11_crypto.py",
+        "tests/test_stage11_remediation.py"
+      ],
+      "started_at": "2026-08-02T13:52:42.617554+08:00",
+      "exit_code": 0,
+      "summary": "64 passed in 30.68s",
+      "counts": {
+        "passed": 64
+      }
+    },
+    {
+      "suite": "stage10",
+      "targets": [
+        "tests\\test_stage10_financial.py",
+        "tests\\test_stage10_integration.py",
+        "tests\\test_stage10_repository.py"
+      ],
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests\\test_stage10_financial.py",
+        "tests\\test_stage10_integration.py",
+        "tests\\test_stage10_repository.py"
+      ],
+      "started_at": "2026-08-02T13:53:13.800764+08:00",
+      "exit_code": 0,
+      "summary": "45 passed in 14.70s",
+      "counts": {
+        "passed": 45
+      }
+    },
+    {
+      "suite": "stage9",
+      "targets": [
+        "tests/test_stage9_audit.py",
+        "tests/test_stage9_database_integration.py",
+        "tests/test_stage9_quality.py",
+        "tests/test_stage9_repository.py",
+        "tests/test_stage9_validate_only.py",
+        "tests/test_style_classification.py",
+        "tests/test_style_features.py",
+        "tests/test_false_breakouts.py"
+      ],
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage9_audit.py",
+        "tests/test_stage9_database_integration.py",
+        "tests/test_stage9_quality.py",
+        "tests/test_stage9_repository.py",
+        "tests/test_stage9_validate_only.py",
+        "tests/test_style_classification.py",
+        "tests/test_style_features.py",
+        "tests/test_false_breakouts.py"
+      ],
+      "started_at": "2026-08-02T13:53:28.984383+08:00",
+      "exit_code": 0,
+      "summary": "43 passed in 13.52s",
+      "counts": {
+        "passed": 43
+      }
+    },
+    {
+      "suite": "stage8",
+      "targets": [
+        "tests/test_stage8_analysis.py",
+        "tests/test_stage8_audit.py",
+        "tests/test_stage8_database_integration.py",
+        "tests/test_stage8_quality.py",
+        "tests/test_stage8_validate_only.py",
+        "tests/test_limit_event_detection.py",
+        "tests/test_limit_event_repository.py",
+        "tests/test_limit_rules.py"
+      ],
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage8_analysis.py",
+        "tests/test_stage8_audit.py",
+        "tests/test_stage8_database_integration.py",
+        "tests/test_stage8_quality.py",
+        "tests/test_stage8_validate_only.py",
+        "tests/test_limit_event_detection.py",
+        "tests/test_limit_event_repository.py",
+        "tests/test_limit_rules.py"
+      ],
+      "started_at": "2026-08-02T13:53:42.992190+08:00",
+      "exit_code": 0,
+      "summary": "134 passed in 16.04s",
+      "counts": {
+        "passed": 134
+      }
+    },
+    {
+      "suite": "stage7",
+      "targets": [
+        "tests/test_stage7_audit.py",
+        "tests/test_stage7_database_integration.py",
+        "tests/test_activity_score.py",
+        "tests/test_stock_daily_features.py"
+      ],
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_stage7_audit.py",
+        "tests/test_stage7_database_integration.py",
+        "tests/test_activity_score.py",
+        "tests/test_stock_daily_features.py"
+      ],
+      "started_at": "2026-08-02T13:53:59.567317+08:00",
+      "exit_code": 0,
+      "summary": "22 passed in 2.24s",
+      "counts": {
+        "passed": 22
+      }
+    },
+    {
+      "suite": "stage0",
+      "targets": [
+        "tests/test_stage0_config.py"
+      ],
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "tests/test_stage0_config.py"
+      ],
+      "started_at": "2026-08-02T13:54:02.311659+08:00",
+      "exit_code": 0,
+      "summary": "ALL CHECKS PASSED",
+      "counts": {}
+    },
+    {
+      "suite": "full",
+      "targets": [
+        "tests"
+      ],
+      "command": [
+        "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests"
+      ],
+      "started_at": "2026-08-02T13:54:02.591201+08:00",
+      "exit_code": 0,
+      "summary": "508 passed in 122.77s (0:02:02)",
+      "counts": {
+        "passed": 508
+      }
+    }
+  ],
+  "normal_chain": {
+    "source": "OKX public history-candles via production adapter",
+    "endpoint": "https://www.okx.com/api/v5/market/history-candles",
+    "independent_data_checks": {
+      "row_count": 960,
+      "first_utc": "2026-06-18T00:00:00+00:00",
+      "last_utc": "2026-07-27T23:00:00+00:00",
+      "unique_timestamps": 960,
+      "hourly_deltas_only": true,
+      "all_utc": true,
+      "weekend_rows": 288,
+      "hours_present": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "ohlc_reasonable": true,
+      "volume_non_negative": true,
+      "confirmed": true,
+      "identity": {
+        "raw_instrument": [
+          "ETH-USDT"
+        ],
+        "data_provider": [
+          "okx_public_api"
+        ],
+        "raw_exchange": [
+          "OKX"
+        ],
+        "instrument_type": [
+          "spot"
+        ],
+        "bar_interval": [
+          "1h"
+        ]
+      }
+    },
+    "first_run": {
+      "exit_code": 0,
+      "status": "PASS",
+      "artifact_hash": "40779957b81a3667a9d16ff5608d75a82420cdf6a222a10fcd88acd1fa501751"
+    },
+    "second_run": {
+      "exit_code": 0,
+      "status": "PASS",
+      "artifact_hash": "40779957b81a3667a9d16ff5608d75a82420cdf6a222a10fcd88acd1fa501751"
+    },
+    "same_run_rerun_idempotent": true,
+    "database_counts": {
+      "raw.crypto_market_data": 960,
+      "clean.crypto_price_fact": 960,
+      "feature.crypto_indicator": 960,
+      "analysis.crypto_profile": 1,
+      "quality.stage11_quality_result": 19,
+      "audit.stage11_run": 1
+    },
+    "independent_annualized_hourly_volatility": 0.6621144489103213,
+    "database_annualized_hourly_volatility": 0.6621144489103213,
+    "volatility_absolute_error": 0.0,
+    "validate_only": {
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"READY\",\n  \"blocking_reasons\": [],\n  \"config_hash\": \"1bff05997f21258c95d0bb4394e03a835948918e152dfeaa708eb316da29fd60\",\n  \"config_version\": \"1.1.0\",\n  \"symbol\": \"ETHUSDT\",\n  \"asset_type\": \"crypto\",\n  \"trading_calendar\": \"continuous_24_7\",\n  \"run_id\": \"stage11-independent-reaudit-20260727\",\n  \"row_count\": 960,\n  \"canonical_sha256\": \"6b006819780ba7fe1a0dfe92d62efdedd915946f1124f2122a2a52bba9537726\",\n  \"raw_evidence\": {\n    \"status\": \"READY\",\n    \"blocking_reasons\": [],\n    \"row_count\": 960,\n    \"schema_hash\": \"2afdc152401f74c853e5880429d0a44bf011a17599b0d67e9db3894efccb2229\",\n    \"raw_projection_sha256\": \"b9c4ea7113678070bfad2a4bc72cebf6623a7d759b42877f9a333803776eaff8\"\n  }\n}\n",
+      "stderr": "",
+      "read_only": true
+    },
+    "old_database": {
+      "exit_code": 2,
+      "stdout": "{\n  \"status\": \"BLOCKED\",\n  \"blocking_reasons\": [\n    \"DuckDB artifact invalid: artifact contains no rows\",\n    \"DuckDB audit PASS record is missing or invalid\",\n    \"DuckDB profile row count must be 1\",\n    \"DuckDB quality results are missing or contain failure\"\n  ],\n  \"config_hash\": \"1bff05997f21258c95d0bb4394e03a835948918e152dfeaa708eb316da29fd60\",\n  \"config_version\": \"1.1.0\",\n  \"symbol\": \"ETHUSDT\",\n  \"asset_type\": \"crypto\",\n  \"trading_calendar\": \"continuous_24_7\",\n  \"run_id\": \"stage11-independent-reaudit-20260727\",\n  \"row_count\": 960,\n  \"canonical_sha256\": \"6b006819780ba7fe1a0dfe92d62efdedd915946f1124f2122a2a52bba9537726\",\n  \"raw_evidence\": {\n    \"status\": \"READY\",\n    \"blocking_reasons\": [],\n    \"row_count\": 960,\n    \"schema_hash\": \"2afdc152401f74c853e5880429d0a44bf011a17599b0d67e9db3894efccb2229\",\n    \"raw_projection_sha256\": \"b9c4ea7113678070bfad2a4bc72cebf6623a7d759b42877f9a333803776eaff8\"\n  }\n}\n",
+      "stderr": "",
+      "rejected": true,
+      "unchanged": true,
+      "sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4"
+    },
+    "temporary_workspace_removed_after_run": true
+  },
+  "old_database_missing_identity_columns": [
+    "bar_interval",
+    "data_provider",
+    "instrument_type",
+    "normalized_exchange",
+    "normalized_instrument",
+    "raw_exchange",
+    "raw_instrument",
+    "requested_instrument"
+  ],
+  "protected_files": [
+    {
+      "path": "config/universe.yml",
+      "initial_sha256": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+      "final_sha256": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+      "unchanged": true
+    },
+    {
+      "path": "config/metric_definition.yml",
+      "initial_sha256": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+      "final_sha256": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+      "unchanged": true
+    },
+    {
+      "path": "docs/stage0_scope.md",
+      "initial_sha256": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+      "final_sha256": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615",
+      "unchanged": true
+    },
+    {
+      "path": "database/akshare_crypto_stage11.duckdb",
+      "initial_sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4",
+      "final_sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4",
+      "unchanged": true
+    },
+    {
+      "path": "data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/crypto_spot.parquet",
+      "initial_sha256": "93cdd5e3c6a89a684008e3792eab5cf2d60a1b9fcc2155fd3e4e3f387c0aac5b",
+      "final_sha256": "93cdd5e3c6a89a684008e3792eab5cf2d60a1b9fcc2155fd3e4e3f387c0aac5b",
+      "unchanged": true
+    },
+    {
+      "path": "data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/metadata.json",
+      "initial_sha256": "6ecbfdfb8a357aeabf7f92ed91ea43a14eb8883abef6089cd30b229c2c539e15",
+      "final_sha256": "6ecbfdfb8a357aeabf7f92ed91ea43a14eb8883abef6089cd30b229c2c539e15",
+      "unchanged": true
+    }
+  ],
+  "first_acceptance_artifact_hashes": [
+    {
+      "path": "reports\\stage11_acceptance\\assemble_report.py",
+      "sha256": "14c08853f42d99dbf23df169b726fb51900a539fd8abc743f24beb8def592393"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\independent_audit.py",
+      "sha256": "7b0603850c78931cbfcf32928ad3e744497fd1cacb7102b0a4381666698eb080"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\independent_audit_evidence.json",
+      "sha256": "3999535b6a1eccd30ffb869c789ba6aca82ec969ce087239e9f1b70500d94a44"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\network_check.py",
+      "sha256": "46513474a46c7a63ca18b7ba54633444d671c05f310deaa46cd5b9b726f161b5"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\run_acceptance_tests.py",
+      "sha256": "a7b868a31071e973c3cb19e804298f7806162bffeb2ac3edf2e00c040c303344"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_acceptance_report.md",
+      "sha256": "d8ed28715a5e47dc1fa7bf78675851a6f244648535ebd30581db10abaea30156"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_acceptance_results.json",
+      "sha256": "a0bd990a9c5afd41dfe9abdf622732649f574f5597f51bf1b87c9b9de0a5882a"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_data_reconciliation.csv",
+      "sha256": "c9cdab106e089004d19704d3ea30edd9d3b48157fd3b07d18b3026c348e0585a"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_environment.txt",
+      "sha256": "4947d04dd0f377cb8dee7895a3ebbdd1102bd7e9f95804a08662a1cd9697934c"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_fault_injection.csv",
+      "sha256": "a2b97eb68d9785e76459e41fee7a4d752d889421042c6d2fe103e5a457f7a6cc"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_git_evidence.txt",
+      "sha256": "0cb6d578fd9a741c6ecdaed961c1cf2e7df95ea910904788e9d8723eb5a3539d"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_metric_recalculation.csv",
+      "sha256": "5521730880e06d43c3d495a47054df7c115f83f4ef561a1458d63f194287c0cc"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_network_evidence.json",
+      "sha256": "ac51ebe8c7dad9ad9ad45be2a3f1bdc5336732ba87144533e83ed5a1d0765c59"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\stage11_test_execution.log",
+      "sha256": "d4b6cb3710e65c46cf8805364d3bbe45a9cc3fd88d484aa772847c72eef807fe"
+    },
+    {
+      "path": "reports\\stage11_acceptance\\test_execution_results.json",
+      "sha256": "e058991e0021a593953e8bc758168107a320c3a5452e1d912b0fc897e398a7ba"
+    }
+  ],
+  "first_failure_mapping": [
+    {
+      "check_id": "DATA-03",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-A4",
+      "original_failure": "质量检查先排序再验证，无法发现输入顺序交换",
+      "claimed_fix": "quality/crypto_checks.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-A5",
+      "original_failure": "质量检查没有严格约束配置时间范围",
+      "claimed_fix": "quality/crypto_checks.py; stage11_build.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-B1",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-B2",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-B3",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-B4",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-B5",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-B6",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-C5",
+      "original_failure": "数值检查未使用 finite 语义，Infinity 漏检",
+      "claimed_fix": "quality/crypto_checks.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-D1",
+      "original_failure": "validate-only 未读取并全量对账既有 CSV/JSON/DuckDB",
+      "claimed_fix": "stage11_build.py; cli.py; crypto_repository.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-D2",
+      "original_failure": "validate-only 未读取并全量对账既有 CSV/JSON/DuckDB",
+      "claimed_fix": "stage11_build.py; cli.py; crypto_repository.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-D3",
+      "original_failure": "validate-only 未读取并全量对账既有 CSV/JSON/DuckDB",
+      "claimed_fix": "stage11_build.py; cli.py; crypto_repository.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-D4",
+      "original_failure": "validate-only 未读取并全量对账既有 CSV/JSON/DuckDB",
+      "claimed_fix": "stage11_build.py; cli.py; crypto_repository.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-E1",
+      "original_failure": "Raw 缺失、空、损坏、行数/schema/哈希没有 fail-closed 契约",
+      "claimed_fix": "crypto_evidence.py; stage11_build.py; cli.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-E2",
+      "original_failure": "Raw 缺失、空、损坏、行数/schema/哈希没有 fail-closed 契约",
+      "claimed_fix": "crypto_evidence.py; stage11_build.py; cli.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-E3",
+      "original_failure": "Raw 缺失、空、损坏、行数/schema/哈希没有 fail-closed 契约",
+      "claimed_fix": "crypto_evidence.py; stage11_build.py; cli.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-E4",
+      "original_failure": "Raw 缺失、空、损坏、行数/schema/哈希没有 fail-closed 契约",
+      "claimed_fix": "crypto_evidence.py; stage11_build.py; cli.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-E5",
+      "original_failure": "Raw 缺失、空、损坏、行数/schema/哈希没有 fail-closed 契约",
+      "claimed_fix": "crypto_evidence.py; stage11_build.py; cli.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "FAULT-F3",
+      "original_failure": "Stage10 生产入口未在财务读取前隔离 crypto",
+      "claimed_fix": "fundamental_analysis.py; stage10_build.py; cli.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "RAW-02",
+      "original_failure": "AKShare Raw metadata 缺少抓取时间、版本、参数、列、行数和 schema hash",
+      "claimed_fix": "crypto_evidence.py::write_akshare_probe_evidence",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "STATIC-02",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "STATIC-03",
+      "original_failure": "原始身份可在标准化时被目标身份覆盖，且身份字段/Repository 防线不足",
+      "claimed_fix": "assets.py; crypto_market.py; crypto_repository.py; stage11_schema.sql",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "STATIC-05",
+      "original_failure": "validate-only 未读取并全量对账既有 CSV/JSON/DuckDB",
+      "claimed_fix": "stage11_build.py; cli.py; crypto_repository.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    },
+    {
+      "check_id": "STATIC-06",
+      "original_failure": "Raw 缺失、空、损坏、行数/schema/哈希没有 fail-closed 契约",
+      "claimed_fix": "crypto_evidence.py; stage11_build.py; cli.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "FAIL: manifest required-file set not enforced"
+    },
+    {
+      "check_id": "STATIC-07",
+      "original_failure": "Stage10 生产入口未在财务读取前隔离 crypto",
+      "claimed_fix": "fundamental_analysis.py; stage10_build.py; cli.py",
+      "reaudit_method": "static review + independent production entry/fault rerun",
+      "reaudit_result": "PASS"
+    }
+  ],
+  "implementation_files_modified_by_reaudit": false,
+  "stage10_crypto_financial_reads": 0
+}

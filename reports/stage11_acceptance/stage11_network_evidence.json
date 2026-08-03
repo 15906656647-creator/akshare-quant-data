@@ -1,0 +1,250 @@
+{
+  "independent_network_access": true,
+  "saved_latest_utc": "2026-07-27T23:00:00+00:00",
+  "okx_instrument": {
+    "url": "https://www.okx.com/api/v5/public/instruments?instType=SPOT&instId=ETH-USDT",
+    "http_status": 200,
+    "headers": {
+      "Date": "Sun, 02 Aug 2026 03:53:52 GMT",
+      "Content-Type": "application/json",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "CF-Ray": "a24a23545b0e5cfd-LAX",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "Set-Cookie": "locale=en-US; Max-Age=604800; Expires=Sun, 09 Aug 2026 03:53:52 GMT; Path=/",
+      "set-cookie": "__cf_bm=yaOxqPzCdOUrjukw1EeyL8N89t9l0yTMozYY2qYjDds-1785642832.0539844-1.0.1.1-0orWpc7jnPWCtfUgpUK5NvQnc0A502r.FvJGtci8mHX1roeLvw1eeWVnKR33_oCZP7xWybQAmHqHTjohSUKOBL_TtA4OIHfRgQGYs29na5snlANgmCVpF1zB9zbf2mmn; HttpOnly; SameSite=None; Secure; Path=/; Domain=okx.com; Expires=Sun, 02 Aug 2026 04:23:52 GMT",
+      "Expires": "0",
+      "Server": "cloudflare",
+      "x-xss-protection": "1; mode=block",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+      "Vary": "Accept-Encoding, Origin",
+      "Pragma": "no-cache",
+      "b-locale": "en_US",
+      "content-security-policy": "frame-ancestors 'self'",
+      "x-brokerid": "0",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-routed-to": "TKY"
+    },
+    "body_sha256": "15270d9a8db846171baa9d082cdd7f612219fcd9d4db151e172f1797a7e659c9",
+    "json": {
+      "code": "0",
+      "data": [
+        {
+          "alias": "",
+          "auctionEndTime": "",
+          "baseCcy": "ETH",
+          "category": "1",
+          "contTdSwTime": "",
+          "ctMult": "",
+          "ctType": "",
+          "ctVal": "",
+          "ctValCcy": "",
+          "expTime": "",
+          "floatPxLmtPct": "0.005",
+          "freq": "",
+          "futureSettlement": false,
+          "groupId": "12",
+          "initPxLmtPct": "",
+          "instCategory": "1",
+          "instFamily": "",
+          "instId": "ETH-USDT",
+          "instIdCode": 4,
+          "instType": "SPOT",
+          "lever": "10",
+          "listTime": "1611907686000",
+          "longPosRemainingQuota": "",
+          "lotSz": "0.000001",
+          "maxIcebergSz": "999999999999.0000000000000000",
+          "maxLmtAmt": "20000000",
+          "maxLmtSz": "999999999999",
+          "maxMktAmt": "1000000",
+          "maxMktSz": "1000000",
+          "maxPlatOICoinLmt": "",
+          "maxPlatOILmt": "",
+          "maxPxLmtPct": "0.01",
+          "maxStopSz": "1000000",
+          "maxTriggerSz": "999999999999.0000000000000000",
+          "maxTwapSz": "999999999999.0000000000000000",
+          "method": "",
+          "minSz": "0.0001",
+          "openType": "fix_price",
+          "optType": "",
+          "posLmtAmt": "",
+          "posLmtPct": "",
+          "preMktSwTime": "",
+          "quoteCcy": "USDT",
+          "ruleType": "normal",
+          "seriesId": "",
+          "settleCcy": "",
+          "shortPosRemainingQuota": "",
+          "state": "live",
+          "stk": "",
+          "tickSz": "0.01",
+          "tradeQuoteCcyList": [
+            "USDT"
+          ],
+          "uly": "",
+          "upcChg": []
+        }
+      ],
+      "msg": ""
+    }
+  },
+  "okx_candles": {
+    "url": "https://www.okx.com/api/v5/market/history-candles?instId=ETH-USDT&bar=1H&after=1785196800000&limit=5",
+    "http_status": 200,
+    "headers": {
+      "Date": "Sun, 02 Aug 2026 03:53:53 GMT",
+      "Content-Type": "application/json",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "CF-Ray": "a24a23595e2219db-LAX",
+      "CF-Cache-Status": "DYNAMIC",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "set-cookie": "__cf_bm=2r47JmbUv349QQbS3bFy8Lp8WhTJof3rqTE6FncM.po-1785642832.8535287-1.0.1.1-3YGUjX91EbWooeqIIxKNmNJYgPK2N5fuphZqRvr9OI3eAa.yFR4kCV88JaE27uC2E1QX_I9NGE_ktWnMF_Gd9oOLbv.5NMQgpfvyeg4b_YywhsHbGUG_mvF33OUOQMLn; HttpOnly; SameSite=None; Secure; Path=/; Domain=okx.com; Expires=Sun, 02 Aug 2026 04:23:53 GMT",
+      "Expires": "0",
+      "Server": "cloudflare",
+      "Strict-Transport-Security": "max-age=31536000 ; includeSubDomains, max-age=31536000; includeSubDomains",
+      "Vary": "Accept-Encoding, Origin",
+      "Pragma": "no-cache",
+      "b-locale": "en_US",
+      "content-security-policy": "frame-ancestors 'self'",
+      "x-brokerid": "0",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-routed-to": "TKY",
+      "x-xss-protection": "1; mode=block"
+    },
+    "body_sha256": "b90b8c5ee784abbea9e80f6883b0d74086cd7f07af1623969b8f33200d894e34",
+    "json": {
+      "code": "0",
+      "msg": "",
+      "data": [
+        [
+          "1785193200000",
+          "1893.67",
+          "1896.14",
+          "1882.27",
+          "1892.6",
+          "7869.117917",
+          "14868474.80520634",
+          "14868474.80520634",
+          "1"
+        ],
+        [
+          "1785189600000",
+          "1942.04",
+          "1942.04",
+          "1892.12",
+          "1893.66",
+          "10387.899628",
+          "19871116.145688",
+          "19871116.145688",
+          "1"
+        ],
+        [
+          "1785186000000",
+          "1946.91",
+          "1950.29",
+          "1940.35",
+          "1942.02",
+          "1316.225303",
+          "2561069.56714875",
+          "2561069.56714875",
+          "1"
+        ],
+        [
+          "1785182400000",
+          "1948.46",
+          "1950.74",
+          "1943.47",
+          "1946.92",
+          "1070.984635",
+          "2084602.68641171",
+          "2084602.68641171",
+          "1"
+        ],
+        [
+          "1785178800000",
+          "1939.3",
+          "1955.45",
+          "1937.6",
+          "1948.31",
+          "2896.531659",
+          "5642793.77323096",
+          "5642793.77323096",
+          "1"
+        ]
+      ]
+    }
+  },
+  "binance": {
+    "url": "https://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=1h&startTime=1781740800000&endTime=1785196800000&limit=1000",
+    "http_status": 451,
+    "headers": {
+      "Server": "CloudFront",
+      "Date": "Sun, 02 Aug 2026 03:53:53 GMT",
+      "Content-Length": "224",
+      "Connection": "close",
+      "Content-Type": "application/json",
+      "X-Cache": "Error from cloudfront",
+      "Via": "1.1 aa5f099352c5555cec23a954f4bd95f4.cloudfront.net (CloudFront)",
+      "X-Amz-Cf-Pop": "LAX54-P11",
+      "X-Amz-Cf-Id": "v9iRl_r3UR5pK_xfshoTdkwSRpizkFVKePCNuXUfOVKK4eBQmBaXwQ=="
+    },
+    "body_sha256": "79c1db471a4cdc1c8565b5dfc52e0ed2d29962738ee4d28597696fcd0920e348",
+    "body_preview": "{\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error.\"\n}",
+    "json": {
+      "code": 0,
+      "msg": "Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error."
+    }
+  },
+  "checks": {
+    "okx_http_200": true,
+    "okx_exact_spot_instrument": true,
+    "saved_latest_found_live": true,
+    "saved_latest_confirmed_closed": true,
+    "saved_latest_values_match": true,
+    "binance_http_451_reproduced": true
+  },
+  "comparisons": [
+    {
+      "field": "open",
+      "saved": 1893.67,
+      "live": 1893.67,
+      "abs_error": 0.0
+    },
+    {
+      "field": "high",
+      "saved": 1896.14,
+      "live": 1896.14,
+      "abs_error": 0.0
+    },
+    {
+      "field": "low",
+      "saved": 1882.27,
+      "live": 1882.27,
+      "abs_error": 0.0
+    },
+    {
+      "field": "close",
+      "saved": 1892.6,
+      "live": 1892.6,
+      "abs_error": 0.0
+    },
+    {
+      "field": "volume",
+      "saved": 7869.117917,
+      "live": 7869.117917,
+      "abs_error": 0.0
+    },
+    {
+      "field": "quote_volume",
+      "saved": 14868474.80520634,
+      "live": 14868474.80520634,
+      "abs_error": 0.0
+    }
+  ]
+}

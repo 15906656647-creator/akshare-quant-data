@@ -1,0 +1,44 @@
+Stage 11 第四轮独立复验：Git 与完整性证据
+
+核验日期：2026-08-03
+当前分支：feature/stage11-ethusdt-validation
+当前提交：d6b2b6a447f55c8f59f17f31ff1fd326dfc095c3
+暂存区：空
+本轮复验未执行提交、推送或暂存操作。
+
+差异格式检查：通过，仅出现 Git 关于换行符后续转换的提示；未发现空白错误。
+工作区在复验开始前已存在 Stage 11 实施与修复产生的未提交文件；本轮未修改实现代码。
+本轮新增内容仅位于 reports/stage11_reaudit_round4/。
+
+冻结文件与受保护数据的 SHA-256 核验：
+config/universe.yml
+0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65
+
+config/metric_definition.yml
+13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4
+
+docs/stage0_scope.md
+18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615
+
+database/akshare_crypto_stage11.duckdb
+6BB69C569EFF72AAD97D68EA456FFDD1A69CA9901F333FF6842D5103645909F4
+
+data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/crypto_spot.parquet
+93CDD5E3C6A89A684008E3792EAB5CF2D60A1B9FCC2155FD3E4E3F387C0AAC5B
+
+data/raw/crypto_js_spot/run_id=stage11-ethusdt-20260727/metadata.json
+6ECBFDFB8A357AEABF7F92ED91EA43A14EB8883ABEF6089CD30B229C2C539E15
+
+验收前后快照结论：
+受保护文件未变化：是
+历次验收目录未变化：是
+历次修复报告未变化：是
+实现代码未变化：是
+原始数据与数据库未变化：是
+
+第四轮结果产物一致性：
+结果文件可解析：是
+故障矩阵记录数：58
+成功阻断数：58
+结论为“通过”的记录数：58
+最终状态：通过

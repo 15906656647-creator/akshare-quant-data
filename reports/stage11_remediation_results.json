@@ -1,0 +1,472 @@
+{
+  "schema_version": "stage11-remediation-v1",
+  "generated_at": "2026-08-02T12:44:11.447779+08:00",
+  "implementation_status": "READY_FOR_REAUDIT",
+  "acceptance_failures_addressed": 26,
+  "acceptance_failures_total": 26,
+  "fault_injections_blocked": 28,
+  "fault_injections_total": 28,
+  "acceptance_failure_mapping": [
+    {
+      "acceptance_check_id": "STATIC-02",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "STATIC-03",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "STATIC-05",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "validate-only未读取并全量对账已有产物",
+      "modified_files": "stage11_build.py; cli.py; crypto_repository.py",
+      "new_tests": "CSV/JSON/DuckDB值、主键、身份和时间篡改测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "STATIC-06",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "Raw证据没有文件、内容和身份契约",
+      "modified_files": "crypto_evidence.py; cli.py; stage11_build.py",
+      "new_tests": "Raw缺失/空/损坏/哈希/行数/schema/请求身份测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "STATIC-07",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "资产隔离helper未接入Stage10公开生产入口",
+      "modified_files": "fundamental_analysis.py; stage10_build.py; cli.py",
+      "new_tests": "crypto零读取、equity回归、未知类型拒绝测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "RAW-02",
+      "original_status": "FAIL",
+      "severity": "HIGH",
+      "root_cause": "Raw证据没有文件、内容和身份契约",
+      "modified_files": "crypto_evidence.py; cli.py; stage11_build.py",
+      "new_tests": "Raw缺失/空/损坏/哈希/行数/schema/请求身份测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "DATA-03",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-A4",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "质量函数排序后检查且未验证有限值与配置边界",
+      "modified_files": "quality/crypto_checks.py; stage11_build.py",
+      "new_tests": "顺序、范围、Infinity、NaN、字符串、OHLCV测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-A5",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "质量函数排序后检查且未验证有限值与配置边界",
+      "modified_files": "quality/crypto_checks.py; stage11_build.py",
+      "new_tests": "顺序、范围、Infinity、NaN、字符串、OHLCV测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-B1",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-B2",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-B3",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-B4",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-B5",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-B6",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "标准化前没有不可绕过的原始身份验证",
+      "modified_files": "assets.py; crypto_market.py; adapters/crypto_exchange.py; stage11_schema.sql; crypto_repository.py",
+      "new_tests": "身份错配、缺字段、Repository绕过测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-C5",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "质量函数排序后检查且未验证有限值与配置边界",
+      "modified_files": "quality/crypto_checks.py; stage11_build.py",
+      "new_tests": "顺序、范围、Infinity、NaN、字符串、OHLCV测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-D1",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "validate-only未读取并全量对账已有产物",
+      "modified_files": "stage11_build.py; cli.py; crypto_repository.py",
+      "new_tests": "CSV/JSON/DuckDB值、主键、身份和时间篡改测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-D2",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "validate-only未读取并全量对账已有产物",
+      "modified_files": "stage11_build.py; cli.py; crypto_repository.py",
+      "new_tests": "CSV/JSON/DuckDB值、主键、身份和时间篡改测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-D3",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "validate-only未读取并全量对账已有产物",
+      "modified_files": "stage11_build.py; cli.py; crypto_repository.py",
+      "new_tests": "CSV/JSON/DuckDB值、主键、身份和时间篡改测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-D4",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "validate-only未读取并全量对账已有产物",
+      "modified_files": "stage11_build.py; cli.py; crypto_repository.py",
+      "new_tests": "CSV/JSON/DuckDB值、主键、身份和时间篡改测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-E1",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "Raw证据没有文件、内容和身份契约",
+      "modified_files": "crypto_evidence.py; cli.py; stage11_build.py",
+      "new_tests": "Raw缺失/空/损坏/哈希/行数/schema/请求身份测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-E2",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "Raw证据没有文件、内容和身份契约",
+      "modified_files": "crypto_evidence.py; cli.py; stage11_build.py",
+      "new_tests": "Raw缺失/空/损坏/哈希/行数/schema/请求身份测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-E3",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "Raw证据没有文件、内容和身份契约",
+      "modified_files": "crypto_evidence.py; cli.py; stage11_build.py",
+      "new_tests": "Raw缺失/空/损坏/哈希/行数/schema/请求身份测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-E4",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "Raw证据没有文件、内容和身份契约",
+      "modified_files": "crypto_evidence.py; cli.py; stage11_build.py",
+      "new_tests": "Raw缺失/空/损坏/哈希/行数/schema/请求身份测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-E5",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "Raw证据没有文件、内容和身份契约",
+      "modified_files": "crypto_evidence.py; cli.py; stage11_build.py",
+      "new_tests": "Raw缺失/空/损坏/哈希/行数/schema/请求身份测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    },
+    {
+      "acceptance_check_id": "FAULT-F3",
+      "original_status": "FAIL",
+      "severity": "CRITICAL",
+      "root_cause": "资产隔离helper未接入Stage10公开生产入口",
+      "modified_files": "fundamental_analysis.py; stage10_build.py; cli.py",
+      "new_tests": "crypto零读取、equity回归、未知类型拒绝测试",
+      "verification": "reports/stage11_remediation_test.log; reports/stage11_remediation_fault_matrix.csv",
+      "remediation_self_test_status": "PASS"
+    }
+  ],
+  "test_results": [
+    {
+      "scope": "remediation_faults",
+      "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage11_remediation.py -q",
+      "passed": 53,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "collected": 53,
+      "exit_code": 0,
+      "started_at": "2026-08-02T04:39:38.307923+00:00",
+      "completed_at": "2026-08-02T04:40:04.923135+00:00",
+      "duration_seconds": 26.615212,
+      "status": "PASS"
+    },
+    {
+      "scope": "stage11",
+      "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage11_crypto.py tests/test_stage11_remediation.py -q",
+      "passed": 64,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "collected": 64,
+      "exit_code": 0,
+      "started_at": "2026-08-02T04:40:04.923135+00:00",
+      "completed_at": "2026-08-02T04:40:37.327281+00:00",
+      "duration_seconds": 32.404146,
+      "status": "PASS"
+    },
+    {
+      "scope": "stage10",
+      "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage10_financial.py tests/test_stage10_integration.py tests/test_stage10_repository.py -q",
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "collected": 45,
+      "exit_code": 0,
+      "started_at": "2026-08-02T04:40:37.327281+00:00",
+      "completed_at": "2026-08-02T04:40:52.971028+00:00",
+      "duration_seconds": 15.643747,
+      "status": "PASS"
+    },
+    {
+      "scope": "stage9",
+      "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage9_audit.py tests/test_stage9_database_integration.py tests/test_stage9_quality.py tests/test_stage9_repository.py tests/test_stage9_validate_only.py tests/test_style_classification.py tests/test_style_features.py tests/test_false_breakouts.py -q",
+      "passed": 43,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "collected": 43,
+      "exit_code": 0,
+      "started_at": "2026-08-02T04:40:52.971028+00:00",
+      "completed_at": "2026-08-02T04:41:08.294390+00:00",
+      "duration_seconds": 15.323362,
+      "status": "PASS"
+    },
+    {
+      "scope": "stage8",
+      "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage8_analysis.py tests/test_stage8_audit.py tests/test_stage8_database_integration.py tests/test_stage8_quality.py tests/test_stage8_validate_only.py tests/test_limit_event_detection.py tests/test_limit_event_repository.py tests/test_limit_rules.py -q",
+      "passed": 134,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "collected": 134,
+      "exit_code": 0,
+      "started_at": "2026-08-02T04:41:08.294390+00:00",
+      "completed_at": "2026-08-02T04:41:25.914128+00:00",
+      "duration_seconds": 17.619738,
+      "status": "PASS"
+    },
+    {
+      "scope": "stage7",
+      "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest tests/test_stage7_audit.py tests/test_stage7_database_integration.py tests/test_activity_score.py tests/test_stock_daily_features.py -q",
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "collected": 22,
+      "exit_code": 0,
+      "started_at": "2026-08-02T04:41:25.914128+00:00",
+      "completed_at": "2026-08-02T04:41:28.534152+00:00",
+      "duration_seconds": 2.620024,
+      "status": "PASS"
+    },
+    {
+      "scope": "stage0",
+      "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" tests/test_stage0_config.py",
+      "collected": 35,
+      "passed": 35,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "exit_code": 0,
+      "started_at": "2026-08-02T04:41:28.534152+00:00",
+      "completed_at": "2026-08-02T04:41:28.811429+00:00",
+      "duration_seconds": 0.277277,
+      "status": "PASS"
+    },
+    {
+      "scope": "full",
+      "command": "\"E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Scripts\\python.exe\" -m pytest -q",
+      "passed": 508,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 0,
+      "collected": 508,
+      "exit_code": 0,
+      "started_at": "2026-08-02T04:41:28.811429+00:00",
+      "completed_at": "2026-08-02T04:43:40.295580+00:00",
+      "duration_seconds": 131.484151,
+      "status": "PASS"
+    }
+  ],
+  "live_960_verification": {
+    "network_source": "OKX public history-candles",
+    "identity": "ETH-USDT/SPOT/1h",
+    "comparison_to_original": {
+      "row_count_old": 960,
+      "row_count_live": 960,
+      "key_mismatch": 0,
+      "open_max_abs_error": 0.0,
+      "high_max_abs_error": 0.0,
+      "low_max_abs_error": 0.0,
+      "close_max_abs_error": 0.0,
+      "volume_max_abs_error": 0.0,
+      "quote_volume_max_abs_error": 0.0
+    },
+    "first_run": {
+      "exit_code": 0,
+      "status": "PASS",
+      "artifact_hash": "cffbcf61b1a3587e0a04ce04359f5d71254beddc46af28d595d22bfedb492695"
+    },
+    "second_run": {
+      "exit_code": 0,
+      "status": "PASS",
+      "artifact_hash": "cffbcf61b1a3587e0a04ce04359f5d71254beddc46af28d595d22bfedb492695"
+    },
+    "idempotent": true,
+    "database_counts": {
+      "raw.crypto_market_data": 960,
+      "clean.crypto_price_fact": 960,
+      "feature.crypto_indicator": 960,
+      "analysis.crypto_profile": 1,
+      "quality.stage11_quality_result": 19,
+      "audit.stage11_run": 1
+    },
+    "indicator_comparison_to_original": {
+      "row_count_old": 960,
+      "row_count_new": 960,
+      "max_absolute_error": 0.0,
+      "nan_mask_mismatches": 0,
+      "false_breakout_mismatches": 0
+    },
+    "validate_only": {
+      "exit_code": 0,
+      "payload": {
+        "status": "READY",
+        "blocking_reasons": [],
+        "config_hash": "1bff05997f21258c95d0bb4394e03a835948918e152dfeaa708eb316da29fd60",
+        "config_version": "1.1.0",
+        "symbol": "ETHUSDT",
+        "asset_type": "crypto",
+        "trading_calendar": "continuous_24_7",
+        "run_id": "stage11-remediation-live-20260727",
+        "row_count": 960,
+        "canonical_sha256": "8b7abcd6d21edce41da1aa33fdcce5cd59e1525a6fc5f83006979533d4059040",
+        "raw_evidence": {
+          "status": "READY",
+          "blocking_reasons": [],
+          "row_count": 960,
+          "schema_hash": "2afdc152401f74c853e5880429d0a44bf011a17599b0d67e9db3894efccb2229",
+          "raw_projection_sha256": "b9c4ea7113678070bfad2a4bc72cebf6623a7d759b42877f9a333803776eaff8"
+        }
+      },
+      "stderr": ""
+    },
+    "temporary_workspace_removed_after_run": true
+  },
+  "frozen_files": [
+    {
+      "path": "config/universe.yml",
+      "current_sha256": "0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65",
+      "reference_sha256": "0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65",
+      "unchanged": true
+    },
+    {
+      "path": "config/metric_definition.yml",
+      "current_sha256": "13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4",
+      "reference_sha256": "13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4",
+      "unchanged": true
+    },
+    {
+      "path": "docs/stage0_scope.md",
+      "current_sha256": "18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615",
+      "reference_sha256": "18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615",
+      "unchanged": true
+    }
+  ],
+  "commit_performed": false,
+  "push_performed": false
+}

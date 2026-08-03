@@ -1,0 +1,36 @@
+schema_version: "1.1.0"
+model_version: "stage11_crypto_profile_v1"
+symbol: "ETHUSDT"
+exchange: "OKX"
+market: "spot"
+asset_type: "crypto"
+trading_calendar: "continuous_24_7"
+identity:
+  requested_instrument: "ETH-USDT"
+  raw_instrument: "ETH-USDT"
+  normalized_instrument: "ETHUSDT"
+  data_provider: "okx_public_api"
+  raw_exchange: "OKX"
+  normalized_exchange: "OKX"
+  instrument_type: "spot"
+  bar_interval: "1h"
+source:
+  akshare_interface: "crypto_js_spot"
+  historical_provider: "okx_public_api"
+  historical_endpoint: "https://www.okx.com/api/v5/market/history-candles"
+  akshare_exact_pair_required: true
+time:
+  canonical_timezone: "UTC"
+  local_timezone: "Asia/Shanghai"
+  supported_intervals: ["1h"]
+  lookback_days: 40
+indicators:
+  window: 20
+  atr_window: 14
+  bollinger_std_multiplier: 2.0
+  trend_window: 20
+  box_window: 20
+  false_breakout_confirmation_bars: 3
+  annualization_periods:
+    1h: 8760
+    1d: 365

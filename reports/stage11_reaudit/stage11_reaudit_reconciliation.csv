@@ -1,0 +1,6 @@
+﻿artifact,row_count,unique_keys,canonical_or_metric_evidence,status
+Raw,960,960,b9c4ea7113678070bfad2a4bc72cebf6623a7d759b42877f9a333803776eaff8,PASS
+CSV,960,960,6b006819780ba7fe1a0dfe92d62efdedd915946f1124f2122a2a52bba9537726,PASS
+JSON,960,960,6b006819780ba7fe1a0dfe92d62efdedd915946f1124f2122a2a52bba9537726,PASS
+DuckDB,960,960,6b006819780ba7fe1a0dfe92d62efdedd915946f1124f2122a2a52bba9537726,PASS
+indicator annualized_volatility,1,1,abs_error=0.0,PASS

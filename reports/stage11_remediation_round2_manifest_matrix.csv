@@ -1,0 +1,22 @@
+﻿case_id,injection,expected,actual,blocked,status,evidence
+M01,missing request role,BLOCKED,raw_manifest_missing_role,True,PASS,tests/test_stage11_manifest_contract.py
+M02,missing response role,BLOCKED,raw_manifest_missing_role,True,PASS,tests/test_stage11_manifest_contract.py
+M03,missing metadata role / physical file remains,BLOCKED,raw_manifest_missing_role,True,PASS,tests/test_stage11_manifest_contract.py
+M04,exact duplicate path,BLOCKED,raw_manifest_duplicate_path,True,PASS,tests/test_stage11_manifest_contract.py
+M05,duplicate response role with different path,BLOCKED,raw_manifest_duplicate_role,True,PASS,tests/test_stage11_manifest_contract.py
+M06,case-insensitive equivalent path,BLOCKED,raw_manifest_duplicate_path,True,PASS,tests/test_stage11_manifest_contract.py
+M07,slash/backslash equivalent paths,BLOCKED,raw_manifest_duplicate_path,True,PASS,tests/test_stage11_manifest_contract.py
+M08,dot-segment equivalent path,BLOCKED,raw_manifest_duplicate_path,True,PASS,tests/test_stage11_manifest_contract.py
+M09,absolute path,BLOCKED,raw_manifest_invalid_path,True,PASS,tests/test_stage11_manifest_contract.py
+M10,parent traversal,BLOCKED,raw_manifest_invalid_path,True,PASS,tests/test_stage11_manifest_contract.py
+M11,listed file missing,BLOCKED,raw_manifest_file_missing,True,PASS,tests/test_stage11_manifest_contract.py
+M12,JSON and Parquet both response,BLOCKED,raw_manifest_duplicate_role,True,PASS,tests/test_stage11_manifest_contract.py
+M13,size mismatch,BLOCKED,raw_manifest_file_size_mismatch,True,PASS,tests/test_stage11_manifest_contract.py
+M14,hash mismatch,BLOCKED,raw_manifest_file_hash_mismatch,True,PASS,tests/test_stage11_manifest_contract.py
+M15,entries not array,BLOCKED,raw_manifest_entries_invalid,True,PASS,tests/test_stage11_manifest_contract.py
+M16,entry role missing,BLOCKED,raw_manifest_entry_missing_field,True,PASS,tests/test_stage11_manifest_contract.py
+M17,entry path missing,BLOCKED,raw_manifest_entry_missing_field,True,PASS,tests/test_stage11_manifest_contract.py
+M18,entry hash missing,BLOCKED,raw_manifest_entry_invalid_hash,True,PASS,tests/test_stage11_manifest_contract.py
+M19,entry size missing,BLOCKED,raw_manifest_entry_invalid_size,True,PASS,tests/test_stage11_manifest_contract.py
+M20,CLI missing required entry propagation,BLOCKED,BLOCKED/non-zero/read-only,True,PASS,tests/test_stage11_manifest_contract.py
+M21,CLI duplicate entry propagation,BLOCKED,BLOCKED/non-zero/read-only,True,PASS,tests/test_stage11_manifest_contract.py

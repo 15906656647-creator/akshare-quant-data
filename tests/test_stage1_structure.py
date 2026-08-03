@@ -181,8 +181,14 @@ class TestStageBoundary:
             "stock_profit_sheet_by_report_em",
             "stock_cash_flow_sheet_by_report_em",
             "stock_individual_fund_flow",
+            "crypto_js_spot",
         }
         assert {item.name for item in raw.iterdir()} <= allowed
+        crypto_raw = raw / "crypto_js_spot"
+        if crypto_raw.exists():
+            crypto_runs = [item for item in crypto_raw.iterdir() if item.is_dir()]
+            assert crypto_runs and all(item.name.startswith("run_id=") for item in crypto_runs)
+            assert all((item / "metadata.json").is_file() for item in crypto_runs)
 
     def test_no_business_db_tables(self):
         ddl_keywords = [

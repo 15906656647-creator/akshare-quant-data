@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "case_id": "raw_manifest_omits_required_file",
+      "entry": "validate_raw_evidence production entry",
+      "expected": "BLOCKED",
+      "actual_status": "READY",
+      "blocked": false,
+      "blocking_reasons": []
+    },
+    {
+      "case_id": "raw_manifest_duplicate_file_entry",
+      "entry": "validate_raw_evidence production entry",
+      "expected": "BLOCKED",
+      "actual_status": "READY",
+      "blocked": false,
+      "blocking_reasons": []
+    },
+    {
+      "case_id": "raw_manifest_unexpected_file_entry",
+      "entry": "validate_raw_evidence production entry",
+      "expected": "BLOCKED",
+      "actual_status": "BLOCKED",
+      "blocked": true,
+      "blocking_reasons": [
+        "Raw manifest file missing: ../request.json"
+      ]
+    }
+  ],
+  "blocked": 1,
+  "total": 3
+}

@@ -13,6 +13,25 @@ import numpy as np
 import pandas as pd
 import yaml
 
+from .assets import AssetType
+
+
+class FundamentalAnalysisNotApplicable(ValueError):
+    """Raised when a non-equity asset is sent to stock fundamentals."""
+
+    status = "not_applicable"
+
+
+def require_equity_asset(asset_type: str | AssetType) -> None:
+    """Fail closed: financial-statement analysis only applies to equities."""
+    value = asset_type.value if isinstance(asset_type, AssetType) else str(asset_type).lower()
+    if value == AssetType.CRYPTO.value:
+        raise FundamentalAnalysisNotApplicable(
+            f"fundamental_analysis is not_applicable for asset_type={value}"
+        )
+    if value != AssetType.EQUITY.value:
+        raise ValueError(f"unsupported asset_type for fundamental_analysis: {value}")
+
 
 RAW_COLUMNS = [
     "run_id", "symbol", "statement_type", "report_period", "announcement_date",
