@@ -696,6 +696,33 @@ def _cmd_analyze_stage12(args):
         return 1
 
 
+def _cmd_present_stage13(args):
+    """Generate Stage 13 from local read-only databases; stdout is JSON only."""
+    try:
+        import pandas as pd
+        from .stage13_presentation import build_stage13_presentation
+
+        root = project_root()
+        as_of = pd.Timestamp(resolve_as_of_date(cli_date=args.as_of_date)).normalize()
+        report, exit_code = build_stage13_presentation(
+            root=root,
+            as_of_date=as_of,
+            config_path=root / args.config,
+            input_database=root / args.input_database,
+            reports_dir=root / args.reports_dir,
+            run_id=args.run_id,
+            dry_run=args.dry_run,
+            symbols=args.symbols,
+        )
+        print(json.dumps(report, ensure_ascii=False, sort_keys=True, allow_nan=False))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(json.dumps({"stage": 13, "status": "BLOCKED", "error": str(exc)}, ensure_ascii=False, sort_keys=True), file=sys.stdout)
+        return 2
+
+
 def _generate_summary_md(results, run_id, overall, as_of):
     sp = Path("reports/interface_smoke_test_summary.md")
     sl = []
@@ -961,6 +988,19 @@ def main():
     b12.add_argument("--dry-run", action="store_true", default=False)
     b12.add_argument("--log-level", default="INFO")
     b12.add_argument("--debug", action="store_true", default=False)
+    b13 = sub.add_parser(
+        "present-stage13",
+        help="Build reproducible Stage 13 charts, tables, SQL, and database inventory offline",
+    )
+    b13.add_argument("--as-of-date", required=True)
+    b13.add_argument("--config", default="config/stage13.yml")
+    b13.add_argument("--input-database", default="database/akshare_data_test_stage5_repaired.duckdb")
+    b13.add_argument("--reports-dir", default="reports/stage13")
+    b13.add_argument("--run-id", required=True)
+    b13.add_argument("--symbols", nargs="+", default=None)
+    b13.add_argument("--dry-run", action="store_true", default=False)
+    b13.add_argument("--log-level", default="INFO")
+    b13.add_argument("--debug", action="store_true", default=False)
     args = parser.parse_args()
     if args.command == "doctor":
         sys.exit(_cmd_doctor(args))
@@ -1001,6 +1041,8 @@ def main():
         sys.exit(_cmd_validate_crypto(args))
     elif args.command == "analyze-stage12":
         sys.exit(_cmd_analyze_stage12(args))
+    elif args.command == "present-stage13":
+        sys.exit(_cmd_present_stage13(args))
     else:
         parser.print_help()
         sys.exit(0)

@@ -1,0 +1,11 @@
+{
+  "as_of_date": "2026-07-27",
+  "database_count": 3,
+  "inventory_status_counts": {
+    "AVAILABLE": 42
+  },
+  "read_only": true,
+  "schema_count": 5,
+  "table_count": 42,
+  "visible_input_sha256": "28fda7115e9d0c3515d85198511dfcdb5771ae341116c2f7242d18a609a1e24a"
+}

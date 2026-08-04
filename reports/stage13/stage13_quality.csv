@@ -1,0 +1,7 @@
+check_name,status,observed,expected
+asset_matrix_16x9,PASS,144,144
+manifest_files_and_hashes,PASS,0,0
+database_read_only_hash,PASS,True,True
+inventory_no_blocked,PASS,0,0
+network_attempts,PASS,0,0
+future_rows_included,PASS,0,0

@@ -1,0 +1,2 @@
+symbol,as_of_date,activity_score,activity_rank,rank_denominator,activity_percentile,component_completeness,reason_codes,score_status,event_component_source,liquidity_component,turnover_component,volatility_component,volume_spike_component,large_move_component,event_component
+002600,2026-07-27,0.6125,7,16,0.6,1,score_status:scored|event_source:gap_proxy,scored,gap_proxy,0.5625,0.5,0.6875,0.625,0.6875,0.71875

@@ -1,0 +1,34 @@
+stage: 13
+schema_version: "1.0.0"
+
+universe:
+  expected_symbol_count: 16
+
+inputs:
+  feature_database: database/akshare_features_stage6.duckdb
+  activity_database: database/akshare_features_stage7.duckdb
+
+presentation:
+  price_lookback_days: 252
+  range_lookback_days: 40
+  event_lookback_days: 365
+  financial_periods: 12
+  image_format: png
+  image_dpi: 150
+  float_precision: 6
+  overwrite: true
+
+moving_averages:
+  price: [3, 5, 7, 10, 13, 20, 21]
+  volume: [5, 20]
+
+outputs:
+  reports_dir: reports/stage13
+  charts_subdir: charts
+  tables_subdir: tables
+  sql_subdir: sql
+
+quality:
+  require_stable_hashes: true
+  require_offline: true
+  require_read_only_database: true

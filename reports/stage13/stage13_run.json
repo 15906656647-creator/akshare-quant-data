@@ -1,0 +1,27 @@
+{
+  "as_of_date": "2026-07-27",
+  "asset_row_count": 144,
+  "asset_status_counts": {
+    "AVAILABLE": 112,
+    "NOT_AVAILABLE": 16,
+    "PARTIAL": 16
+  },
+  "blocking_reasons": [],
+  "canonical_sha256": "360fcbc6ee33d47c7d765806899dcacf8bf26118d4e2fc2a686d6734a02d31be",
+  "chart_count": 128,
+  "config_sha256": "aded67bbde36eb19927552d9a280adeb93718463c6dcc8bf7bc7ba52716dc6d7",
+  "database_count": 3,
+  "database_unchanged": true,
+  "dry_run": false,
+  "generated_at": "2026-07-27T00:00:00+00:00",
+  "inventory_blocked_count": 0,
+  "network_attempts": 0,
+  "run_id": "stage13-20260727-reverify-remediation",
+  "run_identity_sha256": "05bb6ac9b76208df9569571afc02fb80ae5c6ac3cdcc07a3140a6871cfb9272b",
+  "sql_query_count": 3,
+  "stage": 13,
+  "status": "READY",
+  "symbol_count": 16,
+  "table_count": 42,
+  "visible_input_sha256": "28fda7115e9d0c3515d85198511dfcdb5771ae341116c2f7242d18a609a1e24a"
+}

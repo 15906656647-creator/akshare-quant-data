@@ -1,0 +1,1 @@
+WITH ranked AS (SELECT symbol, trade_date, close_qfq, volume_ratio_20, ROW_NUMBER() OVER (PARTITION BY symbol ORDER BY trade_date DESC) AS rn FROM feat_price_daily WHERE trade_date <= ?) SELECT symbol, trade_date, close_qfq, volume_ratio_20 FROM ranked WHERE rn=1 AND volume_ratio_20>=1.5 ORDER BY volume_ratio_20 DESC, symbol;
