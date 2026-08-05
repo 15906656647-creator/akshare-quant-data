@@ -1,0 +1,9 @@
+﻿run_id,task_name,interface_name,symbol,parameters,error_type,error_message,retry_count,status
+85911fcd-dd80-4d94-bba4-7c091ff3782c,analyze-limit-events,,,"{""force"": false, ""only_symbol"": null, ""run_all"": true}",TaskExitError,"Stage 8 limit-event analysis: BLOCKED
+  publication_status: blocked
+  formal_events: None
+  provisional: 0
+  unresolved: 3862
+  run_id: 85911fcd-dd80-4d94-bba4-7c091ff3782c
+  blockers: no_authoritative_limit_rules; no_authoritative_security_status_history; quality_error:rule_coverage; quality_error:security_status_coverage; quality_error:unresolved_count; unresolved_or_forbidden_events=3862; unresolved_or_provisional_observations=3862; unresolved_or_provisional_observations=7724; unresolved_resolution_reasons=3862
+",0,failed

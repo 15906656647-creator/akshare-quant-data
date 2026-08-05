@@ -123,6 +123,7 @@ def run_market_fetch(
     inter_symbol_delay_seconds: float = 0.3,
     now: Any | None = None,
     project_root_override: str | Path | None = None,
+    start_date: date | None = None,
 ) -> tuple[dict[str, Any], int]:
     root = (
         Path(project_root_override).resolve()
@@ -132,7 +133,9 @@ def run_market_fetch(
     universe = load_universe()
     metrics = load_metrics()
     years = int(metrics.raw["data_ranges"]["stock_daily"]["default_years"])
-    start_date = historical_start_date(as_of_date, years)
+    start_date = start_date or historical_start_date(as_of_date, years)
+    if start_date > as_of_date:
+        raise ValueError("start_date must be earlier than or equal to as_of_date")
     chosen = universe.stocks
     if only_symbol:
         chosen = [item for item in chosen if item.symbol == only_symbol]

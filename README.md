@@ -16,6 +16,10 @@
 - **阶段 8**：涨跌停统计与事件研究工程实现（正式发布仍阻塞）
 - **阶段 9**：横盘震荡、疑似洗盘特征与量价风格工程实现
 - **阶段 10**：基本面与当前估值快照分析工程实现
+- **阶段 11**：ETHUSDT 能力验证
+- **阶段 12**：可复现筛选分析样例
+- **阶段 13**：图表、数据库展示和报告产物
+- **阶段 14**：统一命令行自动化编排
 
 ## 当前完成阶段
 
@@ -99,6 +103,58 @@ python run_pipeline.py analyze-fundamental `
   --symbols 002067 002600 `
   --dry-run
 ```
+
+## 阶段 14 自动化运行
+
+所有阶段 14 命令支持 `--help`。`run-all` 使用一个 UUID `run_id` 串联全部
+子任务，任何真实子命令返回非零退出码时立即停止。日期必须为 `YYYYMMDD`，不会
+静默交换起止日期。
+
+```bash
+# 单阶段命令（未给日期时使用冻结配置中的基线日期与默认回看范围）
+python run_pipeline.py fetch-financial
+python run_pipeline.py fetch-event-and-fund-flow
+python run_pipeline.py clean
+python run_pipeline.py load-database
+python run_pipeline.py quality-check
+python run_pipeline.py build-report
+
+# 行情抓取的显式日期接口（--start 和 --end 必须成对提供）
+python run_pipeline.py fetch-market --start 20230101 --end 20260727
+
+# 全流程；日期为必填项
+python run_pipeline.py run-all --start 20230101 --end 20260727
+
+# 只显示计划，不执行子任务，不写数据、数据库或运行日志
+python run_pipeline.py run-all --start 20250101 --end 20250131 --dry-run
+
+# 查看帮助
+python run_pipeline.py --help
+python run_pipeline.py fetch-market --help
+python run_pipeline.py run-all --help
+```
+
+完整顺序为：`smoke-test → fetch-market → fetch-financial →
+fetch-event-and-fund-flow → clean → load-database → build-features →
+analyze-limit-events → analyze-style → quality-check → build-report`。
+
+现有 Stage 4 以单个不可变 manifest 原子发布财务和资金流，因此全流程中的
+`fetch-event-and-fund-flow` 会记录为 `skipped/covered`，不会用同一个 `run_id`
+重复写 Raw；单独执行该命令时则真实抓取个股资金流。现有 Stage 5 以一个事务完成
+Clean 文件和 DuckDB 发布，因此 `run-all` 中的 `load-database` 记录为已由
+`clean` 覆盖；单独执行时则真实复用 Stage 5 原子构建入口。这两个覆盖状态不是
+静默成功，原因会写进状态文件。
+
+失败后查看 `logs/<run_id>/pipeline.log` 与
+`logs/<run_id>/task_status.json`。结构化失败项位于
+`reports/run_status/<run_id>_failed_items.csv`。修复后可使用同名单阶段命令并
+指定新的 `--run-id` 重跑；Raw 仍按 run 分区追加，空结果和失败不会覆盖已有
+非空文件。Stage 5/7/8/9 的正式数据库写入沿用已有事务、主键 upsert 和质量
+门禁。Stage 14 数据库放在 `database/stage14/<run_id>/`，历史报告由既有
+Stage 13 发布规则管理。
+
+`--force` 只作为运行意图写入状态记录；它不会绕过 Raw 不可变保护、数据库
+唯一键或质量门禁。项目仅用于研究测试，不构成投资建议。
 
 ## 目录结构
 

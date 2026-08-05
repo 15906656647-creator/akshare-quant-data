@@ -114,6 +114,16 @@ def test_quality_detects_future_duplicate_and_bad_ohlc():
     )[1]
 
 
+def test_non_trading_start_boundary_is_not_a_coverage_error():
+    frame = history_frame()
+    frame.loc[0, "日期"] = "2025-07-28"
+    status, issues, _, _ = validate_history(
+        frame, start_date=date(2025, 7, 27), as_of_date=date(2026, 7, 27)
+    )
+    assert status != "ERROR"
+    assert "historical_window_not_covered" not in issues
+
+
 def test_empty_dataframe_is_not_success():
     call = _call_with_retry(
         lambda: pd.DataFrame(),

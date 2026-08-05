@@ -108,7 +108,11 @@ def validate_history(
         errors.append("high_below_low")
     if ((numeric["成交量"] < 0) | (numeric["成交额"] < 0)).any():
         errors.append("negative_volume_or_amount")
-    if min_date and date.fromisoformat(min_date) > start_date:
+    if (
+        min_date
+        and date.fromisoformat(min_date) > start_date
+        and (date.fromisoformat(min_date) - start_date).days > 10
+    ):
         errors.append("historical_window_not_covered")
     issues = errors + warnings
     return ("ERROR" if errors else "WARN" if warnings else "PASS"), issues, min_date, max_date

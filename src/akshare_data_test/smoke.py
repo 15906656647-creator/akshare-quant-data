@@ -116,8 +116,10 @@ def run_smoke_tests(
     only_probes=None,
     pool_date=None,
     strict=False,
+    run_id=None,
 ):
-    run_id = str(uuid.uuid4())
+    run_id = run_id or str(uuid.uuid4())
+    uuid.UUID(run_id)
     logger.info("run_id=%s as_of_date=%s", run_id, str(as_of_date))
     cfg = load_interfaces_config()
     probe_cfgs = cfg["probes"]

@@ -3,6 +3,7 @@
 from __future__ import annotations
 import argparse
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -126,6 +127,7 @@ def _cmd_smoke_test(args):
         only_probes=only_probes,
         pool_date=pool_date,
         strict=getattr(args, "strict", False),
+        run_id=getattr(args, "run_id", None),
     )
     print("\nSmoke test complete: run_id=" + run_id)
     print("Overall status: " + overall)
@@ -183,7 +185,28 @@ def _cmd_network_check(args):
 
 def _cmd_fetch_market(args):
     setup_logging(level=args.log_level)
-    as_of = resolve_as_of_date(cli_date=args.as_of_date)
+    compact_end = getattr(args, "end", None)
+    compact_start = getattr(args, "start", None)
+    if bool(compact_start) != bool(compact_end):
+        print(
+            "Market fetch error: --start and --end must be provided together in YYYYMMDD format",
+            file=sys.stderr,
+        )
+        return 2
+    if compact_end:
+        from .stage14_automation import validate_date_range
+        start_iso, end_iso = validate_date_range(compact_start, compact_end)
+        as_of = resolve_as_of_date(cli_date=end_iso)
+    else:
+        start_iso = getattr(args, "start_date", None)
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+    if getattr(args, "dry_run", False):
+        print(
+            "Market fetch dry-run: start="
+            + str(start_iso or "configured-default")
+            + " end=" + str(as_of)
+        )
+        return 0
     from .market_fetch import run_market_fetch
 
     report, exit_code = run_market_fetch(
@@ -193,6 +216,10 @@ def _cmd_fetch_market(args):
         evidence_dir=args.evidence_dir,
         only_symbol=args.only_symbol,
         skip_spot=args.skip_spot,
+        start_date=(
+            datetime.strptime(start_iso, "%Y-%m-%d").date()
+            if start_iso else None
+        ),
     )
     print("Market fetch: " + report["status"])
     print("  run_id: " + report["run_id"])
@@ -748,6 +775,91 @@ def _generate_summary_md(results, run_id, overall, as_of):
         f.write("\n".join(sl) + "\n")
     print("\nSummary: " + str(sp))
 
+
+def _cmd_stage14(args):
+    """Run one Stage 14 alias or the complete dependency-ordered pipeline."""
+    from .stage14_automation import (
+        TASK_ORDER, PipelineContext, execute_pipeline, generate_run_id,
+        load_stage14_config, render_plan, validate_date_range,
+    )
+    try:
+        load_stage14_config(project_root() / args.config)
+        if args.command == "run-all" and (not args.start or not args.end):
+            raise ValueError("run-all requires --start and --end in YYYYMMDD format")
+        configured_end = resolve_as_of_date(cli_date=None)
+        end_value = args.end or configured_end.strftime("%Y%m%d")
+        if args.start:
+            start_value = args.start
+        else:
+            years = int(load_metrics().raw["data_ranges"]["stock_daily"]["default_years"])
+            try:
+                configured_start = configured_end.replace(year=configured_end.year - years)
+            except ValueError:
+                configured_start = configured_end.replace(year=configured_end.year - years, day=28)
+            start_value = configured_start.strftime("%Y%m%d")
+        start, end = validate_date_range(start_value, end_value)
+        run_id = args.run_id or generate_run_id()
+        # Keep compatibility with Stage 2-8 immutable run partitions.
+        import uuid
+        uuid.UUID(run_id)
+        context = PipelineContext(
+            root=project_root(), run_id=run_id, start_date=start, end_date=end,
+            log_level=args.log_level, force=args.force,
+            only_symbol=getattr(args, "only_symbol", None),
+            run_all=args.command == "run-all",
+        )
+        tasks = TASK_ORDER if args.command == "run-all" else (args.command,)
+        if args.dry_run:
+            print(render_plan(tasks, context))
+            return 0
+        statuses, exit_code = execute_pipeline(tasks, context)
+        for item in statuses:
+            print(f"{item.task_name}: {item.status}")
+            if item.error_message and item.status == "failed":
+                print(f"  {item.error_type}: {item.error_message}", file=sys.stderr)
+        print(f"run_id: {run_id}")
+        print(f"status: {'success' if exit_code == 0 else 'failed'}")
+        return exit_code
+    except (ValueError, OSError) as exc:
+        print(f"Stage 14 error: {exc}", file=sys.stderr)
+        return 2
+
+
+def _run_stage14_logged_single(task_name, args, handler):
+    """Add Stage 14 status/logging to established standalone task commands."""
+    if os.environ.get("AKSHARE_STAGE14_CHILD") == "1" or getattr(args, "dry_run", False):
+        return handler(args)
+    from .stage14_automation import PipelineContext, execute_pipeline, generate_run_id
+    run_id = getattr(args, "run_id", None) or generate_run_id()
+    if hasattr(args, "run_id"):
+        args.run_id = run_id
+    end = getattr(args, "end", None) or getattr(args, "as_of_date", None) or "configured"
+    start = getattr(args, "start", None) or getattr(args, "start_date", None) or end
+    context = PipelineContext(
+        root=project_root(), run_id=run_id, start_date=start, end_date=end,
+        log_level=getattr(args, "log_level", "INFO"),
+        force=getattr(args, "force", False),
+        only_symbol=getattr(args, "only_symbol", None),
+    )
+
+    # Execute inside the observer so the running transition is durable before
+    # the handler starts, and uncaught exceptions receive a traceback.
+    caught: list[tuple[BaseException, object]] = []
+
+    def observe(_task, _context):
+        try:
+            code = int(handler(args))
+            return code, "", ""
+        except BaseException as exc:
+            caught.append((exc, exc.__traceback__))
+            raise
+
+    _statuses, exit_code = execute_pipeline([task_name], context, executor=observe)
+    if caught and getattr(args, "debug", False):
+        exc, original_traceback = caught[0]
+        raise exc.with_traceback(original_traceback)
+    return exit_code
+
 def main():
     parser = argparse.ArgumentParser(prog="akshare-data-test")
     sub = parser.add_subparsers(dest="command")
@@ -768,6 +880,7 @@ def main():
     sm.add_argument("--only", default=None)
     sm.add_argument("--log-level", default="INFO")
     sm.add_argument("--strict", action="store_true", default=False)
+    sm.add_argument("--run-id", default=None)
     nc = sub.add_parser(
         "network-check",
         help="Check DNS, TCP 443, and TLS without requesting financial data",
@@ -782,6 +895,12 @@ def main():
     fm = sub.add_parser("fetch-market", help="Fetch Stage 3 market Raw data")
     fm.add_argument("--as-of-date", default=None)
     fm.add_argument("--run-id", default=None)
+    fm.add_argument("--start-date", default=None, help="Explicit ISO start date")
+    fm.add_argument("--start", default=None, help="Explicit start date in YYYYMMDD")
+    fm.add_argument("--end", default=None, help="Explicit end date in YYYYMMDD")
+    fm.add_argument("--config", default="config/stage14.yml")
+    fm.add_argument("--dry-run", action="store_true", default=False)
+    fm.add_argument("--force", action="store_true", default=False)
     fm.add_argument("--output-dir", default="data/raw")
     fm.add_argument("--evidence-dir", default="reports/evidence/stage3")
     fm.add_argument("--only-symbol", default=None)
@@ -1001,17 +1120,31 @@ def main():
     b13.add_argument("--dry-run", action="store_true", default=False)
     b13.add_argument("--log-level", default="INFO")
     b13.add_argument("--debug", action="store_true", default=False)
+    stage14_commands = (
+        "fetch-financial", "fetch-event-and-fund-flow", "clean", "load-database",
+        "quality-check", "build-report", "run-all",
+    )
+    for command in stage14_commands:
+        automation = sub.add_parser(command, help=f"Stage 14 automation: {command}")
+        automation.add_argument("--start", default=None, help="YYYYMMDD; required by run-all")
+        automation.add_argument("--end", default=None, help="YYYYMMDD; required by run-all")
+        automation.add_argument("--config", default="config/stage14.yml")
+        automation.add_argument("--run-id", default=None)
+        automation.add_argument("--log-level", choices=["DEBUG", "INFO", "WARNING", "ERROR"], default="INFO")
+        automation.add_argument("--dry-run", action="store_true", default=False)
+        automation.add_argument("--force", action="store_true", default=False)
+        automation.add_argument("--only-symbol", default=None)
     args = parser.parse_args()
     if args.command == "doctor":
         sys.exit(_cmd_doctor(args))
     elif args.command == "show-config":
         sys.exit(_cmd_show_config(args))
     elif args.command == "smoke-test":
-        sys.exit(_cmd_smoke_test(args))
+        sys.exit(_run_stage14_logged_single("smoke-test", args, _cmd_smoke_test))
     elif args.command == "network-check":
         sys.exit(_cmd_network_check(args))
     elif args.command == "fetch-market":
-        sys.exit(_cmd_fetch_market(args))
+        sys.exit(_run_stage14_logged_single("fetch-market", args, _cmd_fetch_market))
     elif args.command == "fetch-fundamentals":
         sys.exit(_cmd_fetch_fundamentals(args))
     elif args.command == "build-stage5":
@@ -1030,11 +1163,11 @@ def main():
     elif args.command == "verify-stage6-idempotency-repair":
         sys.exit(_cmd_verify_stage6_idempotency_repair(args))
     elif args.command == "build-features":
-        sys.exit(_cmd_build_features(args))
+        sys.exit(_run_stage14_logged_single("build-features", args, _cmd_build_features))
     elif args.command == "analyze-limit-events":
-        sys.exit(_cmd_analyze_limit_events(args))
+        sys.exit(_run_stage14_logged_single("analyze-limit-events", args, _cmd_analyze_limit_events))
     elif args.command == "analyze-style":
-        sys.exit(_cmd_analyze_style(args))
+        sys.exit(_run_stage14_logged_single("analyze-style", args, _cmd_analyze_style))
     elif args.command == "analyze-fundamental":
         sys.exit(_cmd_analyze_fundamental(args))
     elif args.command == "validate-crypto":
@@ -1043,6 +1176,8 @@ def main():
         sys.exit(_cmd_analyze_stage12(args))
     elif args.command == "present-stage13":
         sys.exit(_cmd_present_stage13(args))
+    elif args.command in stage14_commands:
+        sys.exit(_cmd_stage14(args))
     else:
         parser.print_help()
         sys.exit(0)

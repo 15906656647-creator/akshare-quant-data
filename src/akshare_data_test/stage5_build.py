@@ -639,9 +639,10 @@ def _quality_rows(frames: dict[str, pd.DataFrame], transform_run_id: str, as_of:
 def _git_commit(root: Path) -> str:
     try:
         return subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=root, text=True, stderr=subprocess.DEVNULL
+            ["git", "rev-parse", "HEAD"], cwd=root, text=True,
+            encoding="utf-8", errors="replace", stderr=subprocess.DEVNULL,
         ).strip()
-    except (OSError, subprocess.SubprocessError):
+    except (OSError, subprocess.SubprocessError, UnicodeError):
         return "unavailable"
 
 

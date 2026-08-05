@@ -31,7 +31,10 @@ def _hash(path: Path) -> str:
 
 
 def _code_version(root: Path) -> str:
-    result = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True, check=False)
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=root, capture_output=True,
+        text=True, encoding="utf-8", errors="replace", check=False,
+    )
     return result.stdout.strip() if result.returncode == 0 else "unknown"
 
 

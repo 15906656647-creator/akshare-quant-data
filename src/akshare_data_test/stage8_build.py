@@ -261,6 +261,8 @@ def _code_version(root: Path) -> str:
         cwd=root,
         capture_output=True,
         text=True,
+        encoding="utf-8",
+        errors="replace",
         check=False,
     )
     return result.stdout.strip() if result.returncode == 0 else "unknown"

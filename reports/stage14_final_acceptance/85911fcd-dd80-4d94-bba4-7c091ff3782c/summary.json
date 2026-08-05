@@ -1,0 +1,22 @@
+﻿{
+    "stage":  14,
+    "run_id":  "85911fcd-dd80-4d94-bba4-7c091ff3782c",
+    "date_range":  "2025-07-27..2026-07-27",
+    "isolation_copy":  "C:\\Users\\赵\\.codex\\visualizations\\2026\\08\\05\\019fcfaa-a87e-75f1-a4b5-0eab956c7031\\stage14_final_acceptance_20260805_110202",
+    "run_all_exit_code":  2,
+    "pipeline_status":  "failed",
+    "expected_stage8_blocked":  true,
+    "raw_zero_byte_count":  0,
+    "stage3_raw_files":  34,
+    "stage4_raw_files":  96,
+    "validate_stage5":  "PASS",
+    "build_features":  "16/16 symbols, 29/29 quality checks",
+    "evidence_files":  [
+                           "stage14_run_all_console.log",
+                           "task_status.json",
+                           "pipeline.log",
+                           "failed_items.csv",
+                           "stage3_manifest.json",
+                           "stage4_manifest.json"
+                       ]
+}

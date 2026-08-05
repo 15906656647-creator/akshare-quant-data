@@ -1,0 +1,18 @@
+schema_version: "1.0"
+pipeline_name: stage14
+task_order:
+  - smoke-test
+  - fetch-market
+  - fetch-financial
+  - fetch-event-and-fund-flow
+  - clean
+  - load-database
+  - build-features
+  - analyze-limit-events
+  - analyze-style
+  - quality-check
+  - build-report
+paths:
+  logs: logs
+  database: database/stage14
+  reports: reports/stage13
