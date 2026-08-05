@@ -20,6 +20,7 @@
 - **阶段 12**：可复现筛选分析样例
 - **阶段 13**：图表、数据库展示和报告产物
 - **阶段 14**：统一命令行自动化编排
+- **阶段 15**：质量控制和风险验证
 
 ## 当前完成阶段
 
@@ -155,6 +156,34 @@ Stage 13 发布规则管理。
 
 `--force` 只作为运行意图写入状态记录；它不会绕过 Raw 不可变保护、数据库
 唯一键或质量门禁。项目仅用于研究测试，不构成投资建议。
+
+## 阶段 15 质量控制和风险验证
+
+`quality-control` 是阶段15的独立离线入口，读取 Stage 5 DuckDB、Stage 10 财务
+字段映射以及 Stage 2/4 耗时报告，生成每日质量检查、交叉验证快照和风险日志。
+
+```bash
+# 只读预检，不写输出
+python run_pipeline.py quality-control --as-of-date 2026-07-27 --validate-only
+
+# 查看计划，不写输出
+python run_pipeline.py quality-control --as-of-date 2026-07-27 --dry-run
+
+# 正式运行（自动生成 UUID run_id）
+python run_pipeline.py quality-control --as-of-date 2026-07-27
+
+# 指定 run_id 与自定义输出
+python run_pipeline.py quality-control --as-of-date 2026-07-27 \
+  --run-id <uuid> \
+  --output-database database/stage15/<uuid>/stage15_quality.duckdb
+```
+
+退出码：`0` = PASS / WARN / PASS_WITH_UNAVAILABLE_ITEMS，`1` = ERROR 级检查失败，
+`2` = 输入预检 BLOCKED。存在 `UNAVAILABLE` 交叉验证项或 BLOCKED 风险时整体状态为
+`PASS_WITH_UNAVAILABLE_ITEMS`，不会用 `PASS` 掩盖未完成的交叉验证。
+输出位于 `reports/stage15/<run_id>/` 与 `database/stage15/<run_id>/`。Stage 8
+正式涨停事件缺失时，交叉验证涨停项标记 `UNAVAILABLE` 并写入 `blocked` 风险，
+不伪造正式结果。
 
 ## 目录结构
 

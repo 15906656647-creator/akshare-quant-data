@@ -56,3 +56,5 @@ Thumbs.db
 # Runtime logs and transient run-status files
 logs/
 reports/run_status/
+reports/stage15/
+database/stage15/

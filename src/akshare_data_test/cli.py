@@ -750,6 +750,109 @@ def _cmd_present_stage13(args):
         return 2
 
 
+def _cmd_quality_control(args):
+    """Run Stage 15 quality control and risk validation fully offline."""
+    setup_logging(level=args.log_level)
+    try:
+        import uuid
+        from .stage15_build import (
+            run_stage15_quality_control,
+            validate_stage15_inputs,
+        )
+
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        root = project_root()
+        run_id = args.run_id or str(uuid.uuid4())
+        uuid.UUID(run_id)
+        config_path = root / args.config
+        input_database = root / args.input_database
+        stage8_database = root / args.stage8_database if args.stage8_database else None
+        baseline_path = root / args.baseline if args.baseline else None
+        output_database = (
+            root / args.output_database
+            if args.output_database
+            else root / "database" / "stage15" / run_id / "stage15_quality.duckdb"
+        )
+        reports_dir = root / args.reports_dir
+        symbols = (
+            [str(item).zfill(6) for item in args.cross_validation_symbols]
+            if args.cross_validation_symbols
+            else None
+        )
+        if args.validate_only:
+            result = validate_stage15_inputs(
+                root=root,
+                config_path=config_path,
+                input_database=input_database,
+                output_database=output_database,
+                as_of_date=as_of,
+                stage8_database=stage8_database,
+                baseline=baseline_path,
+                cross_validation_symbols=symbols,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+            return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
+        report, exit_code = run_stage15_quality_control(
+            root=root,
+            as_of_date=as_of,
+            config_path=config_path,
+            input_database=input_database,
+            output_database=output_database,
+            reports_dir=reports_dir,
+            run_id=run_id,
+            stage8_database=stage8_database,
+            baseline_path=baseline_path,
+            cross_validation_symbols=symbols,
+            dry_run=args.dry_run,
+        )
+        print("Stage 15 quality control: " + report["status"])
+        print("  run_id: " + report["run_id"])
+        print("  as_of_date: " + report["as_of_date"])
+        if report.get("outputs_written") is False:
+            print("  blockers: " + "; ".join(report.get("blocking_reasons", [])))
+            print("  errors: " + "; ".join(report.get("errors", [])))
+            return exit_code
+        if report.get("status") != "DRY_RUN":
+            print(
+                "  checks: "
+                + str(report["quality_status_counts"]["PASS"])
+                + " pass, "
+                + str(report["quality_status_counts"]["WARN"])
+                + " warn, "
+                + str(report["quality_status_counts"]["FAIL"])
+                + " fail"
+            )
+            print("  risk_log_rows: " + str(len(report["risk_log"])))
+            print(
+                "  cross_validation_rows: "
+                + str(len(report["cross_validation"]))
+            )
+            print(
+                "  unavailable_items: "
+                + str(report.get("unavailable_count", 0))
+            )
+            print(
+                "  blocked_risks: " + str(report.get("blocked_risk_count", 0))
+            )
+            if report["status"] == "PASS_WITH_UNAVAILABLE_ITEMS":
+                print(
+                    "  note: daily quality checks passed; cross-validation "
+                    "still has UNAVAILABLE items and Stage 8 blocked risks"
+                )
+            if report["stage8_blocker_codes"]:
+                print(
+                    "  stage8_blockers: "
+                    + "; ".join(report["stage8_blocker_codes"])
+                )
+            print("  reports: " + report["outputs"]["reports_dir"])
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 15 error: {exc}", file=sys.stderr)
+        return 1
+
+
 def _generate_summary_md(results, run_id, overall, as_of):
     sp = Path("reports/interface_smoke_test_summary.md")
     sl = []
@@ -1120,6 +1223,30 @@ def main():
     b13.add_argument("--dry-run", action="store_true", default=False)
     b13.add_argument("--log-level", default="INFO")
     b13.add_argument("--debug", action="store_true", default=False)
+    b15 = sub.add_parser(
+        "quality-control",
+        help="Run Stage 15 daily quality checks, cross-validation, and risk log offline",
+    )
+    b15.add_argument("--as-of-date", required=True)
+    b15.add_argument("--config", default="config/stage15.yml")
+    b15.add_argument(
+        "--input-database",
+        default="database/akshare_data_test_stage5_repaired.duckdb",
+    )
+    b15.add_argument("--stage8-database", default=None)
+    b15.add_argument("--baseline", default=None)
+    b15.add_argument("--reports-dir", default="reports/stage15")
+    b15.add_argument("--output-database", default=None)
+    b15.add_argument("--run-id", default=None)
+    b15.add_argument("--cross-validation-symbols", nargs="+", default=None)
+    mode15 = b15.add_mutually_exclusive_group()
+    mode15.add_argument("--dry-run", action="store_true", default=False)
+    mode15.add_argument("--validate-only", action="store_true", default=False)
+    b15.add_argument("--log-level", default="INFO")
+    b15.add_argument(
+        "--debug", action="store_true", default=False,
+        help="Show a traceback for Stage 15 internal errors",
+    )
     stage14_commands = (
         "fetch-financial", "fetch-event-and-fund-flow", "clean", "load-database",
         "quality-check", "build-report", "run-all",
@@ -1176,6 +1303,8 @@ def main():
         sys.exit(_cmd_analyze_stage12(args))
     elif args.command == "present-stage13":
         sys.exit(_cmd_present_stage13(args))
+    elif args.command == "quality-control":
+        sys.exit(_cmd_quality_control(args))
     elif args.command in stage14_commands:
         sys.exit(_cmd_stage14(args))
     else:

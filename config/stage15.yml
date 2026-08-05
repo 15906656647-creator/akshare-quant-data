@@ -1,0 +1,206 @@
+# Stage 15 quality-control and risk-validation settings.
+# Reads only local Stage 5/8 artifacts; never fetches the network itself.
+schema_version: "1.0.0"
+model_version: "stage15_quality_v1"
+stage: 15
+
+universe:
+  expected_symbol_count: 16
+
+inputs:
+  # Defaults used by the CLI; every execution still requires an explicit
+  # --as-of-date and per-run run_id so business dates are never guessed.
+  stage5_database: database/akshare_data_test_stage5_repaired.duckdb
+  stage8_database: null
+  stage3_market_coverage: reports/stage3_market_coverage.csv
+  stage4_financial_coverage: reports/stage4_financial_coverage.csv
+  interface_smoke_csv: reports/interface_smoke_test.csv
+
+outputs:
+  reports_dir: reports/stage15
+  database_dir: database/stage15
+
+daily_checks:
+  latest_trade_date_tolerance_days: 10
+  row_count_decline_ratio: 0.30
+  row_count_expected_minimum:
+    fact_stock_daily: 500
+    fact_stock_spot: 16
+    fact_financial_abstract: 100
+    fact_financial_indicator: 100
+    fact_financial_statement: 1000
+    fact_stock_fund_flow: 100
+  pe_pb_missing_rate_threshold: 0.50
+  financial_key_fields_coverage_threshold: 0.80
+  expected_columns:
+    fact_stock_daily:
+      - transform_run_id
+      - source_run_id
+      - symbol
+      - exchange
+      - trade_date
+      - adjust_type
+      - open
+      - high
+      - low
+      - close
+      - volume_lot
+      - volume_share
+      - amount_cny
+      - amplitude
+      - pct_change
+      - price_change
+      - turnover_rate
+      - source_file
+      - source_row_number
+      - ingested_at
+    fact_stock_spot:
+      - transform_run_id
+      - source_run_id
+      - snapshot_at
+      - snapshot_scope
+      - symbol
+      - exchange
+      - name
+      - latest_price
+      - pct_change
+      - price_change
+      - volume_lot
+      - volume_share
+      - amount_cny
+      - amplitude
+      - turnover_rate
+      - volume_ratio
+      - pe_dynamic
+      - pb
+      - market_cap_cny
+      - float_market_cap_cny
+      - source_payload_json
+      - source_file
+    fact_financial_abstract:
+      - transform_run_id
+      - source_run_id
+      - symbol
+      - exchange
+      - report_period
+      - announcement_date
+      - metric_code
+      - metric_name_source
+      - metric_category_source
+      - metric_value
+      - metric_value_raw
+      - unit_source
+      - unit_canonical
+      - potential_lookahead
+      - announcement_date_status
+      - source_interface
+      - source_field
+      - source_file
+      - source_row_number
+    fact_financial_indicator:
+      - transform_run_id
+      - source_run_id
+      - symbol
+      - exchange
+      - report_period
+      - announcement_date
+      - metric_code
+      - metric_name_source
+      - metric_value
+      - metric_value_raw
+      - unit_source
+      - unit_canonical
+      - potential_lookahead
+      - announcement_date_status
+      - source_interface
+      - source_field
+      - source_file
+      - source_row_number
+    fact_financial_statement:
+      - transform_run_id
+      - source_run_id
+      - symbol
+      - exchange
+      - statement_type
+      - report_period
+      - announcement_date
+      - line_item_code
+      - line_item_name_source
+      - line_item_value
+      - line_item_value_raw
+      - unit_source
+      - unit_canonical
+      - potential_lookahead
+      - announcement_date_status
+      - source_column
+      - source_file
+      - source_row_number
+    fact_stock_fund_flow:
+      - transform_run_id
+      - source_run_id
+      - symbol
+      - exchange
+      - trade_date
+      - close
+      - pct_change
+      - main_net_inflow_cny
+      - main_net_inflow_ratio
+      - super_large_net_inflow_cny
+      - super_large_net_inflow_ratio
+      - large_net_inflow_cny
+      - large_net_inflow_ratio
+      - medium_net_inflow_cny
+      - medium_net_inflow_ratio
+      - small_net_inflow_cny
+      - small_net_inflow_ratio
+      - source_file
+
+cross_validation:
+  symbols: ["002067", "600763", "300274"]
+  last_trade_days: 5
+  price_adjust_type: raw
+  check_items:
+    - last_5_days_close_volume
+    - latest_revenue
+    - latest_net_profit
+    - latest_pe_dynamic
+    - latest_pb
+    - recent_limit_up_day
+    - next_day_open_after_limit_up
+
+performance:
+  elapsed_spike_multiplier: 3.0
+  max_elapsed_seconds:
+    stock_zh_a_hist: 60.0
+    stock_zh_a_spot_em: 120.0
+    stock_financial_abstract: 60.0
+    stock_financial_analysis_indicator: 60.0
+    stock_balance_sheet_by_report_em: 60.0
+    stock_profit_sheet_by_report_em: 60.0
+    stock_cash_flow_sheet_by_report_em: 60.0
+    stock_individual_fund_flow: 60.0
+    crypto_js_spot: 60.0
+
+stage8:
+  required_for_cross_validation: true
+  block_whole_run: false
+  blocker_codes:
+    - no_authoritative_limit_rules
+    - no_authoritative_security_status_history
+
+risk:
+  categories:
+    - data_completeness
+    - schema_change
+    - logic_error
+    - valuation_quality
+    - financial_quality
+    - performance
+    - blocked_input
+    - other
+  severities: [info, warning, error, critical]
+  statuses: [open, resolved, blocked]
+
+quality:
+  require_offline: true
+  require_read_only_input: true
