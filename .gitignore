@@ -52,3 +52,7 @@ Thumbs.db
 
 # Keep .gitkeep files
 !.gitkeep
+
+# Runtime logs and transient run-status files
+logs/
+reports/run_status/
