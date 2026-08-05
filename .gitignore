@@ -69,3 +69,4 @@ data/manual/stage8/*/*.csv
 data/manual/stage8/*/sources/*
 !data/manual/stage8/*/sources/README.md
 !data/manual/stage8/*/*.example.csv
+reports/stage8_rule_source_audit/
