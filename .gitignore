@@ -62,3 +62,10 @@ reports/stage15_s14_fix/
 database/stage15_s14_fix/
 reports/stage15_s15_14_feasibility/
 stage15_s14_commands_help.txt
+
+# Real manual authoritative datasets are never committed
+data/manual/stage8/*/dataset.yml
+data/manual/stage8/*/*.csv
+data/manual/stage8/*/sources/*
+!data/manual/stage8/*/sources/README.md
+!data/manual/stage8/*/*.example.csv

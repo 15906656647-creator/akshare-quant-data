@@ -15,3 +15,14 @@ security_status_records: []
 source_notes:
   limit_pool_usage: "cross_validation_only"
   gap_proxy_usage: "candidate_feature_only_not_formal_event"
+
+# Manual authoritative dataset directories used by the stage8-* commands when
+# the merged run configuration has not been generated yet.  Real files under
+# these directories are gitignored; templates and fictional examples are
+# committed under data/manual/stage8/.
+manual_datasets:
+  rules_dir: "data/manual/stage8/limit_rules"
+  status_dir: "data/manual/stage8/security_status"
+  manifest_file: "dataset.yml"
+  rules_record_file: "limit_rules.csv"
+  status_record_file: "security_status_history.csv"

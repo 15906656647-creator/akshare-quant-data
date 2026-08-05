@@ -172,16 +172,85 @@ def test_status_gap_is_not_implicitly_non_st():
         )
 
 
-def test_authoritative_config_loads_all_verified_records():
-    path = ROOT / "config/stage8_s14_fix.yml"
-    _, rules, statuses = load_stage8_config(path)
+def test_authoritative_config_with_manifest_loads_verified_records(tmp_path):
+    payload = {
+        "schema_version": "1.0.0",
+        "price_adjust_type": "raw",
+        "rounding_rules": {"supported": ["half_up", "half_even"]},
+        "formal_evidence_status": "verified",
+        "formal_quality_status": "pass",
+        "unresolved_policy": "block_formal_annual_statistics",
+        "rule_records": [
+            {
+                "exchange": "SZ", "board": "main", "is_st": False,
+                "effective_start": "2020-01-01", "effective_end": None,
+                "limit_up_ratio": 0.1, "limit_down_ratio": 0.1,
+                "no_limit_flag": False, "tick_size": 0.01,
+                "price_precision": 2, "rounding_rule": "half_up",
+                "rule_version": "fixture-rule", "source_reference": "fixture://rule",
+                "source_name": "fixture", "verified_at": "2026-07-27",
+                "evidence_status": "verified",
+                "record_id": "rule-001", "raw_file": "sources/rule.txt",
+                "source_document_id": "DOC-1", "reviewer": "复核人",
+                "notes": "", "retrieved_at": "2026-08-01T10:00:00+08:00",
+                "review_status": "approved",
+                "security_type": "A_SHARE",
+                "source_published_at": "2026-07-01",
+                "source_hash": "a" * 64,
+                "data_version": "v1",
+            }
+        ],
+        "security_status_records": [
+            {
+                "symbol": "000001", "effective_start": "2020-01-01",
+                "effective_end": None, "exchange": "SZ", "board": "main",
+                "is_st": False, "listing_status": "listed",
+                "listing_date": "1991-01-01", "delisting_date": None,
+                "no_limit_reason": None, "source_reference": "fixture://status",
+                "status_version": "fixture-status", "evidence_status": "verified",
+                "record_id": "status-001", "status_type": "ST",
+                "status_value": "NON_ST", "announcement_date": "2026-07-01",
+                "raw_file": "sources/status.txt", "source_document_id": "DOC-2",
+                "reviewer": "复核人", "notes": "",
+                "retrieved_at": "2026-08-01T10:00:00+08:00",
+                "review_status": "approved",
+                "source_name": "fixture", "source_published_at": "2026-07-01",
+                "source_hash": "b" * 64, "data_version": "v1",
+            }
+        ],
+        "source_notes": {
+            "limit_pool_usage": "cross_validation_only",
+            "gap_proxy_usage": "candidate_feature_only_not_formal_event",
+        },
+        "dataset_manifest": {
+            "dataset_version": "v1",
+            "generated_at": "2026-08-05T10:00:00+08:00",
+            "as_of_date": "2026-07-27",
+            "source_files": ["sources/rule.txt", "sources/status.txt"],
+            "source_hashes": {
+                "sources/rule.txt": "a" * 64,
+                "sources/status.txt": "b" * 64,
+            },
+            "record_counts": {
+                "authoritative_limit_rules": 1,
+                "authoritative_security_status_history": 1,
+            },
+            "date_coverage": {"start": "2025-07-27", "end": "2026-07-27"},
+            "review_status": "approved",
+            "run_id": "manifest-run",
+        },
+    }
+    path = tmp_path / "stage8.yml"
+    path.write_text(
+        yaml.safe_dump(payload, allow_unicode=True, sort_keys=False),
+        encoding="utf-8",
+    )
+    raw, rules, statuses = load_stage8_config(path)
     assert all(item.evidence_status == "verified" for item in rules)
     assert all(item.evidence_status == "verified" for item in statuses)
-    assert {item.symbol for item in statuses} == {
-        "000100", "002067", "002129", "002230", "002361", "002600",
-        "300274", "300433", "600231", "600438", "600763", "601012",
-        "601500", "601636", "603259", "603799",
-    }
+    assert rules[0].record_id == "rule-001"
+    assert statuses[0].status_type == "ST"
+    assert raw["dataset_manifest"]["review_status"] == "approved"
     assert all(item.source_hash for item in rules)
     assert all(item.source_hash for item in statuses)
 
@@ -250,17 +319,59 @@ def test_price_rounding_and_ipo_special_rule(tmp_path):
 
 
 def _component_config(tmp_path: Path, kind: str) -> Path:
-    payload = yaml.safe_load(
-        (
-            ROOT
-            / (
-                "config/stage8_authoritative_rules.yml"
-                if kind == "rules"
-                else "config/stage8_authoritative_status.yml"
-            )
-        ).read_text(encoding="utf-8")
-    )
     path = tmp_path / f"{kind}.yml"
+    if kind == "rules":
+        payload = {
+            "rule_records": [
+                {
+                    "exchange": "SZ", "board": "main", "is_st": False,
+                    "effective_start": "2020-01-01", "effective_end": None,
+                    "limit_up_ratio": 0.1, "limit_down_ratio": 0.1,
+                    "no_limit_flag": False, "tick_size": 0.01,
+                    "price_precision": 2, "rounding_rule": "half_up",
+                    "rule_version": "fixture-rule",
+                    "source_reference": "fixture://rule",
+                    "source_name": "fixture", "verified_at": "2026-07-27",
+                    "evidence_status": "verified",
+                },
+                {
+                    "exchange": "SZ", "board": "main", "is_st": True,
+                    "effective_start": "2020-01-01", "effective_end": None,
+                    "limit_up_ratio": 0.05, "limit_down_ratio": 0.05,
+                    "no_limit_flag": False, "tick_size": 0.01,
+                    "price_precision": 2, "rounding_rule": "half_up",
+                    "rule_version": "fixture-rule-st",
+                    "source_reference": "fixture://rule-st",
+                    "source_name": "fixture", "verified_at": "2026-07-27",
+                    "evidence_status": "verified",
+                },
+            ]
+        }
+    else:
+        payload = {
+            "security_status_records": [
+                {
+                    "symbol": "000001", "effective_start": "2020-01-01",
+                    "effective_end": None, "exchange": "SZ", "board": "main",
+                    "is_st": False, "listing_status": "listed",
+                    "listing_date": "1991-01-01", "delisting_date": None,
+                    "no_limit_reason": None,
+                    "source_reference": "fixture://status",
+                    "status_version": "fixture-status",
+                    "evidence_status": "verified",
+                },
+                {
+                    "symbol": "000002", "effective_start": "2020-01-01",
+                    "effective_end": None, "exchange": "SZ", "board": "main",
+                    "is_st": False, "listing_status": "listed",
+                    "listing_date": "1991-01-02", "delisting_date": None,
+                    "no_limit_reason": None,
+                    "source_reference": "fixture://status",
+                    "status_version": "fixture-status",
+                    "evidence_status": "verified",
+                },
+            ]
+        }
     path.write_text(
         yaml.safe_dump(payload, allow_unicode=True, sort_keys=False),
         encoding="utf-8",
@@ -281,7 +392,7 @@ def test_rules_and_status_build_commands_are_offline_and_idempotent(tmp_path):
         output_config=config,
     )
     assert code == 0
-    assert first["verified_rule_count"] == 15
+    assert first["verified_rule_count"] == 2
     second, code2 = build_status_manifest(
         statuses_path=statuses_path,
         output_dir=out,
@@ -290,10 +401,10 @@ def test_rules_and_status_build_commands_are_offline_and_idempotent(tmp_path):
         output_config=config,
     )
     assert code2 == 0
-    assert second["covered_symbol_count"] == 16
+    assert second["covered_symbol_count"] == 2
     merged = yaml.safe_load(config.read_text(encoding="utf-8"))
-    assert len(merged["rule_records"]) == 15
-    assert len(merged["security_status_records"]) == 17
+    assert len(merged["rule_records"]) == 2
+    assert len(merged["security_status_records"]) == 2
 
 
 def test_rules_and_status_validate_only_do_not_write_outputs(tmp_path):

@@ -1,0 +1,131 @@
+# Stage 8 authoritative limit-rule dataset contract (field template).
+# The real dataset is dataset.yml + limit_rules.csv; this file is documentation.
+contract: "authoritative_limit_rules"
+schema_version: "1.0.0"
+record_file: "limit_rules.csv"
+manifest_file: "dataset.yml"
+interval_convention: "inclusive [effective_from, effective_to]; empty effective_to means still in effect"
+
+required_columns:
+  - market
+  - exchange
+  - board
+  - security_type
+  - rule_type
+  - limit_ratio
+  - effective_from
+  - effective_to
+  - source_name
+  - source_document_id
+  - source_document_date
+  - source_reference
+  - retrieved_at
+  - raw_file
+  - source_sha256
+  - review_status
+  - reviewer
+  - notes
+
+optional_columns:
+  - record_id
+  - symbol
+  - limit_down_ratio
+  - tick_size
+  - price_precision
+  - rounding_rule
+  - rule_version
+  - verified_at
+
+field_specs:
+  market:
+    type: "string"
+    allowed: ["SH", "SZ", "BJ"]
+    note: "must equal exchange"
+  exchange:
+    type: "string"
+    allowed: ["SH", "SZ", "BJ"]
+  board:
+    type: "string"
+    allowed: ["main", "growth", "star", "bse"]
+  security_type:
+    type: "string"
+    note: "uppercase token such as A_SHARE"
+  rule_type:
+    type: "string"
+    allowed: ["price_limit", "st_price_limit", "ipo_first_day", "no_limit"]
+  limit_ratio:
+    type: "decimal ratio"
+    note: "0 < value < 1, e.g. 0.10 for 10%; empty only for no_limit"
+  effective_from:
+    type: "ISO date"
+    note: "YYYY-MM-DD"
+  effective_to:
+    type: "ISO date or empty"
+    note: "empty means open-ended; must not be earlier than effective_from"
+  source_name:
+    type: "string"
+    note: "official source name"
+  source_document_id:
+    type: "string"
+    note: "unique official document id"
+  source_document_date:
+    type: "ISO date"
+  source_reference:
+    type: "string"
+    note: "official URL or repository path"
+  retrieved_at:
+    type: "ISO datetime"
+  raw_file:
+    type: "relative path"
+    note: "must start with sources/ and stay inside the dataset directory"
+  source_sha256:
+    type: "SHA-256 hex"
+    note: "must match the registered source file hash"
+  review_status:
+    type: "string"
+    allowed: ["approved", "rejected", "pending"]
+    note: "only approved records can be published"
+  reviewer:
+    type: "string"
+    note: "reviewer name or dual-review pair"
+  notes:
+    type: "string"
+    note: "may be empty"
+  record_id:
+    type: "string"
+    required: false
+    note: "auto-generated when empty"
+  symbol:
+    type: "6-digit string"
+    required: false
+    note: "required for ipo_first_day"
+  limit_down_ratio:
+    type: "decimal ratio"
+    required: false
+    note: "defaults to limit_ratio; use for asymmetric rules"
+
+manifest_required_keys:
+  - dataset_name
+  - dataset_version
+  - schema_version
+  - generated_at
+  - as_of_date
+  - coverage_start
+  - coverage_end
+  - review_status
+  - reviewed_at
+  - reviewer
+  - sources
+
+sources_item_keys:
+  - file
+  - document_id
+  - document_date
+  - source_name
+  - reference
+  - retrieved_at
+  - grade
+  - sha256
+  - note
+
+source_grade_rule: "only grade A (official authoritative documents) may be used; B/C sources are auxiliary only"

@@ -932,14 +932,33 @@ def _cmd_stage8_rules_build(args):
     setup_logging(level=args.log_level)
     try:
         import uuid
+        import pandas as pd
         from .stage8_authoritative import build_rules_manifest
 
         as_of = resolve_as_of_date(cli_date=args.as_of_date)
         root = project_root()
         run_id = args.run_id or str(uuid.uuid4())
         uuid.UUID(run_id)
+        end = pd.Timestamp(as_of).normalize()
+        start = (
+            pd.Timestamp(args.start_date).normalize()
+            if args.start_date
+            else end
+            - pd.Timedelta(
+                days=int(
+                    load_metrics().raw["data_ranges"]["limit_event"][
+                        "lookback_natural_days"
+                    ]
+                )
+            )
+        )
+        config_path = root / args.config
+        rules_path = config_path if config_path.is_file() else None
         report, exit_code = build_rules_manifest(
-            rules_path=root / args.config,
+            rules_path=rules_path,
+            dataset_dir=(
+                None if rules_path is not None else root / args.dataset_dir
+            ),
             output_dir=root / args.output_dir,
             as_of_date=as_of,
             run_id=run_id,
@@ -948,6 +967,7 @@ def _cmd_stage8_rules_build(args):
             ),
             base_config=root / args.base_config if args.base_config else None,
             validate_only=args.validate_only,
+            coverage_start=start.date(),
         )
         print(json.dumps(report, ensure_ascii=False, indent=2, default=str))
         return exit_code
@@ -963,14 +983,33 @@ def _cmd_stage8_status_build(args):
     setup_logging(level=args.log_level)
     try:
         import uuid
+        import pandas as pd
         from .stage8_authoritative import build_status_manifest
 
         as_of = resolve_as_of_date(cli_date=args.as_of_date)
         root = project_root()
         run_id = args.run_id or str(uuid.uuid4())
         uuid.UUID(run_id)
+        end = pd.Timestamp(as_of).normalize()
+        start = (
+            pd.Timestamp(args.start_date).normalize()
+            if args.start_date
+            else end
+            - pd.Timedelta(
+                days=int(
+                    load_metrics().raw["data_ranges"]["limit_event"][
+                        "lookback_natural_days"
+                    ]
+                )
+            )
+        )
+        config_path = root / args.config
+        statuses_path = config_path if config_path.is_file() else None
         report, exit_code = build_status_manifest(
-            statuses_path=root / args.config,
+            statuses_path=statuses_path,
+            dataset_dir=(
+                None if statuses_path is not None else root / args.dataset_dir
+            ),
             output_dir=root / args.output_dir,
             as_of_date=as_of,
             run_id=run_id,
@@ -979,6 +1018,7 @@ def _cmd_stage8_status_build(args):
             ),
             base_config=root / args.base_config if args.base_config else None,
             validate_only=args.validate_only,
+            coverage_start=start.date(),
         )
         print(json.dumps(report, ensure_ascii=False, indent=2, default=str))
         return exit_code
@@ -993,8 +1033,12 @@ def _cmd_stage8_preflight(args):
     """Read-only Stage 8 preflight using the authoritative configuration."""
     setup_logging(level=args.log_level)
     try:
+        import tempfile
+        import uuid
         import pandas as pd
+        import yaml
         from .stage8_build import validate_stage8_inputs
+        from .stage8_manual import build_merged_payload, validate_combined_datasets
 
         as_of = resolve_as_of_date(cli_date=args.as_of_date)
         root = project_root()
@@ -1014,13 +1058,55 @@ def _cmd_stage8_preflight(args):
                 )
             )
         )
-        result = validate_stage8_inputs(
-            config_path=config_path,
-            source_database=source_database,
-            output_database=output_database,
-            start_date=start,
-            end_date=end,
-        )
+        if config_path.is_file():
+            result = validate_stage8_inputs(
+                config_path=config_path,
+                source_database=source_database,
+                output_database=output_database,
+                start_date=start,
+                end_date=end,
+            )
+        else:
+            run_id = str(uuid.uuid4())
+            combined = validate_combined_datasets(
+                rules_dir=root / args.rules_dataset_dir,
+                status_dir=root / args.status_dataset_dir,
+                as_of_date=as_of,
+                coverage_start=start.date(),
+                coverage_end=end.date(),
+                run_id=run_id,
+            )
+            if not combined["valid"]:
+                print(
+                    json.dumps(
+                        combined, ensure_ascii=False, indent=2, default=str
+                    )
+                )
+                return {
+                    "READY": 0, "BLOCKED": 2, "FAILED": 1
+                }[combined["status"]]
+            payload = build_merged_payload(
+                rules_result=combined["components"]["rules"],
+                status_result=combined["components"]["security_status_history"],
+                run_id=run_id,
+            )
+            with tempfile.TemporaryDirectory(
+                prefix="stage8_preflight_"
+            ) as temporary:
+                temp_config = Path(temporary) / "stage8.yml"
+                temp_config.write_text(
+                    yaml.safe_dump(
+                        payload, allow_unicode=True, sort_keys=False
+                    ),
+                    encoding="utf-8",
+                )
+                result = validate_stage8_inputs(
+                    config_path=temp_config,
+                    source_database=source_database,
+                    output_database=output_database,
+                    start_date=start,
+                    end_date=end,
+                )
         print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
         return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
     except Exception as exc:
@@ -1034,9 +1120,12 @@ def _cmd_stage8_rebuild(args):
     """Rebuild Stage 8 formal limit events with the authoritative dataset."""
     setup_logging(level=args.log_level)
     try:
+        import tempfile
         import uuid
         import pandas as pd
+        import yaml
         from .stage8_build import analyze_stage8
+        from .stage8_manual import build_merged_payload, validate_combined_datasets
 
         as_of = resolve_as_of_date(cli_date=args.as_of_date)
         root = project_root()
@@ -1071,6 +1160,62 @@ def _cmd_stage8_rebuild(args):
                 )
             )
         )
+        if not config_path.is_file():
+            combined = validate_combined_datasets(
+                rules_dir=root / args.rules_dataset_dir,
+                status_dir=root / args.status_dataset_dir,
+                as_of_date=as_of,
+                coverage_start=start.date(),
+                coverage_end=end.date(),
+                run_id=run_id,
+            )
+            if not combined["valid"]:
+                print(
+                    json.dumps(
+                        combined, ensure_ascii=False, indent=2, default=str
+                    )
+                )
+                return {
+                    "READY": 0, "BLOCKED": 2, "FAILED": 1
+                }[combined["status"]]
+            payload = build_merged_payload(
+                rules_result=combined["components"]["rules"],
+                status_result=combined["components"]["security_status_history"],
+                run_id=run_id,
+            )
+            if args.validate_only:
+                from .stage8_build import validate_stage8_inputs
+
+                with tempfile.TemporaryDirectory(
+                    prefix="stage8_validate_"
+                ) as temporary:
+                    temp_config = Path(temporary) / "stage8.yml"
+                    temp_config.write_text(
+                        yaml.safe_dump(
+                            payload, allow_unicode=True, sort_keys=False
+                        ),
+                        encoding="utf-8",
+                    )
+                    result = validate_stage8_inputs(
+                        config_path=temp_config,
+                        source_database=source_database,
+                        output_database=output_database,
+                        start_date=start,
+                        end_date=end,
+                    )
+                print(
+                    json.dumps(result, ensure_ascii=False, indent=2, default=str)
+                )
+                return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
+            else:
+                reports_dir.mkdir(parents=True, exist_ok=True)
+                config_path = reports_dir / "stage8_config.yml"
+                config_path.write_text(
+                    yaml.safe_dump(
+                        payload, allow_unicode=True, sort_keys=False
+                    ),
+                    encoding="utf-8",
+                )
         if args.validate_only:
             from .stage8_build import validate_stage8_inputs
 
@@ -1643,7 +1788,13 @@ def main():
         help="Validate and publish the authoritative Stage 8 rule history",
     )
     rbuild.add_argument("--as-of-date", required=True)
+    rbuild.add_argument("--start-date", default=None)
     rbuild.add_argument("--config", default="config/stage8_authoritative_rules.yml")
+    rbuild.add_argument(
+        "--dataset-dir",
+        default="data/manual/stage8/limit_rules",
+        help="Manual dataset directory used when --config does not exist",
+    )
     rbuild.add_argument("--output-dir", default="database/stage15_s14_fix")
     rbuild.add_argument("--output-config", default=None)
     rbuild.add_argument("--base-config", default=None)
@@ -1656,7 +1807,13 @@ def main():
         help="Validate and publish the authoritative Stage 8 status history",
     )
     sbuild.add_argument("--as-of-date", required=True)
+    sbuild.add_argument("--start-date", default=None)
     sbuild.add_argument("--config", default="config/stage8_authoritative_status.yml")
+    sbuild.add_argument(
+        "--dataset-dir",
+        default="data/manual/stage8/security_status",
+        help="Manual dataset directory used when --config does not exist",
+    )
     sbuild.add_argument("--output-dir", default="database/stage15_s14_fix")
     sbuild.add_argument("--output-config", default=None)
     sbuild.add_argument("--base-config", default=None)
@@ -1679,6 +1836,14 @@ def main():
         "--output-database",
         default="database/stage15_s14_fix/stage8_authoritative.duckdb",
     )
+    preflight.add_argument(
+        "--rules-dataset-dir",
+        default="data/manual/stage8/limit_rules",
+    )
+    preflight.add_argument(
+        "--status-dataset-dir",
+        default="data/manual/stage8/security_status",
+    )
     preflight.add_argument("--log-level", default="INFO")
     preflight.add_argument("--debug", action="store_true", default=False)
     rebuild = sub.add_parser(
@@ -1695,6 +1860,14 @@ def main():
     rebuild.add_argument("--output-database", default=None)
     rebuild.add_argument("--reports-dir", default=None)
     rebuild.add_argument("--run-id", default=None)
+    rebuild.add_argument(
+        "--rules-dataset-dir",
+        default="data/manual/stage8/limit_rules",
+    )
+    rebuild.add_argument(
+        "--status-dataset-dir",
+        default="data/manual/stage8/security_status",
+    )
     mode_rebuild = rebuild.add_mutually_exclusive_group()
     mode_rebuild.add_argument("--dry-run", action="store_true", default=False)
     mode_rebuild.add_argument("--validate-only", action="store_true", default=False)

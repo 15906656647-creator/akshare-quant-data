@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import shutil
 import tempfile
 import uuid
 from datetime import date, datetime, timezone
@@ -20,6 +22,11 @@ import duckdb
 import pandas as pd
 import yaml
 
+from .stage8_manual import (
+    build_component_payload,
+    provenance_report,
+    validate_manual_dataset,
+)
 from .stage8_build import load_stage8_config
 
 
@@ -57,6 +64,36 @@ def _write_json(path: Path, payload: Any) -> None:
     )
 
 
+def _atomic_publish(payloads: list[tuple[Path, str]]) -> None:
+    """Write all artifacts through a staging directory with rollback."""
+    staging = Path(tempfile.mkdtemp(prefix="stage8_publish_"))
+    try:
+        staged: list[tuple[Path, Path]] = []
+        for index, (target, text) in enumerate(payloads):
+            encoding = "utf-8-sig" if target.suffix == ".csv" else "utf-8"
+            staged_path = staging / f"{index}_{target.name}"
+            staged_path.write_text(text, encoding=encoding, newline="\n")
+            staged.append((target, staged_path))
+        for target, staged_path in staged:
+            if staged_path.suffix == ".json":
+                json.loads(staged_path.read_text(encoding="utf-8"))
+        replaced: list[Path] = []
+        try:
+            for target, staged_path in staged:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                os.replace(staged_path, target)
+                replaced.append(target)
+        except Exception:
+            for path in reversed(replaced):
+                try:
+                    path.unlink()
+                except OSError:
+                    pass
+            raise
+    finally:
+        shutil.rmtree(staging, ignore_errors=True)
+
+
 def _load_component(path: Path) -> dict[str, Any]:
     payload = yaml.safe_load(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
@@ -64,11 +101,66 @@ def _load_component(path: Path) -> dict[str, Any]:
     return payload
 
 
+def _merged_manifest(
+    *,
+    base: dict[str, Any] | None,
+    current: dict[str, Any] | None,
+    run_id: str,
+) -> dict[str, Any] | None:
+    base_manifest = (base or {}).get("dataset_manifest")
+    current_manifest = (current or {}).get("dataset_manifest")
+    if current_manifest is None:
+        return base_manifest
+    if base_manifest is None:
+        return current_manifest
+    return {
+        "dataset_version": (
+            f"{base_manifest['dataset_version']}+"
+            f"{current_manifest['dataset_version']}"
+        ),
+        "generated_at": max(
+            base_manifest["generated_at"], current_manifest["generated_at"]
+        ),
+        "as_of_date": current_manifest["as_of_date"],
+        "source_files": sorted(
+            set(base_manifest["source_files"]).union(
+                current_manifest["source_files"]
+            )
+        ),
+        "source_hashes": {
+            **base_manifest["source_hashes"],
+            **current_manifest["source_hashes"],
+        },
+        "record_counts": {
+            **base_manifest["record_counts"],
+            **current_manifest["record_counts"],
+        },
+        "date_coverage": {
+            "start": min(
+                base_manifest["date_coverage"]["start"],
+                current_manifest["date_coverage"]["start"],
+            ),
+            "end": max(
+                base_manifest["date_coverage"]["end"],
+                current_manifest["date_coverage"]["end"],
+            ),
+        },
+        "review_status": (
+            "approved"
+            if base_manifest["review_status"] == "approved"
+            and current_manifest["review_status"] == "approved"
+            else "rejected"
+        ),
+        "run_id": run_id,
+    }
+
+
 def _merged_config(
     *,
     base_path: Path | None,
     rules_payload: dict[str, Any] | None,
     statuses_payload: dict[str, Any] | None,
+    run_id: str,
 ) -> dict[str, Any]:
     if base_path is not None and base_path.is_file():
         config = yaml.safe_load(base_path.read_text(encoding="utf-8"))
@@ -80,6 +172,11 @@ def _merged_config(
         config["security_status_records"] = list(
             statuses_payload.get("security_status_records", [])
         )
+    config["dataset_manifest"] = _merged_manifest(
+        base=config,
+        current=statuses_payload if statuses_payload is not None else rules_payload,
+        run_id=run_id,
+    )
     return config
 
 
@@ -97,16 +194,47 @@ def _validate_config(config: dict[str, Any], output_dir: Path) -> tuple[Any, Any
 
 def build_rules_manifest(
     *,
-    rules_path: Path,
+    rules_path: Path | None = None,
+    dataset_dir: Path | None = None,
     output_dir: Path,
     as_of_date: date,
     run_id: str | None = None,
     output_config: Path | None = None,
     base_config: Path | None = None,
     validate_only: bool = False,
+    coverage_start: date | None = None,
 ) -> tuple[dict[str, Any], int]:
     """Validate and publish the authoritative price-limit rule dataset."""
-    payload = _load_component(rules_path)
+    effective_run_id = run_id or str(uuid.uuid4())
+    dataset_result = None
+    if dataset_dir is not None:
+        dataset_result = validate_manual_dataset(
+            kind="rules",
+            dataset_dir=dataset_dir,
+            as_of_date=as_of_date,
+            coverage_start=coverage_start,
+            coverage_end=as_of_date,
+            run_id=effective_run_id,
+        )
+        if not dataset_result["valid"]:
+            return {
+                "stage": 8,
+                "command": "stage8-rules-build",
+                "status": dataset_result["status"],
+                "run_id": effective_run_id,
+                "as_of_date": as_of_date.isoformat(),
+                "dataset_validation": dataset_result,
+                "blocking_reasons": ["dataset_validation_failed"],
+                "errors": dataset_result["errors"],
+                "outputs_written": False,
+            }, 2 if dataset_result["status"] == "BLOCKED" else 1
+        payload = build_component_payload(
+            kind="rules", validated=dataset_result
+        )
+    else:
+        if rules_path is None:
+            raise ValueError("rules_path or dataset_dir is required")
+        payload = _load_component(rules_path)
     config = _merged_config(
         base_path=(
             base_config
@@ -115,6 +243,7 @@ def build_rules_manifest(
         ),
         rules_payload=payload,
         statuses_payload=None,
+        run_id=effective_run_id,
     )
     rules, _ = _validate_config(config, output_dir)
     verified = [item for item in rules if item.evidence_status == "verified"]
@@ -123,7 +252,7 @@ def build_rules_manifest(
             "stage": 8,
             "command": "stage8-rules-build",
             "status": "BLOCKED",
-            "run_id": run_id or str(uuid.uuid4()),
+            "run_id": effective_run_id,
             "rule_count": len(rules),
             "verified_rule_count": 0,
             "blocking_reasons": ["no_authoritative_limit_rules"],
@@ -134,10 +263,11 @@ def build_rules_manifest(
             "stage": 8,
             "command": "stage8-rules-build",
             "status": "READY",
-            "run_id": run_id or str(uuid.uuid4()),
+            "run_id": effective_run_id,
             "as_of_date": as_of_date.isoformat(),
             "rule_count": len(rules),
             "verified_rule_count": len(verified),
+            "dataset_validation": dataset_result,
             "outputs_written": False,
         }, 0
     records = [
@@ -151,6 +281,13 @@ def build_rules_manifest(
             "effective_end": item.effective_end.isoformat()
             if item.effective_end is not None
             else "",
+            "record_id": item.record_id or "",
+            "raw_file": item.raw_file or "",
+            "source_document_id": item.source_document_id or "",
+            "reviewer": item.reviewer or "",
+            "notes": item.notes or "",
+            "retrieved_at": item.retrieved_at or "",
+            "review_status": item.review_status or "",
             "limit_up_ratio": str(item.limit_up_ratio),
             "limit_down_ratio": str(item.limit_down_ratio),
             "no_limit_flag": item.no_limit_flag,
@@ -173,49 +310,129 @@ def build_rules_manifest(
         for item in rules
     ]
     frame = pd.DataFrame(records)
-    output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "rules_manifest.csv"
-    frame.to_csv(csv_path, index=False, encoding="utf-8-sig")
-    if output_config is not None:
-        output_config.parent.mkdir(parents=True, exist_ok=True)
-        output_config.write_text(
-            yaml.safe_dump(config, allow_unicode=True, sort_keys=False),
-            encoding="utf-8",
-        )
     report = {
         "stage": 8,
         "command": "stage8-rules-build",
         "status": "PASS",
-        "run_id": run_id or str(uuid.uuid4()),
+        "run_id": effective_run_id,
         "as_of_date": as_of_date.isoformat(),
         "rule_count": len(rules),
         "verified_rule_count": len(verified),
         "exchanges": sorted({item.exchange for item in rules}),
         "boards": sorted({item.board for item in rules}),
         "source_versions": sorted({item.rule_version for item in rules}),
+        "record_ids": sorted(
+            {
+                str(item.record_id)
+                for item in rules
+                if item.record_id is not None and str(item.record_id).strip()
+            }
+        ),
+        "dataset_manifest": config.get("dataset_manifest"),
+        "dataset_validation": dataset_result,
+        "provenance": (
+            provenance_report(dataset_result)
+            if dataset_result is not None
+            else None
+        ),
         "outputs": {
             "rules_manifest_csv": str(csv_path),
             "rules_manifest_json": str(output_dir / "rules_manifest.json"),
             "output_config": str(output_config) if output_config else None,
-            "csv_sha256": _sha256(csv_path),
+            "dataset_validation_json": (
+                str(output_dir / "rules_dataset_validation.json")
+                if dataset_result is not None
+                else None
+            ),
+            "dataset_provenance_json": (
+                str(output_dir / "rules_dataset_provenance.json")
+                if dataset_result is not None
+                else None
+            ),
         },
     }
-    _write_json(output_dir / "rules_manifest.json", report)
+    payloads: list[tuple[Path, str]] = [
+        (csv_path, frame.to_csv(index=False)),
+        (output_dir / "rules_manifest.json",
+         json.dumps(report, ensure_ascii=False, indent=2, default=str) + "\n"),
+    ]
+    if output_config is not None:
+        payloads.append(
+            (
+                output_config,
+                yaml.safe_dump(config, allow_unicode=True, sort_keys=False),
+            )
+        )
+    if dataset_result is not None:
+        payloads.append(
+            (
+                output_dir / "rules_dataset_validation.json",
+                json.dumps(
+                    dataset_result, ensure_ascii=False, indent=2, default=str
+                )
+                + "\n",
+            )
+        )
+        payloads.append(
+            (
+                output_dir / "rules_dataset_provenance.json",
+                json.dumps(
+                    provenance_report(dataset_result),
+                    ensure_ascii=False,
+                    indent=2,
+                )
+                + "\n",
+            )
+        )
+    _atomic_publish(payloads)
+    report["outputs"]["csv_sha256"] = _sha256(csv_path)
     return report, 0
 
 
 def build_status_manifest(
     *,
-    statuses_path: Path,
+    statuses_path: Path | None = None,
+    dataset_dir: Path | None = None,
     output_dir: Path,
     as_of_date: date,
     run_id: str | None = None,
     output_config: Path | None = None,
     base_config: Path | None = None,
     validate_only: bool = False,
+    coverage_start: date | None = None,
 ) -> tuple[dict[str, Any], int]:
     """Validate and publish the authoritative security-status history dataset."""
-    payload = _load_component(statuses_path)
+    effective_run_id = run_id or str(uuid.uuid4())
+    dataset_result = None
+    if dataset_dir is not None:
+        dataset_result = validate_manual_dataset(
+            kind="status",
+            dataset_dir=dataset_dir,
+            as_of_date=as_of_date,
+            coverage_start=coverage_start,
+            coverage_end=as_of_date,
+            run_id=effective_run_id,
+        )
+        if not dataset_result["valid"]:
+            return {
+                "stage": 8,
+                "command": "stage8-status-build",
+                "status": dataset_result["status"],
+                "run_id": effective_run_id,
+                "as_of_date": as_of_date.isoformat(),
+                "dataset_validation": dataset_result,
+                "blocking_reasons": ["dataset_validation_failed"],
+                "errors": dataset_result["errors"],
+                "outputs_written": False,
+            }, 2 if dataset_result["status"] == "BLOCKED" else 1
+        payload = build_component_payload(
+            kind="status", validated=dataset_result
+        )
+    else:
+        if statuses_path is None:
+            raise ValueError("statuses_path or dataset_dir is required")
+        payload = _load_component(statuses_path)
     config = _merged_config(
         base_path=(
             base_config
@@ -224,6 +441,7 @@ def build_status_manifest(
         ),
         rules_payload=None,
         statuses_payload=payload,
+        run_id=effective_run_id,
     )
     _, statuses = _validate_config(config, output_dir)
     verified = [item for item in statuses if item.evidence_status == "verified"]
@@ -232,7 +450,7 @@ def build_status_manifest(
             "stage": 8,
             "command": "stage8-status-build",
             "status": "BLOCKED",
-            "run_id": run_id or str(uuid.uuid4()),
+            "run_id": effective_run_id,
             "security_status_count": len(statuses),
             "verified_security_status_count": 0,
             "blocking_reasons": ["no_authoritative_security_status_history"],
@@ -243,11 +461,12 @@ def build_status_manifest(
             "stage": 8,
             "command": "stage8-status-build",
             "status": "READY",
-            "run_id": run_id or str(uuid.uuid4()),
+            "run_id": effective_run_id,
             "as_of_date": as_of_date.isoformat(),
             "security_status_count": len(statuses),
             "verified_security_status_count": len(verified),
             "covered_symbol_count": len({item.symbol for item in statuses}),
+            "dataset_validation": dataset_result,
             "outputs_written": False,
         }, 0
     covered_symbols = sorted({item.symbol for item in statuses})
@@ -269,6 +488,18 @@ def build_status_manifest(
             "effective_end": item.effective_end.isoformat()
             if item.effective_end is not None
             else "",
+            "record_id": item.record_id or "",
+            "status_type": item.status_type or "",
+            "status_value": item.status_value or "",
+            "announcement_date": item.announcement_date.isoformat()
+            if item.announcement_date is not None
+            else "",
+            "raw_file": item.raw_file or "",
+            "source_document_id": item.source_document_id or "",
+            "reviewer": item.reviewer or "",
+            "notes": item.notes or "",
+            "retrieved_at": item.retrieved_at or "",
+            "review_status": item.review_status or "",
             "no_limit_reason": item.no_limit_reason or "",
             "source_reference": item.source_reference,
             "source_name": item.source_name or "",
@@ -283,20 +514,12 @@ def build_status_manifest(
         for item in statuses
     ]
     frame = pd.DataFrame(records)
-    output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "status_manifest.csv"
-    frame.to_csv(csv_path, index=False, encoding="utf-8-sig")
-    if output_config is not None:
-        output_config.parent.mkdir(parents=True, exist_ok=True)
-        output_config.write_text(
-            yaml.safe_dump(config, allow_unicode=True, sort_keys=False),
-            encoding="utf-8",
-        )
     report = {
         "stage": 8,
         "command": "stage8-status-build",
         "status": "PASS",
-        "run_id": run_id or str(uuid.uuid4()),
+        "run_id": effective_run_id,
         "as_of_date": as_of_date.isoformat(),
         "security_status_count": len(statuses),
         "verified_security_status_count": len(verified),
@@ -308,14 +531,71 @@ def build_status_manifest(
             if records
             else 0
         ),
+        "record_ids": sorted(
+            {
+                str(item.record_id)
+                for item in statuses
+                if item.record_id is not None and str(item.record_id).strip()
+            }
+        ),
+        "dataset_manifest": config.get("dataset_manifest"),
+        "dataset_validation": dataset_result,
+        "provenance": (
+            provenance_report(dataset_result)
+            if dataset_result is not None
+            else None
+        ),
         "outputs": {
             "status_manifest_csv": str(csv_path),
             "status_manifest_json": str(output_dir / "status_manifest.json"),
             "output_config": str(output_config) if output_config else None,
-            "csv_sha256": _sha256(csv_path),
+            "dataset_validation_json": (
+                str(output_dir / "status_dataset_validation.json")
+                if dataset_result is not None
+                else None
+            ),
+            "dataset_provenance_json": (
+                str(output_dir / "status_dataset_provenance.json")
+                if dataset_result is not None
+                else None
+            ),
         },
     }
-    _write_json(output_dir / "status_manifest.json", report)
+    payloads: list[tuple[Path, str]] = [
+        (csv_path, frame.to_csv(index=False)),
+        (output_dir / "status_manifest.json",
+         json.dumps(report, ensure_ascii=False, indent=2, default=str) + "\n"),
+    ]
+    if output_config is not None:
+        payloads.append(
+            (
+                output_config,
+                yaml.safe_dump(config, allow_unicode=True, sort_keys=False),
+            )
+        )
+    if dataset_result is not None:
+        payloads.append(
+            (
+                output_dir / "status_dataset_validation.json",
+                json.dumps(
+                    dataset_result, ensure_ascii=False, indent=2, default=str
+                )
+                + "\n",
+            )
+        )
+        payloads.append(
+            (
+                output_dir / "status_dataset_provenance.json",
+                json.dumps(
+                    provenance_report(dataset_result),
+                    ensure_ascii=False,
+                    indent=2,
+                )
+                + "\n",
+            )
+        )
+    _atomic_publish(payloads)
+    report["outputs"]["csv_sha256"] = _sha256(csv_path)
     return report, 0
 
 
@@ -325,6 +605,7 @@ def build_authoritative_config(
     statuses_path: Path,
     output_config: Path,
     base_config: Path | None = None,
+    run_id: str | None = None,
 ) -> tuple[dict[str, Any], int]:
     """Merge rules and status datasets into one runnable Stage 8 config."""
     rules_payload = _load_component(rules_path)
@@ -333,6 +614,7 @@ def build_authoritative_config(
         base_path=base_config,
         rules_payload=rules_payload,
         statuses_payload=statuses_payload,
+        run_id=run_id or str(uuid.uuid4()),
     )
     output_config.parent.mkdir(parents=True, exist_ok=True)
     output_config.write_text(

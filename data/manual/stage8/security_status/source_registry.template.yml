@@ -1,0 +1,12 @@
+# 来源登记模板（请复制到 dataset.yml 的 sources 列表中使用）
+# 正式公告/官方检索结果文件必须放入 sources/ 目录。
+sources:
+  - file: "sources/<官方公告或检索结果文件名>"
+    document_id: "<公告编号>"
+    document_date: "<YYYY-MM-DD>"
+    source_name: "<官方来源名称>"
+    reference: "<官方URL或仓库路径>"
+    retrieved_at: "<YYYY-MM-DDTHH:MM:SS+08:00>"
+    grade: "A"
+    sha256: "<64位小写十六进制>"
+    note: "<补充说明>"

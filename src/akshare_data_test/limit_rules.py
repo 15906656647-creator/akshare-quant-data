@@ -39,6 +39,13 @@ class LimitRule:
     source_published_at: date | None = None
     source_hash: str | None = None
     data_version: str | None = None
+    record_id: str | None = None
+    raw_file: str | None = None
+    source_document_id: str | None = None
+    reviewer: str | None = None
+    notes: str | None = None
+    retrieved_at: str | None = None
+    review_status: str | None = None
 
     def __post_init__(self) -> None:
         if type(self.is_st) is not bool or type(self.no_limit_flag) is not bool:
@@ -89,6 +96,19 @@ class LimitRule:
             raise ValueError("source_hash must be a 64-character lowercase SHA-256")
         if self.data_version is not None and not str(self.data_version).strip():
             raise ValueError("data_version must be non-empty when provided")
+        for name, value in (
+            ("record_id", self.record_id),
+            ("raw_file", self.raw_file),
+            ("source_document_id", self.source_document_id),
+            ("reviewer", self.reviewer),
+            ("retrieved_at", self.retrieved_at),
+        ):
+            if value is not None and not str(value).strip():
+                raise ValueError(f"{name} must be non-empty when provided")
+        if self.review_status is not None and self.review_status not in {
+            "approved", "rejected", "pending"
+        }:
+            raise ValueError("review_status must be approved/rejected/pending")
 
     def applies(self, trade_date: date) -> bool:
         return (
@@ -117,6 +137,16 @@ class SecurityStatus:
     source_published_at: date | None = None
     source_hash: str | None = None
     data_version: str | None = None
+    record_id: str | None = None
+    status_type: str | None = None
+    status_value: str | None = None
+    announcement_date: date | None = None
+    raw_file: str | None = None
+    source_document_id: str | None = None
+    reviewer: str | None = None
+    notes: str | None = None
+    retrieved_at: str | None = None
+    review_status: str | None = None
 
     def __post_init__(self) -> None:
         if len(self.symbol) != 6 or not self.symbol.isdigit():
@@ -143,6 +173,33 @@ class SecurityStatus:
             raise ValueError("source_hash must be a 64-character lowercase SHA-256")
         if self.data_version is not None and not str(self.data_version).strip():
             raise ValueError("data_version must be non-empty when provided")
+        if self.status_type is not None and self.status_type not in {
+            "ST", "LISTING"
+        }:
+            raise ValueError("status_type must be ST or LISTING")
+        if self.status_value is not None:
+            allowed_status_values = {
+                "ST": {"NON_ST", "ST", "*ST", "OTHER"},
+                "LISTING": {"LISTED", "SUSPENDED", "DELISTED"},
+            }
+            if (
+                self.status_type is None
+                or self.status_value not in allowed_status_values[self.status_type]
+            ):
+                raise ValueError("status_value is invalid for status_type")
+        for name, value in (
+            ("record_id", self.record_id),
+            ("raw_file", self.raw_file),
+            ("source_document_id", self.source_document_id),
+            ("reviewer", self.reviewer),
+            ("retrieved_at", self.retrieved_at),
+        ):
+            if value is not None and not str(value).strip():
+                raise ValueError(f"{name} must be non-empty when provided")
+        if self.review_status is not None and self.review_status not in {
+            "approved", "rejected", "pending"
+        }:
+            raise ValueError("review_status must be approved/rejected/pending")
 
     def applies(self, trade_date: date) -> bool:
         return (
@@ -190,11 +247,13 @@ def validate_rule_intervals(rules: Iterable[LimitRule]) -> None:
 
 
 def validate_status_intervals(statuses: Iterable[SecurityStatus]) -> None:
-    """Reject overlapping intervals for one symbol."""
-    grouped: dict[str, list[SecurityStatus]] = {}
+    """Reject overlapping intervals for one symbol and status type."""
+    grouped: dict[tuple[str, str], list[SecurityStatus]] = {}
     for status in statuses:
-        grouped.setdefault(status.symbol, []).append(status)
-    for symbol, group in grouped.items():
+        grouped.setdefault(
+            (status.symbol, status.status_type or ""), []
+        ).append(status)
+    for (symbol, status_type), group in grouped.items():
         ordered = sorted(group, key=lambda item: item.effective_start)
         for previous, current in zip(ordered, ordered[1:]):
             if _overlaps(
@@ -204,24 +263,133 @@ def validate_status_intervals(statuses: Iterable[SecurityStatus]) -> None:
                 current.effective_end,
             ):
                 raise ValueError(
-                    f"Overlapping security-status intervals for {symbol}"
+                    f"Overlapping security-status intervals for {symbol} "
+                    f"(status_type={status_type or 'combined'})"
                 )
+
+
+def _unique_text(*values: str | None) -> str:
+    seen: list[str] = []
+    for value in values:
+        text = str(value or "").strip()
+        if text and text not in seen:
+            seen.append(text)
+    return " ; ".join(seen)
+
+
+def _merge_security_statuses(
+    st: SecurityStatus,
+    listing: SecurityStatus,
+    symbol: str,
+    trade_date: date,
+) -> SecurityStatus:
+    """Merge one ST row and one LISTING row into the combined runtime view."""
+    if st.exchange != listing.exchange:
+        raise SecurityStatusResolutionError(
+            f"ST/LISTING exchanges differ for {symbol} on {trade_date}"
+        )
+    board_values = [
+        value for value in (st.board, listing.board) if value is not None
+    ]
+    if not board_values or any(value != board_values[0] for value in board_values):
+        raise SecurityStatusResolutionError(
+            f"ST/LISTING boards differ for {symbol} on {trade_date}"
+        )
+    is_st = st.is_st if st.is_st is not None else listing.is_st
+    listing_status = (
+        listing.listing_status
+        if listing.listing_status != "unresolved"
+        else st.listing_status
+    )
+    versions = _unique_text(st.status_version, listing.status_version)
+    if st.effective_end is None or listing.effective_end is None:
+        effective_end: date | None = None
+    else:
+        effective_end = min(st.effective_end, listing.effective_end)
+    return SecurityStatus(
+        symbol=symbol,
+        effective_start=max(st.effective_start, listing.effective_start),
+        effective_end=effective_end,
+        exchange=st.exchange,
+        board=board_values[0],
+        is_st=is_st,
+        listing_status=listing_status,
+        listing_date=listing.listing_date or st.listing_date,
+        delisting_date=listing.delisting_date or st.delisting_date,
+        no_limit_reason=listing.no_limit_reason or st.no_limit_reason,
+        source_reference=_unique_text(st.source_reference, listing.source_reference),
+        status_version=versions,
+        evidence_status=(
+            "verified"
+            if st.evidence_status == "verified"
+            and listing.evidence_status == "verified"
+            else "unverified"
+        ),
+        special_treatment_type=(
+            st.special_treatment_type or listing.special_treatment_type
+        ),
+        source_name=_unique_text(st.source_name, listing.source_name),
+        source_published_at=max(
+            value
+            for value in (st.source_published_at, listing.source_published_at)
+            if value is not None
+        )
+        if st.source_published_at is not None or listing.source_published_at is not None
+        else None,
+        source_hash=_unique_text(st.source_hash, listing.source_hash),
+        data_version=st.data_version or listing.data_version,
+        record_id=_unique_text(st.record_id, listing.record_id).replace(" ; ", "|"),
+        status_type=None,
+        status_value=None,
+        announcement_date=max(
+            value
+            for value in (st.announcement_date, listing.announcement_date)
+            if value is not None
+        )
+        if st.announcement_date is not None or listing.announcement_date is not None
+        else None,
+        raw_file=_unique_text(st.raw_file, listing.raw_file),
+        source_document_id=_unique_text(
+            st.source_document_id, listing.source_document_id
+        ),
+        reviewer=_unique_text(st.reviewer, listing.reviewer),
+        notes=_unique_text(st.notes, listing.notes),
+        retrieved_at=_unique_text(st.retrieved_at, listing.retrieved_at),
+        review_status=(
+            "approved"
+            if st.review_status == "approved" and listing.review_status == "approved"
+            else st.review_status or listing.review_status
+        ),
+    )
 
 
 def resolve_security_status(
     statuses: Iterable[SecurityStatus], symbol: str, trade_date: date
 ) -> SecurityStatus:
+    """Resolve the unique ST and listing status pair for one symbol/date."""
     matches = [
         status
         for status in statuses
         if status.symbol == symbol and status.applies(trade_date)
     ]
-    if len(matches) != 1:
+    if not matches:
         raise SecurityStatusResolutionError(
             f"Expected one security status for {symbol} on {trade_date}, "
-            f"found {len(matches)}"
+            "found 0"
         )
-    return matches[0]
+    st_matches = [status for status in matches if status.status_type in (None, "ST")]
+    listing_matches = [
+        status for status in matches if status.status_type in (None, "LISTING")
+    ]
+    if len(st_matches) != 1 or len(listing_matches) != 1:
+        raise SecurityStatusResolutionError(
+            f"Expected one security status for {symbol} on {trade_date}, "
+            f"found st={len(st_matches)} listing={len(listing_matches)}"
+        )
+    st, listing = st_matches[0], listing_matches[0]
+    if st is listing:
+        return st
+    return _merge_security_statuses(st, listing, symbol, trade_date)
 
 
 def resolve_limit_rule(

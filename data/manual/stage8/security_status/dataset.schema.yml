@@ -1,0 +1,114 @@
+# Stage 8 authoritative security-status-history dataset contract.
+# The real dataset is dataset.yml + security_status_history.csv.
+contract: "authoritative_security_status_history"
+schema_version: "1.0.0"
+record_file: "security_status_history.csv"
+manifest_file: "dataset.yml"
+interval_convention: "inclusive [effective_from, effective_to]; empty effective_to means still in effect"
+
+required_columns:
+  - symbol
+  - exchange
+  - board
+  - status_type
+  - status_value
+  - effective_from
+  - effective_to
+  - announcement_date
+  - source_name
+  - source_document_id
+  - source_reference
+  - retrieved_at
+  - raw_file
+  - source_sha256
+  - review_status
+  - reviewer
+  - notes
+
+optional_columns:
+  - record_id
+  - listing_date
+  - delisting_date
+  - status_version
+
+field_specs:
+  symbol:
+    type: "6-digit string"
+  exchange:
+    type: "string"
+    allowed: ["SH", "SZ", "BJ"]
+  board:
+    type: "string"
+    allowed: ["main", "growth", "star", "bse"]
+  status_type:
+    type: "string"
+    allowed: ["ST", "LISTING"]
+  status_value:
+    type: "string"
+    note: "ST: NON_ST/ST/*ST/OTHER; LISTING: LISTED/SUSPENDED/DELISTED"
+  effective_from:
+    type: "ISO date"
+  effective_to:
+    type: "ISO date or empty"
+  announcement_date:
+    type: "ISO date"
+    note: "must not be later than the analysis as_of_date"
+  source_name:
+    type: "string"
+  source_document_id:
+    type: "string"
+  source_reference:
+    type: "string"
+  retrieved_at:
+    type: "ISO datetime"
+  raw_file:
+    type: "relative path"
+    note: "must start with sources/ and stay inside the dataset directory"
+  source_sha256:
+    type: "SHA-256 hex"
+  review_status:
+    type: "string"
+    allowed: ["approved", "rejected", "pending"]
+  reviewer:
+    type: "string"
+  notes:
+    type: "string"
+    note: "may be empty"
+  record_id:
+    type: "string"
+    required: false
+  listing_date:
+    type: "ISO date"
+    required: false
+  delisting_date:
+    type: "ISO date"
+    required: false
+  status_version:
+    type: "string"
+    required: false
+
+manifest_required_keys:
+  - dataset_name
+  - dataset_version
+  - schema_version
+  - generated_at
+  - as_of_date
+  - coverage_start
+  - coverage_end
+  - review_status
+  - reviewed_at
+  - reviewer
+  - sources
+
+sources_item_keys:
+  - file
+  - document_id
+  - document_date
+  - source_name
+  - reference
+  - retrieved_at
+  - grade
+  - sha256
+  - note
+
+source_grade_rule: "only grade A official documents/announcements may be used; current snapshots and former-name lists are B/C and cannot build history"

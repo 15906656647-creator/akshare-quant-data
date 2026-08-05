@@ -1,5 +1,13 @@
 # Stage 8 权威数据源审计与构建说明
 
+> **人工导入能力（2026-08-05）**：仓库已实现可审计的人工权威数据导入路径。
+> 当用户人工收集并双人复核正式文件后，可放入 `data/manual/stage8/limit_rules`
+> 与 `data/manual/stage8/security_status`，由 `stage8-rules-build`、
+> `stage8-status-build`、`stage8-preflight` 与 `stage8-rebuild` 完成格式、
+> 字段、来源、哈希、区间、冲突、覆盖校验后原子发布。契约、模板、虚构示例
+> 与操作命令见 [stage8_manual_import_report.md](stage8_manual_import_report.md)
+> 和 `data/manual/stage8/README.md`。当前仍无真实 A 级数据。
+>
 > **修订（2026-08-05）**：本文档最初将深交所简称/全称变更、官方列表与巨潮检索评为
 > A 级。经 `stage8-source-probe` 探测修复复核，A 级判定标准收紧，当前分级改为：
 > 简称/全称变更与官方当前列表为 B 级（仅辅助），巨潮空检索结果为 C 级

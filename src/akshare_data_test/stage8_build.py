@@ -67,12 +67,97 @@ def _strict_int(value: object, field: str) -> int:
     return value
 
 
+def _optional_text(value: object, field: str) -> str | None:
+    """Return a stripped string or None; empty strings stay empty for notes."""
+    if value is None:
+        return None
+    if not isinstance(value, str):
+        raise ValueError(f"{field} must be a string")
+    text = value.strip()
+    return text if text else value
+
+
 def _reject_unknown_fields(
     item: dict[str, Any], allowed: set[str], record_type: str
 ) -> None:
     unknown = sorted(set(item).difference(allowed))
     if unknown:
         raise ValueError(f"Unknown {record_type} fields: {unknown}")
+
+
+def _validate_dataset_manifest(value: object) -> None:
+    """Validate the auditable dataset provenance block when present."""
+    if value is None:
+        return
+    if not isinstance(value, dict):
+        raise ValueError("dataset_manifest must be a mapping")
+    required = {
+        "dataset_version", "generated_at", "as_of_date", "source_files",
+        "source_hashes", "record_counts", "date_coverage", "review_status",
+        "run_id",
+    }
+    missing = sorted(required.difference(value))
+    if missing:
+        raise ValueError(
+            f"dataset_manifest is missing required keys: {missing}"
+        )
+    for key in ("dataset_version", "generated_at", "as_of_date",
+                "review_status", "run_id"):
+        item = value[key]
+        if not isinstance(item, str) or not item.strip():
+            raise ValueError(
+                f"dataset_manifest.{key} must be a non-empty string"
+            )
+    if value["review_status"] not in {"approved", "rejected", "pending"}:
+        raise ValueError(
+            "dataset_manifest.review_status must be approved/rejected/pending"
+        )
+    source_files = value["source_files"]
+    if (
+        not isinstance(source_files, list)
+        or any(not isinstance(item, str) or not item for item in source_files)
+    ):
+        raise ValueError("dataset_manifest.source_files must be a string list")
+    source_hashes = value["source_hashes"]
+    if not isinstance(source_hashes, dict):
+        raise ValueError("dataset_manifest.source_hashes must be a mapping")
+    for name, digest in source_hashes.items():
+        if (
+            not isinstance(digest, str)
+            or len(digest) != 64
+            or any(char not in "0123456789abcdef" for char in digest)
+        ):
+            raise ValueError(
+                f"dataset_manifest.source_hashes.{name} must be a SHA-256"
+            )
+    record_counts = value["record_counts"]
+    if not isinstance(record_counts, dict) or not record_counts:
+        raise ValueError(
+            "dataset_manifest.record_counts must be a non-empty mapping"
+        )
+    coverage = value["date_coverage"]
+    if not isinstance(coverage, dict) or not {"start", "end"}.issubset(coverage):
+        raise ValueError(
+            "dataset_manifest.date_coverage must contain start and end"
+        )
+    _parse_date(coverage["start"], required=True)
+    _parse_date(coverage["end"], required=True)
+
+
+def _validate_manual_datasets(value: object) -> None:
+    if value is None:
+        return
+    if not isinstance(value, dict):
+        raise ValueError("manual_datasets must be a mapping")
+    for key in (
+        "rules_dir", "status_dir", "manifest_file",
+        "rules_record_file", "status_record_file",
+    ):
+        item = value.get(key)
+        if not isinstance(item, str) or not item.strip():
+            raise ValueError(
+                f"manual_datasets.{key} must be a non-empty string"
+            )
 
 
 def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], list[SecurityStatus]]:
@@ -85,10 +170,12 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
             "schema_version", "price_adjust_type", "rounding_rules",
             "formal_evidence_status", "formal_quality_status",
             "unresolved_policy", "rule_records", "security_status_records",
-            "source_notes",
+            "source_notes", "dataset_manifest", "manual_datasets",
         },
         "stage8 config",
     )
+    _validate_dataset_manifest(raw.get("dataset_manifest"))
+    _validate_manual_datasets(raw.get("manual_datasets"))
     rounding = raw.get("rounding_rules")
     if not isinstance(rounding, dict) or set(rounding) != {"supported"}:
         raise ValueError("rounding_rules must contain only a supported list")
@@ -115,14 +202,18 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
         "price_precision", "rounding_rule", "rule_version",
         "source_reference", "source_name", "verified_at", "evidence_status",
         "symbol", "security_type", "source_published_at", "source_hash",
-        "data_version",
+        "data_version", "record_id", "raw_file", "source_document_id",
+        "reviewer", "notes", "retrieved_at", "review_status",
     }
     status_allowed = {
         "symbol", "effective_start", "effective_end", "exchange", "board",
         "is_st", "listing_status", "listing_date", "delisting_date",
         "no_limit_reason", "source_reference", "status_version",
         "evidence_status", "special_treatment_type", "source_published_at",
-        "source_hash", "data_version", "source_name",
+        "source_hash", "data_version", "source_name", "record_id",
+        "status_type", "status_value", "announcement_date", "raw_file",
+        "source_document_id", "reviewer", "notes", "retrieved_at",
+        "review_status",
     }
     rules = []
     for item in raw.get("rule_records", []):
@@ -171,6 +262,15 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
                 if item.get("data_version") is not None
                 else None
             ),
+            record_id=_optional_text(item.get("record_id"), "record_id"),
+            raw_file=_optional_text(item.get("raw_file"), "raw_file"),
+            source_document_id=_optional_text(
+                item.get("source_document_id"), "source_document_id"
+            ),
+            reviewer=_optional_text(item.get("reviewer"), "reviewer"),
+            notes=_optional_text(item.get("notes"), "notes"),
+            retrieved_at=_optional_text(item.get("retrieved_at"), "retrieved_at"),
+            review_status=_optional_text(item.get("review_status"), "review_status"),
         )
         if parsed_rule.rounding_rule not in supported_rounding:
             raise ValueError(
@@ -231,6 +331,18 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
                 if item.get("data_version") is not None
                 else None
             ),
+            record_id=_optional_text(item.get("record_id"), "record_id"),
+            status_type=_optional_text(item.get("status_type"), "status_type"),
+            status_value=_optional_text(item.get("status_value"), "status_value"),
+            announcement_date=_parse_date(item.get("announcement_date")),
+            raw_file=_optional_text(item.get("raw_file"), "raw_file"),
+            source_document_id=_optional_text(
+                item.get("source_document_id"), "source_document_id"
+            ),
+            reviewer=_optional_text(item.get("reviewer"), "reviewer"),
+            notes=_optional_text(item.get("notes"), "notes"),
+            retrieved_at=_optional_text(item.get("retrieved_at"), "retrieved_at"),
+            review_status=_optional_text(item.get("review_status"), "review_status"),
         ))
     validate_rule_intervals(rules)
     validate_status_intervals(statuses)
@@ -595,6 +707,21 @@ def analyze_stage8(
         "rule_count": len(rules),
         "verified_rule_count": sum(rule.evidence_status == "verified" for rule in rules),
         "security_status_count": len(statuses),
+        "rule_record_ids": sorted(
+            {
+                rule.record_id
+                for rule in rules
+                if rule.record_id is not None and str(rule.record_id).strip()
+            }
+        ),
+        "security_status_record_ids": sorted(
+            {
+                status.record_id
+                for status in statuses
+                if status.record_id is not None and str(status.record_id).strip()
+            }
+        ),
+        "dataset_manifest": raw_config.get("dataset_manifest"),
         "rule_sources": sorted({rule.source_reference for rule in rules}),
         "security_status_sources": sorted({status.source_reference for status in statuses}),
         "rule_versions": sorted({rule.rule_version for rule in rules}),

@@ -20,8 +20,45 @@ CREATE TABLE IF NOT EXISTS reference.limit_rule (
     source_name VARCHAR NOT NULL,
     verified_at DATE,
     evidence_status VARCHAR NOT NULL,
+    symbol VARCHAR,
+    security_type VARCHAR,
+    source_published_at DATE,
+    source_hash VARCHAR,
+    data_version VARCHAR,
+    record_id VARCHAR,
+    raw_file VARCHAR,
+    source_document_id VARCHAR,
+    reviewer VARCHAR,
+    notes VARCHAR,
+    retrieved_at VARCHAR,
+    review_status VARCHAR,
     PRIMARY KEY (exchange, board, is_st, effective_start, rule_version)
 );
+
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS symbol VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS security_type VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS source_published_at DATE;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS source_hash VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS data_version VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS record_id VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS raw_file VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS source_document_id VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS reviewer VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS notes VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS retrieved_at VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS review_status VARCHAR;
 
 CREATE TABLE IF NOT EXISTS reference.security_status_history (
     symbol VARCHAR NOT NULL,
@@ -37,8 +74,54 @@ CREATE TABLE IF NOT EXISTS reference.security_status_history (
     source_reference VARCHAR NOT NULL,
     status_version VARCHAR NOT NULL,
     evidence_status VARCHAR NOT NULL,
+    special_treatment_type VARCHAR,
+    source_name VARCHAR,
+    source_published_at DATE,
+    source_hash VARCHAR,
+    data_version VARCHAR,
+    record_id VARCHAR,
+    status_type VARCHAR,
+    status_value VARCHAR,
+    announcement_date DATE,
+    raw_file VARCHAR,
+    source_document_id VARCHAR,
+    reviewer VARCHAR,
+    notes VARCHAR,
+    retrieved_at VARCHAR,
+    review_status VARCHAR,
     PRIMARY KEY (symbol, effective_start, status_version)
 );
+
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS special_treatment_type VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS source_name VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS source_published_at DATE;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS source_hash VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS data_version VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS record_id VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS status_type VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS status_value VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS announcement_date DATE;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS raw_file VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS source_document_id VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS reviewer VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS notes VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS retrieved_at VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS review_status VARCHAR;
 
 CREATE TABLE IF NOT EXISTS analysis.fact_limit_event (
     symbol VARCHAR NOT NULL,
