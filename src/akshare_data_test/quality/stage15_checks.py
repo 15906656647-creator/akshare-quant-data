@@ -967,8 +967,7 @@ def build_risk_log(
                 "status": "open",
             }
         )
-    blocked = config["stage8"]["blocker_codes"]
-    for code in stage8_blocker_codes or blocked:
+    for code in stage8_blocker_codes or []:
         rows.append(
             {
                 "risk_id": str(uuid.uuid4()),

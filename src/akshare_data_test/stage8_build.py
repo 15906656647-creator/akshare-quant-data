@@ -114,12 +114,15 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
         "limit_up_ratio", "limit_down_ratio", "no_limit_flag", "tick_size",
         "price_precision", "rounding_rule", "rule_version",
         "source_reference", "source_name", "verified_at", "evidence_status",
+        "symbol", "security_type", "source_published_at", "source_hash",
+        "data_version",
     }
     status_allowed = {
         "symbol", "effective_start", "effective_end", "exchange", "board",
         "is_st", "listing_status", "listing_date", "delisting_date",
         "no_limit_reason", "source_reference", "status_version",
-        "evidence_status",
+        "evidence_status", "special_treatment_type", "source_published_at",
+        "source_hash", "data_version", "source_name",
     }
     rules = []
     for item in raw.get("rule_records", []):
@@ -146,6 +149,27 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
             verified_at=_parse_date(item.get("verified_at")),
             evidence_status=_required_text(
                 item.get("evidence_status", "unverified"), "evidence_status"
+            ),
+            symbol=(
+                _required_text(item.get("symbol"), "symbol").zfill(6)
+                if item.get("symbol") is not None
+                else None
+            ),
+            security_type=(
+                _required_text(item.get("security_type"), "security_type")
+                if item.get("security_type") is not None
+                else None
+            ),
+            source_published_at=_parse_date(item.get("source_published_at")),
+            source_hash=(
+                _required_text(item.get("source_hash"), "source_hash").lower()
+                if item.get("source_hash") is not None
+                else None
+            ),
+            data_version=(
+                _required_text(item.get("data_version"), "data_version")
+                if item.get("data_version") is not None
+                else None
             ),
         )
         if parsed_rule.rounding_rule not in supported_rounding:
@@ -183,6 +207,29 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
             ),
             evidence_status=_required_text(
                 item.get("evidence_status", "unverified"), "evidence_status"
+            ),
+            source_name=(
+                _required_text(item.get("source_name"), "source_name")
+                if item.get("source_name") is not None
+                else None
+            ),
+            special_treatment_type=(
+                _required_text(
+                    item.get("special_treatment_type"), "special_treatment_type"
+                )
+                if item.get("special_treatment_type") is not None
+                else None
+            ),
+            source_published_at=_parse_date(item.get("source_published_at")),
+            source_hash=(
+                _required_text(item.get("source_hash"), "source_hash").lower()
+                if item.get("source_hash") is not None
+                else None
+            ),
+            data_version=(
+                _required_text(item.get("data_version"), "data_version")
+                if item.get("data_version") is not None
+                else None
             ),
         ))
     validate_rule_intervals(rules)
@@ -274,8 +321,9 @@ def _write_reports(
     summary: pd.DataFrame,
     quality: pd.DataFrame,
     report: dict[str, Any],
+    reports_dir: Path | None = None,
 ) -> None:
-    reports = root / "reports"
+    reports = reports_dir if reports_dir is not None else root / "reports"
     reports.mkdir(parents=True, exist_ok=True)
     observations.reindex(columns=EVENT_COLUMNS).head(100).to_csv(
         reports / "stage8_event_sample.csv", index=False, encoding="utf-8-sig"
@@ -446,6 +494,7 @@ def analyze_stage8(
     start_date: pd.Timestamp | None = None,
     run_id: str | None = None,
     dry_run: bool = False,
+    reports_dir: Path | None = None,
 ) -> tuple[dict[str, Any], int]:
     started_at = pd.Timestamp.now(tz="UTC")
     end = pd.Timestamp(as_of_date).normalize()
@@ -607,7 +656,7 @@ def analyze_stage8(
         # Persist the first complete artifact set before validating it.  The
         # post-write check reads these files; it must not merely trust the
         # in-memory frames that produced them.
-        _write_reports(root, observations, summary, quality, report)
+        _write_reports(root, observations, summary, quality, report, reports_dir)
         post_write_quality = run_stage8_post_write_checks(
             output_database,
             run_id=effective_run_id,
@@ -617,7 +666,9 @@ def analyze_stage8(
             expected_publication_status=decision.publication_status,
             expected_report_formal_event_count=report["formal_event_count"],
             checked_at=created_at,
-            reports_dir=root / "reports",
+            reports_dir=(
+                reports_dir if reports_dir is not None else root / "reports"
+            ),
         )
         quality = pd.concat(
             [quality, post_write_quality], ignore_index=True
@@ -656,5 +707,5 @@ def analyze_stage8(
             quality=quality,
             run=_audit_run(report),
         )
-        _write_reports(root, observations, summary, quality, report)
+        _write_reports(root, observations, summary, quality, report, reports_dir)
     return report, decision.exit_code

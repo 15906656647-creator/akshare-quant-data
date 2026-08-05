@@ -37,6 +37,11 @@ def _normalized(value: object) -> object:
             return None
     except (TypeError, ValueError):
         pass
+    if isinstance(value, float) and math.isfinite(value):
+        # JSON/CSV/DuckDB representation precision differs for repeating
+        # decimal returns; compare at the same 10-decimal precision so a
+        # publication-consistent run is not blocked by float formatting.
+        return round(value, 10)
     if isinstance(value, (pd.Timestamp, datetime, date)):
         if isinstance(value, date) and not isinstance(value, (pd.Timestamp, datetime)):
             return value.isoformat()

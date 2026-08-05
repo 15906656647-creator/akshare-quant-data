@@ -4,6 +4,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal, ROUND_HALF_EVEN, ROUND_HALF_UP
+import re
 from typing import Iterable
 
 
@@ -33,6 +34,11 @@ class LimitRule:
     source_name: str
     verified_at: date | None
     evidence_status: str = "unverified"
+    symbol: str | None = None
+    security_type: str | None = None
+    source_published_at: date | None = None
+    source_hash: str | None = None
+    data_version: str | None = None
 
     def __post_init__(self) -> None:
         if type(self.is_st) is not bool or type(self.no_limit_flag) is not bool:
@@ -66,6 +72,23 @@ class LimitRule:
             raise ValueError(
                 "verified rules require source_name, source_reference, and verified_at"
             )
+        if self.symbol is not None and (
+            len(self.symbol) != 6 or not self.symbol.isdigit()
+        ):
+            raise ValueError("rule symbol must be six digits when provided")
+        if self.security_type is not None and (
+            not isinstance(self.security_type, str)
+            or not re.fullmatch(r"[A-Z0-9_]+", self.security_type)
+        ):
+            raise ValueError(
+                "rule security_type must be an uppercase token such as A_SHARE"
+            )
+        if self.source_hash is not None and (
+            not re.fullmatch(r"[0-9a-f]{64}", self.source_hash)
+        ):
+            raise ValueError("source_hash must be a 64-character lowercase SHA-256")
+        if self.data_version is not None and not str(self.data_version).strip():
+            raise ValueError("data_version must be non-empty when provided")
 
     def applies(self, trade_date: date) -> bool:
         return (
@@ -89,6 +112,11 @@ class SecurityStatus:
     source_reference: str
     status_version: str
     evidence_status: str = "unverified"
+    special_treatment_type: str | None = None
+    source_name: str | None = None
+    source_published_at: date | None = None
+    source_hash: str | None = None
+    data_version: str | None = None
 
     def __post_init__(self) -> None:
         if len(self.symbol) != 6 or not self.symbol.isdigit():
@@ -103,6 +131,18 @@ class SecurityStatus:
             raise ValueError(f"Invalid listing_status: {self.listing_status}")
         if not self.source_reference or not self.status_version:
             raise ValueError("security status source_reference/version is required")
+        if self.special_treatment_type is not None and self.special_treatment_type not in {
+            "none", "ST", "*ST", "other"
+        }:
+            raise ValueError(
+                "special_treatment_type must be one of none/ST/*ST/other"
+            )
+        if self.source_hash is not None and (
+            not re.fullmatch(r"[0-9a-f]{64}", self.source_hash)
+        ):
+            raise ValueError("source_hash must be a 64-character lowercase SHA-256")
+        if self.data_version is not None and not str(self.data_version).strip():
+            raise ValueError("data_version must be non-empty when provided")
 
     def applies(self, trade_date: date) -> bool:
         return (
@@ -125,9 +165,18 @@ def _overlaps(
 
 def validate_rule_intervals(rules: Iterable[LimitRule]) -> None:
     """Reject overlapping intervals for one exchange/board/ST key."""
-    grouped: dict[tuple[str, str, bool], list[LimitRule]] = {}
+    grouped: dict[tuple[str, str, bool, str, str], list[LimitRule]] = {}
     for rule in rules:
-        grouped.setdefault((rule.exchange, rule.board, rule.is_st), []).append(rule)
+        grouped.setdefault(
+            (
+                rule.exchange,
+                rule.board,
+                rule.is_st,
+                rule.symbol or "",
+                rule.security_type or "",
+            ),
+            [],
+        ).append(rule)
     for key, group in grouped.items():
         ordered = sorted(group, key=lambda item: item.effective_start)
         for previous, current in zip(ordered, ordered[1:]):
@@ -182,20 +231,30 @@ def resolve_limit_rule(
         raise RuleResolutionError(
             f"Security ST status is unresolved for {status.symbol} on {trade_date}"
         )
-    matches = [
+    candidate = [
         rule
         for rule in rules
         if rule.exchange == status.exchange
         and rule.board == status.board
         and rule.is_st == status.is_st
+        and (rule.symbol is None or rule.symbol == status.symbol)
         and rule.applies(trade_date)
     ]
-    if len(matches) != 1:
+    symbol_matches = [rule for rule in candidate if rule.symbol == status.symbol]
+    if len(symbol_matches) == 1:
+        return symbol_matches[0]
+    if len(symbol_matches) > 1:
         raise RuleResolutionError(
-            f"Expected one limit rule for {status.exchange}/{status.board}/"
-            f"is_st={status.is_st} on {trade_date}, found {len(matches)}"
+            f"Multiple symbol-specific limit rules for {status.symbol} on "
+            f"{trade_date}, found {len(symbol_matches)}"
         )
-    return matches[0]
+    board_matches = [rule for rule in candidate if rule.symbol is None]
+    if len(board_matches) == 1:
+        return board_matches[0]
+    raise RuleResolutionError(
+        f"Expected one limit rule for {status.exchange}/{status.board}/"
+        f"is_st={status.is_st} on {trade_date}, found {len(candidate)}"
+    )
 
 
 def calculate_limit_price(

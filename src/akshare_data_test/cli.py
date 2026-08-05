@@ -853,6 +853,382 @@ def _cmd_quality_control(args):
         return 1
 
 
+def _cmd_stage8_source_probe(args):
+    """Probe authoritative status-history sources and write feasibility report."""
+    setup_logging(level=args.log_level)
+    try:
+        import uuid
+        from .adapters.status_probe import (
+            probe_plan,
+            probe_source_suite,
+            write_feasibility_report,
+        )
+
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        root = project_root()
+        run_id = args.run_id or str(uuid.uuid4())
+        uuid.UUID(run_id)
+        if args.validate_only:
+            print(
+                json.dumps(
+                    {
+                        "command": "stage8-source-probe",
+                        "status": "VALIDATE_ONLY",
+                        "run_id": run_id,
+                        "as_of_date": as_of.isoformat(),
+                        "plan": probe_plan(),
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+            return 0
+        output_dir = root / args.output_dir
+        evidence_dir = output_dir / run_id
+        manifest = probe_source_suite(
+            evidence_dir, as_of_date=as_of, run_id=run_id
+        )
+        report = write_feasibility_report(
+            evidence_dir,
+            evidence_dir,
+            run_id=run_id,
+            as_of_date=as_of,
+        )
+        for name in ("probe_manifest.json", "source_grade_summary.json",
+                     "column_mapping.json"):
+            json.loads((evidence_dir / name).read_text(encoding="utf-8-sig"))
+        print(
+            "Stage 8 source probe: "
+            + report["summary"]
+            + " (json_parse: OK)"
+        )
+        print("  run_id: " + run_id)
+        print(
+            "  interfaces: "
+            + ", ".join(sorted(manifest["interfaces_probed"]))
+        )
+        print(
+            "  authoritative_rule_source_ready: "
+            + str(report["authoritative_rule_source_ready"])
+        )
+        print(
+            "  authoritative_status_source_ready: "
+            + str(report["authoritative_status_source_ready"])
+        )
+        print(
+            "  outputs: "
+            + str(evidence_dir)
+        )
+        return 0
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 8 source probe error: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cmd_stage8_rules_build(args):
+    """Validate and publish the authoritative Stage 8 rule history dataset."""
+    setup_logging(level=args.log_level)
+    try:
+        import uuid
+        from .stage8_authoritative import build_rules_manifest
+
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        root = project_root()
+        run_id = args.run_id or str(uuid.uuid4())
+        uuid.UUID(run_id)
+        report, exit_code = build_rules_manifest(
+            rules_path=root / args.config,
+            output_dir=root / args.output_dir,
+            as_of_date=as_of,
+            run_id=run_id,
+            output_config=(
+                root / args.output_config if args.output_config else None
+            ),
+            base_config=root / args.base_config if args.base_config else None,
+            validate_only=args.validate_only,
+        )
+        print(json.dumps(report, ensure_ascii=False, indent=2, default=str))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 8 rules build error: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cmd_stage8_status_build(args):
+    """Validate and publish the authoritative Stage 8 status-history dataset."""
+    setup_logging(level=args.log_level)
+    try:
+        import uuid
+        from .stage8_authoritative import build_status_manifest
+
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        root = project_root()
+        run_id = args.run_id or str(uuid.uuid4())
+        uuid.UUID(run_id)
+        report, exit_code = build_status_manifest(
+            statuses_path=root / args.config,
+            output_dir=root / args.output_dir,
+            as_of_date=as_of,
+            run_id=run_id,
+            output_config=(
+                root / args.output_config if args.output_config else None
+            ),
+            base_config=root / args.base_config if args.base_config else None,
+            validate_only=args.validate_only,
+        )
+        print(json.dumps(report, ensure_ascii=False, indent=2, default=str))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 8 status build error: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cmd_stage8_preflight(args):
+    """Read-only Stage 8 preflight using the authoritative configuration."""
+    setup_logging(level=args.log_level)
+    try:
+        import pandas as pd
+        from .stage8_build import validate_stage8_inputs
+
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        root = project_root()
+        config_path = root / args.config
+        source_database = root / args.source_database
+        output_database = root / args.output_database
+        end = pd.Timestamp(as_of).normalize()
+        start = (
+            pd.Timestamp(args.start_date).normalize()
+            if args.start_date
+            else end
+            - pd.Timedelta(
+                days=int(
+                    load_metrics().raw["data_ranges"]["limit_event"][
+                        "lookback_natural_days"
+                    ]
+                )
+            )
+        )
+        result = validate_stage8_inputs(
+            config_path=config_path,
+            source_database=source_database,
+            output_database=output_database,
+            start_date=start,
+            end_date=end,
+        )
+        print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+        return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 8 preflight error: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cmd_stage8_rebuild(args):
+    """Rebuild Stage 8 formal limit events with the authoritative dataset."""
+    setup_logging(level=args.log_level)
+    try:
+        import uuid
+        import pandas as pd
+        from .stage8_build import analyze_stage8
+
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        root = project_root()
+        run_id = args.run_id or str(uuid.uuid4())
+        uuid.UUID(run_id)
+        config_path = root / args.config
+        source_database = root / args.source_database
+        output_database = (
+            root / args.output_database
+            if args.output_database
+            else root
+            / "database"
+            / "stage15_s14_fix"
+            / run_id
+            / "stage8_authoritative.duckdb"
+        )
+        reports_dir = (
+            root / args.reports_dir
+            if args.reports_dir
+            else root / "reports" / "stage15_s14_fix" / run_id
+        )
+        end = pd.Timestamp(as_of).normalize()
+        start = (
+            pd.Timestamp(args.start_date).normalize()
+            if args.start_date
+            else end
+            - pd.Timedelta(
+                days=int(
+                    load_metrics().raw["data_ranges"]["limit_event"][
+                        "lookback_natural_days"
+                    ]
+                )
+            )
+        )
+        if args.validate_only:
+            from .stage8_build import validate_stage8_inputs
+
+            result = validate_stage8_inputs(
+                config_path=config_path,
+                source_database=source_database,
+                output_database=output_database,
+                start_date=start,
+                end_date=end,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+            return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
+        report, exit_code = analyze_stage8(
+            root=root,
+            config_path=config_path,
+            source_database=source_database,
+            output_database=output_database,
+            as_of_date=end,
+            start_date=start,
+            run_id=run_id,
+            dry_run=args.dry_run,
+            reports_dir=reports_dir,
+        )
+        print("Stage 8 authoritative rebuild: " + report["run_status"])
+        print("  publication_status: " + report["publication_status"])
+        print("  formal_events: " + str(report["formal_event_count"]))
+        print("  rule_count: " + str(report["rule_count"]))
+        print("  security_status_count: " + str(report["security_status_count"]))
+        print("  run_id: " + report["run_id"])
+        if report["blocking_reasons"]:
+            print("  blockers: " + "; ".join(report["blocking_reasons"]))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 8 rebuild error: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cmd_stage15_rerun(args):
+    """Re-run Stage 15 quality control against the authoritative Stage 8 DB."""
+    setup_logging(level=args.log_level)
+    try:
+        import uuid
+        from .stage15_build import (
+            run_stage15_quality_control,
+            validate_stage15_inputs,
+        )
+
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        root = project_root()
+        run_id = args.run_id or str(uuid.uuid4())
+        uuid.UUID(run_id)
+        config_path = root / args.config
+        input_database = root / args.input_database
+        stage8_database = (
+            root / args.stage8_database
+            if args.stage8_database
+            else root
+            / "database"
+            / "stage15_s14_fix"
+            / run_id
+            / "stage8_authoritative.duckdb"
+        )
+        reports_dir = (
+            root / args.reports_dir
+            if args.reports_dir
+            else root / "reports" / "stage15_s14_fix"
+        )
+        output_database = (
+            root / args.output_database
+            if args.output_database
+            else root
+            / "database"
+            / "stage15_s14_fix"
+            / run_id
+            / "stage15_quality.duckdb"
+        )
+        symbols = (
+            [str(item).zfill(6) for item in args.cross_validation_symbols]
+            if args.cross_validation_symbols
+            else None
+        )
+        if args.validate_only:
+            result = validate_stage15_inputs(
+                root=root,
+                config_path=config_path,
+                input_database=input_database,
+                output_database=output_database,
+                as_of_date=as_of,
+                stage8_database=stage8_database,
+                baseline=root / args.baseline if args.baseline else None,
+                cross_validation_symbols=symbols,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+            return {"READY": 0, "BLOCKED": 2, "FAILED": 1}[result["status"]]
+        report, exit_code = run_stage15_quality_control(
+            root=root,
+            as_of_date=as_of,
+            config_path=config_path,
+            input_database=input_database,
+            output_database=output_database,
+            reports_dir=reports_dir,
+            run_id=run_id,
+            stage8_database=stage8_database,
+            baseline_path=root / args.baseline if args.baseline else None,
+            cross_validation_symbols=symbols,
+            dry_run=args.dry_run,
+        )
+        print("Stage 15 rerun: " + report["status"])
+        print("  run_id: " + report["run_id"])
+        print(
+            "  unavailable_items: " + str(report.get("unavailable_count", 0))
+        )
+        print(
+            "  blocked_risks: " + str(report.get("blocked_risk_count", 0))
+        )
+        print("  reports: " + report.get("outputs", {}).get("reports_dir", ""))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 15 rerun error: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cmd_stage15_s14_reverify(args):
+    """Produce the S15-14 manual cross-validation evidence and verdict."""
+    setup_logging(level=args.log_level)
+    try:
+        import uuid
+        from .stage8_authoritative import verify_s14
+
+        as_of = resolve_as_of_date(cli_date=args.as_of_date)
+        root = project_root()
+        run_id = args.run_id or str(uuid.uuid4())
+        uuid.UUID(run_id)
+        report, exit_code = verify_s14(
+            stage8_database=root / args.stage8_database,
+            stage15_reports_dir=root / args.stage15_reports_dir,
+            output_dir=root / args.output_dir,
+            as_of_date=as_of,
+            run_id=run_id,
+            validate_only=args.validate_only,
+        )
+        print("S15-14 reverify: " + report["status"])
+        print("  valid_samples: " + str(report["valid_sample_count"]))
+        print("  unavailable: " + str(report["unavailable_count"]))
+        print("  run_id: " + report["run_id"])
+        print("  outputs: " + report["outputs"]["verification_csv"])
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"S15-14 reverify error: {exc}", file=sys.stderr)
+        return 1
+
+
 def _generate_summary_md(results, run_id, overall, as_of):
     sp = Path("reports/interface_smoke_test_summary.md")
     sl = []
@@ -1247,6 +1623,122 @@ def main():
         "--debug", action="store_true", default=False,
         help="Show a traceback for Stage 15 internal errors",
     )
+    probe = sub.add_parser(
+        "stage8-source-probe",
+        help="Probe authoritative rule/status sources and write feasibility report",
+    )
+    probe.add_argument("--as-of-date", required=True)
+    probe.add_argument(
+        "--output-dir", default="reports/stage15_s14_fix/source_probe"
+    )
+    probe.add_argument("--run-id", default=None)
+    probe.add_argument("--validate-only", action="store_true", default=False)
+    probe.add_argument("--log-level", default="INFO")
+    probe.add_argument(
+        "--debug", action="store_true", default=False,
+        help="Show a traceback for source-probe internal errors",
+    )
+    rbuild = sub.add_parser(
+        "stage8-rules-build",
+        help="Validate and publish the authoritative Stage 8 rule history",
+    )
+    rbuild.add_argument("--as-of-date", required=True)
+    rbuild.add_argument("--config", default="config/stage8_authoritative_rules.yml")
+    rbuild.add_argument("--output-dir", default="database/stage15_s14_fix")
+    rbuild.add_argument("--output-config", default=None)
+    rbuild.add_argument("--base-config", default=None)
+    rbuild.add_argument("--run-id", default=None)
+    rbuild.add_argument("--log-level", default="INFO")
+    rbuild.add_argument("--validate-only", action="store_true", default=False)
+    rbuild.add_argument("--debug", action="store_true", default=False)
+    sbuild = sub.add_parser(
+        "stage8-status-build",
+        help="Validate and publish the authoritative Stage 8 status history",
+    )
+    sbuild.add_argument("--as-of-date", required=True)
+    sbuild.add_argument("--config", default="config/stage8_authoritative_status.yml")
+    sbuild.add_argument("--output-dir", default="database/stage15_s14_fix")
+    sbuild.add_argument("--output-config", default=None)
+    sbuild.add_argument("--base-config", default=None)
+    sbuild.add_argument("--run-id", default=None)
+    sbuild.add_argument("--log-level", default="INFO")
+    sbuild.add_argument("--validate-only", action="store_true", default=False)
+    sbuild.add_argument("--debug", action="store_true", default=False)
+    preflight = sub.add_parser(
+        "stage8-preflight",
+        help="Read-only Stage 8 preflight using the authoritative configuration",
+    )
+    preflight.add_argument("--as-of-date", required=True)
+    preflight.add_argument("--start-date", default=None)
+    preflight.add_argument("--config", default="config/stage8_s14_fix.yml")
+    preflight.add_argument(
+        "--source-database",
+        default="database/akshare_data_test_stage5_repaired.duckdb",
+    )
+    preflight.add_argument(
+        "--output-database",
+        default="database/stage15_s14_fix/stage8_authoritative.duckdb",
+    )
+    preflight.add_argument("--log-level", default="INFO")
+    preflight.add_argument("--debug", action="store_true", default=False)
+    rebuild = sub.add_parser(
+        "stage8-rebuild",
+        help="Rebuild Stage 8 formal limit events with the authoritative dataset",
+    )
+    rebuild.add_argument("--as-of-date", required=True)
+    rebuild.add_argument("--start-date", default=None)
+    rebuild.add_argument("--config", default="config/stage8_s14_fix.yml")
+    rebuild.add_argument(
+        "--source-database",
+        default="database/akshare_data_test_stage5_repaired.duckdb",
+    )
+    rebuild.add_argument("--output-database", default=None)
+    rebuild.add_argument("--reports-dir", default=None)
+    rebuild.add_argument("--run-id", default=None)
+    mode_rebuild = rebuild.add_mutually_exclusive_group()
+    mode_rebuild.add_argument("--dry-run", action="store_true", default=False)
+    mode_rebuild.add_argument("--validate-only", action="store_true", default=False)
+    rebuild.add_argument("--log-level", default="INFO")
+    rebuild.add_argument("--debug", action="store_true", default=False)
+    rerun = sub.add_parser(
+        "stage15-rerun",
+        help="Re-run Stage 15 quality control against the authoritative Stage 8 DB",
+    )
+    rerun.add_argument("--as-of-date", required=True)
+    rerun.add_argument("--config", default="config/stage15.yml")
+    rerun.add_argument(
+        "--input-database",
+        default="database/akshare_data_test_stage5_repaired.duckdb",
+    )
+    rerun.add_argument("--stage8-database", default=None)
+    rerun.add_argument("--baseline", default=None)
+    rerun.add_argument("--reports-dir", default=None)
+    rerun.add_argument("--output-database", default=None)
+    rerun.add_argument("--run-id", default=None)
+    rerun.add_argument("--cross-validation-symbols", nargs="+", default=None)
+    mode_rerun = rerun.add_mutually_exclusive_group()
+    mode_rerun.add_argument("--dry-run", action="store_true", default=False)
+    mode_rerun.add_argument("--validate-only", action="store_true", default=False)
+    rerun.add_argument("--log-level", default="INFO")
+    rerun.add_argument("--debug", action="store_true", default=False)
+    reverify = sub.add_parser(
+        "stage15-s14-reverify",
+        help="Produce the S15-14 manual cross-validation evidence and verdict",
+    )
+    reverify.add_argument("--as-of-date", required=True)
+    reverify.add_argument(
+        "--stage8-database",
+        default="database/stage15_s14_fix/stage8_authoritative.duckdb",
+    )
+    reverify.add_argument(
+        "--stage15-reports-dir",
+        default="reports/stage15",
+    )
+    reverify.add_argument("--output-dir", default="database/stage15_s14_fix")
+    reverify.add_argument("--run-id", default=None)
+    reverify.add_argument("--log-level", default="INFO")
+    reverify.add_argument("--validate-only", action="store_true", default=False)
+    reverify.add_argument("--debug", action="store_true", default=False)
     stage14_commands = (
         "fetch-financial", "fetch-event-and-fund-flow", "clean", "load-database",
         "quality-check", "build-report", "run-all",
@@ -1305,6 +1797,20 @@ def main():
         sys.exit(_cmd_present_stage13(args))
     elif args.command == "quality-control":
         sys.exit(_cmd_quality_control(args))
+    elif args.command == "stage8-source-probe":
+        sys.exit(_cmd_stage8_source_probe(args))
+    elif args.command == "stage8-rules-build":
+        sys.exit(_cmd_stage8_rules_build(args))
+    elif args.command == "stage8-status-build":
+        sys.exit(_cmd_stage8_status_build(args))
+    elif args.command == "stage8-preflight":
+        sys.exit(_cmd_stage8_preflight(args))
+    elif args.command == "stage8-rebuild":
+        sys.exit(_cmd_stage8_rebuild(args))
+    elif args.command == "stage15-rerun":
+        sys.exit(_cmd_stage15_rerun(args))
+    elif args.command == "stage15-s14-reverify":
+        sys.exit(_cmd_stage15_s14_reverify(args))
     elif args.command in stage14_commands:
         sys.exit(_cmd_stage14(args))
     else:
