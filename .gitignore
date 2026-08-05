@@ -58,3 +58,7 @@ logs/
 reports/run_status/
 reports/stage15/
 database/stage15/
+reports/stage15_s14_fix/
+database/stage15_s14_fix/
+reports/stage15_s15_14_feasibility/
+stage15_s14_commands_help.txt
