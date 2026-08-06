@@ -89,6 +89,23 @@ delisting_date/status_version`。
 8. 发布：校验通过后原子写入清单、运行配置、校验报告与溯源 JSON；失败
    不留半成品。
 
+## 5.1 人工复核豁免机制
+
+新增独立状态 `approved_with_waiver`，供项目负责人显式接受“无法完成双人复核”
+的风险。它不是普通 `approved`，也不允许伪造 `reviewer`。
+
+- `review_mode`：`dual_review`（普通 approved）或 `waiver`（豁免）。
+- 普通 `approved` 仍要求真实 `reviewer`；`approved_with_waiver` 的
+  `reviewer` 留空。
+- `approved_with_waiver` 必须填写非空 `waiver_reason`、`waiver_approver`、
+  带时区的 `waiver_at`，且 `waiver_document` 必须为
+  `docs/stage8_rule_review_waiver.md`。
+- 来源、哈希、日期区间、冲突和覆盖校验全部保持 fail-closed；豁免只覆盖
+  审核签字方式。
+- 下游 Stage8、Stage15 和 S15-14 报告保留
+  `review_status=approved_with_waiver`、`review_mode=waiver`，且
+  `verified_by_dual_review=false`，不得误报为双人审核完成。
+
 ## 6. CLI 使用方式
 
 ```powershell

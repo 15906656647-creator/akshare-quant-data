@@ -65,6 +65,12 @@ def _manifest(
     end: str = "2026-07-27",
     grade: str = "A",
     review_status: str = "approved",
+    review_mode: str = "dual_review",
+    reviewer: str = "张三/李四（双人复核）",
+    waiver_reason: str = "",
+    waiver_approver: str = "",
+    waiver_at: str = "",
+    waiver_document: str = "",
     dataset_version: str = "test-v1",
 ) -> dict:
     return {
@@ -80,8 +86,14 @@ def _manifest(
         "coverage_start": start,
         "coverage_end": end,
         "review_status": review_status,
+        "review_mode": review_mode,
+        "verified_by_dual_review": review_status == "approved",
+        "waiver_reason": waiver_reason,
+        "waiver_approver": waiver_approver,
+        "waiver_at": waiver_at,
+        "waiver_document": waiver_document,
         "reviewed_at": "2026-08-05",
-        "reviewer": "张三/李四（双人复核）",
+        "reviewer": reviewer,
         "sources": [
             {
                 "file": name,
@@ -115,6 +127,11 @@ def _rule_row(
     source_name: str = "测试官方来源",
     source_document_id: str = "DOC-0",
     review_status: str = "approved",
+    review_mode: str = "dual_review",
+    waiver_reason: str = "",
+    waiver_approver: str = "",
+    waiver_at: str = "",
+    waiver_document: str = "",
 ) -> dict:
     return {
         "record_id": record_id,
@@ -136,6 +153,11 @@ def _rule_row(
         "raw_file": "sources/rules.txt",
         "source_sha256": sha,
         "review_status": review_status,
+        "review_mode": review_mode,
+        "waiver_reason": waiver_reason,
+        "waiver_approver": waiver_approver,
+        "waiver_at": waiver_at,
+        "waiver_document": waiver_document,
         "reviewer": "张三/李四",
         "notes": "测试记录",
     }
@@ -163,6 +185,23 @@ def _default_rule_rows(sha: str) -> list[dict]:
     ]
 
 
+def _waiver_rule_rows(sha: str) -> list[dict]:
+    rows = _default_rule_rows(sha)
+    for row in rows:
+        row.update(
+            {
+                "review_status": "approved_with_waiver",
+                "review_mode": "waiver",
+                "reviewer": "",
+                "waiver_reason": "无法在截止前完成双人独立复核",
+                "waiver_approver": "项目负责人",
+                "waiver_at": "2026-08-06T10:00:00+08:00",
+                "waiver_document": "docs/stage8_rule_review_waiver.md",
+            }
+        )
+    return rows
+
+
 def _write_rules_dataset(
     root: Path,
     *,
@@ -170,12 +209,20 @@ def _write_rules_dataset(
     sha: str | None = None,
     grade: str = "A",
     review_status: str = "approved",
+    review_mode: str = "dual_review",
+    reviewer: str = "张三/李四（双人复核）",
+    waiver_reason: str = "",
+    waiver_approver: str = "",
+    waiver_at: str = "",
+    waiver_document: str = "",
     examples_only: bool = False,
 ) -> Path:
     dataset_dir = root / "limit_rules"
     (dataset_dir / "sources").mkdir(parents=True, exist_ok=True)
     if sha is None:
         sha = _write_source(dataset_dir, "rules.txt", b"official rule source\n")
+    elif not (dataset_dir / "sources" / "rules.txt").is_file():
+        _write_source(dataset_dir, "rules.txt", b"official rule source\n")
     if examples_only:
         (dataset_dir / "dataset.example.yml").write_text(
             yaml.safe_dump(
@@ -195,6 +242,12 @@ def _write_rules_dataset(
         files=["sources/rules.txt"],
         grade=grade,
         review_status=review_status,
+        review_mode=review_mode,
+        reviewer=reviewer,
+        waiver_reason=waiver_reason,
+        waiver_approver=waiver_approver,
+        waiver_at=waiver_at,
+        waiver_document=waiver_document,
     )
     (dataset_dir / "dataset.yml").write_text(
         yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False),
@@ -219,6 +272,11 @@ def _status_row(
     announcement: str = "2025-07-25",
     source_reference: str = "https://example.invalid/status",
     review_status: str = "approved",
+    review_mode: str = "dual_review",
+    waiver_reason: str = "",
+    waiver_approver: str = "",
+    waiver_at: str = "",
+    waiver_document: str = "",
 ) -> dict:
     return {
         "record_id": record_id,
@@ -237,6 +295,11 @@ def _status_row(
         "raw_file": "sources/status.txt",
         "source_sha256": sha,
         "review_status": review_status,
+        "review_mode": review_mode,
+        "waiver_reason": waiver_reason,
+        "waiver_approver": waiver_approver,
+        "waiver_at": waiver_at,
+        "waiver_document": waiver_document,
         "reviewer": "张三/李四",
         "notes": "测试状态",
     }
@@ -272,6 +335,23 @@ def _default_status_rows(sha: str) -> list[dict]:
     return rows
 
 
+def _waiver_status_rows(sha: str) -> list[dict]:
+    rows = _default_status_rows(sha)
+    for row in rows:
+        row.update(
+            {
+                "review_status": "approved_with_waiver",
+                "review_mode": "waiver",
+                "reviewer": "",
+                "waiver_reason": "状态来源文档为官方公告证据包",
+                "waiver_approver": "项目负责人",
+                "waiver_at": "2026-08-06T10:00:00+08:00",
+                "waiver_document": "docs/stage8_rule_review_waiver.md",
+            }
+        )
+    return rows
+
+
 def _write_status_dataset(
     root: Path,
     *,
@@ -279,12 +359,20 @@ def _write_status_dataset(
     sha: str | None = None,
     grade: str = "A",
     review_status: str = "approved",
+    review_mode: str = "dual_review",
+    reviewer: str = "张三/李四（双人复核）",
+    waiver_reason: str = "",
+    waiver_approver: str = "",
+    waiver_at: str = "",
+    waiver_document: str = "",
     examples_only: bool = False,
 ) -> Path:
     dataset_dir = root / "security_status"
     (dataset_dir / "sources").mkdir(parents=True, exist_ok=True)
     if sha is None:
         sha = _write_source(dataset_dir, "status.txt", b"official status source\n")
+    elif not (dataset_dir / "sources" / "status.txt").is_file():
+        _write_source(dataset_dir, "status.txt", b"official status source\n")
     if examples_only:
         (dataset_dir / "dataset.example.yml").write_text(
             yaml.safe_dump(
@@ -306,6 +394,12 @@ def _write_status_dataset(
         files=["sources/status.txt"],
         grade=grade,
         review_status=review_status,
+        review_mode=review_mode,
+        reviewer=reviewer,
+        waiver_reason=waiver_reason,
+        waiver_approver=waiver_approver,
+        waiver_at=waiver_at,
+        waiver_document=waiver_document,
     )
     (dataset_dir / "dataset.yml").write_text(
         yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False),
@@ -354,6 +448,191 @@ def test_valid_rules_dataset_passes():
         assert result["record_count"] == 6
         assert result["verified_record_count"] == 6
         assert all(stage["status"] == "PASS" for stage in result["stages"])
+
+
+def test_approved_with_waiver_rules_passes_validate_only(tmp_path):
+    sha = _sha(b"official rule source\n")
+    rows = _waiver_rule_rows(sha)
+    result = _validate_rules(
+        tmp_path,
+        rows=rows,
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="waiver",
+        reviewer="",
+        waiver_reason="无法在截止前完成双人独立复核",
+        waiver_approver="项目负责人",
+        waiver_at="2026-08-06T10:00:00+08:00",
+        waiver_document="docs/stage8_rule_review_waiver.md",
+    )
+    assert result["valid"] is True
+    assert result["status"] == "READY"
+    assert result["review_status"] == "approved_with_waiver"
+    assert result["review_mode"] == "waiver"
+    assert result["verified_by_dual_review"] is False
+    dataset_dir = _write_rules_dataset(
+        tmp_path / "waiver-rules",
+        rows=rows,
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="waiver",
+        reviewer="",
+        waiver_reason="无法在截止前完成双人独立复核",
+        waiver_approver="项目负责人",
+        waiver_at="2026-08-06T10:00:00+08:00",
+        waiver_document="docs/stage8_rule_review_waiver.md",
+    )
+    out = tmp_path / "waiver-validate-out"
+    report, exit_code = build_rules_manifest(
+        dataset_dir=dataset_dir,
+        output_dir=out,
+        as_of_date=AS_OF,
+        run_id=_run_id(),
+        validate_only=True,
+    )
+    assert exit_code == 0
+    assert report["status"] == "READY"
+    assert report["outputs_written"] is False
+    assert not out.exists()
+
+
+def test_approved_with_waiver_status_dataset_passes(tmp_path):
+    sha = _sha(b"official status source\n")
+    rows = _waiver_status_rows(sha)
+    result = _validate_status(
+        tmp_path,
+        rows=rows,
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="waiver",
+        reviewer="",
+        waiver_reason="状态来源文档为官方公告证据包",
+        waiver_approver="项目负责人",
+        waiver_at="2026-08-06T10:00:00+08:00",
+        waiver_document="docs/stage8_rule_review_waiver.md",
+    )
+    assert result["valid"] is True
+    assert result["review_status"] == "approved_with_waiver"
+    assert result["review_mode"] == "waiver"
+    assert result["verified_by_dual_review"] is False
+
+
+def test_waiver_missing_reason_fails(tmp_path):
+    sha = _sha(b"x")
+    rows = _waiver_rule_rows(sha)
+    for row in rows:
+        row["waiver_reason"] = ""
+    result = _validate_rules(
+        tmp_path,
+        rows=rows,
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="waiver",
+        reviewer="",
+        waiver_reason="",
+        waiver_approver="项目负责人",
+        waiver_at="2026-08-06T10:00:00+08:00",
+        waiver_document="docs/stage8_rule_review_waiver.md",
+    )
+    assert result["valid"] is False
+    assert any("waiver_reason_required" in error for error in result["errors"])
+
+
+def test_waiver_missing_approver_fails(tmp_path):
+    sha = _sha(b"x")
+    rows = _waiver_rule_rows(sha)
+    for row in rows:
+        row["waiver_approver"] = ""
+    result = _validate_rules(
+        tmp_path,
+        rows=rows,
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="waiver",
+        reviewer="",
+        waiver_reason="无法完成双人复核",
+        waiver_approver="",
+        waiver_at="2026-08-06T10:00:00+08:00",
+        waiver_document="docs/stage8_rule_review_waiver.md",
+    )
+    assert result["valid"] is False
+    assert any("waiver_approver_required" in error for error in result["errors"])
+
+
+def test_waiver_invalid_at_fails(tmp_path):
+    sha = _sha(b"x")
+    rows = _waiver_rule_rows(sha)
+    for row in rows:
+        row["waiver_at"] = "2026-08-06T10:00:00"
+    result = _validate_rules(
+        tmp_path,
+        rows=rows,
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="waiver",
+        reviewer="",
+        waiver_reason="无法完成双人复核",
+        waiver_approver="项目负责人",
+        waiver_at="2026-08-06T10:00:00",
+        waiver_document="docs/stage8_rule_review_waiver.md",
+    )
+    assert result["valid"] is False
+    assert any("timezone" in error for error in result["errors"])
+
+
+def test_waiver_document_missing_fails(tmp_path):
+    sha = _sha(b"x")
+    rows = _waiver_rule_rows(sha)
+    for row in rows:
+        row["waiver_document"] = "docs/does_not_exist.md"
+    result = _validate_rules(
+        tmp_path,
+        rows=rows,
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="waiver",
+        reviewer="",
+        waiver_reason="无法完成双人复核",
+        waiver_approver="项目负责人",
+        waiver_at="2026-08-06T10:00:00+08:00",
+        waiver_document="docs/does_not_exist.md",
+    )
+    assert result["valid"] is False
+    assert any(
+        "waiver_document_must_be" in error
+        or "waiver_document_missing" in error
+        for error in result["errors"]
+    )
+
+
+def test_waiver_wrong_review_mode_fails(tmp_path):
+    sha = _sha(b"x")
+    rows = _waiver_rule_rows(sha)
+    for row in rows:
+        row["review_mode"] = "dual_review"
+    result = _validate_rules(
+        tmp_path,
+        rows=rows,
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="dual_review",
+        reviewer="",
+        waiver_reason="无法完成双人复核",
+        waiver_approver="项目负责人",
+        waiver_at="2026-08-06T10:00:00+08:00",
+        waiver_document="docs/stage8_rule_review_waiver.md",
+    )
+    assert result["valid"] is False
+    assert any("review_mode_must_be_waiver" in error for error in result["errors"])
+
+
+def test_approved_without_reviewer_fails(tmp_path):
+    rows = _default_rule_rows(_sha(b"x"))
+    for row in rows:
+        row["reviewer"] = ""
+    result = _validate_rules(tmp_path, rows=rows)
+    assert result["valid"] is False
+    assert any("reviewer_required" in error for error in result["errors"])
 
 
 def test_valid_status_dataset_passes():
@@ -681,6 +960,54 @@ def test_combined_datasets_and_merged_payload(tmp_path):
     assert raw["dataset_manifest"]["date_coverage"]
 
 
+def test_merged_payload_keeps_waiver_markers(tmp_path):
+    sha = _sha(b"official rule source\n")
+    rules_dir = _write_rules_dataset(
+        tmp_path / "rules-waiver",
+        rows=_waiver_rule_rows(sha),
+        sha=sha,
+        review_status="approved_with_waiver",
+        review_mode="waiver",
+        reviewer="",
+        waiver_reason="规则无法在截止前完成双人复核",
+        waiver_approver="项目负责人",
+        waiver_at="2026-08-06T10:00:00+08:00",
+        waiver_document="docs/stage8_rule_review_waiver.md",
+    )
+    status_dir = _write_status_dataset(tmp_path / "status-approved")
+    combined = validate_combined_datasets(
+        rules_dir=rules_dir,
+        status_dir=status_dir,
+        as_of_date=AS_OF,
+        coverage_start=START,
+        coverage_end=END,
+        run_id=_run_id(),
+    )
+    assert combined["valid"] is True
+    payload = build_merged_payload(
+        rules_result=combined["components"]["rules"],
+        status_result=combined["components"]["security_status_history"],
+        run_id=_run_id(),
+    )
+    manifest = payload["dataset_manifest"]
+    assert manifest["review_status"] == "approved_with_waiver"
+    assert manifest["review_mode"] == "waiver"
+    assert manifest["verified_by_dual_review"] is False
+    assert manifest["waiver_document"] == "docs/stage8_rule_review_waiver.md"
+    config_path = tmp_path / "merged-waiver.yml"
+    config_path.write_text(
+        yaml.safe_dump(payload, allow_unicode=True, sort_keys=False),
+        encoding="utf-8",
+    )
+    raw, rules, statuses = load_stage8_config(config_path)
+    assert raw["dataset_manifest"]["review_status"] == "approved_with_waiver"
+    assert raw["dataset_manifest"]["review_mode"] == "waiver"
+    assert all(item.review_status == "approved_with_waiver" for item in rules)
+    assert all(item.review_mode == "waiver" for item in rules)
+    assert all(item.evidence_status == "verified" for item in rules)
+    assert len(statuses) == 32
+
+
 def test_rules_build_dataset_roundtrip(tmp_path):
     dataset_dir = _write_rules_dataset(tmp_path)
     out = tmp_path / "out"
@@ -706,6 +1033,8 @@ def test_rules_build_dataset_roundtrip(tmp_path):
     raw, rules, statuses = load_stage8_config(config)
     assert len(rules) == 6
     assert raw["dataset_manifest"]["review_status"] == "approved"
+    assert raw["dataset_manifest"]["review_mode"] == "dual_review"
+    assert raw["dataset_manifest"]["verified_by_dual_review"] is True
 
 
 def test_status_build_dataset_roundtrip(tmp_path):
@@ -787,6 +1116,10 @@ def test_committed_example_headers_match_contracts():
     status_frame = pd.read_csv(status_example, dtype=str)
     assert set(RULES_REQUIRED_COLUMNS).issubset(rules_frame.columns)
     assert set(STATUS_REQUIRED_COLUMNS).issubset(status_frame.columns)
+    assert "review_mode" in rules_frame.columns
+    assert "review_mode" in status_frame.columns
+    assert "waiver_document" in rules_frame.columns
+    assert "waiver_document" in status_frame.columns
 
 
 def test_default_cli_fails_closed_without_real_dataset():
@@ -808,6 +1141,9 @@ def test_default_cli_fails_closed_without_real_dataset():
     payload = json.loads(result.stdout)
     assert payload["status"] == "FAILED"
     assert any(
-        "dataset_manifest_missing" in error for error in payload["errors"]
+        "dataset_manifest_missing" in error
+        or "review_not_approved" in error
+        or "dataset_manifest_review_not_approved" in error
+        for error in payload["errors"]
     )
     assert "Traceback" not in result.stdout + result.stderr

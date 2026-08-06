@@ -86,6 +86,65 @@ def test_quality_control_publishes_reports_and_database(
         )
 
 
+def test_stage15_report_preserves_waiver_markers(
+    tmp_path: Path,
+    stage15_test_config: Path,
+    stage15_synthetic_db: Path,
+):
+    stage8_database = tmp_path / "stage8_waiver.duckdb"
+    with duckdb.connect(str(stage8_database)) as connection:
+        connection.execute(
+            "CREATE SCHEMA audit;"
+            "CREATE TABLE audit.stage8_run("
+            "run_id VARCHAR PRIMARY KEY, status VARCHAR, "
+            "created_at TIMESTAMPTZ, manifest_json VARCHAR);"
+        )
+        connection.execute(
+            "INSERT INTO audit.stage8_run VALUES (?, ?, ?, ?)",
+            [
+                "stage8-waiver-run",
+                "PASS",
+                pd.Timestamp("2026-07-27T12:00:00+08:00"),
+                json.dumps(
+                    {
+                        "dataset_manifest": {
+                            "review_status": "approved_with_waiver",
+                            "review_mode": "waiver",
+                            "verified_by_dual_review": False,
+                            "waiver_reason": "无法完成双人复核",
+                            "waiver_approver": "项目负责人",
+                            "waiver_at": "2026-08-06T10:00:00+08:00",
+                            "waiver_document": (
+                                "docs/stage8_rule_review_waiver.md"
+                            ),
+                        }
+                    }
+                ),
+            ],
+        )
+        connection.execute(
+            "CREATE SCHEMA analysis;"
+            "CREATE TABLE analysis.fact_limit_event("
+            "symbol VARCHAR, trade_date DATE, event_type VARCHAR);"
+            "CREATE OR REPLACE VIEW analysis.v_latest_formal_limit_event AS "
+            "SELECT * FROM analysis.fact_limit_event;"
+        )
+    report, exit_code = _run(
+        tmp_path,
+        input_database=stage15_synthetic_db,
+        config_path=stage15_test_config,
+        stage8_database=stage8_database,
+    )
+    assert exit_code == 0
+    assert report["stage8_review_status"] == "approved_with_waiver"
+    assert report["stage8_review_mode"] == "waiver"
+    assert report["stage8_verified_by_dual_review"] is False
+    assert report["stage8_waiver_approver"] == "项目负责人"
+    assert report["stage8_waiver_document"] == (
+        "docs/stage8_rule_review_waiver.md"
+    )
+
+
 def test_rerun_with_same_run_id_is_idempotent(
     tmp_path: Path, stage15_test_config: Path, stage15_synthetic_db: Path,
     stage15_elapsed_evidence: None,

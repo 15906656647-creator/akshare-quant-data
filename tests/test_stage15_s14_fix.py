@@ -605,6 +605,91 @@ def test_s14_reverify_uses_real_stage8_events(tmp_path):
     )).all()
 
 
+def test_s14_reverify_preserves_waiver_markers(tmp_path):
+    stage8 = _stage8_database(tmp_path)
+    waiver_manifest = {
+        "dataset_version": "v1+status-v1",
+        "review_status": "approved_with_waiver",
+        "review_mode": "waiver",
+        "verified_by_dual_review": False,
+        "waiver_reason": "无法完成双人复核",
+        "waiver_approver": "项目负责人",
+        "waiver_at": "2026-08-06T10:00:00+08:00",
+        "waiver_document": "docs/stage8_rule_review_waiver.md",
+    }
+    with duckdb.connect(str(stage8)) as connection:
+        connection.execute(
+            "UPDATE audit.stage8_run SET manifest_json = ? "
+            "WHERE run_id = 's14-events'",
+            [json.dumps({"dataset_manifest": waiver_manifest})],
+        )
+    reports = tmp_path / "stage15-waiver"
+    reports.mkdir()
+    pd.DataFrame(
+        [
+            {
+                "run_id": "stage15-run",
+                "symbol": "002067",
+                "check_item": "recent_limit_up_day",
+                "observed_value": "2026-01-02",
+                "source_table": "analysis.fact_limit_event",
+                "as_of_date": "2026-01-05",
+                "verification_status": "REVIEW",
+                "note": "",
+            },
+            {
+                "run_id": "stage15-run",
+                "symbol": "002067",
+                "check_item": "next_day_open_after_limit_up",
+                "observed_value": "11.0",
+                "source_table": "analysis.fact_limit_event",
+                "as_of_date": "2026-01-05",
+                "verification_status": "REVIEW",
+                "note": "",
+            },
+            {
+                "run_id": "stage15-run",
+                "symbol": "600763",
+                "check_item": "recent_limit_up_day",
+                "observed_value": "2026-01-02",
+                "source_table": "analysis.fact_limit_event",
+                "as_of_date": "2026-01-05",
+                "verification_status": "REVIEW",
+                "note": "",
+            },
+            {
+                "run_id": "stage15-run",
+                "symbol": "600763",
+                "check_item": "next_day_open_after_limit_up",
+                "observed_value": "22.0",
+                "source_table": "analysis.fact_limit_event",
+                "as_of_date": "2026-01-05",
+                "verification_status": "REVIEW",
+                "note": "",
+            },
+        ]
+    ).to_csv(reports / "cross_validation.csv", index=False, encoding="utf-8-sig")
+    out = tmp_path / "s14-waiver"
+    report, exit_code = verify_s14(
+        stage8_database=stage8,
+        stage15_reports_dir=reports,
+        output_dir=out,
+        as_of_date=date(2026, 1, 5),
+        run_id="s14-waiver-verify",
+    )
+    assert exit_code == 0
+    assert report["stage8_review_status"] == "approved_with_waiver"
+    assert report["stage8_review_mode"] == "waiver"
+    assert report["stage8_verified_by_dual_review"] is False
+    assert report["stage8_waiver_approver"] == "项目负责人"
+    assert report["stage8_waiver_document"] == (
+        "docs/stage8_rule_review_waiver.md"
+    )
+    markdown = (out / "s14_verification.md").read_text(encoding="utf-8")
+    assert "approved_with_waiver" in markdown
+    assert "waiver" in markdown
+
+
 def test_s14_reverify_fails_closed_without_two_samples(tmp_path):
     stage8 = _stage8_database(tmp_path)
     reports = tmp_path / "stage15"

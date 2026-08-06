@@ -8,6 +8,8 @@ as_of_date: "2026-07-27"
 coverage_start: "2025-07-27"
 coverage_end: "2026-07-27"
 review_status: "approved"
+review_mode: "dual_review"
+verified_by_dual_review: true
 reviewed_at: "2026-08-05"
 reviewer: "张三/李四（双人复核）"
 notes: "虚构演示数据，不得作为真实权威数据发布"

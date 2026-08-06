@@ -21,8 +21,21 @@
 - [ ] 覆盖 16 只样本股票所需的市场/板块/ST 组合。
 - [ ] 上市首日规则覆盖样本股票的实际上市首日。
 
+## 人工复核豁免（仅在无法完成双人复核时使用）
+- [ ] `review_status` 必须为 `approved_with_waiver`，`review_mode` 必须为
+      `waiver`，不得把豁免记录标成普通 `approved`。
+- [ ] `reviewer` 留空，不得伪造复核人；项目负责人以 `waiver_approver`
+      身份显式接受风险。
+- [ ] `waiver_reason` 非空，说明为何无法完成双人复核及已接受的风险。
+- [ ] `waiver_at` 为带时区的 ISO 时间。
+- [ ] `waiver_document` 必须为 `docs/stage8_rule_review_waiver.md`，且该文档
+      已随仓库存在。
+- [ ] 来源、区间、覆盖、哈希与规则内容核查仍全部通过；豁免只覆盖审核签字
+      方式，不豁免数据校验。
+
 ## 复核签字
 - 整理人：____________ 日期：____________
 - 复核人 1：____________ 日期：____________
 - 复核人 2：____________ 日期：____________
-- 结论：`approved` / `rejected`（rejected 时说明原因并重新整理）
+- 结论：`approved` / `approved_with_waiver` / `rejected`
+  （`approved_with_waiver` 必须同时完成豁免字段；`rejected` 时说明原因并重新整理）
