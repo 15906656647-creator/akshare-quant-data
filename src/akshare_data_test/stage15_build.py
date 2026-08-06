@@ -307,6 +307,36 @@ def _read_limit_events(stage8_database: Path | None) -> pd.DataFrame | None:
         ).fetchdf()
 
 
+def _read_latest_stage8_manifest(
+    stage8_database: Path | None,
+) -> dict[str, Any]:
+    """Read the latest PASS Stage 8 manifest for downstream report markers."""
+    if stage8_database is None or not stage8_database.is_file():
+        return {}
+    try:
+        with duckdb.connect(str(stage8_database), read_only=True) as connection:
+            names = {
+                f"{str(row[0])}.{str(row[1])}"
+                for row in connection.execute(
+                    "SELECT table_schema, table_name FROM information_schema.tables"
+                ).fetchall()
+            }
+            if "audit.stage8_run" not in names:
+                return {}
+            rows = connection.execute(
+                "SELECT manifest_json FROM audit.stage8_run "
+                "WHERE status = 'PASS' "
+                "ORDER BY created_at DESC, run_id DESC LIMIT 1"
+            ).fetchall()
+            if not rows or not rows[0][0]:
+                return {}
+            payload = json.loads(str(rows[0][0]))
+            manifest = payload.get("dataset_manifest")
+            return manifest if isinstance(manifest, dict) else {}
+    except (duckdb.Error, json.JSONDecodeError, OSError, TypeError):
+        return {}
+
+
 def _stage8_blocker_codes(
     config: dict[str, Any], limit_events: pd.DataFrame | None
 ) -> list[str]:
@@ -498,6 +528,7 @@ def run_stage15_quality_control(
         elapsed=elapsed,
     )
     limit_events = _read_limit_events(stage8_database)
+    stage8_manifest = _read_latest_stage8_manifest(stage8_database)
     blockers = _stage8_blocker_codes(config, limit_events)
     cross = build_cross_validation(
         run_id=actual_run_id,
@@ -555,6 +586,16 @@ def run_stage15_quality_control(
         "risk_row_count": int(len(risks)),
         "cross_validation_row_count": int(len(cross)),
         "stage8_blocker_codes": json.dumps(blockers, ensure_ascii=False),
+        "stage8_review_status": stage8_manifest.get("review_status") or "",
+        "stage8_review_mode": stage8_manifest.get("review_mode") or "",
+        "stage8_verified_by_dual_review": bool(
+            stage8_manifest.get(
+                "verified_by_dual_review",
+                stage8_manifest.get("review_status") == "approved",
+            )
+        ),
+        "stage8_waiver_approver": stage8_manifest.get("waiver_approver") or "",
+        "stage8_waiver_document": stage8_manifest.get("waiver_document") or "",
         "created_at": timestamp,
         "input_database": str(input_database),
         "output_database": str(output_database),
@@ -601,6 +642,16 @@ def run_stage15_quality_control(
         "cross_validation": cross.to_dict("records"),
         "risk_log": risks.to_dict("records"),
         "stage8_blocker_codes": blockers,
+        "stage8_review_status": stage8_manifest.get("review_status") or "",
+        "stage8_review_mode": stage8_manifest.get("review_mode") or "",
+        "stage8_verified_by_dual_review": bool(
+            stage8_manifest.get(
+                "verified_by_dual_review",
+                stage8_manifest.get("review_status") == "approved",
+            )
+        ),
+        "stage8_waiver_approver": stage8_manifest.get("waiver_approver") or "",
+        "stage8_waiver_document": stage8_manifest.get("waiver_document") or "",
         "unavailable_count": unavailable_count,
         "blocked_risk_count": blocked_count,
         "input_database": str(input_database),

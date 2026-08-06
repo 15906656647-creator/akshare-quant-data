@@ -17,9 +17,12 @@ from .limit_event_detection import detect_limit_events, formal_events
 from .limit_rules import (
     LimitRule,
     SecurityStatus,
+    REVIEW_MODES,
+    WAIVER_DOCUMENT,
     validate_rule_intervals,
     validate_status_intervals,
 )
+from .paths import project_root
 from .quality.limit_event_checks import (
     run_stage8_post_write_checks,
     run_stage8_quality_checks,
@@ -46,6 +49,19 @@ def _parse_date(value: object, *, required: bool = False) -> date | None:
             raise ValueError("Required effective date is missing")
         return None
     return datetime.strptime(str(value), "%Y-%m-%d").date()
+
+
+def _parse_aware_datetime(value: object, field: str) -> None:
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{field} must be a non-empty string")
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError as exc:
+        raise ValueError(
+            f"{field} must be an ISO datetime with timezone"
+        ) from exc
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        raise ValueError(f"{field} must include a timezone offset")
 
 
 def _strict_bool(value: object, field: str) -> bool:
@@ -108,10 +124,45 @@ def _validate_dataset_manifest(value: object) -> None:
             raise ValueError(
                 f"dataset_manifest.{key} must be a non-empty string"
             )
-    if value["review_status"] not in {"approved", "rejected", "pending"}:
+    review_status = value["review_status"]
+    if review_status not in {
+        "approved", "rejected", "pending", "approved_with_waiver"
+    }:
         raise ValueError(
-            "dataset_manifest.review_status must be approved/rejected/pending"
+            "dataset_manifest.review_status must be "
+            "approved/rejected/pending/approved_with_waiver"
         )
+    review_mode = value.get("review_mode")
+    if review_mode is not None and review_mode not in REVIEW_MODES:
+        raise ValueError("dataset_manifest.review_mode must be dual_review or waiver")
+    if review_status == "approved":
+        if review_mode is not None and review_mode != "dual_review":
+            raise ValueError(
+                "dataset_manifest.review_mode must be dual_review for approved"
+            )
+    elif review_status == "approved_with_waiver":
+        if review_mode != "waiver":
+            raise ValueError(
+                "dataset_manifest.review_mode must be waiver for "
+                "approved_with_waiver"
+            )
+        for key in ("waiver_reason", "waiver_approver", "waiver_at",
+                    "waiver_document"):
+            item = value.get(key)
+            if not isinstance(item, str) or not item.strip():
+                raise ValueError(
+                    f"dataset_manifest.{key} must be a non-empty string"
+                )
+        _parse_aware_datetime(value["waiver_at"], "dataset_manifest.waiver_at")
+        if value["waiver_document"] != WAIVER_DOCUMENT:
+            raise ValueError(
+                "dataset_manifest.waiver_document must be "
+                f"{WAIVER_DOCUMENT}"
+            )
+        if not (project_root() / WAIVER_DOCUMENT).is_file():
+            raise ValueError(
+                f"dataset_manifest.waiver_document missing: {WAIVER_DOCUMENT}"
+            )
     source_files = value["source_files"]
     if (
         not isinstance(source_files, list)
@@ -204,6 +255,8 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
         "symbol", "security_type", "source_published_at", "source_hash",
         "data_version", "record_id", "raw_file", "source_document_id",
         "reviewer", "notes", "retrieved_at", "review_status",
+        "review_mode", "waiver_reason", "waiver_approver", "waiver_at",
+        "waiver_document",
     }
     status_allowed = {
         "symbol", "effective_start", "effective_end", "exchange", "board",
@@ -214,6 +267,8 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
         "status_type", "status_value", "announcement_date", "raw_file",
         "source_document_id", "reviewer", "notes", "retrieved_at",
         "review_status",
+        "review_mode", "waiver_reason", "waiver_approver", "waiver_at",
+        "waiver_document",
     }
     rules = []
     for item in raw.get("rule_records", []):
@@ -271,6 +326,17 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
             notes=_optional_text(item.get("notes"), "notes"),
             retrieved_at=_optional_text(item.get("retrieved_at"), "retrieved_at"),
             review_status=_optional_text(item.get("review_status"), "review_status"),
+            review_mode=_optional_text(item.get("review_mode"), "review_mode"),
+            waiver_reason=_optional_text(
+                item.get("waiver_reason"), "waiver_reason"
+            ),
+            waiver_approver=_optional_text(
+                item.get("waiver_approver"), "waiver_approver"
+            ),
+            waiver_at=_optional_text(item.get("waiver_at"), "waiver_at"),
+            waiver_document=_optional_text(
+                item.get("waiver_document"), "waiver_document"
+            ),
         )
         if parsed_rule.rounding_rule not in supported_rounding:
             raise ValueError(
@@ -343,6 +409,17 @@ def load_stage8_config(path: Path) -> tuple[dict[str, Any], list[LimitRule], lis
             notes=_optional_text(item.get("notes"), "notes"),
             retrieved_at=_optional_text(item.get("retrieved_at"), "retrieved_at"),
             review_status=_optional_text(item.get("review_status"), "review_status"),
+            review_mode=_optional_text(item.get("review_mode"), "review_mode"),
+            waiver_reason=_optional_text(
+                item.get("waiver_reason"), "waiver_reason"
+            ),
+            waiver_approver=_optional_text(
+                item.get("waiver_approver"), "waiver_approver"
+            ),
+            waiver_at=_optional_text(item.get("waiver_at"), "waiver_at"),
+            waiver_document=_optional_text(
+                item.get("waiver_document"), "waiver_document"
+            ),
         ))
     validate_rule_intervals(rules)
     validate_status_intervals(statuses)
@@ -489,6 +566,11 @@ def _write_reports(
 - 状态：**{report["run_status"]}**
 - run_id：`{report["run_id"]}`
 - 输出类型：`{report["output_type"]}`（fixture 绝非正式结果）
+- 审核状态：`{report["review_status"] or "未提供"}`
+- 审核模式：`{report["review_mode"] or "未提供"}`
+- 是否双人复核：`{report["verified_by_dual_review"]}`
+- waiver 批准人：`{report["waiver_approver"] or "未提供"}`
+- waiver 文档：`{report["waiver_document"] or "未提供"}`
 - 价格口径：`{report["input_price_route"]}`（不复权真实交易价格）
 - 时间范围：{report["window_start"]} 至 {report["window_end"]}
 - 正式事件：{formal_event_label}
@@ -722,6 +804,35 @@ def analyze_stage8(
             }
         ),
         "dataset_manifest": raw_config.get("dataset_manifest"),
+        "review_status": (
+            raw_config["dataset_manifest"].get("review_status")
+            if raw_config.get("dataset_manifest")
+            else ""
+        ),
+        "review_mode": (
+            raw_config["dataset_manifest"].get("review_mode")
+            if raw_config.get("dataset_manifest")
+            else ""
+        ),
+        "verified_by_dual_review": bool(
+            raw_config.get("dataset_manifest", {}).get(
+                "verified_by_dual_review",
+                raw_config.get("dataset_manifest", {}).get(
+                    "review_status"
+                )
+                == "approved",
+            )
+        ),
+        "waiver_approver": (
+            raw_config["dataset_manifest"].get("waiver_approver") or ""
+            if raw_config.get("dataset_manifest")
+            else ""
+        ),
+        "waiver_document": (
+            raw_config["dataset_manifest"].get("waiver_document") or ""
+            if raw_config.get("dataset_manifest")
+            else ""
+        ),
         "rule_sources": sorted({rule.source_reference for rule in rules}),
         "security_status_sources": sorted({status.source_reference for status in statuses}),
         "rule_versions": sorted({rule.rule_version for rule in rules}),

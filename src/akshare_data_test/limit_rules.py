@@ -8,6 +8,51 @@ import re
 from typing import Iterable
 
 
+REVIEW_STATUSES = {"approved", "rejected", "pending", "approved_with_waiver"}
+REVIEW_MODES = {"dual_review", "waiver"}
+WAIVER_DOCUMENT = "docs/stage8_rule_review_waiver.md"
+
+
+def _validate_review_metadata(
+    *,
+    review_status: str | None,
+    review_mode: str | None,
+    reviewer: str | None,
+    waiver_reason: str | None,
+    waiver_approver: str | None,
+    waiver_at: str | None,
+    waiver_document: str | None,
+) -> None:
+    if review_status is None:
+        return
+    if review_status not in REVIEW_STATUSES:
+        raise ValueError(
+            "review_status must be approved/rejected/pending/approved_with_waiver"
+        )
+    if review_mode is not None and review_mode and review_mode not in REVIEW_MODES:
+        raise ValueError("review_mode must be dual_review or waiver")
+    if review_status == "approved":
+        if review_mode is not None and review_mode != "dual_review":
+            raise ValueError("approved records must use review_mode=dual_review")
+        if not reviewer or not str(reviewer).strip():
+            raise ValueError("approved records require a real reviewer")
+    elif review_status == "approved_with_waiver":
+        if review_mode != "waiver":
+            raise ValueError("approved_with_waiver requires review_mode=waiver")
+        for name, value in (
+            ("waiver_reason", waiver_reason),
+            ("waiver_approver", waiver_approver),
+            ("waiver_at", waiver_at),
+            ("waiver_document", waiver_document),
+        ):
+            if not value or not str(value).strip():
+                raise ValueError(f"{name} is required for approved_with_waiver")
+        if waiver_document != WAIVER_DOCUMENT:
+            raise ValueError(
+                f"waiver_document must be {WAIVER_DOCUMENT}"
+            )
+
+
 class RuleResolutionError(ValueError):
     """No unique applicable price-limit rule can be resolved."""
 
@@ -46,6 +91,11 @@ class LimitRule:
     notes: str | None = None
     retrieved_at: str | None = None
     review_status: str | None = None
+    review_mode: str | None = None
+    waiver_reason: str | None = None
+    waiver_approver: str | None = None
+    waiver_at: str | None = None
+    waiver_document: str | None = None
 
     def __post_init__(self) -> None:
         if type(self.is_st) is not bool or type(self.no_limit_flag) is not bool:
@@ -100,15 +150,19 @@ class LimitRule:
             ("record_id", self.record_id),
             ("raw_file", self.raw_file),
             ("source_document_id", self.source_document_id),
-            ("reviewer", self.reviewer),
             ("retrieved_at", self.retrieved_at),
         ):
             if value is not None and not str(value).strip():
                 raise ValueError(f"{name} must be non-empty when provided")
-        if self.review_status is not None and self.review_status not in {
-            "approved", "rejected", "pending"
-        }:
-            raise ValueError("review_status must be approved/rejected/pending")
+        _validate_review_metadata(
+            review_status=self.review_status,
+            review_mode=self.review_mode,
+            reviewer=self.reviewer,
+            waiver_reason=self.waiver_reason,
+            waiver_approver=self.waiver_approver,
+            waiver_at=self.waiver_at,
+            waiver_document=self.waiver_document,
+        )
 
     def applies(self, trade_date: date) -> bool:
         return (
@@ -147,6 +201,11 @@ class SecurityStatus:
     notes: str | None = None
     retrieved_at: str | None = None
     review_status: str | None = None
+    review_mode: str | None = None
+    waiver_reason: str | None = None
+    waiver_approver: str | None = None
+    waiver_at: str | None = None
+    waiver_document: str | None = None
 
     def __post_init__(self) -> None:
         if len(self.symbol) != 6 or not self.symbol.isdigit():
@@ -191,15 +250,19 @@ class SecurityStatus:
             ("record_id", self.record_id),
             ("raw_file", self.raw_file),
             ("source_document_id", self.source_document_id),
-            ("reviewer", self.reviewer),
             ("retrieved_at", self.retrieved_at),
         ):
             if value is not None and not str(value).strip():
                 raise ValueError(f"{name} must be non-empty when provided")
-        if self.review_status is not None and self.review_status not in {
-            "approved", "rejected", "pending"
-        }:
-            raise ValueError("review_status must be approved/rejected/pending")
+        _validate_review_metadata(
+            review_status=self.review_status,
+            review_mode=self.review_mode,
+            reviewer=self.reviewer,
+            waiver_reason=self.waiver_reason,
+            waiver_approver=self.waiver_approver,
+            waiver_at=self.waiver_at,
+            waiver_document=self.waiver_document,
+        )
 
     def applies(self, trade_date: date) -> bool:
         return (
@@ -275,6 +338,19 @@ def _unique_text(*values: str | None) -> str:
         if text and text not in seen:
             seen.append(text)
     return " ; ".join(seen)
+
+
+def _merge_review_status(left: str | None, right: str | None) -> str | None:
+    values = {left, right}
+    if values == {"approved"}:
+        return "approved"
+    if values <= {"approved", "approved_with_waiver"}:
+        if "approved_with_waiver" in values:
+            return "approved_with_waiver"
+        return next(
+            (value for value in (left, right) if value is not None), None
+        )
+    return next((value for value in (left, right) if value is not None), None)
 
 
 def _merge_security_statuses(
@@ -355,10 +431,29 @@ def _merge_security_statuses(
         reviewer=_unique_text(st.reviewer, listing.reviewer),
         notes=_unique_text(st.notes, listing.notes),
         retrieved_at=_unique_text(st.retrieved_at, listing.retrieved_at),
-        review_status=(
-            "approved"
-            if st.review_status == "approved" and listing.review_status == "approved"
-            else st.review_status or listing.review_status
+        review_status=_merge_review_status(
+            st.review_status, listing.review_status
+        ),
+        review_mode=(
+            "dual_review"
+            if _merge_review_status(st.review_status, listing.review_status)
+            == "approved"
+            else (
+                "waiver"
+                if "approved_with_waiver"
+                in {st.review_status, listing.review_status}
+                else st.review_mode or listing.review_mode
+            )
+        ),
+        waiver_reason=_unique_text(
+            st.waiver_reason, listing.waiver_reason
+        ),
+        waiver_approver=_unique_text(
+            st.waiver_approver, listing.waiver_approver
+        ),
+        waiver_at=_unique_text(st.waiver_at, listing.waiver_at),
+        waiver_document=_unique_text(
+            st.waiver_document, listing.waiver_document
         ),
     )
 

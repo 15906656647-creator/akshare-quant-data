@@ -35,6 +35,11 @@ optional_columns:
   - rounding_rule
   - rule_version
   - verified_at
+  - review_mode
+  - waiver_reason
+  - waiver_approver
+  - waiver_at
+  - waiver_document
 
 field_specs:
   market:
@@ -83,11 +88,32 @@ field_specs:
     note: "must match the registered source file hash"
   review_status:
     type: "string"
-    allowed: ["approved", "rejected", "pending"]
-    note: "only approved records can be published"
+    allowed: ["approved", "rejected", "pending", "approved_with_waiver"]
+    note: "approved requires real dual review; approved_with_waiver requires complete waiver fields"
   reviewer:
     type: "string"
-    note: "reviewer name or dual-review pair"
+    note: "required for approved; may be empty for approved_with_waiver"
+  review_mode:
+    type: "string"
+    required: false
+    allowed: ["dual_review", "waiver"]
+    note: "dual_review for approved; waiver required for approved_with_waiver"
+  waiver_reason:
+    type: "string"
+    required: false
+    note: "non-empty and required for approved_with_waiver"
+  waiver_approver:
+    type: "string"
+    required: false
+    note: "project owner who explicitly accepts the risk; required for approved_with_waiver"
+  waiver_at:
+    type: "ISO datetime with timezone"
+    required: false
+    note: "required for approved_with_waiver"
+  waiver_document:
+    type: "relative path"
+    required: false
+    note: "must be docs/stage8_rule_review_waiver.md and the file must exist"
   notes:
     type: "string"
     note: "may be empty"
@@ -114,8 +140,16 @@ manifest_required_keys:
   - coverage_end
   - review_status
   - reviewed_at
-  - reviewer
   - sources
+
+manifest_conditional_keys:
+  - reviewer
+  - review_mode
+  - waiver_reason
+  - waiver_approver
+  - waiver_at
+  - waiver_document
+  - verified_by_dual_review
 
 sources_item_keys:
   - file
