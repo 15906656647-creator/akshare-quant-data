@@ -113,6 +113,21 @@ def _merged_manifest(
         return base_manifest
     if base_manifest is None:
         return current_manifest
+    statuses = {
+        base_manifest["review_status"],
+        current_manifest["review_status"],
+    }
+    if statuses == {"approved"}:
+        merged_review_status = "approved"
+    elif statuses <= {"approved", "approved_with_waiver"}:
+        merged_review_status = "approved_with_waiver"
+    else:
+        merged_review_status = "rejected"
+    waiver_source = (
+        base_manifest
+        if base_manifest["review_status"] == "approved_with_waiver"
+        else current_manifest
+    )
     return {
         "dataset_version": (
             f"{base_manifest['dataset_version']}+"
@@ -145,12 +160,17 @@ def _merged_manifest(
                 current_manifest["date_coverage"]["end"],
             ),
         },
-        "review_status": (
-            "approved"
-            if base_manifest["review_status"] == "approved"
-            and current_manifest["review_status"] == "approved"
-            else "rejected"
+        "review_status": merged_review_status,
+        "review_mode": (
+            "dual_review"
+            if merged_review_status == "approved"
+            else "waiver"
         ),
+        "verified_by_dual_review": merged_review_status == "approved",
+        "waiver_reason": waiver_source.get("waiver_reason") or "",
+        "waiver_approver": waiver_source.get("waiver_approver") or "",
+        "waiver_at": waiver_source.get("waiver_at") or "",
+        "waiver_document": waiver_source.get("waiver_document") or "",
         "run_id": run_id,
     }
 
@@ -178,6 +198,22 @@ def _merged_config(
         run_id=run_id,
     )
     return config
+
+
+def _manifest_review_summary(config: dict[str, Any]) -> dict[str, Any]:
+    manifest = config.get("dataset_manifest") or {}
+    return {
+        "review_status": manifest.get("review_status") or "",
+        "review_mode": manifest.get("review_mode") or "",
+        "verified_by_dual_review": bool(
+            manifest.get(
+                "verified_by_dual_review",
+                manifest.get("review_status") == "approved",
+            )
+        ),
+        "waiver_approver": manifest.get("waiver_approver") or "",
+        "waiver_document": manifest.get("waiver_document") or "",
+    }
 
 
 def _validate_config(config: dict[str, Any], output_dir: Path) -> tuple[Any, Any]:
@@ -285,6 +321,11 @@ def build_rules_manifest(
             "raw_file": item.raw_file or "",
             "source_document_id": item.source_document_id or "",
             "reviewer": item.reviewer or "",
+            "review_mode": item.review_mode or "",
+            "waiver_reason": item.waiver_reason or "",
+            "waiver_approver": item.waiver_approver or "",
+            "waiver_at": item.waiver_at or "",
+            "waiver_document": item.waiver_document or "",
             "notes": item.notes or "",
             "retrieved_at": item.retrieved_at or "",
             "review_status": item.review_status or "",
@@ -330,6 +371,7 @@ def build_rules_manifest(
             }
         ),
         "dataset_manifest": config.get("dataset_manifest"),
+        **_manifest_review_summary(config),
         "dataset_validation": dataset_result,
         "provenance": (
             provenance_report(dataset_result)
@@ -497,6 +539,11 @@ def build_status_manifest(
             "raw_file": item.raw_file or "",
             "source_document_id": item.source_document_id or "",
             "reviewer": item.reviewer or "",
+            "review_mode": item.review_mode or "",
+            "waiver_reason": item.waiver_reason or "",
+            "waiver_approver": item.waiver_approver or "",
+            "waiver_at": item.waiver_at or "",
+            "waiver_document": item.waiver_document or "",
             "notes": item.notes or "",
             "retrieved_at": item.retrieved_at or "",
             "review_status": item.review_status or "",
@@ -539,6 +586,7 @@ def build_status_manifest(
             }
         ),
         "dataset_manifest": config.get("dataset_manifest"),
+        **_manifest_review_summary(config),
         "dataset_validation": dataset_result,
         "provenance": (
             provenance_report(dataset_result)
@@ -649,6 +697,34 @@ def _read_latest_events(database: Path) -> pd.DataFrame:
         ).fetchdf()
 
 
+def _read_latest_stage8_manifest(database: Path) -> dict[str, Any]:
+    """Read the latest PASS run's dataset manifest, if persisted."""
+    if not database.is_file():
+        return {}
+    try:
+        with duckdb.connect(str(database), read_only=True) as connection:
+            names = {
+                f"{str(row[0])}.{str(row[1])}"
+                for row in connection.execute(
+                    "SELECT table_schema, table_name FROM information_schema.tables"
+                ).fetchall()
+            }
+            if "audit.stage8_run" not in names:
+                return {}
+            rows = connection.execute(
+                "SELECT manifest_json FROM audit.stage8_run "
+                "WHERE status = 'PASS' "
+                "ORDER BY created_at DESC, run_id DESC LIMIT 1"
+            ).fetchall()
+            if not rows or not rows[0][0]:
+                return {}
+            payload = json.loads(str(rows[0][0]))
+            manifest = payload.get("dataset_manifest")
+            return manifest if isinstance(manifest, dict) else {}
+    except (duckdb.Error, json.JSONDecodeError, OSError, TypeError):
+        return {}
+
+
 def _date_text(value: Any) -> str:
     if value is None or pd.isna(value):
         return ""
@@ -677,6 +753,7 @@ def verify_s14(
     """Produce the S15-14 manual-verification evidence from real Stage 8/15 data."""
     effective_run_id = run_id or str(uuid.uuid4())
     events = _read_latest_events(stage8_database)
+    manifest = _read_latest_stage8_manifest(stage8_database)
     cross_path = stage15_reports_dir / "cross_validation.csv"
     if not cross_path.is_file():
         raise ValueError(f"stage15 cross_validation.csv not found: {cross_path}")
@@ -692,6 +769,16 @@ def verify_s14(
             "formal_event_count": int(
                 events["event_type"].isin(["limit_up", "limit_down"]).sum()
             ),
+            "stage8_review_status": manifest.get("review_status") or "",
+            "stage8_review_mode": manifest.get("review_mode") or "",
+            "stage8_verified_by_dual_review": bool(
+                manifest.get(
+                    "verified_by_dual_review",
+                    manifest.get("review_status") == "approved",
+                )
+            ),
+            "stage8_waiver_approver": manifest.get("waiver_approver") or "",
+            "stage8_waiver_document": manifest.get("waiver_document") or "",
             "outputs_written": False,
         }, 0
     cross = pd.read_csv(cross_path, dtype={"symbol": str})
@@ -861,6 +948,16 @@ def verify_s14(
                 if condition
             ]
         ),
+        "stage8_review_status": manifest.get("review_status") or "",
+        "stage8_review_mode": manifest.get("review_mode") or "",
+        "stage8_verified_by_dual_review": bool(
+            manifest.get(
+                "verified_by_dual_review",
+                manifest.get("review_status") == "approved",
+            )
+        ),
+        "stage8_waiver_approver": manifest.get("waiver_approver") or "",
+        "stage8_waiver_document": manifest.get("waiver_document") or "",
         "outputs": {
             "verification_csv": str(csv_path),
             "verification_json": str(output_dir / "s14_verification.json"),
@@ -877,6 +974,11 @@ def verify_s14(
         f"- Stage8 数据库: `{stage8_database}`",
         f"- 有效样本数: {sample_count}",
         f"- UNAVAILABLE 数: {unavailable_count}",
+        f"- Stage8 review_status: `{manifest.get('review_status') or ''}`",
+        f"- Stage8 review_mode: `{manifest.get('review_mode') or ''}`",
+        f"- Stage8 双人复核: `{manifest.get('verified_by_dual_review', manifest.get('review_status') == 'approved')}`",
+        f"- Stage8 waiver 批准人: `{manifest.get('waiver_approver') or ''}`",
+        f"- Stage8 waiver 文档: `{manifest.get('waiver_document') or ''}`",
         f"- 状态: **{status}**",
         "",
         "| symbol | 最近正式涨停日 | 前一有效交易日 | 前收盘价 | 涨停比例 | "

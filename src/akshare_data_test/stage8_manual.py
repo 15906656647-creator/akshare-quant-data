@@ -27,6 +27,8 @@ from .config import load_universe
 from .limit_rules import (
     LimitRule,
     SecurityStatus,
+    REVIEW_MODES,
+    WAIVER_DOCUMENT,
     resolve_limit_rule,
     resolve_security_status,
     validate_rule_intervals,
@@ -47,8 +49,17 @@ BOARDS = {"main", "growth", "star", "bse"}
 RULE_TYPES = {"price_limit", "st_price_limit", "ipo_first_day", "no_limit"}
 ST_STATUS_VALUES = {"NON_ST", "ST", "*ST", "OTHER"}
 LISTING_STATUS_VALUES = {"LISTED", "SUSPENDED", "DELISTED"}
-REVIEW_STATUSES = {"approved", "rejected", "pending"}
+REVIEW_STATUSES = {
+    "approved", "rejected", "pending", "approved_with_waiver"
+}
 GRADES = {"A", "B", "C"}
+WAIVER_FIELDS = (
+    "review_mode",
+    "waiver_reason",
+    "waiver_approver",
+    "waiver_at",
+    "waiver_document",
+)
 
 REQUIRED_MANIFEST_KEYS = {
     "dataset_name",
@@ -60,7 +71,6 @@ REQUIRED_MANIFEST_KEYS = {
     "coverage_end",
     "review_status",
     "reviewed_at",
-    "reviewer",
     "sources",
 }
 
@@ -69,21 +79,25 @@ RULES_REQUIRED_COLUMNS = [
     "limit_ratio", "effective_from", "effective_to", "source_name",
     "source_document_id", "source_document_date", "source_reference",
     "retrieved_at", "raw_file", "source_sha256", "review_status",
-    "reviewer", "notes",
+    "notes",
 ]
 RULES_OPTIONAL_COLUMNS = [
     "record_id", "symbol", "limit_down_ratio", "tick_size",
     "price_precision", "rounding_rule", "rule_version", "verified_at",
+    "reviewer", "review_mode", "waiver_reason", "waiver_approver", "waiver_at",
+    "waiver_document",
 ]
 
 STATUS_REQUIRED_COLUMNS = [
     "symbol", "exchange", "board", "status_type", "status_value",
     "effective_from", "effective_to", "announcement_date", "source_name",
     "source_document_id", "source_reference", "retrieved_at", "raw_file",
-    "source_sha256", "review_status", "reviewer", "notes",
+    "source_sha256", "review_status", "notes",
 ]
 STATUS_OPTIONAL_COLUMNS = [
     "record_id", "listing_date", "delisting_date", "status_version",
+    "reviewer", "review_mode", "waiver_reason", "waiver_approver", "waiver_at",
+    "waiver_document",
 ]
 
 FORMER_NAME_INFERENCE_TOKENS = (
@@ -117,6 +131,12 @@ def _empty_result(*, kind: str, run_id: str, status: str) -> dict[str, Any]:
         "source_hashes": {},
         "date_coverage": {"start": "", "end": ""},
         "review_status": "",
+        "review_mode": "",
+        "verified_by_dual_review": False,
+        "waiver_reason": "",
+        "waiver_approver": "",
+        "waiver_at": "",
+        "waiver_document": "",
         "dataset_version": "",
     }
 
@@ -139,6 +159,61 @@ def _parse_datetime(value: str, field: str) -> None:
         datetime.fromisoformat(value)
     except ValueError as exc:
         raise ValueError(f"{field} must be an ISO datetime") from exc
+
+
+def _parse_aware_datetime(value: str, field: str) -> None:
+    if not value:
+        raise ValueError(f"{field} must not be empty")
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError as exc:
+        raise ValueError(
+            f"{field} must be an ISO datetime with timezone"
+        ) from exc
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        raise ValueError(f"{field} must include a timezone offset")
+
+
+def _validate_waiver_fields(
+    *,
+    review_status: str,
+    review_mode: str,
+    waiver_reason: str,
+    waiver_approver: str,
+    waiver_at: str,
+    waiver_document: str,
+    prefix: str,
+    errors: list[str],
+) -> None:
+    if review_status == "approved":
+        if review_mode and review_mode != "dual_review":
+            errors.append(f"{prefix}.review_mode_must_be_dual_review:{review_mode}")
+        return
+    if review_status != "approved_with_waiver":
+        return
+    if review_mode != "waiver":
+        errors.append(f"{prefix}.review_mode_must_be_waiver:{review_mode}")
+    for field, value in (
+        ("waiver_reason", waiver_reason),
+        ("waiver_approver", waiver_approver),
+        ("waiver_at", waiver_at),
+        ("waiver_document", waiver_document),
+    ):
+        if not value:
+            errors.append(f"{prefix}.{field}_required")
+    if waiver_document and waiver_document != WAIVER_DOCUMENT:
+        errors.append(
+            f"{prefix}.waiver_document_must_be:{WAIVER_DOCUMENT}"
+        )
+    if waiver_document == WAIVER_DOCUMENT and not (
+        project_root() / WAIVER_DOCUMENT
+    ).is_file():
+        errors.append(f"{prefix}.waiver_document_missing:{WAIVER_DOCUMENT}")
+    if waiver_at:
+        try:
+            _parse_aware_datetime(waiver_at, f"{prefix}.waiver_at")
+        except ValueError as exc:
+            errors.append(str(exc))
 
 
 def _row_label(row: dict[str, str], index: int) -> str:
@@ -231,12 +306,42 @@ def _validate_manifest(
     for key in (
         "dataset_version", "schema_version", "generated_at", "as_of_date",
         "coverage_start", "coverage_end", "review_status", "reviewed_at",
-        "reviewer",
     ):
         value = payload.get(key)
         if not isinstance(value, str) or not value.strip():
             errors.append(f"dataset_manifest.{key}_required")
-    if payload.get("review_status") != "approved":
+    review_status = str(payload.get("review_status") or "").strip()
+    review_mode = str(payload.get("review_mode") or "").strip()
+    if review_status not in REVIEW_STATUSES:
+        errors.append(
+            f"dataset_manifest_review_status_invalid:{review_status}"
+        )
+    elif review_status == "approved":
+        reviewer = str(payload.get("reviewer") or "").strip()
+        if not reviewer:
+            errors.append("dataset_manifest.reviewer_required")
+        _validate_waiver_fields(
+            review_status=review_status,
+            review_mode=review_mode,
+            waiver_reason=str(payload.get("waiver_reason") or "").strip(),
+            waiver_approver=str(payload.get("waiver_approver") or "").strip(),
+            waiver_at=str(payload.get("waiver_at") or "").strip(),
+            waiver_document=str(payload.get("waiver_document") or "").strip(),
+            prefix="dataset_manifest",
+            errors=errors,
+        )
+    elif review_status == "approved_with_waiver":
+        _validate_waiver_fields(
+            review_status=review_status,
+            review_mode=review_mode,
+            waiver_reason=str(payload.get("waiver_reason") or "").strip(),
+            waiver_approver=str(payload.get("waiver_approver") or "").strip(),
+            waiver_at=str(payload.get("waiver_at") or "").strip(),
+            waiver_document=str(payload.get("waiver_document") or "").strip(),
+            prefix="dataset_manifest",
+            errors=errors,
+        )
+    else:
         errors.append("dataset_manifest_review_not_approved")
     if payload.get("as_of_date") != as_of_date.isoformat():
         errors.append(
@@ -358,6 +463,11 @@ def _validate_rule_fields(
         down_text = str(row.get("limit_down_ratio") or "").strip()
         review_status = str(row.get("review_status") or "").strip()
         reviewer = str(row.get("reviewer") or "").strip()
+        review_mode = str(row.get("review_mode") or "").strip()
+        waiver_reason = str(row.get("waiver_reason") or "").strip()
+        waiver_approver = str(row.get("waiver_approver") or "").strip()
+        waiver_at = str(row.get("waiver_at") or "").strip()
+        waiver_document = str(row.get("waiver_document") or "").strip()
         symbol = str(row.get("symbol") or "").strip()
         if market not in EXCHANGES:
             errors.append(f"{label}.market_invalid:{market}")
@@ -403,10 +513,21 @@ def _validate_rule_fields(
                 errors.append(f"{label}.{field}_required")
         if review_status not in REVIEW_STATUSES:
             errors.append(f"{label}.review_status_invalid:{review_status}")
-        elif review_status != "approved":
+        elif review_status in {"approved", "approved_with_waiver"}:
+            _validate_waiver_fields(
+                review_status=review_status,
+                review_mode=review_mode,
+                waiver_reason=waiver_reason,
+                waiver_approver=waiver_approver,
+                waiver_at=waiver_at,
+                waiver_document=waiver_document,
+                prefix=label,
+                errors=errors,
+            )
+            if review_status == "approved" and not reviewer:
+                errors.append(f"{label}.reviewer_required")
+        else:
             errors.append(f"{label}.review_not_approved")
-        if not reviewer:
-            errors.append(f"{label}.reviewer_required")
         try:
             start = _parse_date(
                 str(row.get("effective_from") or ""), f"{label}.effective_from"
@@ -448,6 +569,11 @@ def _validate_status_fields(
         status_value = str(row.get("status_value") or "").strip()
         review_status = str(row.get("review_status") or "").strip()
         reviewer = str(row.get("reviewer") or "").strip()
+        review_mode = str(row.get("review_mode") or "").strip()
+        waiver_reason = str(row.get("waiver_reason") or "").strip()
+        waiver_approver = str(row.get("waiver_approver") or "").strip()
+        waiver_at = str(row.get("waiver_at") or "").strip()
+        waiver_document = str(row.get("waiver_document") or "").strip()
         if len(symbol) != 6 or not symbol.isdigit():
             errors.append(f"{label}.symbol_invalid:{symbol}")
         if exchange not in EXCHANGES:
@@ -475,10 +601,21 @@ def _validate_status_fields(
                 errors.append(f"{label}.{field}_required")
         if review_status not in REVIEW_STATUSES:
             errors.append(f"{label}.review_status_invalid:{review_status}")
-        elif review_status != "approved":
+        elif review_status in {"approved", "approved_with_waiver"}:
+            _validate_waiver_fields(
+                review_status=review_status,
+                review_mode=review_mode,
+                waiver_reason=waiver_reason,
+                waiver_approver=waiver_approver,
+                waiver_at=waiver_at,
+                waiver_document=waiver_document,
+                prefix=label,
+                errors=errors,
+            )
+            if review_status == "approved" and not reviewer:
+                errors.append(f"{label}.reviewer_required")
+        else:
             errors.append(f"{label}.review_not_approved")
-        if not reviewer:
-            errors.append(f"{label}.reviewer_required")
         try:
             start = _parse_date(
                 str(row.get("effective_from") or ""), f"{label}.effective_from"
@@ -609,7 +746,7 @@ def _internal_rules(rows: list[dict[str, str]], manifest: dict[str, Any]) -> lis
             ),
             evidence_status=(
                 "verified"
-                if row["review_status"] == "approved"
+                if row["review_status"] in {"approved", "approved_with_waiver"}
                 else "unverified"
             ),
             symbol=row.get("symbol") or None,
@@ -626,6 +763,11 @@ def _internal_rules(rows: list[dict[str, str]], manifest: dict[str, Any]) -> lis
             notes=row.get("notes") or "",
             retrieved_at=row["retrieved_at"],
             review_status=row["review_status"],
+            review_mode=row.get("review_mode") or None,
+            waiver_reason=row.get("waiver_reason") or None,
+            waiver_approver=row.get("waiver_approver") or None,
+            waiver_at=row.get("waiver_at") or None,
+            waiver_document=row.get("waiver_document") or None,
         )
         for row in rows
     ]
@@ -668,7 +810,7 @@ def _internal_statuses(
             ),
             evidence_status=(
                 "verified"
-                if row["review_status"] == "approved"
+                if row["review_status"] in {"approved", "approved_with_waiver"}
                 else "unverified"
             ),
             special_treatment_type=(
@@ -698,6 +840,11 @@ def _internal_statuses(
             notes=row.get("notes") or "",
             retrieved_at=row["retrieved_at"],
             review_status=row["review_status"],
+            review_mode=row.get("review_mode") or None,
+            waiver_reason=row.get("waiver_reason") or None,
+            waiver_approver=row.get("waiver_approver") or None,
+            waiver_at=row.get("waiver_at") or None,
+            waiver_document=row.get("waiver_document") or None,
         ))
     return result
 
@@ -1004,6 +1151,21 @@ def validate_manual_dataset(
     if result["valid"] and manifest is not None:
         result["status"] = "READY"
         result["review_status"] = manifest["review_status"]
+        result["review_mode"] = (
+            manifest.get("review_mode")
+            or (
+                "dual_review"
+                if manifest["review_status"] == "approved"
+                else "waiver"
+            )
+        )
+        result["verified_by_dual_review"] = (
+            manifest["review_status"] == "approved"
+        )
+        result["waiver_reason"] = manifest.get("waiver_reason") or ""
+        result["waiver_approver"] = manifest.get("waiver_approver") or ""
+        result["waiver_at"] = manifest.get("waiver_at") or ""
+        result["waiver_document"] = manifest.get("waiver_document") or ""
         result["dataset_version"] = manifest["dataset_version"]
         result["verified_record_count"] = len(rows)
         result["source_files"] = sorted(
@@ -1144,6 +1306,19 @@ def _component_manifest(
             "end": validated["coverage_end"],
         },
         "review_status": manifest["review_status"],
+        "review_mode": (
+            manifest.get("review_mode")
+            or (
+                "dual_review"
+                if manifest["review_status"] == "approved"
+                else "waiver"
+            )
+        ),
+        "verified_by_dual_review": manifest["review_status"] == "approved",
+        "waiver_reason": manifest.get("waiver_reason") or "",
+        "waiver_approver": manifest.get("waiver_approver") or "",
+        "waiver_at": manifest.get("waiver_at") or "",
+        "waiver_document": manifest.get("waiver_document") or "",
         "run_id": validated["run_id"],
     }
 
@@ -1189,7 +1364,8 @@ def build_component_payload(
                 ),
                 "evidence_status": (
                     "verified"
-                    if row["review_status"] == "approved"
+                    if row["review_status"]
+                    in {"approved", "approved_with_waiver"}
                     else "unverified"
                 ),
                 "symbol": row.get("symbol") or None,
@@ -1207,6 +1383,18 @@ def build_component_payload(
                 "notes": row.get("notes") or "",
                 "retrieved_at": row["retrieved_at"],
                 "review_status": row["review_status"],
+                "review_mode": (
+                    row.get("review_mode")
+                    or (
+                        "dual_review"
+                        if row["review_status"] == "approved"
+                        else "waiver"
+                    )
+                ),
+                "waiver_reason": row.get("waiver_reason") or "",
+                "waiver_approver": row.get("waiver_approver") or "",
+                "waiver_at": row.get("waiver_at") or "",
+                "waiver_document": row.get("waiver_document") or "",
             }
             for index, row in enumerate(validated["records"])
         ]
@@ -1244,7 +1432,8 @@ def build_component_payload(
                 ),
                 "evidence_status": (
                     "verified"
-                    if row["review_status"] == "approved"
+                    if row["review_status"]
+                    in {"approved", "approved_with_waiver"}
                     else "unverified"
                 ),
                 "special_treatment_type": (
@@ -1273,6 +1462,18 @@ def build_component_payload(
                 "notes": row.get("notes") or "",
                 "retrieved_at": row["retrieved_at"],
                 "review_status": row["review_status"],
+                "review_mode": (
+                    row.get("review_mode")
+                    or (
+                        "dual_review"
+                        if row["review_status"] == "approved"
+                        else "waiver"
+                    )
+                ),
+                "waiver_reason": row.get("waiver_reason") or "",
+                "waiver_approver": row.get("waiver_approver") or "",
+                "waiver_at": row.get("waiver_at") or "",
+                "waiver_document": row.get("waiver_document") or "",
             }
         )
     return {
@@ -1296,6 +1497,21 @@ def build_merged_payload(
     )
     rules_manifest = rules_payload["dataset_manifest"]
     status_manifest = status_payload["dataset_manifest"]
+    statuses = {
+        rules_manifest["review_status"],
+        status_manifest["review_status"],
+    }
+    if statuses == {"approved"}:
+        merged_review_status = "approved"
+    elif statuses <= {"approved", "approved_with_waiver"}:
+        merged_review_status = "approved_with_waiver"
+    else:
+        merged_review_status = "rejected"
+    waiver_source = (
+        rules_manifest
+        if rules_manifest["review_status"] == "approved_with_waiver"
+        else status_manifest
+    )
     merged_manifest = {
         "dataset_version": (
             f"{rules_manifest['dataset_version']}+"
@@ -1328,12 +1544,17 @@ def build_merged_payload(
                 status_manifest["date_coverage"]["end"],
             ),
         },
-        "review_status": (
-            "approved"
-            if rules_manifest["review_status"] == "approved"
-            and status_manifest["review_status"] == "approved"
-            else "rejected"
+        "review_status": merged_review_status,
+        "review_mode": (
+            "dual_review"
+            if merged_review_status == "approved"
+            else "waiver"
         ),
+        "verified_by_dual_review": merged_review_status == "approved",
+        "waiver_reason": waiver_source.get("waiver_reason") or "",
+        "waiver_approver": waiver_source.get("waiver_approver") or "",
+        "waiver_at": waiver_source.get("waiver_at") or "",
+        "waiver_document": waiver_source.get("waiver_document") or "",
         "run_id": run_id,
     }
     return {
@@ -1370,6 +1591,12 @@ def provenance_report(validated: dict[str, Any]) -> dict[str, Any]:
         "reviewer": validated["manifest"]["reviewer"]
         if validated.get("manifest")
         else "",
+        "review_mode": validated["review_mode"],
+        "verified_by_dual_review": validated["verified_by_dual_review"],
+        "waiver_reason": validated["waiver_reason"],
+        "waiver_approver": validated["waiver_approver"],
+        "waiver_at": validated["waiver_at"],
+        "waiver_document": validated["waiver_document"],
         "reviewed_at": validated["manifest"]["reviewed_at"]
         if validated.get("manifest")
         else "",

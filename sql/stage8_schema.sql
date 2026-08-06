@@ -32,6 +32,12 @@ CREATE TABLE IF NOT EXISTS reference.limit_rule (
     notes VARCHAR,
     retrieved_at VARCHAR,
     review_status VARCHAR,
+    review_mode VARCHAR,
+    waiver_reason VARCHAR,
+    waiver_approver VARCHAR,
+    waiver_at VARCHAR,
+    waiver_document VARCHAR,
+    verified_by_dual_review BOOLEAN,
     PRIMARY KEY (exchange, board, is_st, effective_start, rule_version)
 );
 
@@ -59,6 +65,18 @@ ALTER TABLE reference.limit_rule
     ADD COLUMN IF NOT EXISTS retrieved_at VARCHAR;
 ALTER TABLE reference.limit_rule
     ADD COLUMN IF NOT EXISTS review_status VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS review_mode VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS waiver_reason VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS waiver_approver VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS waiver_at VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS waiver_document VARCHAR;
+ALTER TABLE reference.limit_rule
+    ADD COLUMN IF NOT EXISTS verified_by_dual_review BOOLEAN;
 
 CREATE TABLE IF NOT EXISTS reference.security_status_history (
     symbol VARCHAR NOT NULL,
@@ -89,6 +107,12 @@ CREATE TABLE IF NOT EXISTS reference.security_status_history (
     notes VARCHAR,
     retrieved_at VARCHAR,
     review_status VARCHAR,
+    review_mode VARCHAR,
+    waiver_reason VARCHAR,
+    waiver_approver VARCHAR,
+    waiver_at VARCHAR,
+    waiver_document VARCHAR,
+    verified_by_dual_review BOOLEAN,
     PRIMARY KEY (symbol, effective_start, status_version)
 );
 
@@ -122,6 +146,18 @@ ALTER TABLE reference.security_status_history
     ADD COLUMN IF NOT EXISTS retrieved_at VARCHAR;
 ALTER TABLE reference.security_status_history
     ADD COLUMN IF NOT EXISTS review_status VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS review_mode VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS waiver_reason VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS waiver_approver VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS waiver_at VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS waiver_document VARCHAR;
+ALTER TABLE reference.security_status_history
+    ADD COLUMN IF NOT EXISTS verified_by_dual_review BOOLEAN;
 
 CREATE TABLE IF NOT EXISTS analysis.fact_limit_event (
     symbol VARCHAR NOT NULL,
