@@ -1,0 +1,101 @@
+{
+  "run_id": "f41fa319-6b7e-4b19-940e-1e677513232c",
+  "source_chain_complete": false,
+  "files": [
+    {
+      "source_key": "szse-trading-rules-2026",
+      "local_file": "sources/szse_trading_rules_2026.pdf",
+      "size_bytes": 282084,
+      "sha256": "9b66f8b0db70f84a25ef1ccb4ee2351001724e408117552d75f6d8993483c586",
+      "document_id": "深证上〔2026〕551号",
+      "document_title": "深圳证券交易所交易规则（2026年修订）",
+      "role": "规则正文（正式）",
+      "official_reference": "https://www.szse.cn/lawrules/rule/allrules/bussiness/t20260424_620190.html",
+      "official_attachment": "https://docs.static.szse.cn/www/lawrules/rule/allrules/bussiness/W020260424690713155663.pdf",
+      "retrieved_at": "",
+      "retrieved_at_confirmed": false,
+      "format_note": "40页官方正文，页序正常",
+      "chain_complete": false
+    },
+    {
+      "source_key": "szse-trading-rules-2026-explanation",
+      "local_file": "sources/szse_trading_rules_2026_explanation.pdf",
+      "size_bytes": 141508,
+      "sha256": "3a309bf5b4f7b2ee170b897084397568c7a1db939b398f4ab8999587501c727a",
+      "document_id": "深证上〔2026〕551号（通知附件）",
+      "document_title": "《深圳证券交易所交易规则》修订说明（2026年修订）",
+      "role": "修订说明（正式辅助）",
+      "official_reference": "https://www.szse.cn/lawrules/rule/allrules/bussiness/t20260424_620190.html",
+      "official_attachment": "https://docs.static.szse.cn/www/lawrules/rule/allrules/bussiness/W020260424690713346617.pdf",
+      "retrieved_at": "",
+      "retrieved_at_confirmed": false,
+      "format_note": "3页官方附件，页序正常",
+      "chain_complete": false
+    },
+    {
+      "source_key": "szse-trading-rules-2026-notice",
+      "local_file": "sources/szse_trading_rules_2026_notice.pdf",
+      "size_bytes": 148329,
+      "sha256": "998f785a9a76d3b7b08c8a5291d3baf08a1bd6998820d8066994567ed93834b2",
+      "document_id": "深证上〔2026〕551号",
+      "document_title": "关于发布《深圳证券交易所交易规则（2026年修订）》的通知",
+      "role": "发布通知（辅助）",
+      "official_reference": "https://www.szse.cn/lawrules/rule/allrules/bussiness/t20260424_620190.html",
+      "official_attachment": "https://docs.static.szse.cn/www/lawrules/rule/allrules/bussiness/W020260424690713155663.pdf",
+      "retrieved_at": "",
+      "retrieved_at_confirmed": false,
+      "format_note": "1页网页保存件",
+      "chain_complete": false
+    },
+    {
+      "source_key": "sse-trading-rules-2026",
+      "local_file": "sources/sse_trading_rules_2026.docx",
+      "size_bytes": 65302,
+      "sha256": "fc922c433438b2636cb631eab25cca405209712acbb6aaded768c45456ff8888",
+      "document_id": "上证发〔2026〕41号",
+      "document_title": "上海证券交易所交易规则（2026年修订）",
+      "role": "规则正文（正式）",
+      "official_reference": "https://www.sse.com.cn/lawandrules/sselawsrules/stock/trading/",
+      "official_attachment": "",
+      "retrieved_at": "",
+      "retrieved_at_confirmed": false,
+      "format_note": "DOCX 全文完整，页序正常；精确官方附件URL待补录",
+      "chain_complete": false
+    },
+    {
+      "source_key": "sse-trading-rules-2026-explanation",
+      "local_file": "sources/sse_trading_rules_2026_explanation.docx",
+      "size_bytes": 16084,
+      "sha256": "6c0ffbb11664654442ff0907c8ab109349c1b7665b6745998d34c1219ec98aa1",
+      "document_id": "上证发〔2026〕41号（通知附件）",
+      "document_title": "《上海证券交易所交易规则（2026年修订）》起草说明",
+      "role": "起草说明（正式辅助）",
+      "official_reference": "https://www.sse.com.cn/lawandrules/sselawsrules/stock/trading/",
+      "official_attachment": "",
+      "retrieved_at": "",
+      "retrieved_at_confirmed": false,
+      "format_note": "DOCX 全文完整；精确官方附件URL待补录",
+      "chain_complete": false
+    },
+    {
+      "source_key": "sse-trading-rules-2026-deferred-articles",
+      "local_file": "sources/sse_trading_rules_2026_deferred_articles.docx",
+      "size_bytes": 16476,
+      "sha256": "f4a0d0976a01e3e95f82460170900993824b70d91183e42d09e13ba10a9958c5",
+      "document_id": "上证发〔2026〕41号（通知附件）",
+      "document_title": "上海证券交易所交易规则（2026年修订）暂缓实施条文",
+      "role": "暂缓实施条文（正式辅助）",
+      "official_reference": "https://www.sse.com.cn/lawandrules/sselawsrules/stock/trading/",
+      "official_attachment": "",
+      "retrieved_at": "",
+      "retrieved_at_confirmed": false,
+      "format_note": "DOCX 全文完整；仅涉大宗交易条款；精确官方附件URL待补录",
+      "chain_complete": false
+    }
+  ],
+  "incomplete_reasons": [
+    "retrieved_at 无真实下载/取得时间记录，全部留空",
+    "上交所精确官方附件URL缺失",
+    "无人工双人复核记录"
+  ]
+}

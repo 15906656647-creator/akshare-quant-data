@@ -1,0 +1,35 @@
+{
+  "run_id": "f41fa319-6b7e-4b19-940e-1e677513232c",
+  "branch": "feature/stage15-authoritative-sources",
+  "as_of_date": "2026-07-27",
+  "verification_date": "2026-08-06",
+  "records": [
+    {
+      "record_id": "draft-szse-main-st-2026",
+      "verified_ratio": "0.10",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "record_id": "draft-szse-growth-st-2026",
+      "verified_ratio": "0.20",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "record_id": "draft-sse-main-st-2026",
+      "verified_ratio": "0.10",
+      "verification_status": "VERIFIED"
+    }
+  ],
+  "szse_main_risk_warning_10pct": "VERIFIED",
+  "szse_growth_risk_warning_20pct": "VERIFIED",
+  "sse_main_risk_warning_10pct": "VERIFIED",
+  "source_chain": "INCOMPLETE",
+  "can_enter_dual_review": false,
+  "can_mark_approved": false,
+  "can_run_rules_validate_only": false,
+  "blocking_reasons": [
+    "source_chain_incomplete:retrieved_at_missing",
+    "source_chain_incomplete:sse_exact_urls_missing",
+    "manual_dual_review_not_complete"
+  ]
+}

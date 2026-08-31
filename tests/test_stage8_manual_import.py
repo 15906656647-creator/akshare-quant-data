@@ -1122,7 +1122,7 @@ def test_committed_example_headers_match_contracts():
     assert "waiver_document" in status_frame.columns
 
 
-def test_default_cli_fails_closed_without_real_dataset():
+def test_default_cli_accepts_audited_rule_dataset_without_publishing_it():
     result = subprocess.run(
         [
             sys.executable,
@@ -1137,13 +1137,9 @@ def test_default_cli_fails_closed_without_real_dataset():
         text=True,
         check=False,
     )
-    assert result.returncode == 1
+    assert result.returncode == 0
     payload = json.loads(result.stdout)
-    assert payload["status"] == "FAILED"
-    assert any(
-        "dataset_manifest_missing" in error
-        or "review_not_approved" in error
-        or "dataset_manifest_review_not_approved" in error
-        for error in payload["errors"]
-    )
+    assert payload["status"] == "READY"
+    assert payload["dataset_validation"]["review_status"] == "approved_with_waiver"
+    assert payload["outputs_written"] is False
     assert "Traceback" not in result.stdout + result.stderr

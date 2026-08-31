@@ -1,0 +1,17 @@
+{
+  "run_id": "3f473604-2f99-4cbc-aa4f-7af15d9d2413",
+  "branch": "feature/stage15-authoritative-sources",
+  "sse_exact_attachment_url": "COMPLETE",
+  "szse_exact_attachment_url": "COMPLETE",
+  "real_retrieved_at": "COMPLETE",
+  "redownload_validation": "PASS",
+  "source_hash_consistency": "PASS",
+  "source_registry_consistency": "PASS",
+  "csv_consistency": "PASS",
+  "rules_matrix_unchanged": "PASS",
+  "source_chain": "COMPLETE",
+  "can_enter_dual_review": true,
+  "can_mark_approved": false,
+  "can_run_rules_validate_only": false,
+  "review_status": "pending"
+}

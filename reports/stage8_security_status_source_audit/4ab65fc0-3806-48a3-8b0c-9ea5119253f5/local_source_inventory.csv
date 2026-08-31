@@ -1,0 +1,13 @@
+﻿relative_path,file_type,size_bytes,sha256,format,publisher,official_page_url,official_attachment_url,document_id,published_at,retrieved_at,involved_symbols,status_period,is_exchange_official,grade_a_candidate,notes
+authoritative_security_status_history.csv,fictional_demo_csv,1593,6ef6807560fa87bdceedf199560fd5d35bbf6974a142eaaf6ee313b8549e9e5a,csv,,,,,,,,,False,False,fictional demo rows only; not the expected security_status_history.csv
+dataset.example.yml,config_or_template,1458,a59cbf1f14a85e449a48c4fc1d5792ce2ac41803c8334a15e756436e52f1f714,yml,,,,,,,,,False,False,
+dataset.schema.yml,config_or_template,3646,a0d223119238549cc63fa3c151ecb2e3c0389e07bd0b3fca1afa7321332a099a,yml,,,,,,,,,False,False,authoritative schema documentation
+dataset.yml,fictional_demo_manifest,1401,00e525a4c4f5a5d07fc7170f5016797a5aba323084cb93d9e012ba491ab2b9e3,yml,,,,,,,,,False,False,currently demo content with demo sources; not a real authoritative manifest
+README.md,config_or_template,1457,475473b62eaed0191bf704e5f44e201a42ff1a3257be28d765bc9646a173804a,md,,,,,,,,,False,False,
+review_checklist.md,config_or_template,1393,e5f12369b533fb34c8a7ccdc873bfe402bd5b8c8059465a22f44e56a471644f3,md,,,,,,,,,False,False,
+review_checklist.template.md,config_or_template,2213,a256433a9e1d3360f7fe6ef08c473c8d1ffb07bf8fde17610dc90bd5ab9cf2e6,md,,,,,,,,,False,False,
+security_status_history.example.csv,config_or_template,1725,425b7c6e88ac80ed4d6fe70a55d5d27bd0e120eb34c070b1252136624ea507d3,csv,,,,,,,,,False,False,
+source_registry.template.yml,config_or_template,500,88770d1d0b6570810c6cb0035d8e519e227c3b11021086ebc1fc8f108b70411e,yml,,,,,,,,,False,False,
+source_registry.yml,config_or_template,500,88770d1d0b6570810c6cb0035d8e519e227c3b11021086ebc1fc8f108b70411e,yml,,,,,,,,,False,False,
+sources/README.md,source_readme,390,6e17e079de21b419de0a74a2673e39def655327248cb945f76080e83a7e947e7,md,,,,,,,,,False,False,not an authoritative status source
+validation_notes.md,config_or_template,1509,29d64f01234902aa8467c1d470a3b98cb5d7c83c5b59f820ba301b50b5e84ab6,md,,,,,,,,,False,False,

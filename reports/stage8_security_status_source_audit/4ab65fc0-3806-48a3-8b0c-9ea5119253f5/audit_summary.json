@@ -1,0 +1,54 @@
+{
+  "run_id": "4ab65fc0-3806-48a3-8b0c-9ea5119253f5",
+  "branch": "feature/stage15-authoritative-sources",
+  "as_of_date": "2026-07-27",
+  "audit_type": "stage8_security_status_source_gap_audit",
+  "schema_status": "CONFIRMED",
+  "required_coverage_interval": "2025-07-27..2026-07-27",
+  "universe_confirmed": true,
+  "symbols": [
+    "002067",
+    "002600",
+    "002230",
+    "600763",
+    "603259",
+    "603799",
+    "601012",
+    "600438",
+    "002361",
+    "601500",
+    "600231",
+    "300274",
+    "601636",
+    "002129",
+    "000100",
+    "300433"
+  ],
+  "grade_a_source_count": 0,
+  "source_chain_complete_stock_count": 0,
+  "date_coverage_complete_stock_count": 0,
+  "conflict_stock_count": 0,
+  "missing_source_stock_count": 16,
+  "readiness_counts": {
+    "READY": 0,
+    "PARTIAL": 0,
+    "BLOCKED": 16
+  },
+  "local_expected_record_file_missing": true,
+  "local_actual_record_files": [
+    "authoritative_security_status_history.csv"
+  ],
+  "000100_early_star_in_required_window": false,
+  "000100_early_star_interval_documented": "2007-05-08..2008-03-28 (from prior audit docs)",
+  "approved_with_waiver_for_security_status": true,
+  "can_start_security_status_draft": false,
+  "can_run_stage8_status_build_validate_only": false,
+  "can_run_stage8_rebuild": false,
+  "outputs": {
+    "required_schema_json": "reports\\stage8_security_status_source_audit\\4ab65fc0-3806-48a3-8b0c-9ea5119253f5\\required_schema.json",
+    "symbol_coverage_matrix": "reports\\stage8_security_status_source_audit\\4ab65fc0-3806-48a3-8b0c-9ea5119253f5\\symbol_coverage_matrix.csv",
+    "local_source_inventory": "reports\\stage8_security_status_source_audit\\4ab65fc0-3806-48a3-8b0c-9ea5119253f5\\local_source_inventory.csv",
+    "source_gap_list": "reports\\stage8_security_status_source_audit\\4ab65fc0-3806-48a3-8b0c-9ea5119253f5\\source_gap_list.csv",
+    "audit_summary_json": "reports\\stage8_security_status_source_audit\\4ab65fc0-3806-48a3-8b0c-9ea5119253f5\\audit_summary.json"
+  }
+}

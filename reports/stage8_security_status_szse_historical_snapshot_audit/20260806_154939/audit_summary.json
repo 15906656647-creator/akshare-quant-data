@@ -1,0 +1,57 @@
+{
+  "run_id": "20260806_154939",
+  "branch": "feature/stage15-authoritative-sources",
+  "audit_type": "szse_historical_status_snapshot",
+  "retrieved_at": "2026-08-06T15:49:39+08:00",
+  "boundary_dates": [
+    "2025-07-25",
+    "2026-07-27"
+  ],
+  "target_sz_symbols": [
+    "000100",
+    "002067",
+    "002129",
+    "002230",
+    "002361",
+    "002600",
+    "300274",
+    "300433"
+  ],
+  "existing_sz_source_count": 90,
+  "historical_risk_warning_list_found": false,
+  "historical_securities_list_found": false,
+  "subscription_or_authorized_data_product_found": true,
+  "current_riskplate_full_absent": true,
+  "current_riskplate_record_count": 123,
+  "monthly_suspension_event_table_found": true,
+  "monthly_suspension_target_symbols_present": false,
+  "name_change_event_query_found": true,
+  "name_change_event_query_zero": true,
+  "ordinary_announcement_misuse_check": "PASS",
+  "szse_baseline_2025_07_25_complete": 0,
+  "szse_endpoint_2026_07_27_complete": 0,
+  "szse_source_chain_complete": 0,
+  "all_16_source_chain_complete": 0,
+  "conflict_symbol_count": 0,
+  "partial_symbols": [
+    "000100",
+    "002067",
+    "002129",
+    "002230",
+    "002361",
+    "002600",
+    "300274",
+    "300433"
+  ],
+  "blocked_symbols": [],
+  "can_draft_security_status_history_csv": false,
+  "can_run_stage8_status_build_validate_only": false,
+  "can_run_stage8_rebuild": false,
+  "notes": [
+    "深交所风险警示板、A股列表、暂停/终止上市均为CURRENT_ONLY。",
+    "名称变更接口支持日期范围，但只返回变更事件，8只目标窗口内均为0。",
+    "月度停牌/风险警示事件表不含8只目标股票，但零事件不能证明历史NON_ST。",
+    "深圳证券信息公司提供含证券信息/证券状态的历史增强行情数据，属授权订阅产品。",
+    "普通公司公告PDF已按纠正标准剔除。"
+  ]
+}

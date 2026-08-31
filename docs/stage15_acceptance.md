@@ -157,3 +157,14 @@ S15-14 两项从 `UNAVAILABLE` 变为实际可核对值，整体状态不再出�
 ## 最终结论
 
 **阶段15主体通过，但 S15-14 仍需补验，暂不能称为完全通过。**
+
+## 2026-08-24 条件封板决定
+
+经治理决策，Stage 15 管理状态标记为 `CONDITIONALLY_CLOSED`，项目获准进入
+Stage 17；本决定不改变上述验收结论，也不把 S15-14 判为通过。程序和数据层继续
+保持 `PASS_WITH_UNAVAILABLE_ITEMS`，S15-14 继续为 `BLOCKED/UNAVAILABLE`，正式
+涨跌停事件继续不可发布。
+
+条件封板的适用范围、后续阶段门禁和完全解除条件见
+[stage15_conditional_closure.md](stage15_conditional_closure.md)。因此，“Stage 15
+主体工程已完成并允许继续非事件工作”与“Stage 15 尚未完全 PASS”同时成立。

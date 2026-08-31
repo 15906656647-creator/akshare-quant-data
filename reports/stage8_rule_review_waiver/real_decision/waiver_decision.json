@@ -1,0 +1,9 @@
+﻿{
+    "review_status":  "approved_with_waiver",
+    "review_mode":  "waiver",
+    "waiver_scope":  "Stage8 authoritative limit rules dataset",
+    "waiver_reason":  "无",
+    "waiver_approver":  "zzzf",
+    "waiver_at":  "2026-08-06T12:02:32+08:00",
+    "waiver_document":  "docs/stage8_rule_review_waiver.md"
+}

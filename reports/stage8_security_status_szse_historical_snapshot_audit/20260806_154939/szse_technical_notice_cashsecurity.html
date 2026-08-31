@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+<title>关于做好创业板改革并试点注册制技术准备的补充通知</title>
+<script>
+  if(location.protocol == 'https:'){
+    document.write('<link href="https://res.szse.cn/common/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />');
+  }else{
+    document.write('<link href="http://res.static.szse.cn/common/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />');
+  }
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
+<meta http-equiv="cache-control" content="max-age=0">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="expires" content="Web, 26 Feb 1997 08:21:57 GMT">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="author" content="www.szse.cn">
+<meta name="description" content="深交所官网">
+<meta name="keywords" content="深交所,深交所官网,深圳证券交易所,交易所,交易所官网,深圳证券交易所官网">
+<meta name="renderer" content=webkit>
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google" value="notranslate"> 
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="screen-orientation" content="portrait">
+<meta name="full-screen" content="yes">
+<meta name="browermode" content="application">
+<meta name="x5-orientation" content="portrait">
+<meta name="HandheldFriendly" content="true">
+<script type="text/javascript">
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;//android终端
+
+	function addElementMeta(name,  content) {
+		var head = document.getElementsByTagName('head')[0];
+		var meta = document.createElement('meta');
+
+		meta.setAttribute('name', name);
+		meta.setAttribute('content', content);
+		head.appendChild(meta);
+	}
+	if(isAndroid) {
+		addElementMeta('x5-fullscreen', 'true');
+		addElementMeta('x5-page-mode', 'app');
+	}
+</script> 
+    <script>
+  (function () {
+    var _versionDate = new Date().getTime();
+    if (location.protocol == 'https:') {
+      var _path = 'https://res.szse.cn';
+    } else {
+      var _path = 'http://res.static.szse.cn';
+    }
+    // _path = _path.replace(".static.", ".");
+    //var _path = 'http://res.szse.cn';
+    //document.write( " <script src='" + _path + "/common/js/first.js?random=" + _versionDate + "'> <\/script> ");
+    var _host = 'http://www.szse.cn';
+    if (location.protocol == 'https:') {
+      _host = 'https://www.szse.cn';
+    }
+
+
+    var backDomain = 'http://www.sse.org.cn'
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    if (backDomain && window.location.host.match(reg)[2] === backDomain.match(reg)[2]) {
+      _host = 'http://www.sse.org.cn';
+      _path = 'http://res.static.sse.org.cn';
+      if (location.protocol == 'https:') {
+        _host = 'https://www.sse.org.cn';
+        _path = 'https://res.static.sse.org.cn';
+      }
+
+    }
+
+    _path = _path.replace(".static.", ".");
+
+    document.write(" <script src='" + _host + "/szsePath.js?random=" + _versionDate + "'> <\/script> "
+      + " <script src='" + _path + "/common/js/concatversion.js?random=" + _versionDate + "'> <\/script> ");
+  }());
+</script>
+
+<script>
+
+  function backDomainLinkSwitch(value, type) {
+    var _port = location.port ? (":" + location.port) : "";
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    var urlRegx = /(.*)(http:|https:)(\/\/)(([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+))\.?(:\d+)?(.*)/;
+
+    // html字符串替换
+    if (type == 'str') {
+      var strArr = value.split("=");
+      strArr = strArr.map(function (v) {
+        var host = reg.test(v) ? v.match(reg)[0] : null;
+        if (pathObj.szseHosts.indexOf(host) > -1) {
+          if (window.location.protocol == 'https:' && urlRegx.test(v)) {
+            v = v.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+          };
+          if (pathObj.current_host === pathObj.back_host) {
+            v = v.replace(pathObj.main_host, pathObj.back_host);
+          }
+        }
+        return v
+      });
+      value = strArr.join("=");
+      return value;
+    }
+
+    // a标签地址替换
+    if (type === 'A') {
+      var eleA = document.querySelectorAll(value);
+      for (var i = 0; i < eleA.length; i++) {
+        var href = eleA[i].getAttribute("href");
+        var host = reg.test(href) ? href.match(reg)[0] : null;
+        if (href && pathObj.szseHosts.indexOf(host) > -1) {
+          if (window.location.protocol == 'https:') {
+            href = href.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+          };
+          if (pathObj.current_host === pathObj.back_host) {
+            href = href.replace(pathObj.main_host, pathObj.back_host);
+          }
+          eleA[i].setAttribute('href', href);
+        }
+      }
+    }
+
+    // 单链接替换
+    if (type === "link") {
+      if (window.location.protocol == 'https:' && !!value) {
+        value = value.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+      };
+      if (pathObj.current_host === pathObj.back_host) {
+        var host = reg.test(value) ? value.match(reg)[0] : null;
+        if (value && pathObj.szseHosts.indexOf(host) > -1) {
+          value = value.replace(pathObj.main_host, pathObj.back_host);
+        }
+      }
+      return value;
+    }
+
+    // 背景图地址更换
+    if (type === "background") {
+      var eleBg = document.querySelectorAll(value);
+      for (var i = 0; i < eleBg.length; i++) {
+        var href = eleBg[i].style.backgroundImage;
+        if (window.location.protocol == 'https:' && !!href) {
+          href = href.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+        };
+        var host = reg.test(href) ? href.match(reg)[0] : null;
+        if (href && pathObj.szseHosts.indexOf(host) > -1) {
+          if (pathObj.current_host === pathObj.back_host) {
+            href = href.replace(pathObj.main_host, pathObj.back_host);
+          }
+          eleBg[i].style.backgroundImage = href;
+        }
+      }
+    }
+
+  }
+
+</script>
+
+<script>
+   if(document.cookie.indexOf('ft_language=1')>-1){
+    var style = document.createElement('style');
+    style.textContent='body{visibility:hidden;}';
+    document.head.appendChild(style);
+  }
+</script>
+<script>
+    addComCssFile()
+</script>
+<script>
+        changeVertion('/modules/report/css/report.css', 'css');
+        changeVertion('/modules/aboutus_column/introduction/css/journal.css', 'css');
+    </script>
+    <script>
+  changeVertion('/lib/validator/validator.min.css', 'css');
+  changeVertion('/common/plugins/css/index.min.css', 'css');
+  changeVertion('/common/css/form.css', 'css');
+  changeVertion('/common/css/articleDetailUtil.css','css');
+</script>
+</head>
+  <body class="article-body">
+    <script>
+  navMenuAJAX('/application/publicindex/header/index.html', '/application/publicindex/header/index.html', 'header', 'www');
+</script>
+<div class="g-locationnav">
+    <div class="banner-wrap">
+      <img src="http://res.static.szse.cn/common/images/legalrules-banner.jpg" />
+    </div>
+    <div class="g-container">
+      <div class="g-banner-txt">
+            <h2 class="hidden-xs">技术公告</h2>
+            <p>
+              <img src="http://res.static.szse.cn/common/icon/er-banneradr.png" />位置：<a href="../../" class="CurrChnlCls">市场服务</a>/<a href="../" class="CurrChnlCls">技术服务</a>/<a href="./" class="CurrChnlCls">技术公告</a>
+            </p>
+          </div>
+    </div>
+</div>
+  
+      <div class="g-container-wrap">
+            <div class="g-container">
+<!--startprint-->
+                <div class="news-detail-con g-conbox"> 
+                	<div class="des-header">
+                  <h2 class="title">关于做好创业板改革并试点注册制技术准备的补充通知</h2>
+                  		<script>
+                  			var curSubTitle ='';
+                  			if(curSubTitle != ''){
+                  				document.write('<h4 style="text-align: center;" class="sub-title"><i class=""></i><span class="">'+curSubTitle+'</span></h4>')
+                  			}                  		
+                  		</script>
+              <div class="time">时间：<span>2020-05-08</span></div>
+              <div class="des-switchsize">
+                字体：
+                <span class="bigger">大</span>
+                <span class="medium">中</span>
+                <span class="smaller">小</span>
+              </div>
+    					
+        	</div>
+    				 <div class="des-content" id="desContent">
+                       <p class="MsoNormal" style="line-height: 200%;"><span lang="EN-US" style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">各会员及相关单位：<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="Default" style="text-indent: 22.8pt; mso-char-indent-count: 1.9; line-height: 200%;"><span style="font-size: 12pt;"><span style="font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast; mso-bidi-font-family: 方正仿宋简体;">深圳证券交易所（以下简称“深交所”）和中国证券登记结算有限责任公司（以下简称“中国结算”）深圳分公司于<span lang="EN-US">2020</span>年<span lang="EN-US">4</span>月<span lang="EN-US">27</span>日发布了《关于做好创业板改革并试点注册制的技术准备通知》，现根据市场反馈意见以及咨询问题，对</span><span style="font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">《深圳证券交易所创业板改革并试点注册制市场参与者技术系统变更指南》和《深圳证券交易所数据文件交换接口规范》进行补充和调整，</span></span><span style="font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast; mso-bidi-font-family: 方正仿宋简体;"><span style="font-size: 12pt;">并说明如下：</span><span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">一、对创业板股票和存托凭证申报市价委托，仍适用交易规则<span lang="EN-US">3.3.5</span>的规定，即“市价申报只适用于有价格涨跌幅限制证券连续竞价期间的交易。其他交易时间，交易主机不接受市价申报。”。<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">二、市场参与者技术系统无需根据发布的有效竞价范围参数对集中竞价交易业务的委托申报进行价格检查。<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">三、关于盘后定价业务：<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span lang="EN-US" style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">1</span><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">．深交所每个交易日通过文件网关下发的盘后定价交易业务参考信息（<span lang="EN-US">fixedpriceparams</span>）中增加买数量上限、卖数量上限两个字段，券商技术系统应使用这两个字段作盘后定价交易业务委托数量上限检查<span lang="EN-US">; </span>盘后定价交易业务的实际成交价格由现货集中竞价交易业务的收盘价确定，因此券商技术系统应使用现货集中竞价业务的价格限定相关参数进行盘后定价交易业务委托价格合法性检查。<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span lang="EN-US" style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">2</span><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">．深交所从<span lang="EN-US">15:05</span>开始通过新增的<span lang="EN-US">3011</span>频道发布盘后定价交易行情快照，行情类别（<span lang="EN-US">MDStreamID</span>）为<span lang="EN-US">370</span>。盘后定价交易行情快照中的成交总量（<span lang="EN-US">TotalVolumeTrade</span>）、成交总金额（<span lang="EN-US">TotalValueTrade</span>）仅为盘后定价交易业务的成交总量和成交总金额，不包含现货集中竞价业务的成交总量和成交总金额。<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span lang="EN-US" style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">3</span><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">．深交所在每日收市后发布的现货证券收盘行情文件（<span lang="EN-US">cashsecurityclosemd _YYYYMMDD.xml</span>）中证券的成交总量（<span lang="EN-US">TotalVolumeTrade</span>）、成交总金额（<span lang="EN-US">TotalValueTrade</span>）不含盘后定价交易业务的成交总量和成交总金额。<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span lang="EN-US" style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">4</span><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">．信用账户可开展盘后定价交易业务。使用信用账户申报盘后定价交易买入委托时，只能以普通交易方式买入融资融券可冲抵保证金证券，不能以融资融券开仓、平仓方式买入；使用信用账户申报盘后定价交易卖出委托时，只能以普通交易方式卖出证券，不能以融资融券开仓、平仓方式卖出。<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">四、《深圳证券交易所创业板改革并试点注册制市场参与者技术系统变更指南》和《深圳证券交易所数据文件交换接口规范》的最新版本已在深交所官网技术专栏发布。<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">五、为便于市场参与者尽快开展接口变更的相关测试<span lang="EN-US">, </span>我所提供交易系统离线测试工具产品；现发布<span lang="EN-US">1.00</span>β版（支持此次变更对应的最新版本接口），并计划<span lang="EN-US">2020</span>年<span lang="EN-US">6</span>月通过“深交所技术产品联盟”正式发布。<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="margin-top: 7.8pt; mso-para-margin-top: .5gd; text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">六、联系电话<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">深圳证券交易所技术：<span lang="EN-US">0755-88668446<o:p></o:p></span></span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">深圳证券交易所业务：<span lang="EN-US">0755-88666284</span>、<span lang="EN-US">0755-88668376<o:p></o:p></span></span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">中国结算深圳分公司业务：<span lang="EN-US">0755-21899261<o:p></o:p></span></span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">中国结算深圳分公司技术：<span lang="EN-US">0755-25946080<o:p></o:p></span></span></p>
+<p class="MsoNormal" style="text-indent: 24.0pt; mso-char-indent-count: 2.0; line-height: 200%;"><span lang="EN-US" style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-indent: 24.0pt; mso-char-indent-count: 2.0; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">特此通知<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" style="text-indent: 24.0pt; mso-char-indent-count: 2.0; line-height: 200%;"><span lang="EN-US" style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" align="right" style="text-align: right; text-indent: 27.75pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">深圳证券交易所<span lang="EN-US"><o:p></o:p></span></span></p>
+<p class="MsoNormal" align="right" style="text-align: right; text-indent: 27.75pt; line-height: 200%;"><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">中国证券登记结算有限责任公司深圳分公司<span lang="EN-US"><o:p></o:p></span></span></p>
+<p></p>
+<p class="MsoNormal" align="right" style="text-align: right; text-indent: 27.75pt; line-height: 200%;"><span lang="EN-US" style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">2020</span><span style="font-size: 12.0pt; line-height: 200%; font-family: 宋体; mso-ascii-theme-font: minor-fareast; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-fareast;">年<span lang="EN-US">5</span>月<span lang="EN-US">8</span>日<span lang="EN-US"><o:p></o:p></span></span></p>
+                    </div>
+                    <script>
+                        var oldCon = document.getElementById("desContent").innerHTML;
+                        oldCon = oldCon.replace(/(o:p)|(u:p)/gi,'span');
+                        oldCon = oldCon.replace(/&lt;!--\[endif\]--&gt;/g,"");
+                        document.getElementById("desContent").innerHTML = oldCon;
+                    </script>
+<!--endprint-->
+    				<div class="des-footer">
+    					<div class="article-page display-none">
+                   
+    						
+    					</div>
+    					<div class="article-btn">
+    						<a href="javascript:void(0);" class="btn btn-gray art-print">打印</a>
+        						<a href="javascript:void(0);" target="_blank" class="btn btn-gray ml10 art-collect">收藏</a>
+        						<a href="javascript:void(0);" class="btn btn-gray ml10 art-close">关闭</a>
+    					</div>
+    				</div>  
+				</div>
+     
+            </div>
+      </div>
+
+    <script>
+  changeVertion('/common/js/toggleBig5.js', 'js');
+  navMenuAJAX('/application/publicindex/footer/index.html','/application/publicindex/footer/index.html', 'footer','www');
+  addComJsFile();
+</script>
+    <script>
+  (function () {
+    var _versionDate = new Date().getTime();
+
+    var _host = 'http://www.szse.cn';
+    if (location.protocol == 'https:') {
+      _host = 'https://www.szse.cn';
+    }
+
+    var backDomain = 'http://www.sse.org.cn'
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    if (backDomain && window.location.host.match(reg)[2] === backDomain.match(reg)[2]) {
+      _host = 'http://www.sse.org.cn';
+      if (location.protocol == 'https:') {
+        _host = 'https://www.sse.org.cn';
+      }
+
+    }
+    document.write(" <script src='" + _host + "/dynamicmodule/index/sysconfig.js?random=" + _versionDate + "'> <\/script> ");
+
+  }());
+</script>
+    <script>
+    	var articleDetail = {
+    		docTitle:'关于做好创业板改革并试点注册制技术准备的补充通知',
+    		subDocTitle:'',
+    		docAbstract:'',
+                articleId:'576947',
+		channelCode:'technicalLatestNotice',
+    channelId : '1444'
+    	}
+    </script>
+    <script>
+    	changeVertion('/common/js/articleDetail.js','js');
+    </script>
+    <script>
+  changeVertion('/lib/validator/jquery.validate.js', 'js');
+  changeVertion('/common/js/jquery.validate_extend.js', 'js');
+  changeVertion('/lib/webuploader-0.1.5/webuploader.js', 'js');
+  changeVertion('/common/plugins/index.min.js', 'js');
+  changeVertion('/common/js/articleDetailUtil.js','js');
+</script>
+  </body>
+</html>
+
+
+

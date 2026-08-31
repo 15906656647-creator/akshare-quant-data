@@ -1,3 +1,8 @@
+> **当前效力（2026-08-24）**：本报告正文是历史修复记录，其中“S15-14 已完成、
+> 阶段15完全通过”的结论已经失效，不代表当前状态。Stage 15 当前仅在治理层
+> `CONDITIONALLY_CLOSED`，运行状态仍为 `PASS_WITH_UNAVAILABLE_ITEMS`；详见
+> [stage15_conditional_closure.md](stage15_conditional_closure.md)。
+>
 # S15-14 修复与阶段15最终补验报告
 
 > **修订（2026-08-05）**：本报告的“可以进入阶段16”结论以当时对深交所官方更名记录

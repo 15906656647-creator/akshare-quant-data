@@ -1,0 +1,15 @@
+{
+  "run_id": "3f473604-2f99-4cbc-aa4f-7af15d9d2413",
+  "csv_identical": true,
+  "row_count": 12,
+  "group_count": 6,
+  "date_coverage": "COMPLETE",
+  "all_hashes_match": true,
+  "all_references_official": true,
+  "all_retrieved_at_real": true,
+  "review_status_pending": true,
+  "reviewer_verified_at_empty": true,
+  "rules_matrix_unchanged": true,
+  "errors": [],
+  "pass": true
+}

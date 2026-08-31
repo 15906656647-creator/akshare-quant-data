@@ -1,0 +1,32 @@
+{
+  "run_id": "20260806_143005",
+  "branch": "feature/stage15-authoritative-sources",
+  "as_of_date": "2026-07-27",
+  "retrieved_at": "2026-08-06T14:35:53+08:00",
+  "symbol_count": 16,
+  "download_count": 142,
+  "grade_a_source_count": 18,
+  "grade_b_source_count": 124,
+  "search_log_count": 80,
+  "source_chain_complete_count": 8,
+  "date_coverage_complete_count": 8,
+  "conflict_count": 0,
+  "ready_count": 8,
+  "partial_count": 8,
+  "blocked_count": 0,
+  "sse_pdf_anti_bot_blocked_symbols": [
+    "600231",
+    "600438",
+    "600763",
+    "601012",
+    "601500",
+    "601636",
+    "603259",
+    "603799"
+  ],
+  "grade_a_exchange_decision_gap_symbols": 16,
+  "status_keyword_match_count": 4,
+  "can_draft_security_status_csv": false,
+  "can_run_status_build_validate_only": false,
+  "can_run_stage8_rebuild": false
+}

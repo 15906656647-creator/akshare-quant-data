@@ -1,0 +1,17 @@
+symbol,exchange,board,baseline_date,baseline_evidence_file,baseline_evidence_type,baseline_status_supported,note
+000100,SZ,main,2025-07-25,2025-07-26,company_announcement_pdf,NON_ST,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+002067,SZ,main,2025-07-25,2025-08-02,company_announcement_pdf,NON_ST,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+002129,SZ,main,2025-07-25,2025-08-23,company_announcement_pdf,NON_ST,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+002230,SZ,main,2025-07-25,2025-08-22,company_announcement_pdf,NON_ST,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+002361,SZ,main,2025-07-25,2025-08-28,company_announcement_pdf,NON_ST,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+002600,SZ,main,2025-07-25,2025-07-29,company_announcement_pdf,NON_ST,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+300274,SZ,growth,2025-07-25,2025-07-25,company_announcement_pdf,NON_ST,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+300433,SZ,growth,2025-07-25,2025-08-02,company_announcement_pdf,NON_ST,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+600231,SH,main,2025-07-25,2025-07-25,company_announcement_pdf,UNPROVEN,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+600438,SH,main,2025-07-25,2025-07-25,company_announcement_pdf,UNPROVEN,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+600763,SH,main,2025-07-25,2025-08-06,company_announcement_pdf,UNPROVEN,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+601012,SH,main,2025-07-25,2025-08-06,company_announcement_pdf,UNPROVEN,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+601500,SH,main,2025-07-25,2025-07-25,company_announcement_pdf,UNPROVEN,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+601636,SH,main,2025-07-25,2025-07-26,company_announcement_pdf,UNPROVEN,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+603259,SH,main,2025-07-25,2025-07-25,company_announcement_pdf,UNPROVEN,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施
+603799,SH,main,2025-07-25,2025-08-09,company_announcement_pdf,UNPROVEN,官方交易所公告检索结果中的公司公告附件；需结合交易所风险警示名单确认无ST实施

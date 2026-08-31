@@ -1,0 +1,207 @@
+{
+  "overall": "PASS",
+  "decision": {
+    "review_status": "approved_with_waiver",
+    "review_mode": "waiver",
+    "waiver_scope": "Stage8 authoritative limit rules dataset",
+    "waiver_reason": "无",
+    "waiver_approver": "zzzf",
+    "waiver_at": "2026-08-06T12:02:32+08:00",
+    "waiver_document": "docs/stage8_rule_review_waiver.md"
+  },
+  "checks": {
+    "waiver_decision_exists": {
+      "status": "PASS",
+      "detail": "reports\\stage8_rule_review_waiver\\real_decision\\waiver_decision.json"
+    },
+    "decision_review_status": {
+      "status": "PASS",
+      "detail": "approved_with_waiver"
+    },
+    "decision_review_mode": {
+      "status": "PASS",
+      "detail": "waiver"
+    },
+    "decision_waiver_reason": {
+      "status": "PASS",
+      "detail": "无"
+    },
+    "decision_waiver_approver": {
+      "status": "PASS",
+      "detail": "zzzf"
+    },
+    "decision_waiver_at_aware": {
+      "status": "PASS",
+      "detail": "2026-08-06T12:02:32+08:00"
+    },
+    "decision_waiver_document": {
+      "status": "PASS",
+      "detail": "docs/stage8_rule_review_waiver.md"
+    },
+    "decision_waiver_document_exists": {
+      "status": "PASS",
+      "detail": "docs/stage8_rule_review_waiver.md"
+    },
+    "manifest_review_status": {
+      "status": "PASS",
+      "detail": "approved_with_waiver"
+    },
+    "manifest_review_mode": {
+      "status": "PASS",
+      "detail": "waiver"
+    },
+    "manifest_reviewer_empty": {
+      "status": "PASS",
+      "detail": ""
+    },
+    "manifest_reviewers_empty": {
+      "status": "PASS",
+      "detail": []
+    },
+    "manifest_waiver_reason": {
+      "status": "PASS",
+      "detail": "无"
+    },
+    "manifest_waiver_approver": {
+      "status": "PASS",
+      "detail": "zzzf"
+    },
+    "manifest_waiver_at": {
+      "status": "PASS",
+      "detail": "2026-08-06T12:02:32+08:00"
+    },
+    "manifest_waiver_document": {
+      "status": "PASS",
+      "detail": "docs/stage8_rule_review_waiver.md"
+    },
+    "manifest_verified_by_dual_review_false": {
+      "status": "PASS",
+      "detail": false
+    },
+    "manifest_reviewed_at_present": {
+      "status": "PASS",
+      "detail": "2026-08-06"
+    },
+    "two_csv_identical": {
+      "status": "PASS",
+      "detail": {
+        "sha256": "0daff4cd67b5d81d898e74eb982b7758f3c28967794bd3566d410b218761c31a"
+      }
+    },
+    "csv_row_count_12": {
+      "status": "PASS",
+      "detail": [
+        12,
+        12
+      ]
+    },
+    "all_records_approved_with_waiver": {
+      "status": "PASS",
+      "detail": [
+        "approved_with_waiver"
+      ]
+    },
+    "all_records_review_mode_waiver": {
+      "status": "PASS",
+      "detail": [
+        "waiver"
+      ]
+    },
+    "all_records_reviewer_empty": {
+      "status": "PASS",
+      "detail": [
+        ""
+      ]
+    },
+    "all_records_waiver_fields_complete": {
+      "status": "PASS",
+      "detail": {
+        "reason": "无",
+        "approver": "zzzf",
+        "at": "2026-08-06T12:02:32+08:00",
+        "document": "docs/stage8_rule_review_waiver.md"
+      }
+    },
+    "six_groups_two_each": {
+      "status": "PASS",
+      "detail": {
+        "('SZ', 'main', 'price_limit')": 2,
+        "('SZ', 'main', 'st_price_limit')": 2,
+        "('SZ', 'growth', 'price_limit')": 2,
+        "('SZ', 'growth', 'st_price_limit')": 2,
+        "('SH', 'main', 'price_limit')": 2,
+        "('SH', 'main', 'st_price_limit')": 2
+      }
+    },
+    "date_coverage_no_gap_no_overlap": {
+      "status": "PASS",
+      "detail": []
+    },
+    "risk_warning_ratios_2026": {
+      "status": "PASS",
+      "detail": {
+        "actual": {
+          "('SZ', 'main')": "0.10",
+          "('SZ', 'growth')": "0.20",
+          "('SH', 'main')": "0.10"
+        },
+        "expected": {
+          "('SZ', 'main')": "0.10",
+          "('SZ', 'growth')": "0.20",
+          "('SH', 'main')": "0.10"
+        }
+      }
+    },
+    "manifest_sources_exist_and_hash_match": {
+      "status": "PASS",
+      "detail": []
+    },
+    "registry_sources_exist_and_hash_match": {
+      "status": "PASS",
+      "detail": []
+    },
+    "registry_review_status": {
+      "status": "PASS",
+      "detail": "approved_with_waiver"
+    },
+    "registry_reviewers_empty": {
+      "status": "PASS",
+      "detail": []
+    },
+    "registry_all_source_statuses_waiver": {
+      "status": "PASS",
+      "detail": [
+        "approved_with_waiver"
+      ]
+    },
+    "matrix_unchanged_reconstructed_old_hash": {
+      "status": "PASS",
+      "detail": {
+        "reconstructed": "854639121ec3445d408a0f0d95fd1e86d1281888796349e72bc482c34775f017",
+        "expected": "854639121ec3445d408a0f0d95fd1e86d1281888796349e72bc482c34775f017"
+      }
+    },
+    "no_fake_dual_review_mark": {
+      "status": "PASS",
+      "detail": []
+    },
+    "dual_review_waived_marked": {
+      "status": "PASS",
+      "detail": "双人审核已豁免 present"
+    }
+  },
+  "csv_sha256": "0daff4cd67b5d81d898e74eb982b7758f3c28967794bd3566d410b218761c31a",
+  "reconstructed_pre_waiver_csv_sha256": "854639121ec3445d408a0f0d95fd1e86d1281888796349e72bc482c34775f017",
+  "expected_pre_waiver_csv_sha256": "854639121ec3445d408a0f0d95fd1e86d1281888796349e72bc482c34775f017",
+  "stage8_rules_build_validate_only": {
+    "command": "stage8-rules-build --validate-only",
+    "as_of_date": "2026-07-27",
+    "exit_code": 0,
+    "status": "READY",
+    "run_id": "9cb91010-5efa-4d14-8943-48eb6818cc4c",
+    "rule_count": 12,
+    "verified_rule_count": 12,
+    "stages": "format PASS, fields PASS, source PASS, hash PASS, interval PASS, conflict PASS, coverage PASS",
+    "outputs_written": false
+  }
+}

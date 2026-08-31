@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+<title>2025年7月 深圳证券交易所市场统计月报</title>
+<script>
+  if(location.protocol == 'https:'){
+    document.write('<link href="https://res.szse.cn/common/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />');
+  }else{
+    document.write('<link href="http://res.static.szse.cn/common/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />');
+  }
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
+<meta http-equiv="cache-control" content="max-age=0">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="expires" content="Web, 26 Feb 1997 08:21:57 GMT">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="author" content="www.szse.cn">
+<meta name="description" content="深交所官网">
+<meta name="keywords" content="深交所,深交所官网,深圳证券交易所,交易所,交易所官网,深圳证券交易所官网">
+<meta name="renderer" content=webkit>
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google" value="notranslate"> 
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="screen-orientation" content="portrait">
+<meta name="full-screen" content="yes">
+<meta name="browermode" content="application">
+<meta name="x5-orientation" content="portrait">
+<meta name="HandheldFriendly" content="true">
+<script type="text/javascript">
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;//android终端
+
+	function addElementMeta(name,  content) {
+		var head = document.getElementsByTagName('head')[0];
+		var meta = document.createElement('meta');
+
+		meta.setAttribute('name', name);
+		meta.setAttribute('content', content);
+		head.appendChild(meta);
+	}
+	if(isAndroid) {
+		addElementMeta('x5-fullscreen', 'true');
+		addElementMeta('x5-page-mode', 'app');
+	}
+</script> 
+    <script>
+  (function () {
+    var _versionDate = new Date().getTime();
+    if (location.protocol == 'https:') {
+      var _path = 'https://res.szse.cn';
+    } else {
+      var _path = 'http://res.static.szse.cn';
+    }
+    // _path = _path.replace(".static.", ".");
+    //var _path = 'http://res.szse.cn';
+    //document.write( " <script src='" + _path + "/common/js/first.js?random=" + _versionDate + "'> <\/script> ");
+    var _host = 'http://www.szse.cn';
+    if (location.protocol == 'https:') {
+      _host = 'https://www.szse.cn';
+    }
+
+
+    var backDomain = 'http://www.sse.org.cn'
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    if (backDomain && window.location.host.match(reg)[2] === backDomain.match(reg)[2]) {
+      _host = 'http://www.sse.org.cn';
+      _path = 'http://res.static.sse.org.cn';
+      if (location.protocol == 'https:') {
+        _host = 'https://www.sse.org.cn';
+        _path = 'https://res.static.sse.org.cn';
+      }
+
+    }
+
+    _path = _path.replace(".static.", ".");
+
+    document.write(" <script src='" + _host + "/szsePath.js?random=" + _versionDate + "'> <\/script> "
+      + " <script src='" + _path + "/common/js/concatversion.js?random=" + _versionDate + "'> <\/script> ");
+  }());
+</script>
+
+<script>
+
+  function backDomainLinkSwitch(value, type) {
+    var _port = location.port ? (":" + location.port) : "";
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    var urlRegx = /(.*)(http:|https:)(\/\/)(([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+))\.?(:\d+)?(.*)/;
+
+    // html字符串替换
+    if (type == 'str') {
+      var strArr = value.split("=");
+      strArr = strArr.map(function (v) {
+        var host = reg.test(v) ? v.match(reg)[0] : null;
+        if (pathObj.szseHosts.indexOf(host) > -1) {
+          if (window.location.protocol == 'https:' && urlRegx.test(v)) {
+            v = v.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+          };
+          if (pathObj.current_host === pathObj.back_host) {
+            v = v.replace(pathObj.main_host, pathObj.back_host);
+          }
+        }
+        return v
+      });
+      value = strArr.join("=");
+      return value;
+    }
+
+    // a标签地址替换
+    if (type === 'A') {
+      var eleA = document.querySelectorAll(value);
+      for (var i = 0; i < eleA.length; i++) {
+        var href = eleA[i].getAttribute("href");
+        var host = reg.test(href) ? href.match(reg)[0] : null;
+        if (href && pathObj.szseHosts.indexOf(host) > -1) {
+          if (window.location.protocol == 'https:') {
+            href = href.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+          };
+          if (pathObj.current_host === pathObj.back_host) {
+            href = href.replace(pathObj.main_host, pathObj.back_host);
+          }
+          eleA[i].setAttribute('href', href);
+        }
+      }
+    }
+
+    // 单链接替换
+    if (type === "link") {
+      if (window.location.protocol == 'https:' && !!value) {
+        value = value.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+      };
+      if (pathObj.current_host === pathObj.back_host) {
+        var host = reg.test(value) ? value.match(reg)[0] : null;
+        if (value && pathObj.szseHosts.indexOf(host) > -1) {
+          value = value.replace(pathObj.main_host, pathObj.back_host);
+        }
+      }
+      return value;
+    }
+
+    // 背景图地址更换
+    if (type === "background") {
+      var eleBg = document.querySelectorAll(value);
+      for (var i = 0; i < eleBg.length; i++) {
+        var href = eleBg[i].style.backgroundImage;
+        if (window.location.protocol == 'https:' && !!href) {
+          href = href.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+        };
+        var host = reg.test(href) ? href.match(reg)[0] : null;
+        if (href && pathObj.szseHosts.indexOf(host) > -1) {
+          if (pathObj.current_host === pathObj.back_host) {
+            href = href.replace(pathObj.main_host, pathObj.back_host);
+          }
+          eleBg[i].style.backgroundImage = href;
+        }
+      }
+    }
+
+  }
+
+</script>
+
+<script>
+   if(document.cookie.indexOf('ft_language=1')>-1){
+    var style = document.createElement('style');
+    style.textContent='body{visibility:hidden;}';
+    document.head.appendChild(style);
+  }
+</script>
+<script>
+    addComCssFile()
+</script>
+<script>
+        changeVertion('/modules/report/css/report.css', 'css');
+        changeVertion('/modules/aboutus_column/introduction/css/journal.css', 'css');
+    </script>
+    <script>
+  changeVertion('/lib/validator/validator.min.css', 'css');
+  changeVertion('/common/plugins/css/index.min.css', 'css');
+  changeVertion('/common/css/form.css', 'css');
+  changeVertion('/common/css/articleDetailUtil.css','css');
+</script>
+</head>
+  <body class="article-body">
+    <script>
+  navMenuAJAX('/application/publicindex/header/index.html', '/application/publicindex/header/index.html', 'header', 'www');
+</script>
+<div class="g-locationnav">
+    <div class="banner-wrap">
+      <img src="http://res.static.szse.cn/common/images/legalrules-banner.jpg" />
+    </div>
+    <div class="g-container">
+      <div class="g-banner-txt">
+            <h2 class="hidden-xs">统计月报</h2>
+            <p>
+              <img src="http://res.static.szse.cn/common/icon/er-banneradr.png" />位置：<a href="../../" class="CurrChnlCls">市场数据</a>/<a href="../" class="CurrChnlCls">统计资料</a>/<a href="./" class="CurrChnlCls">统计月报</a>
+            </p>
+          </div>
+    </div>
+</div>
+  
+      <div class="g-container-wrap">
+            <div class="g-container">
+<!--startprint-->
+                <div class="news-detail-con g-conbox"> 
+                	<div class="des-header">
+                  <h2 class="title">2025年7月 深圳证券交易所市场统计月报</h2>
+                  		<script>
+                  			var curSubTitle ='';
+                  			if(curSubTitle != ''){
+                  				document.write('<h4 style="text-align: center;" class="sub-title"><i class=""></i><span class="">'+curSubTitle+'</span></h4>')
+                  			}                  		
+                  		</script>
+              <div class="time">时间：<span>2025-07-31</span></div>
+              <div class="des-switchsize">
+                字体：
+                <span class="bigger">大</span>
+                <span class="medium">中</span>
+                <span class="smaller">小</span>
+              </div>
+    					
+        	</div>
+    				 <div class="des-content" id="desContent">
+                       <div class="journal-directory clearfix">
+<div class="left" style="width: 48%; float: left; margin-right: 20px;">
+<div class="directory-title">市场总貌</div>
+<div class="m-artical-list">
+<ul class="newslist">
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805517078681963.html" target="_blank" rel="noopener" oldsrc="W020250805517078681963.html">市场总貌</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340862047142.html" target="_blank" rel="noopener" oldsrc="W020250704340862047142.html"></a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805518675542334.html" target="_blank" rel="noopener" oldsrc="W020250805518675542334.html">上市证券</a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340862047142.html" target="_blank" rel="noopener" oldsrc="W020250704340862047142.html"></a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805529489884461.html" target="_blank" rel="noopener" oldsrc="W020250805529489884461.html">成交概况</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805529490012455.html" target="_blank" rel="noopener" oldsrc="W020250805529490012455.html">每日总成交金额</a></div>
+</li>
+</ul>
+<div class="directory-title">股份指数</div>
+<div class="m-artical-list">
+<ul class="newslist">
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805529490091639.html" target="_blank" rel="noopener" oldsrc="W020250805529490091639.html">深证综合指数</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891184338.html" target="_blank" rel="noopener" oldsrc="W020250805527891184338.html">深证成份指数</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891359243.html" target="_blank" rel="noopener" oldsrc="W020250805527891359243.html">行业分类指数</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891451806.html" target="_blank" rel="noopener" oldsrc="W020250805527891451806.html">板块分类指数</a></div>
+</li>
+</ul>
+<div class="directory-title">股票概况</div>
+<div class="m-artical-list">
+<ul class="newslist">
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891550104.html" target="_blank" rel="noopener" oldsrc="W020250805527891550104.html">股票行业分布</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891653902.html" target="_blank" rel="noopener" oldsrc="W020250805527891653902.html">股票行业成交数据</a></div>
+</li>
+</ul>
+<div class="directory-title">股票排行</div>
+<div class="m-artical-list">
+<ul class="newslist">
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340862762253.html" target="_blank" rel="noopener" oldsrc="W020250704340862762253.html"></a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891754427.html" target="_blank" rel="noopener" oldsrc="W020250805527891754427.html">发行股本最大的二十家上市公司 </a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340862762253.html" target="_blank" rel="noopener" oldsrc="W020250704340862762253.html"></a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250609365097847247.html" target="_blank" rel="noopener" oldsrc="W020250609365097847247.html"></a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891852726.html" target="_blank" rel="noopener" oldsrc="W020250805527891852726.html">流通股本最大的二十家上市公司</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891927801.html" target="_blank" rel="noopener" oldsrc="W020250805527891927801.html">市价总值最大的二十家上市公司</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527891994933.html" target="_blank" rel="noopener" oldsrc="W020250805527891994933.html">流通市值最大的二十家上市公司</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892050863.html" target="_blank" rel="noopener" oldsrc="W020250805527892050863.html">成交最活跃的二十种股份（金额）</a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340863059439.html" target="_blank" rel="noopener" oldsrc="W020250704340863059439.html"></a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892120607.html" target="_blank" rel="noopener" oldsrc="W020250805527892120607.html">成交最活跃的二十种股份（股数）</a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340863125362.html" target="_blank" rel="noopener" oldsrc="W020250704340863125362.html"></a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250609365098210535.html" target="_blank" rel="noopener" oldsrc="W020250609365098210535.html"></a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892203040.html" target="_blank" rel="noopener" oldsrc="W020250805527892203040.html">升幅最大的二十种股份</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892273000.html" target="_blank" rel="noopener" oldsrc="W020250805527892273000.html">跌幅最大的二十种股份</a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340863273357.html" target="_blank" rel="noopener" oldsrc="W020250704340863273357.html"></a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892341757.html" target="_blank" rel="noopener" oldsrc="W020250805527892341757.html">换手率最高的二十种股份</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892425157.html" target="_blank" rel="noopener" oldsrc="W020250805527892425157.html">市盈率最低的二十种股份</a></div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="right" style="width: 48%; float: left;">
+<div class="directory-title">公司活动</div>
+<div class="m-artical-list">
+<ul class="newslist">
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892493286.html" target="_blank" rel="noopener" oldsrc="W020250805527892493286.html">证券发行</a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340863490650.html" target="_blank" rel="noopener" oldsrc="W020250704340863490650.html"></a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892572166.html" target="_blank" rel="noopener" oldsrc="W020250805527892572166.html">新上市证券</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892647799.html" target="_blank" rel="noopener" oldsrc="W020250805527892647799.html">分红派息配股</a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340863647627.html" target="_blank" rel="noopener" oldsrc="W020250704340863647627.html"></a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892740980.html" target="_blank" rel="noopener" oldsrc="W020250805527892740980.html">证券停牌情况</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892816006.html" target="_blank" rel="noopener" oldsrc="W020250805527892816006.html">深圳证券市场各省股票集资情况一览表</a><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250704340863821366.html" target="_blank" rel="noopener" oldsrc="W020250704340863821366.html"></a></div>
+</li>
+</ul>
+<div class="directory-title">证券成交</div>
+<div class="m-artical-list">
+<ul class="newslist">
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527892907072.html" target="_blank" rel="noopener" oldsrc="W020250805527892907072.html">证券成交统计</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527893127270.html" target="_blank" rel="noopener" oldsrc="W020250805527893127270.html">ETFs成交统计</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527895356611.html" target="_blank" rel="noopener" oldsrc="W020250805527895356611.html">债券现货成交统计</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527898224415.html" target="_blank" rel="noopener" oldsrc="W020250805527898224415.html">债券回购成交统计</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527898299637.html" target="_blank" rel="noopener" oldsrc="W020250805527898299637.html">上市证券成交金额</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527898581774.html" target="_blank" rel="noopener" oldsrc="W020250805527898581774.html">证券融资融券余额明细</a></div>
+</li>
+</ul>
+<div class="directory-title">地区统计与会员交易</div>
+<div class="m-artical-list">
+<ul class="newslist">
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527898698371.html" target="_blank" rel="noopener" oldsrc="W020250805527898698371.html">地区交易金额分布</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805527898774627.html" target="_blank" rel="noopener" oldsrc="W020250805527898774627.html">会员交易金额</a></div>
+</li>
+<li>
+<div class="title"><a href="http://docs.static.szse.cn/www/market/periodical/month/W020250805601479707364.html" target="_blank" rel="noopener" title="B股特别席位及特许经纪交易排名" oldsrc="W020250805601479707364.html">B股特别席位及特许经纪交易排名</a></div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+                    </div>
+                    <script>
+                        var oldCon = document.getElementById("desContent").innerHTML;
+                        oldCon = oldCon.replace(/(o:p)|(u:p)/gi,'span');
+                        oldCon = oldCon.replace(/&lt;!--\[endif\]--&gt;/g,"");
+                        document.getElementById("desContent").innerHTML = oldCon;
+                    </script>
+<!--endprint-->
+    				<div class="des-footer">
+    					<div class="article-page display-none">
+                   
+    						
+    					</div>
+    					<div class="article-btn">
+    						<a href="javascript:void(0);" class="btn btn-gray art-print">打印</a>
+        						<a href="javascript:void(0);" target="_blank" class="btn btn-gray ml10 art-collect">收藏</a>
+        						<a href="javascript:void(0);" class="btn btn-gray ml10 art-close">关闭</a>
+    					</div>
+    				</div>  
+				</div>
+     
+            </div>
+      </div>
+
+    <script>
+  changeVertion('/common/js/toggleBig5.js', 'js');
+  navMenuAJAX('/application/publicindex/footer/index.html','/application/publicindex/footer/index.html', 'footer','www');
+  addComJsFile();
+</script>
+    <script>
+  (function () {
+    var _versionDate = new Date().getTime();
+
+    var _host = 'http://www.szse.cn';
+    if (location.protocol == 'https:') {
+      _host = 'https://www.szse.cn';
+    }
+
+    var backDomain = 'http://www.sse.org.cn'
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    if (backDomain && window.location.host.match(reg)[2] === backDomain.match(reg)[2]) {
+      _host = 'http://www.sse.org.cn';
+      if (location.protocol == 'https:') {
+        _host = 'https://www.sse.org.cn';
+      }
+
+    }
+    document.write(" <script src='" + _host + "/dynamicmodule/index/sysconfig.js?random=" + _versionDate + "'> <\/script> ");
+
+  }());
+</script>
+    <script>
+    	var articleDetail = {
+    		docTitle:'2025年7月 深圳证券交易所市场统计月报',
+    		subDocTitle:'',
+    		docAbstract:'',
+                articleId:'615341',
+		channelCode:'month_news',
+    channelId : '325'
+    	}
+    </script>
+    <script>
+    	changeVertion('/common/js/articleDetail.js','js');
+    </script>
+    <script>
+  changeVertion('/lib/validator/jquery.validate.js', 'js');
+  changeVertion('/common/js/jquery.validate_extend.js', 'js');
+  changeVertion('/lib/webuploader-0.1.5/webuploader.js', 'js');
+  changeVertion('/common/plugins/index.min.js', 'js');
+  changeVertion('/common/js/articleDetailUtil.js','js');
+</script>
+  </body>
+</html>
+
+
+

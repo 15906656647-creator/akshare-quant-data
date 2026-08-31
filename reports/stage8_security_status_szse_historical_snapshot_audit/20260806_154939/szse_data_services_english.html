@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+<!--   <title>深交所主页</title>   -->
+<script>
+    
+    var title = "Data Services ";
+    
+    document.write('<title>en-'+ title +'</title>')
+</script>
+<script>
+  if(location.protocol == 'https:'){
+    document.write('<link href="https://res.szse.cn/common/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />');
+  }else{
+    document.write('<link href="http://res.static.szse.cn/common/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />');
+  }
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
+<meta http-equiv="cache-control" content="max-age=0">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="expires" content="Web, 26 Feb 1997 08:21:57 GMT">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="author" content="bond.szse.cn">
+<meta name="description" content="en">
+<meta name="keywords" content="en">
+<meta name="renderer" content="webkit">
+<meta name="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="google" value="notranslate">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="screen-orientation" content="portrait">
+<meta name="full-screen" content="yes">
+<meta name="browermode" content="application">
+<meta name="x5-orientation" content="portrait">
+<meta name="HandheldFriendly" content="true">
+<script type="text/javascript">
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;//android终端
+
+	function addElementMeta(name,  content) {
+		var head = document.getElementsByTagName('head')[0];
+		var meta = document.createElement('meta');
+
+		meta.setAttribute('name', name);
+		meta.setAttribute('content', content);
+		head.appendChild(meta);
+	}
+	if(isAndroid) {
+		addElementMeta('x5-fullscreen', 'true');
+		addElementMeta('x5-page-mode', 'app');
+	}
+</script>
+<script>
+  (function () {
+    var _versionDate = new Date().getTime();
+    if (location.protocol == 'https:') {
+      var _path = 'https://res.szse.cn';
+    } else {
+      var _path = 'http://res.static.szse.cn';
+    }
+    // _path = _path.replace(".static.", ".");
+    //var _path = 'http://res.szse.cn';
+    //document.write( " <script src='" + _path + "/common/js/first.js?random=" + _versionDate + "'> <\/script> ");
+    var _host = 'http://www.szse.cn';
+    if (location.protocol == 'https:') {
+      _host = 'https://www.szse.cn';
+    }
+
+
+    var backDomain = 'http://www.sse.org.cn'
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    if (backDomain && window.location.host.match(reg)[2] === backDomain.match(reg)[2]) {
+      _host = 'http://www.sse.org.cn';
+      _path = 'http://res.static.sse.org.cn';
+      if (location.protocol == 'https:') {
+        _host = 'https://www.sse.org.cn';
+        _path = 'https://res.static.sse.org.cn';
+      }
+
+    }
+
+    _path = _path.replace(".static.", ".");
+
+    document.write(" <script src='" + _host + "/szsePath.js?random=" + _versionDate + "'> <\/script> "
+      + " <script src='" + _path + "/common/js/concatversion.js?random=" + _versionDate + "'> <\/script> ");
+  }());
+</script>
+
+<script>
+
+  function backDomainLinkSwitch(value, type) {
+    var _port = location.port ? (":" + location.port) : "";
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    var urlRegx = /(.*)(http:|https:)(\/\/)(([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+))\.?(:\d+)?(.*)/;
+
+    // html字符串替换
+    if (type == 'str') {
+      var strArr = value.split("=");
+      strArr = strArr.map(function (v) {
+        var host = reg.test(v) ? v.match(reg)[0] : null;
+        if (pathObj.szseHosts.indexOf(host) > -1) {
+          if (window.location.protocol == 'https:' && urlRegx.test(v)) {
+            v = v.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+          };
+          if (pathObj.current_host === pathObj.back_host) {
+            v = v.replace(pathObj.main_host, pathObj.back_host);
+          }
+        }
+        return v
+      });
+      value = strArr.join("=");
+      return value;
+    }
+
+    // a标签地址替换
+    if (type === 'A') {
+      var eleA = document.querySelectorAll(value);
+      for (var i = 0; i < eleA.length; i++) {
+        var href = eleA[i].getAttribute("href");
+        var host = reg.test(href) ? href.match(reg)[0] : null;
+        if (href && pathObj.szseHosts.indexOf(host) > -1) {
+          if (window.location.protocol == 'https:') {
+            href = href.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+          };
+          if (pathObj.current_host === pathObj.back_host) {
+            href = href.replace(pathObj.main_host, pathObj.back_host);
+          }
+          eleA[i].setAttribute('href', href);
+        }
+      }
+    }
+
+    // 单链接替换
+    if (type === "link") {
+      if (window.location.protocol == 'https:' && !!value) {
+        value = value.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+      };
+      if (pathObj.current_host === pathObj.back_host) {
+        var host = reg.test(value) ? value.match(reg)[0] : null;
+        if (value && pathObj.szseHosts.indexOf(host) > -1) {
+          value = value.replace(pathObj.main_host, pathObj.back_host);
+        }
+      }
+      return value;
+    }
+
+    // 背景图地址更换
+    if (type === "background") {
+      var eleBg = document.querySelectorAll(value);
+      for (var i = 0; i < eleBg.length; i++) {
+        var href = eleBg[i].style.backgroundImage;
+        if (window.location.protocol == 'https:' && !!href) {
+          href = href.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+        };
+        var host = reg.test(href) ? href.match(reg)[0] : null;
+        if (href && pathObj.szseHosts.indexOf(host) > -1) {
+          if (pathObj.current_host === pathObj.back_host) {
+            href = href.replace(pathObj.main_host, pathObj.back_host);
+          }
+          eleBg[i].style.backgroundImage = href;
+        }
+      }
+    }
+
+  }
+
+</script>
+
+<script>
+   if(document.cookie.indexOf('ft_language=1')>-1){
+    var style = document.createElement('style');
+    style.textContent='body{visibility:hidden;}';
+    document.head.appendChild(style);
+  }
+</script>
+<script>
+    addComCssFile();
+    changeVertion('/enweb/common/css/common.css', 'css');
+</script>
+    <style>
+        .des{overflow:auto;}
+    </style>
+</head>
+<body>
+<script>
+  navMenuAJAX('/English/application/publicindex/header/index.html', '/English/application/publicindex/header/index.html', 'header', 'www', true);
+</script>
+<div class="g-locationnav">
+    <div class="banner-wrap">
+        <img src="http://res.static.szse.cn/enweb/common/images/commonbannerbg.jpg" />
+    </div>
+    <div class="g-container">
+        <div class="g-banner-txt">
+            <h2 class="hidden-xs">Data Services</h2>
+            <p>
+                <img src="http://res.static.szse.cn/common/icon/er-banneradr.png" />LOCATION: 
+                <a href="../../" class="CurrChnlCls">SZSE English</a>/<a href="../" class="CurrChnlCls">SERVICES</a>/<a href="./" class="CurrChnlCls">Data Services</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="g-container-wrap">
+    <div class="g-container">
+        <div class="g-sidemenu">
+              
+
+<div class="menu-container">
+	<h2 class="title">SZSE English</h2>
+	<div class="side-menu-container">
+		<ul class="side-menu-con">
+            
+            <li class="level1" type="0" chnlcode="listings">
+
+			        <a> 
+					<div>LISTING
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level2 last" type="0" chnlcode="whySzse">
+
+			            <a href="/English/listings/whySzse/index.html">
+					<div>Why SZSE
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="standards">
+
+			            <a href="/English/listings/standards/index.html">
+					<div>Listing Standards
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="process">
+
+			            <a href="/English/listings/process/index.html">
+					<div>Listing Process
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="listFees">
+
+			            <a href="/English/listings/listFees/index.html">
+					<div>Listing Fees
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="faq">
+
+			            <a href="/English/listings/faq/index.html">
+					<div>Frequently Asked Questions
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+            
+            <li class="level1" type="0" chnlcode="disclosures">
+
+			        <a> 
+					<div>DISCLOSURE
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level2 last" type="0" chnlcode="announcements">
+
+			            <a href="/English/disclosures/announcements/index.html">
+					<div>Company Announcements
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="11" chnlcode="profiles_link">
+
+			           <a href="http://www.cninfo.com.cn/new/snapshot/companyListEn" target='_blank'>
+					<div>Company Profiles
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="fund">
+
+			            <a href="/English/disclosures/fund/index.html">
+					<div>Fund Information
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+            
+            <li class="level1" type="0" chnlcode="siteMarketData">
+
+			        <a> 
+					<div>MARKET DATA
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+            <li class="level2" type="0" chnlcode="siteMarketDatas">
+
+			        <a> 
+					<div>Market Data
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level3 last" type="0" chnlcode="stocks">
+
+			            <a href="/English/siteMarketData/siteMarketDatas/stocks/index.html">
+					<div>Stocks
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="funds">
+
+			            <a href="/English/siteMarketData/siteMarketDatas/funds/index.html">
+					<div>Funds
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="lookup">
+
+			            <a href="/English/siteMarketData/siteMarketDatas/lookup/index.html">
+					<div>Quotes Lookup
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+            <li class="level2" type="0" chnlcode="marketStatistics">
+
+			        <a> 
+					<div>Market Statistics
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level3 last" type="0" chnlcode="overview">
+
+			            <a href="/English/siteMarketData/marketStatistics/overview/index.html">
+					<div>Market Overview
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="securities">
+
+			            <a href="/English/siteMarketData/marketStatistics/securities/index.html">
+					<div>Securities Summary
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="sector">
+
+			            <a href="/English/siteMarketData/marketStatistics/sector/index.html">
+					<div>Sector Summary
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="counters">
+
+			            <a href="/English/siteMarketData/marketStatistics/counters/index.html">
+					<div>Top Counters
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+            <li class="level2" type="0" chnlcode="indices">
+
+			        <a> 
+					<div>Indices
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level3 last" type="0" chnlcode="performance">
+
+			            <a href="/English/siteMarketData/indices/performance/index.html">
+					<div>Indices Performance
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="constituent">
+
+			            <a href="/English/siteMarketData/indices/constituent/index.html">
+					<div>Indices Constituent
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+            <li class="level2" type="0" chnlcode="publication">
+
+			        <a> 
+					<div>Publication
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level3 last" type="0" chnlcode="monthlyReport">
+
+			            <a href="/English/siteMarketData/publication/monthly/index.html">
+					<div>Monthly Report
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="factBook">
+
+			            <a href="/English/siteMarketData/publication/factBook/index.html">
+					<div>Fact Book
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="research">
+
+			            <a href="/English/siteMarketData/publication/research/index.html">
+					<div>Research
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+				</ul>
+	  </li>
+            
+            <li class="level1" type="0" chnlcode="products">
+
+			        <a> 
+					<div>PRODUCTS
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+            <li class="level2" type="0" chnlcode="equity">
+
+			        <a> 
+					<div>Equity
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level3 last" type="0" chnlcode="overviews">
+
+			            <a href="/English/products/equity/overviews/index.html">
+					<div>Overview
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="mainboards">
+
+			            <a href="/English/products/equity/mainboards/index.html">
+					<div>Main Board
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="ChiNext">
+
+			            <a href="/English/products/equity/ChiNext/index.html">
+					<div>ChiNext
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+           <li class="level2 last" type="0" chnlcode="lefuFunds">
+
+			            <a href="/English/products/funds/index.html">
+					<div>Fund
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="bonds">
+
+			            <a href="/English/products/bonds/index.html">
+					<div>Bonds
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="security">
+
+			            <a href="/English/products/security/index.html">
+					<div>Asset-Backed Securities
+					
+					</div>
+				</a>
+				
+	  </li>
+            <li class="level2" type="0" chnlcode="options">
+
+			        <a> 
+					<div>Options
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level3 last" type="0" chnlcode="overviewOpt_news">
+
+			            <a href="/English/products/options/overview/index.html">
+					<div>Overview
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="CSI300ETFOption">
+
+			            <a href="/English/products/options/etf/index.html">
+					<div>CSI 300 ETF Options
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+				</ul>
+	  </li>
+            
+           <li class="level1 active" chnlcode="services">
+
+			        <a class="dropup">
+					<div>SERVICES
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+            <li class="level2" type="0" chnlcode="trading">
+
+			        <a> 
+					<div>Trading
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level3 last" type="0" chnlcode="tradOverview">
+
+			            <a href="/English/services/trading/tradOverview/index.html">
+					<div>Overview
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="calendar">
+
+			            <a href="/English/services/trading/calendar/index.html">
+					<div>Trading Calendar
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="tradingFees">
+
+			            <a href="/English/services/trading/tradingFees/index.html">
+					<div>Trading Fees
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="marginTrading">
+
+			            <a href="/English/services/trading/marginTrading/index.html">
+					<div>Margin Trading
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+           <li class="level2 last" type="0" chnlcode="membership">
+
+			            <a href="/English/services/membership/index.html">
+					<div>Membership Services
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="11" chnlcode="stockConnect_link">
+
+			           <a href="http://www.szse.cn/enSzhk/index.html" target='_blank'>
+					<div>Stock Connect
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="11" chnlcode="GreaterBayAreaPlatform_link">
+
+			           <a href="http://bond.szse.cn/enbayarea/index/index.html" target='_blank'>
+					<div>Greater Bay Area Bond Platform
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="11" chnlcode="qr_link">
+
+			           <a href="http://www.szse.cn/enqfii/index.html" target='_blank'>
+					<div>QFII & RQFII
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 active last" chnlcode="dataServices">
+
+			            <a href="/English/services/dataServices/index.html">
+					<div>Data Services
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="11" chnlcode="ensusfin_link">
+
+			           <a href="http://www.szse.cn/ensustainablefinance/index.html" target='_blank'>
+					<div>Sustainable Finance Service Area
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+            
+            <li class="level1" type="0" chnlcode="siteRules">
+
+			        <a> 
+					<div>RULES
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level2 last" type="0" chnlcode="siteRule">
+
+			            <a href="/English/rules/siteRule/index.html">
+					<div>SZSE Rules
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+            
+            <li class="level1" type="0" chnlcode="enAbout">
+
+			        <a> 
+					<div>ABOUT
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level2 last" type="0" chnlcode="enAboutOverview">
+
+			            <a href="/English/about/overview/index.html">
+					<div>Overview
+					
+					</div>
+				</a>
+				
+	  </li>
+            <li class="level2" type="0" chnlcode="enAboutNews">
+
+			        <a> 
+					<div>News
+					
+					  <b class="caret"></b>
+					</div>
+				</a>
+				
+				<ul>
+           <li class="level3 last" type="0" chnlcode="enAboutSpeech">
+
+			            <a href="/English/about/news/speeches/index.html">
+					<div>Speeches
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="enSzseNews">
+
+			            <a href="/English/about/news/szse/index.html">
+					<div>SZSE News
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level3 last" type="0" chnlcode="enNewListings">
+
+			            <a href="/English/about/news/listings/index.html">
+					<div>New Listings
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+           <li class="level2 last" type="0" chnlcode="enMilestones">
+
+			            <a href="/English/about/milestones/index.html">
+					<div>Milestones
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="enOurBrand">
+
+			            <a href="/English/about/brand/index.html">
+					<div>Our Brand
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="enOrganization">
+
+			            <a href="/English/about/organization/index.html">
+					<div>Organization
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="enMembers">
+
+			            <a href="/English/about/members/index.html">
+					<div>Members
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="enCorporate">
+
+			            <a href="/English/about/corporate/index.html">
+					<div>Corporate Social Responsibility
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="11" chnlcode="enCrossborder_link">
+
+			           <a href="http://www.szse.cn/enydyl/index.html" target='_blank'>
+					<div>Cross-border Capital Services
+					
+					</div>
+				</a>
+				
+	  </li>
+           <li class="level2 last" type="0" chnlcode="enContactus">
+
+			            <a href="/English/about/contactus/index.html">
+					<div>Contact Us
+					
+					</div>
+				</a>
+				
+	  </li>
+				</ul>
+	  </li>
+            
+		</ul>
+	</div>
+</div>
+
+
+        </div>
+        <div class="g-content">
+            <div class="g-conbox minH">
+              
+                  <div class="right-html">
+                    <div class="g-contitle">
+                      <h2 class="title">
+                        Data Services
+                      </h2>
+                    </div>
+                    <div class="des">
+                      <div class="TRS_Editor">
+<div class="TRS_Editor">
+<p class="MsoListParagraph" style="margin-left: 18pt; text-indent: -18pt; line-height: 200%; text-align: justify; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><span style="font-weight: normal; font-stretch: normal; line-height: normal;">&nbsp;&nbsp;</span></span></b><strong><span lang="EN-US"><span style="font-stretch: normal; line-height: normal;">1.&nbsp;</span></span></strong><b><span lang="EN-US">Market Data Service<o:p></o:p></span></b></span></p>
+<p class="MsoListParagraph" style="margin-left: 18pt; text-indent: -18pt; line-height: 100%; text-align: justify; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US">&nbsp;</span></b></span></p>
+<p class="MsoNormal" style="line-height: 200%; text-align: justify; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">SSIC is exclusively authorized to manage and distribute securities information of SZSE. SSIC provides both SZSE Level-1 and Level-2 Market Data Services for both domestic and oversea clients.<o:p></o:p></span></p>
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; max-width: 800px; width: 100%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td rowspan="4" valign="top" style="width: 176px; border-style: solid none; border-top-color: windowtext; border-top-width: 1pt; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US">SZSE Level-1 Market Data</span></b><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+<td colspan="2" valign="top" style="width: 630.5px; border-style: solid none; border-top-color: windowtext; border-top-width: 1pt; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Level 1 Market Data comprise of security code, short name, high/low, open/close, last traded price, 5 best bid/ask prices, transaction volume, transaction value and etc.<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 201px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">a. Real-time Data:<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 429.5px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Market Information on real time basis:<o:p></o:p></span></p>
+<p class="MsoNormal" style="line-height: 21.0pt; mso-pagination: widow-orphan;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">We provide market information of all securities listed on SZSE and other related information edited and collected by the exchange on real-time basis.<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 201px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">b. Delayed Data:<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 429.5px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Market Information is made available to clients on the basis of 15-minute delay.<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 201px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">c. End-of-day Data:<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 429.5px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" style="line-height: 21.0pt; mso-pagination: widow-orphan;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Security code, short name, and closing price, high/low, outstanding share capital of A&amp;B share and indices of the Exchange are provided at the end of the trading day.<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 176px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US">SZSE Level-2 Market Data</span></b><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+<td colspan="2" valign="top" style="width: 630.5px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">In terms of data content, Level-2 Market Data not only include the Level-1 Market Data contents, but also provide the 10 level order depth (prices and share volume of orders in the 10 bid/ask queues), Tick by tick trading and ordering information plus the data contents of Spot Version. In terms of interface specification, Level-2 Market Data apply the FAST protocol based on the FIX standard. Moreover, Level-2 data support re-transmission.</span><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal" style="line-height: 100%; text-align: justify; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;&nbsp;</o:p></span></b></span></p>
+<p class="MsoListParagraph" align="left" style="margin-left: 18pt; text-indent: -18pt; line-height: 200%; text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US">&nbsp;2.<span style="font-weight: normal; font-stretch: normal; line-height: normal;">&nbsp;</span></span></b><b><span lang="EN-US">Information Services<o:p></o:p></span></b></span></p>
+<p class="MsoNormal" align="left" style="line-height: 100%; text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;&nbsp;</o:p></span></b></span></p>
+<p class="MsoNormal" style="line-height: 200%; text-align: justify; background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">SSIC provides both English and Chinese Information services. Our information services include corporate actions, equity fundamentals, bonds, funds, warrants, other financial data services and so on. We can deliver data in both standard and customized formats.<o:p></o:p></span></p>
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 857px; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td colspan="2" valign="top" style="width: 827px; border-style: solid none; border-top-color: windowtext; border-top-width: 1pt; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US">Company Data Service Coverage:</span></b><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 157px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Corporate Profile:<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 670px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Company data sections include the following information:<o:p></o:p></span></p>
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Address - registered office, head office, mailing address;<o:p></o:p></span></p>
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">&nbsp;Business - company's primary activities, including Global Industry Classification Standard (GICS) and China Securities Regulatory Commission (CSRC) codes;<o:p></o:p></span></p>
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">&nbsp;History elements - ownership, founding date, date of incorporation, number of employees, name changes, acquisitions, mergers, joint venture information and detailed shareholders information.</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 157px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Corporate Governance:<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 670px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">&nbsp;Management - directors, chairman, vice chairman, etc.;<o:p></o:p></span></p>
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">&nbsp;Subsidiaries, associated and affiliated companies - lists active companies in which the parent company holds a percentage of ownership.</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 157px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Corporate Finance:<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 670px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">&nbsp;Property - detailed information on a company's property holdings;<o:p></o:p></span></p>
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">&nbsp;Debt - financing arrangements, amounts outstanding, interest rate, due date;<o:p></o:p></span></p>
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">&nbsp;Financial statements - includes income statements, balance sheets, cash flow statements.</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 157px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">Format:</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+<td valign="top" style="width: 670px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">Excel, CSV/TXT, Database</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal" align="left" style="line-height: 200%; text-align: justify;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 860px; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td colspan="3" valign="top" style="width: 815px; border-style: solid none; border-top-color: windowtext; border-top-width: 1pt; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US">Corporate Actions Service Coverage:</span></b><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Share Issuance:</span></i><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Profit Distribution</span></i><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Risks</span></i><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">IPO<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Annual Dividend<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Risk alert<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">IPO Placement<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Dividend Implementation<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">Suspension risk</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Additional Offering<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Dividend change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">Rights Issue</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">Interim Dividend</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+<td valign="top" style="width: 240px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Share Listing:</span></i><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Shareholder Meeting:</span></i><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+<td valign="top" style="width: 240px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">ST</span></i><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">IPO share listing<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">AGM<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">ST<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Additional share listing<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">AGM resolution<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><span lang="EN-US">ST removal</span><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Staff share listing<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">AGM change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Rights share listing<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">EGM<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Delisting<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">EGM resolution<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Trading suspension<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">EGM change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Trading resumption<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">SRM<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Resumption progress<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">SRM Resolution<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Convertible bond listing<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">SRM Change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" style="line-height: 16.5pt; mso-pagination: widow-orphan;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Periodic Report</span></i><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Company Information Change:</span></i><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+<td valign="top" style="width: 240px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Delisting</span></i><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Annual report<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Name change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Delisting risk warning<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Annual report postponed<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Domicile change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">*ST removal<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Interim report<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Contact Information change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Quarterly report<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Abbreviation change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Interim report postponed<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Code change<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><b><span lang="EN-US"><o:p>&nbsp;</o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Tender offer</span></i><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Performance Forecast:</span></i><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+<td valign="top" style="width: 240px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Bonds</span></i><b><span lang="EN-US"><o:p></o:p></span></b></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;"><i><span lang="EN-US">Merge &amp; Acquisition</span></i><span lang="EN-US"><o:p></o:p></span></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Profit forecast<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Corporate bonds<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Loss forecast<o:p></o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Convertible bonds<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Convertible bond issuance<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Debt-to-equity conversion<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Convertible bond interest<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Redemption<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Re-sale<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">T-bonds<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">T-bond INT<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border: none; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">T-bond maturity<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign="top" style="width: 264px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 311px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td valign="top" style="width: 240px; border-style: none none solid; border-bottom-color: windowtext; border-bottom-width: 1pt; padding: 0cm 5.4pt;">
+<p class="MsoNormal" align="left" style="line-height: 16.5pt;"><span lang="EN-US" style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">Subordinated bond<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal" align="left" style="line-height: 100%; text-align: justify;">&nbsp;</p>
+</div>
+</div>
+                    </div>
+                  </div>
+                  <script>
+                      var docType = '20';
+                      var curHtml = ''; 
+                      var curBox = document.getElementsByClassName('right-html')[0];
+                          
+                      if(docType != 20){
+                        curHtml = '<p class="text-center error-wrap">'+
+                                  '<img class="error-pic" src="http://res.static.szse.cn/common/images/page_building_1.png" />'+ 
+                                  '</p>';
+                        curBox.parentNode.removeChild(curBox);        
+                        document.write(curHtml);
+                      }
+
+
+                      
+                  </script>                 
+                              
+            </div>     
+        </div>
+    </div>
+
+</div>
+<script>
+  navMenuAJAX('/English/application/publicindex/footer/index.html', '/English/application/publicindex/footer/index.html', 'footer', 'www');
+  addComJsFile();
+  changeVertion('/enweb/common/js/common.js', 'js');
+</script>
+<script>
+                          function videoChangeSrc(){
+	                  var videoBox = $('.video-container');
+	                  if(videoBox.length >0){
+		              for(var i=0; i<videoBox.length;i++){
+			          var item = videoBox[i];
+			          var href = $('a',item).attr('href');
+			          $('video',item).attr('src',href);
+		              }
+	                  }
+                      }
+                      videoChangeSrc();
+</script>
+</body>
+</html>

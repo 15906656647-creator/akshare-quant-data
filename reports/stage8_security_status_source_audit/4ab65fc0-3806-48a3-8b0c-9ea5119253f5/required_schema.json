@@ -1,0 +1,67 @@
+{
+  "contract": "authoritative_security_status_history",
+  "schema_version": "1.0.0",
+  "expected_record_file": "security_status_history.csv",
+  "actual_record_files_found": [
+    "authoritative_security_status_history.csv"
+  ],
+  "manifest_file": "dataset.yml",
+  "required_columns": [
+    "symbol",
+    "exchange",
+    "board",
+    "status_type",
+    "status_value",
+    "effective_from",
+    "effective_to",
+    "announcement_date",
+    "source_name",
+    "source_document_id",
+    "source_reference",
+    "retrieved_at",
+    "raw_file",
+    "source_sha256",
+    "review_status",
+    "notes"
+  ],
+  "optional_columns": [
+    "record_id",
+    "listing_date",
+    "delisting_date",
+    "status_version",
+    "reviewer",
+    "review_mode",
+    "waiver_reason",
+    "waiver_approver",
+    "waiver_at",
+    "waiver_document"
+  ],
+  "status_type_allowed": [
+    "ST",
+    "LISTING"
+  ],
+  "status_value_allowed": {
+    "ST": [
+      "NON_ST",
+      "ST",
+      "*ST",
+      "OTHER"
+    ],
+    "LISTING": [
+      "LISTED",
+      "SUSPENDED",
+      "DELISTED"
+    ]
+  },
+  "st_expression": "status_type=ST; status_value=NON_ST/ST/*ST/OTHER; is_st=(status_value != NON_ST); special_treatment_type=none/ST/*ST/other",
+  "listing_expression": "status_type=LISTING; status_value=LISTED/SUSPENDED/DELISTED; listing_status=lowercase(status_value); unresolved used on ST rows until merged",
+  "interval_convention": "inclusive closed [effective_from, effective_to]; empty effective_to means open-ended",
+  "seamless_coverage_required": true,
+  "coverage_start": "2025-07-27",
+  "coverage_end": "2026-07-27",
+  "requires_2023_to_2026": false,
+  "requires_formal_event_window_only": true,
+  "approved_with_waiver_supported": true,
+  "verified_by_dual_review_false_for_waiver": true,
+  "status_build_validate_only_command": "run_pipeline.py stage8-status-build --as-of-date 2026-07-27 --dataset-dir data\\manual\\stage8\\security_status --validate-only"
+}

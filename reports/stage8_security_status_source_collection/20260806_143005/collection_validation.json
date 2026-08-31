@@ -1,0 +1,128 @@
+{
+  "download_manifest_rows": 142,
+  "download_checks_passed": 142,
+  "errors": [],
+  "sz_risk_plate_absent": [
+    "000100",
+    "002067",
+    "002129",
+    "002230",
+    "002361",
+    "002600",
+    "300274",
+    "300433"
+  ],
+  "sse_risk_plate_absent": [
+    "600231",
+    "600438",
+    "600763",
+    "601012",
+    "601500",
+    "601636",
+    "603259",
+    "603799"
+  ],
+  "risk_plate_absent_all": true,
+  "stock_list_ok": [
+    {
+      "symbol": "000100",
+      "ok": true,
+      "name_short": "<a href='http://www.szse.cn/certificate/individual/index.html?code=000100' target='_blank'><u>TCL科技</u></a>"
+    },
+    {
+      "symbol": "002067",
+      "ok": true,
+      "name_short": "<a href='http://www.szse.cn/certificate/individual/index.html?code=002067' target='_blank'><u>景兴纸业</u></a>"
+    },
+    {
+      "symbol": "002129",
+      "ok": true,
+      "name_short": "<a href='http://www.szse.cn/certificate/individual/index.html?code=002129' target='_blank'><u>TCL中环</u></a>"
+    },
+    {
+      "symbol": "002230",
+      "ok": true,
+      "name_short": "<a href='http://www.szse.cn/certificate/individual/index.html?code=002230' target='_blank'><u>科大讯飞</u></a>"
+    },
+    {
+      "symbol": "002361",
+      "ok": true,
+      "name_short": "<a href='http://www.szse.cn/certificate/individual/index.html?code=002361' target='_blank'><u>神剑股份</u></a>"
+    },
+    {
+      "symbol": "002600",
+      "ok": true,
+      "name_short": "<a href='http://www.szse.cn/certificate/individual/index.html?code=002600' target='_blank'><u>领益智造</u></a>"
+    },
+    {
+      "symbol": "300274",
+      "ok": true,
+      "name_short": "<a href='http://www.szse.cn/certificate/individual/index.html?code=300274' target='_blank'><u>阳光电源</u></a>"
+    },
+    {
+      "symbol": "300433",
+      "ok": true,
+      "name_short": "<a href='http://www.szse.cn/certificate/individual/index.html?code=300433' target='_blank'><u>蓝思科技</u></a>"
+    },
+    {
+      "symbol": "600231",
+      "ok": true,
+      "name_short": "凌钢股份"
+    },
+    {
+      "symbol": "600438",
+      "ok": true,
+      "name_short": "通威股份"
+    },
+    {
+      "symbol": "600763",
+      "ok": true,
+      "name_short": "通策医疗"
+    },
+    {
+      "symbol": "601012",
+      "ok": true,
+      "name_short": "隆基绿能"
+    },
+    {
+      "symbol": "601500",
+      "ok": true,
+      "name_short": "通用股份"
+    },
+    {
+      "symbol": "601636",
+      "ok": true,
+      "name_short": "旗滨集团"
+    },
+    {
+      "symbol": "603259",
+      "ok": true,
+      "name_short": "药明康德"
+    },
+    {
+      "symbol": "603799",
+      "ok": true,
+      "name_short": "华友钴业"
+    }
+  ],
+  "stock_list_ok_count": 16,
+  "all_announcement_fetched_counts": {
+    "000100": 272,
+    "002067": 153,
+    "002129": 110,
+    "002230": 193,
+    "002361": 99,
+    "002600": 317,
+    "300274": 146,
+    "300433": 164,
+    "600231": 129,
+    "600438": 125,
+    "600763": 91,
+    "601012": 109,
+    "601500": 132,
+    "601636": 223,
+    "603259": 174,
+    "603799": 189
+  },
+  "all_announcement_fetched_nonzero": true
+}

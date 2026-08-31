@@ -1,0 +1,236 @@
+table { border-collapse:collapse; }
+	caption { font-family:华文中宋; font-size:14pt; font-weight:bold; vertical-align:middle; text-align: left;padding-bottom:10px; }
+	.title_cn { font-size: 13pt; line-height: 13pt; padding-bottom:5px; }
+	.title_en { font-size: 12pt; line-height: 12pt; }
+
+	th { padding: 2px; font-family:Tahoma,Verdana,Arial,Helvetica; font-size:9pt; line-height: 9pt; font-weight:bold; }
+	td { padding: 3px; font-family:Tahoma,Verdana,Arial,Helvetica; font-size:9pt; line-height: 9pt; vertical-align:middle; text-align:right;}
+
+	.center             { vertical-align:middle;text-align:center; }
+	.top_line           { border-top:1px black solid; }
+	.top_line_bold      { border-top:3px black solid; }
+	.bottom_line        { border-bottom:1px black solid; }
+	.bottom_line_bold   { border-bottom:3px black solid; }
+	.separator          { border: none; width:0px; }
+
+	tr.t1_top_row    td  { padding-top:5px }
+	tr.t1_bottom_row td  { border-bottom:3px black solid; }
+
+	tr.t2_top_row    td  {padding-top:5px }
+	tr.t2_bottom_row td  { border-bottom:3px black solid; }
+
+    td.c0  { text-align:left;   width:100px;  padding-left: 5px; }
+    td.c1  { text-align:left;   width:120px;  padding-left: 5px; }
+    td.c2  { text-align:right;  width:80px;  padding-right: 50px; }
+    td.c5  { text-align:right;  width:120px; padding-right: 10px; }
+    td.c6  { text-align:right;  width:120px; padding-right: 10px; }
+上市证券
+LISTED SECURITIES - (2026.07)
+上市数目
+市价总值
+流通市值
+2026年7月底
+No. of
+Total Market
+Negotiable Market
+End of July ，2026
+Listed
+Capitalization
+Capitalization
+Securities
+(RMB Yuan)
+(RMB Yuan)
+股票
+Stocks
+2,931
+42,490,303,724,019
+36,291,232,481,398
+主板A股
+MB A-shares
+1,493
+24,898,200,288,787
+21,950,067,551,388
+主板B股
+MB B-shares
+38
+38,201,475,782
+38,185,597,500
+主板CDR
+MB CDR
+0
+0
+0
+创业板A股
+ChiNext A-shares
+1,400
+17,553,901,959,449
+14,302,979,332,510
+创业板CDR
+ChiNext CDR
+0
+0
+0
+基金
+Funds
+1,016
+1,719,861,945,880
+1,696,497,120,730
+ETFs
+ETFs
+704
+1,611,648,123,202
+1,611,648,123,202
+LOFs
+LOFs
+285
+42,116,413,100
+42,116,413,100
+封闭基金
+Close-end
+0
+0
+0
+不动产基金
+REITs
+27
+66,097,409,577
+42,732,584,428
+债券
+Bonds
+19,493
+106,228,979,348,633
+4,231,851,042,424
+债券现券
+Cash
+17,893
+105,695,716,993,081
+3,698,588,686,873
+债券回购
+Repurchase
+27
+0
+0
+ABS
+ABS
+1,573
+533,262,355,551
+533,262,355,551
+期权
+Options
+492
+-
+-
+优先股
+Preferred Stock
+2
+5,858,061,000
+5,858,061,000
+合计
+Total
+23,934
+150,445,003,079,531
+42,225,438,705,553
+上市数目
+市价总值
+流通市值
+2025年7月底
+No. of
+Total Market
+Negotiable Market
+End of July ，2025
+Listed
+Capitalization
+Capitalization
+Securities
+(RMB Yuan)
+(RMB Yuan)
+股票
+Stocks
+2,907
+36,776,268,156,350
+31,546,648,200,325
+主板A股
+MB A-shares
+1,485
+22,158,243,684,165
+20,107,401,217,111
+主板B股
+MB B-shares
+39
+50,804,695,682
+50,671,614,114
+主板CDR
+MB CDR
+0
+0
+0
+创业板A股
+ChiNext A-shares
+1,383
+14,567,219,776,504
+11,388,575,369,100
+创业板CDR
+ChiNext CDR
+0
+0
+0
+基金
+Funds
+826
+1,348,095,311,435
+1,316,091,616,836
+ETFs
+ETFs
+516
+1,244,622,122,843
+1,244,622,122,843
+LOFs
+LOFs
+287
+36,100,112,941
+36,100,112,941
+封闭基金
+Close-end
+0
+0
+0
+不动产基金
+REITs
+23
+67,373,075,651
+35,369,381,052
+债券
+Bonds
+16,937
+91,758,276,005,060
+3,537,596,156,669
+债券现券
+Cash
+15,516
+91,292,992,505,653
+3,072,312,657,262
+债券回购
+Repurchase
+27
+0
+0
+ABS
+ABS
+1,394
+465,283,499,407
+465,283,499,407
+期权
+Options
+488
+-
+-
+优先股
+Preferred Stock
+4
+37,231,981,000
+37,231,981,000
+合计
+Total
+21,162
+129,919,871,453,846
+36,437,567,954,829

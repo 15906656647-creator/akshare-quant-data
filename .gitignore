@@ -70,3 +70,23 @@ data/manual/stage8/*/sources/*
 !data/manual/stage8/*/sources/README.md
 !data/manual/stage8/*/*.example.csv
 reports/stage8_rule_source_audit/
+
+# Frontend dependencies and local hosting state
+node_modules/
+web/stage20/node_modules/
+.netlify/
+
+# Environment files
+.env.*
+!.env.example
+
+# Generated local outputs
+output/
+
+# Generated feature datasets
+data/features/
+
+工作汇报/
+
+# Local reference documents
+/AKShare 数据抓取测试项目阶段 15 问题与解决方案.pdf

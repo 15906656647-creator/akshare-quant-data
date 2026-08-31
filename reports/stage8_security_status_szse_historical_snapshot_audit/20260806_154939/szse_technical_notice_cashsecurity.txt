@@ -1,0 +1,278 @@
+关于做好创业板改革并试点注册制技术准备的补充通知
+if(location.protocol == 'https:'){
+    document.write('<link href="https://res.szse.cn/common/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />');
+  }else{
+    document.write('<link href="http://res.static.szse.cn/common/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />');
+  }
+var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;//android终端
+
+	function addElementMeta(name,  content) {
+		var head = document.getElementsByTagName('head')[0];
+		var meta = document.createElement('meta');
+
+		meta.setAttribute('name', name);
+		meta.setAttribute('content', content);
+		head.appendChild(meta);
+	}
+	if(isAndroid) {
+		addElementMeta('x5-fullscreen', 'true');
+		addElementMeta('x5-page-mode', 'app');
+	}
+(function () {
+    var _versionDate = new Date().getTime();
+    if (location.protocol == 'https:') {
+      var _path = 'https://res.szse.cn';
+    } else {
+      var _path = 'http://res.static.szse.cn';
+    }
+    // _path = _path.replace(".static.", ".");
+    //var _path = 'http://res.szse.cn';
+    //document.write( " <script src='" + _path + "/common/js/first.js?random=" + _versionDate + "'> <\/script> ");
+    var _host = 'http://www.szse.cn';
+    if (location.protocol == 'https:') {
+      _host = 'https://www.szse.cn';
+    }
+
+    var backDomain = 'http://www.sse.org.cn'
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    if (backDomain && window.location.host.match(reg)[2] === backDomain.match(reg)[2]) {
+      _host = 'http://www.sse.org.cn';
+      _path = 'http://res.static.sse.org.cn';
+      if (location.protocol == 'https:') {
+        _host = 'https://www.sse.org.cn';
+        _path = 'https://res.static.sse.org.cn';
+      }
+
+    }
+
+    _path = _path.replace(".static.", ".");
+
+    document.write(" <script src='" + _host + "/szsePath.js?random=" + _versionDate + "'> <\/script> "
+      + " <script src='" + _path + "/common/js/concatversion.js?random=" + _versionDate + "'> <\/script> ");
+  }());
+function backDomainLinkSwitch(value, type) {
+    var _port = location.port ? (":" + location.port) : "";
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    var urlRegx = /(.*)(http:|https:)(\/\/)(([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+))\.?(:\d+)?(.*)/;
+
+    // html字符串替换
+    if (type == 'str') {
+      var strArr = value.split("=");
+      strArr = strArr.map(function (v) {
+        var host = reg.test(v) ? v.match(reg)[0] : null;
+        if (pathObj.szseHosts.indexOf(host) > -1) {
+          if (window.location.protocol == 'https:' && urlRegx.test(v)) {
+            v = v.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+          };
+          if (pathObj.current_host === pathObj.back_host) {
+            v = v.replace(pathObj.main_host, pathObj.back_host);
+          }
+        }
+        return v
+      });
+      value = strArr.join("=");
+      return value;
+    }
+
+    // a标签地址替换
+    if (type === 'A') {
+      var eleA = document.querySelectorAll(value);
+      for (var i = 0; i < eleA.length; i++) {
+        var href = eleA[i].getAttribute("href");
+        var host = reg.test(href) ? href.match(reg)[0] : null;
+        if (href && pathObj.szseHosts.indexOf(host) > -1) {
+          if (window.location.protocol == 'https:') {
+            href = href.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+          };
+          if (pathObj.current_host === pathObj.back_host) {
+            href = href.replace(pathObj.main_host, pathObj.back_host);
+          }
+          eleA[i].setAttribute('href', href);
+        }
+      }
+    }
+
+    // 单链接替换
+    if (type === "link") {
+      if (window.location.protocol == 'https:' && !!value) {
+        value = value.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+      };
+      if (pathObj.current_host === pathObj.back_host) {
+        var host = reg.test(value) ? value.match(reg)[0] : null;
+        if (value && pathObj.szseHosts.indexOf(host) > -1) {
+          value = value.replace(pathObj.main_host, pathObj.back_host);
+        }
+      }
+      return value;
+    }
+
+    // 背景图地址更换
+    if (type === "background") {
+      var eleBg = document.querySelectorAll(value);
+      for (var i = 0; i < eleBg.length; i++) {
+        var href = eleBg[i].style.backgroundImage;
+        if (window.location.protocol == 'https:' && !!href) {
+          href = href.replace(urlRegx, '$1https:$3$4' + _port + '$9');
+        };
+        var host = reg.test(href) ? href.match(reg)[0] : null;
+        if (href && pathObj.szseHosts.indexOf(host) > -1) {
+          if (pathObj.current_host === pathObj.back_host) {
+            href = href.replace(pathObj.main_host, pathObj.back_host);
+          }
+          eleBg[i].style.backgroundImage = href;
+        }
+      }
+    }
+
+  }
+if(document.cookie.indexOf('ft_language=1')>-1){
+    var style = document.createElement('style');
+    style.textContent='body{visibility:hidden;}';
+    document.head.appendChild(style);
+  }
+addComCssFile()
+changeVertion('/modules/report/css/report.css', 'css');
+        changeVertion('/modules/aboutus_column/introduction/css/journal.css', 'css');
+changeVertion('/lib/validator/validator.min.css', 'css');
+  changeVertion('/common/plugins/css/index.min.css', 'css');
+  changeVertion('/common/css/form.css', 'css');
+  changeVertion('/common/css/articleDetailUtil.css','css');
+navMenuAJAX('/application/publicindex/header/index.html', '/application/publicindex/header/index.html', 'header', 'www');
+技术公告
+位置：
+市场服务
+/
+技术服务
+/
+技术公告
+关于做好创业板改革并试点注册制技术准备的补充通知
+var curSubTitle ='';
+                  			if(curSubTitle != ''){
+                  				document.write('<h4 style="text-align: center;" class="sub-title"><i class=""></i><span class="">'+curSubTitle+'</span></h4>')
+                  			}
+时间：
+2020-05-08
+字体：
+大
+中
+小
+各会员及相关单位：
+深圳证券交易所（以下简称“深交所”）和中国证券登记结算有限责任公司（以下简称“中国结算”）深圳分公司于
+2020
+年
+4
+月
+27
+日发布了《关于做好创业板改革并试点注册制的技术准备通知》，现根据市场反馈意见以及咨询问题，对
+《深圳证券交易所创业板改革并试点注册制市场参与者技术系统变更指南》和《深圳证券交易所数据文件交换接口规范》进行补充和调整，
+并说明如下：
+一、对创业板股票和存托凭证申报市价委托，仍适用交易规则
+3.3.5
+的规定，即“市价申报只适用于有价格涨跌幅限制证券连续竞价期间的交易。其他交易时间，交易主机不接受市价申报。”。
+二、市场参与者技术系统无需根据发布的有效竞价范围参数对集中竞价交易业务的委托申报进行价格检查。
+三、关于盘后定价业务：
+1
+．深交所每个交易日通过文件网关下发的盘后定价交易业务参考信息（
+fixedpriceparams
+）中增加买数量上限、卖数量上限两个字段，券商技术系统应使用这两个字段作盘后定价交易业务委托数量上限检查
+;
+盘后定价交易业务的实际成交价格由现货集中竞价交易业务的收盘价确定，因此券商技术系统应使用现货集中竞价业务的价格限定相关参数进行盘后定价交易业务委托价格合法性检查。
+2
+．深交所从
+15:05
+开始通过新增的
+3011
+频道发布盘后定价交易行情快照，行情类别（
+MDStreamID
+）为
+370
+。盘后定价交易行情快照中的成交总量（
+TotalVolumeTrade
+）、成交总金额（
+TotalValueTrade
+）仅为盘后定价交易业务的成交总量和成交总金额，不包含现货集中竞价业务的成交总量和成交总金额。
+3
+．深交所在每日收市后发布的现货证券收盘行情文件（
+cashsecurityclosemd _YYYYMMDD.xml
+）中证券的成交总量（
+TotalVolumeTrade
+）、成交总金额（
+TotalValueTrade
+）不含盘后定价交易业务的成交总量和成交总金额。
+4
+．信用账户可开展盘后定价交易业务。使用信用账户申报盘后定价交易买入委托时，只能以普通交易方式买入融资融券可冲抵保证金证券，不能以融资融券开仓、平仓方式买入；使用信用账户申报盘后定价交易卖出委托时，只能以普通交易方式卖出证券，不能以融资融券开仓、平仓方式卖出。
+四、《深圳证券交易所创业板改革并试点注册制市场参与者技术系统变更指南》和《深圳证券交易所数据文件交换接口规范》的最新版本已在深交所官网技术专栏发布。
+五、为便于市场参与者尽快开展接口变更的相关测试
+,
+我所提供交易系统离线测试工具产品；现发布
+1.00
+β版（支持此次变更对应的最新版本接口），并计划
+2020
+年
+6
+月通过“深交所技术产品联盟”正式发布。
+六、联系电话
+深圳证券交易所技术：
+0755-88668446
+深圳证券交易所业务：
+0755-88666284
+、
+0755-88668376
+中国结算深圳分公司业务：
+0755-21899261
+中国结算深圳分公司技术：
+0755-25946080
+特此通知
+深圳证券交易所
+中国证券登记结算有限责任公司深圳分公司
+2020
+年
+5
+月
+8
+日
+var oldCon = document.getElementById("desContent").innerHTML;
+                        oldCon = oldCon.replace(/(o:p)|(u:p)/gi,'span');
+                        oldCon = oldCon.replace(/&lt;!--\[endif\]--&gt;/g,"");
+                        document.getElementById("desContent").innerHTML = oldCon;
+打印
+收藏
+关闭
+changeVertion('/common/js/toggleBig5.js', 'js');
+  navMenuAJAX('/application/publicindex/footer/index.html','/application/publicindex/footer/index.html', 'footer','www');
+  addComJsFile();
+(function () {
+    var _versionDate = new Date().getTime();
+
+    var _host = 'http://www.szse.cn';
+    if (location.protocol == 'https:') {
+      _host = 'https://www.szse.cn';
+    }
+
+    var backDomain = 'http://www.sse.org.cn'
+    var reg = /([a-zA-Z0-9][-a-zA-Z0-9]{0,62})((\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)\.?(:\d+)?/;
+    if (backDomain && window.location.host.match(reg)[2] === backDomain.match(reg)[2]) {
+      _host = 'http://www.sse.org.cn';
+      if (location.protocol == 'https:') {
+        _host = 'https://www.sse.org.cn';
+      }
+
+    }
+    document.write(" <script src='" + _host + "/dynamicmodule/index/sysconfig.js?random=" + _versionDate + "'> <\/script> ");
+
+  }());
+var articleDetail = {
+    		docTitle:'关于做好创业板改革并试点注册制技术准备的补充通知',
+    		subDocTitle:'',
+    		docAbstract:'',
+                articleId:'576947',
+		channelCode:'technicalLatestNotice',
+    channelId : '1444'
+    	}
+changeVertion('/common/js/articleDetail.js','js');
+changeVertion('/lib/validator/jquery.validate.js', 'js');
+  changeVertion('/common/js/jquery.validate_extend.js', 'js');
+  changeVertion('/lib/webuploader-0.1.5/webuploader.js', 'js');
+  changeVertion('/common/plugins/index.min.js', 'js');
+  changeVertion('/common/js/articleDetailUtil.js','js');

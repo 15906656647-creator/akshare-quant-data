@@ -1,0 +1,17 @@
+symbol,exchange,board,required_start,required_end,listing_status_evidence,risk_warning_plate_absent,baseline_evidence_ok,end_evidence_ok,event_search_complete,source_chain_complete,date_coverage_complete,conflict_found,readiness
+000100,SZ,main,2025-07-27,2026-07-27,LISTED,True,True,True,True,True,True,False,READY
+002067,SZ,main,2025-07-27,2026-07-27,LISTED,True,True,True,True,True,True,False,READY
+002129,SZ,main,2025-07-27,2026-07-27,LISTED,True,True,True,True,True,True,False,READY
+002230,SZ,main,2025-07-27,2026-07-27,LISTED,True,True,True,True,True,True,False,READY
+002361,SZ,main,2025-07-27,2026-07-27,LISTED,True,True,True,True,True,True,False,READY
+002600,SZ,main,2025-07-27,2026-07-27,LISTED,True,True,True,True,True,True,False,READY
+300274,SZ,growth,2025-07-27,2026-07-27,LISTED,True,True,True,True,True,True,False,READY
+300433,SZ,growth,2025-07-27,2026-07-27,LISTED,True,True,True,True,True,True,False,READY
+600231,SH,main,2025-07-27,2026-07-27,LISTED,True,False,False,True,False,False,False,PARTIAL
+600438,SH,main,2025-07-27,2026-07-27,LISTED,True,False,False,True,False,False,False,PARTIAL
+600763,SH,main,2025-07-27,2026-07-27,LISTED,True,False,False,True,False,False,False,PARTIAL
+601012,SH,main,2025-07-27,2026-07-27,LISTED,True,False,False,True,False,False,False,PARTIAL
+601500,SH,main,2025-07-27,2026-07-27,LISTED,True,False,False,True,False,False,False,PARTIAL
+601636,SH,main,2025-07-27,2026-07-27,LISTED,True,False,False,True,False,False,False,PARTIAL
+603259,SH,main,2025-07-27,2026-07-27,LISTED,True,False,False,True,False,False,False,PARTIAL
+603799,SH,main,2025-07-27,2026-07-27,LISTED,True,False,False,True,False,False,False,PARTIAL
