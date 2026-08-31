@@ -1374,6 +1374,46 @@ def _cmd_stage15_s14_reverify(args):
         return 1
 
 
+def _cmd_final_report(args):
+    """Build the fully offline Stage 16 availability and final report."""
+    setup_logging(level=args.log_level)
+    try:
+        import uuid
+        import pandas as pd
+        from .stage16_report import build_stage16_report
+
+        as_of = pd.Timestamp(
+            resolve_as_of_date(cli_date=args.as_of_date)
+        ).normalize()
+        root = project_root()
+        run_id = args.run_id or str(uuid.uuid4())
+        uuid.UUID(run_id)
+        report, exit_code = build_stage16_report(
+            root=root,
+            as_of_date=as_of,
+            config_path=root / args.config,
+            reports_dir=root / args.reports_dir,
+            run_id=run_id,
+            dry_run=args.dry_run,
+            validate_only=args.validate_only,
+        )
+        print("Stage 16 final report: " + report["status"])
+        print("  run_id: " + run_id)
+        print("  stocks: " + str(report.get("symbol_count", 0)))
+        print("  Hong Kong symbols: " + str(report.get("hong_kong_symbol_count", 0)))
+        print("  network_attempts: " + str(report.get("network_attempts", 0)))
+        if report.get("outputs"):
+            print("  reports: " + report["outputs"]["reports_dir"])
+        if report.get("blocking_reasons"):
+            print("  blockers: " + "; ".join(report["blocking_reasons"]))
+        return exit_code
+    except Exception as exc:
+        if args.debug:
+            raise
+        print(f"Stage 16 error: {exc}", file=sys.stderr)
+        return 1
+
+
 def _generate_summary_md(results, run_id, overall, as_of):
     sp = Path("reports/interface_smoke_test_summary.md")
     sl = []
@@ -1768,6 +1808,19 @@ def main():
         "--debug", action="store_true", default=False,
         help="Show a traceback for Stage 15 internal errors",
     )
+    b16 = sub.add_parser(
+        "final-report",
+        help="Build the Stage 16 final availability report fully offline",
+    )
+    b16.add_argument("--as-of-date", required=True)
+    b16.add_argument("--config", default="config/stage16.yml")
+    b16.add_argument("--reports-dir", default="reports/stage16")
+    b16.add_argument("--run-id", default=None)
+    mode16 = b16.add_mutually_exclusive_group()
+    mode16.add_argument("--dry-run", action="store_true", default=False)
+    mode16.add_argument("--validate-only", action="store_true", default=False)
+    b16.add_argument("--log-level", default="INFO")
+    b16.add_argument("--debug", action="store_true", default=False)
     probe = sub.add_parser(
         "stage8-source-probe",
         help="Probe authoritative rule/status sources and write feasibility report",
@@ -1970,6 +2023,8 @@ def main():
         sys.exit(_cmd_present_stage13(args))
     elif args.command == "quality-control":
         sys.exit(_cmd_quality_control(args))
+    elif args.command == "final-report":
+        sys.exit(_cmd_final_report(args))
     elif args.command == "stage8-source-probe":
         sys.exit(_cmd_stage8_source_probe(args))
     elif args.command == "stage8-rules-build":

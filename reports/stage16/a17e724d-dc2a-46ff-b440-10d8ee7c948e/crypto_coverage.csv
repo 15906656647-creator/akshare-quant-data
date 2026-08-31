@@ -1,0 +1,2 @@
+symbol,exchange,interval,source,raw_rows,start_time,end_time,feature_rows,profile_rows,market_data_status,feature_status,fundamental_status,limit_event_status,source_note
+ETHUSDT,OKX,1h,okx_public_api,960,2026-06-18 08:00:00+08,2026-07-28 07:00:00+08,960,1,完整,完整,制度上不适用,制度上不适用,OKX公共接口数据，不属于AKShare来源

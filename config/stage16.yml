@@ -1,0 +1,25 @@
+# Stage 16 final availability report. This stage is offline and read-only.
+schema_version: "1.0.0"
+stage: 16
+
+scope:
+  expected_stock_count: 16
+  crypto_pair: ETHUSDT
+  exclude_hong_kong: true
+  moving_average_windows: [3, 5, 7, 10, 13, 20, 21]
+  activity_lookback_days: 120
+  limit_lookback_natural_days: 365
+
+inputs:
+  stock_database: database/akshare_data_test_stage5_repaired.duckdb
+  stage6_database: database/akshare_features_stage6.duckdb
+  stage7_database: database/akshare_features_stage7.duckdb
+  crypto_database: database/akshare_crypto_stage11.duckdb
+
+outputs:
+  reports_dir: reports/stage16
+
+quality:
+  require_read_only_inputs: true
+  require_exact_as_of_date: true
+  permitted_exchanges: [SH, SZ]

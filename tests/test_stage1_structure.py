@@ -202,6 +202,7 @@ class TestStageBoundary:
                 "stage5_idempotency.py",
                 "stage5_repair.py",
                 "stage6_build.py",
+                "stage16_report.py",
             }:
                 continue
             text = py_file.read_text(encoding="utf-8", errors="ignore")

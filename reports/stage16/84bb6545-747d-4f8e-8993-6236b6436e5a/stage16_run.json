@@ -1,0 +1,73 @@
+{
+  "as_of_date": "2026-07-27",
+  "availability_status_counts": {
+    "不可正式发布": 2,
+    "制度上不适用": 1,
+    "完整": 6,
+    "缺失": 1,
+    "部分存在": 2
+  },
+  "blocking_reasons": [],
+  "config_sha256": "bf6033ea60a43468e4ddc9c1e4d5d0251ef8708be2a5b0376798a01e9df460c7",
+  "crypto_pair": "ETHUSDT",
+  "crypto_rows": 1,
+  "hong_kong_symbol_count": 0,
+  "input_databases_unchanged": true,
+  "inputs": {
+    "crypto_database": {
+      "exists": true,
+      "missing_relations": [],
+      "path": "database/akshare_crypto_stage11.duckdb",
+      "sha256": "6bb69c569eff72aad97d68ea456ffdd1a69ca9901f333ff6842d5103645909f4"
+    },
+    "stage6_database": {
+      "exists": true,
+      "missing_relations": [],
+      "path": "database/akshare_features_stage6.duckdb",
+      "sha256": "92ee32fd6c5b4fc5ba8124aeec5d52a43e44520cd3d6b7eab0e5d7d84d00ab29"
+    },
+    "stage7_database": {
+      "exists": true,
+      "missing_relations": [],
+      "path": "database/akshare_features_stage7.duckdb",
+      "sha256": "2b2be09641ed7e7123d55d3c0c171049739c9c91ea1569e065bc7c66789830bb"
+    },
+    "stock_database": {
+      "exists": true,
+      "missing_relations": [],
+      "path": "database/akshare_data_test_stage5_repaired.duckdb",
+      "sha256": "ad466df89b30cf305de16fd9184057c4e0779bf9118f98393301857396928026"
+    }
+  },
+  "network_attempts": 0,
+  "outputs": {
+    "availability_matrix": "availability_matrix.csv",
+    "crypto_coverage": "crypto_coverage.csv",
+    "final_report": "final_report.md",
+    "reports_dir": "reports/stage16/84bb6545-747d-4f8e-8993-6236b6436e5a",
+    "stock_coverage": "stock_coverage.csv"
+  },
+  "run_id": "84bb6545-747d-4f8e-8993-6236b6436e5a",
+  "stage": 16,
+  "status": "PASS_WITH_UNAVAILABLE_ITEMS",
+  "stock_rows": 16,
+  "symbol_count": 16,
+  "symbols": [
+    "002067",
+    "002600",
+    "002230",
+    "600763",
+    "603259",
+    "603799",
+    "601012",
+    "600438",
+    "002361",
+    "601500",
+    "600231",
+    "300274",
+    "601636",
+    "002129",
+    "000100",
+    "300433"
+  ]
+}
