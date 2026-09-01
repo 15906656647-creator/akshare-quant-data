@@ -1,0 +1,61 @@
+schema_version: "1.0.0"
+stage: 18
+substage: "18.3"
+model_version: "stage18_fundamental_clean_v1"
+
+upstream:
+  stage18_2_run_id: "df86486a-9a54-4920-a4db-2553f907af92"
+  required_status: "PASS"
+  stage18_3_authorized_required: true
+  stage18_2_run_path: "reports/stage18/df86486a-9a54-4920-a4db-2553f907af92/stage18_2_run.json"
+  stage18_2_manifest_path: "reports/stage18/df86486a-9a54-4920-a4db-2553f907af92/stage18_2_manifest.json"
+  expected_dataset_count: 175
+  expected_security_count: 23
+  expected_a_share_count: 16
+  expected_h_share_count: 7
+
+stage18_3:
+  analysis_as_of_date: "2026-07-27"
+  asset_role: "fundamental_clean"
+  writes_clean: true
+  writes_database: false
+  writes_features: false
+  writes_stage19: false
+  schema_version: "fundamental_clean_v1"
+  categories:
+    - financial_abstract
+    - financial_indicator
+    - balance_sheet
+    - income_statement
+    - cash_flow_statement
+    - valuation_snapshot
+
+governance:
+  missing_announcement_policy: "not_pit_eligible"
+  missing_update_policy: "not_pit_eligible"
+  future_announcement_policy: "not_pit_eligible"
+  future_update_policy: "not_pit_eligible"
+  snapshot_policy: "preserve_observed_time_not_baseline"
+  hk_variant_priority: [report_period, annual]
+  duplicate_numeric_rtol: 1.0e-9
+  duplicate_numeric_atol: 1.0e-6
+  a_share_default_currency: "CNY"
+
+mapping:
+  path: "config/stage18_metric_mapping.yml"
+  required_core_fields:
+    - revenue
+    - net_profit
+    - parent_net_profit
+    - total_assets
+    - total_liabilities
+    - net_assets
+    - operating_cash_flow
+    - gross_margin
+    - roe
+    - eps
+
+storage:
+  clean_root: "data/clean/stage18"
+  reports_root: "reports/stage18"
+  stage18_2_raw_root: "data/raw/stage18"

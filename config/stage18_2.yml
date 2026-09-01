@@ -1,0 +1,46 @@
+schema_version: "1.0.0"
+stage: 18
+substage: "18.2"
+model_version: "stage18_fundamental_raw_v1"
+
+upstream:
+  stage17_run_id: "4a5599fb-9e60-4013-9c0c-69fcc25a98b2"
+  stage18_1_run_id: "4915ea1b-2e00-4a34-a743-d35dfcb66fe2"
+  stage18_1_status_required: "PASS"
+  stage18_2_authorized_required: true
+  stage18_1_run_path: "reports/stage18/4915ea1b-2e00-4a34-a743-d35dfcb66fe2/stage18_1_run.json"
+  stage18_1_manifest_path: "reports/stage18/4915ea1b-2e00-4a34-a743-d35dfcb66fe2/stage18_1_manifest.json"
+  expected_a_share_count: 16
+  expected_h_share_count: 7
+
+analysis:
+  as_of_date: "2026-07-27"
+  asset_role: "fundamental_raw"
+  snapshot_policy: "current_snapshot_not_baseline"
+  eligible_for_as_of_date_analysis: false
+
+collections:
+  A:
+    - {category: financial_abstract, interface: stock_financial_abstract, provider: Sina, variants: [default]}
+    - {category: financial_indicator, interface: stock_financial_analysis_indicator, provider: Sina, variants: [default]}
+    - {category: balance_sheet, interface: stock_balance_sheet_by_report_em, provider: EastmoneyDataCenter, variants: [report]}
+    - {category: income_statement, interface: stock_profit_sheet_by_report_em, provider: EastmoneyDataCenter, variants: [report]}
+    - {category: cash_flow_statement, interface: stock_cash_flow_sheet_by_report_em, provider: EastmoneyDataCenter, variants: [report]}
+    - {category: valuation_snapshot, interface: stock_zh_valuation_comparison_em, provider: EastmoneyDataCenter, variants: [valuation_comparison]}
+    - {category: valuation_snapshot, interface: stock_zh_scale_comparison_em, provider: EastmoneyDataCenter, variants: [scale_comparison]}
+  HK:
+    - {category: financial_indicator, interface: stock_financial_hk_analysis_indicator_em, provider: EastmoneyDataCenter, variants: [annual, report_period]}
+    - {category: balance_sheet, interface: stock_financial_hk_report_em, provider: EastmoneyDataCenter, variants: [annual, report_period]}
+    - {category: income_statement, interface: stock_financial_hk_report_em, provider: EastmoneyDataCenter, variants: [annual, report_period]}
+    - {category: cash_flow_statement, interface: stock_financial_hk_report_em, provider: EastmoneyDataCenter, variants: [annual, report_period]}
+    - {category: valuation_snapshot, interface: stock_hk_financial_indicator_em, provider: EastmoneyDataCenter, variants: [current]}
+
+runtime:
+  max_attempts: 3
+  retry_delay_seconds: 1.0
+  request_timeout_seconds: 20.0
+
+storage:
+  stage18_config_path: "config/stage18.yml"
+  raw_root: "data/raw/stage18"
+  reports_root: "reports/stage18"

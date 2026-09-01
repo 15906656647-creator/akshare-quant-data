@@ -1,0 +1,12 @@
+﻿market,category,currency,currency_status,row_count
+A,balance_sheet,CNY,reported,119843
+A,cash_flow_statement,CNY,reported,106021
+A,financial_abstract,CNY,market_default,79917
+A,financial_indicator,CNY,market_default,76021
+A,income_statement,CNY,reported,73424
+A,valuation_snapshot,CNY,interface_contract,16
+HK,balance_sheet,HKD,companion_financial_indicator,4368
+HK,cash_flow_statement,HKD,companion_financial_indicator,3635
+HK,financial_indicator,HKD,reported,2461
+HK,income_statement,HKD,companion_financial_indicator,3296
+HK,valuation_snapshot,HKD,interface_contract,7

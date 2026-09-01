@@ -1,0 +1,94 @@
+{
+  "stage": 18,
+  "substage": "18.3",
+  "run_id": "66bebf1c-8b64-42a6-a970-1dbf1ecb395f",
+  "status": "PASS",
+  "started_at": "2026-08-28T02:13:22.446268+00:00",
+  "finished_at": "2026-08-28T02:15:33.480415+00:00",
+  "analysis_as_of_date": "2026-07-27",
+  "upstream_stage18_2_run_id": "df86486a-9a54-4920-a4db-2553f907af92",
+  "source_dataset_count": 175,
+  "security_count": 23,
+  "clean_category_count": 6,
+  "clean_row_counts": {
+    "financial_abstract": 79917,
+    "financial_indicator": 78482,
+    "balance_sheet": 124211,
+    "income_statement": 76720,
+    "cash_flow_statement": 109656,
+    "valuation_snapshot": 23
+  },
+  "clean_file_count": 12,
+  "manifest_file_count": 20,
+  "key_mapping_missing_count": 0,
+  "duplicate_conflict_count": 0,
+  "valuation_clean_row_count": 23,
+  "valuation_source_component_count": 39,
+  "stage0_hashes_before": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_after": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_unchanged": true,
+  "stage17_evidence_before": {
+    "manifest_path": "reports/stage17/4a5599fb-9e60-4013-9c0c-69fcc25a98b2/stage17_manifest.json",
+    "manifest_sha256": "199172c5019e99f32c08d7e90fee50905331ab51061b73a5975f061e384565c5",
+    "raw_file_count": 196,
+    "raw_tree_sha256": "7db5f0df122e131cd3b4902586a0a5c857afdc389c7186051abb0348831086fb"
+  },
+  "stage17_evidence_after": {
+    "manifest_path": "reports/stage17/4a5599fb-9e60-4013-9c0c-69fcc25a98b2/stage17_manifest.json",
+    "manifest_sha256": "199172c5019e99f32c08d7e90fee50905331ab51061b73a5975f061e384565c5",
+    "raw_file_count": 196,
+    "raw_tree_sha256": "7db5f0df122e131cd3b4902586a0a5c857afdc389c7186051abb0348831086fb"
+  },
+  "stage17_unchanged": true,
+  "stage18_1_evidence_before": {
+    "run_id": "4915ea1b-2e00-4a34-a743-d35dfcb66fe2",
+    "run_sha256": "bffc7463bd64a65ff8a6ab3a7a81bf45c0b219cbc6dc19755314271fd09b0267",
+    "manifest_sha256": "e64e0ba7e1668c61c630f346c32e73b4b6e27eb348635aa739f87d714f187457",
+    "file_count": 81,
+    "tree_sha256": "752d6ad3ea9d0a21e64ca05f3e82ec2e5c4d0e7170acfbe9ad3366274d8ac95c"
+  },
+  "stage18_1_evidence_after": {
+    "run_id": "4915ea1b-2e00-4a34-a743-d35dfcb66fe2",
+    "run_sha256": "bffc7463bd64a65ff8a6ab3a7a81bf45c0b219cbc6dc19755314271fd09b0267",
+    "manifest_sha256": "e64e0ba7e1668c61c630f346c32e73b4b6e27eb348635aa739f87d714f187457",
+    "file_count": 81,
+    "tree_sha256": "752d6ad3ea9d0a21e64ca05f3e82ec2e5c4d0e7170acfbe9ad3366274d8ac95c"
+  },
+  "stage18_1_unchanged": true,
+  "stage18_2_evidence_before": {
+    "run_id": "df86486a-9a54-4920-a4db-2553f907af92",
+    "run_sha256": "8ce301900340676b11401ee27f8cd3f33f06cbc37b994a44a23617948cc3f2bd",
+    "manifest_sha256": "abbfafc98c3b8a340d820a22cdb0593ca3ad2e26902ea2639a8f522cb0b99161",
+    "manifest_file_count": 354,
+    "manifest_tree_sha256": "790c3c70db07fd596c1212e89ac85b21a5c9f89bbf7397de59cf9b42ca8de582",
+    "dataset_count": 175,
+    "security_count": 23
+  },
+  "stage18_2_evidence_after": {
+    "run_id": "df86486a-9a54-4920-a4db-2553f907af92",
+    "run_sha256": "8ce301900340676b11401ee27f8cd3f33f06cbc37b994a44a23617948cc3f2bd",
+    "manifest_sha256": "abbfafc98c3b8a340d820a22cdb0593ca3ad2e26902ea2639a8f522cb0b99161",
+    "manifest_file_count": 354,
+    "manifest_tree_sha256": "790c3c70db07fd596c1212e89ac85b21a5c9f89bbf7397de59cf9b42ca8de582",
+    "dataset_count": 175,
+    "security_count": 23
+  },
+  "stage18_2_unchanged": true,
+  "database_file_count": 0,
+  "feature_file_count": 0,
+  "stage19_asset_count": 0,
+  "stage18_4_authorized": true,
+  "stage18_4_started": false,
+  "known_test_debt": {
+    "node_id": "tests/test_stage8_manual_import.py::test_default_cli_fails_closed_without_real_dataset",
+    "signature": "expected returncode 1, observed returncode 0"
+  }
+}

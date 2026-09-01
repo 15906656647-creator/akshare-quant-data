@@ -1,0 +1,137 @@
+{
+  "stage": 18,
+  "substage": "18.1",
+  "closure_substage": "18.1.3",
+  "run_id": "4915ea1b-2e00-4a34-a743-d35dfcb66fe2",
+  "status": "PASS",
+  "stage18_1_status": "PASS",
+  "stage18_2_authorized": true,
+  "stage18_2_started": false,
+  "started_at": "2026-08-27T14:53:09.066330+00:00",
+  "finished_at": "2026-08-27T14:53:58.269767+00:00",
+  "analysis_as_of_date": "2026-07-27",
+  "upstream_stage17_run_id": "4a5599fb-9e60-4013-9c0c-69fcc25a98b2",
+  "upstream_valuation_audit_run_id": "9c869e51-ae27-4b7e-895c-79a2c978258c",
+  "sample_symbols": [
+    "600763",
+    "000100",
+    "603259",
+    "08365.HK",
+    "09669.HK"
+  ],
+  "sample_reasons": [
+    {
+      "symbol": "600763",
+      "reason": "earliest_listed_SH"
+    },
+    {
+      "symbol": "000100",
+      "reason": "earliest_listed_SZ"
+    },
+    {
+      "symbol": "603259",
+      "reason": "latest_listed_remaining_A"
+    },
+    {
+      "symbol": "08365.HK",
+      "reason": "earliest_listed_HK"
+    },
+    {
+      "symbol": "09669.HK",
+      "reason": "latest_listed_HK"
+    }
+  ],
+  "planned_capability_count": 11,
+  "capability_status_counts": {
+    "PASS": 11
+  },
+  "provider_status_counts": {
+    "PASS": 39,
+    "FAIL": 2
+  },
+  "selected_valuation_providers": {
+    "A": "EastmoneyDataCenter[valuation_comparison+scale_comparison]",
+    "HK": "stock_hk_financial_indicator_em"
+  },
+  "frozen_rejected_interfaces": [
+    "stock_zh_a_spot_em",
+    "stock_hk_spot_em"
+  ],
+  "frozen_failure_evidence_run_id": "19660ce0-e73d-4d0c-8451-cfaee0b726da",
+  "historical_network_call_count": 31,
+  "valuation_network_call_count": 8,
+  "akshare_version": "1.18.80",
+  "python_version": "3.11.4",
+  "stage0_hashes_before": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_after": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_unchanged": true,
+  "stage17_evidence_before": {
+    "manifest_path": "reports/stage17/4a5599fb-9e60-4013-9c0c-69fcc25a98b2/stage17_manifest.json",
+    "manifest_sha256": "199172c5019e99f32c08d7e90fee50905331ab51061b73a5975f061e384565c5",
+    "raw_file_count": 196,
+    "raw_tree_sha256": "7db5f0df122e131cd3b4902586a0a5c857afdc389c7186051abb0348831086fb"
+  },
+  "stage17_evidence_after": {
+    "manifest_path": "reports/stage17/4a5599fb-9e60-4013-9c0c-69fcc25a98b2/stage17_manifest.json",
+    "manifest_sha256": "199172c5019e99f32c08d7e90fee50905331ab51061b73a5975f061e384565c5",
+    "raw_file_count": 196,
+    "raw_tree_sha256": "7db5f0df122e131cd3b4902586a0a5c857afdc389c7186051abb0348831086fb"
+  },
+  "stage17_raw_unchanged": true,
+  "valuation_audit_evidence": {
+    "run_id": "9c869e51-ae27-4b7e-895c-79a2c978258c",
+    "run_sha256": "f7ec13d59c81ddc2bbbee2f100066bb8fad22e1295601e189a6e8c3b090bc828",
+    "manifest_sha256": "281c71d0dbb27e5988564628f53fe33f0fb37d137f59b8104253f71920805787",
+    "evidence_file_count": 63,
+    "evidence_tree_sha256": "76ed1c58ca85b57853fc760940101838a422c19ec43867e066fd626583bfb072",
+    "selected_providers": {
+      "A": "EastmoneyDataCenter[valuation_comparison+scale_comparison]",
+      "HK": "stock_hk_financial_indicator_em"
+    }
+  },
+  "audit_raw_file_count": 78,
+  "audit_metadata_count": 39,
+  "audit_raw_closed_world": true,
+  "audit_raw_governance_pass": true,
+  "tmp_file_count": 0,
+  "formal_asset_counts_before": {
+    "data/raw/stage18/financial_abstract": 0,
+    "data/raw/stage18/financial_indicator": 0,
+    "data/raw/stage18/balance_sheet": 0,
+    "data/raw/stage18/income_statement": 0,
+    "data/raw/stage18/cash_flow_statement": 0,
+    "data/raw/stage18/valuation_snapshot": 0,
+    "data/clean/stage18": 0,
+    "data/features/stage18": 0,
+    "data/raw/stage19": 0,
+    "reports/stage19": 0
+  },
+  "formal_asset_counts_after": {
+    "data/raw/stage18/financial_abstract": 0,
+    "data/raw/stage18/financial_indicator": 0,
+    "data/raw/stage18/balance_sheet": 0,
+    "data/raw/stage18/income_statement": 0,
+    "data/raw/stage18/cash_flow_statement": 0,
+    "data/raw/stage18/valuation_snapshot": 0,
+    "data/clean/stage18": 0,
+    "data/features/stage18": 0,
+    "data/raw/stage19": 0,
+    "reports/stage19": 0
+  },
+  "stage18_formal_raw_count": 0,
+  "formal_fact_table_count": 0,
+  "fundamental_feature_count": 0,
+  "stage19_asset_count": 0,
+  "known_test_debt": {
+    "node_id": "tests/test_stage8_manual_import.py::test_default_cli_fails_closed_without_real_dataset",
+    "signature": "expected returncode 1, observed returncode 0"
+  }
+}

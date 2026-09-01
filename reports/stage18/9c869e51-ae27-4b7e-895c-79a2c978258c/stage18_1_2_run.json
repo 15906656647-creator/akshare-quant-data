@@ -1,0 +1,553 @@
+{
+  "stage": 18,
+  "substage": "18.1.2",
+  "run_id": "9c869e51-ae27-4b7e-895c-79a2c978258c",
+  "status": "PASS",
+  "started_at": "2026-08-27T13:54:55.844903+00:00",
+  "finished_at": "2026-08-27T13:55:47.499157+00:00",
+  "analysis_as_of_date": "2026-07-27",
+  "upstream_stage18_1_1_run_id": "19660ce0-e73d-4d0c-8451-cfaee0b726da",
+  "frozen_failed_interfaces": [
+    "stock_zh_a_spot_em",
+    "stock_hk_spot_em"
+  ],
+  "sample_symbols": [
+    "600763",
+    "000100",
+    "603259",
+    "08365.HK",
+    "09669.HK"
+  ],
+  "sample_reasons": [
+    {
+      "symbol": "600763",
+      "reason": "earliest_listed_SH"
+    },
+    {
+      "symbol": "000100",
+      "reason": "earliest_listed_SZ"
+    },
+    {
+      "symbol": "603259",
+      "reason": "latest_listed_remaining_A"
+    },
+    {
+      "symbol": "08365.HK",
+      "reason": "earliest_listed_HK"
+    },
+    {
+      "symbol": "09669.HK",
+      "reason": "latest_listed_HK"
+    }
+  ],
+  "provider_status_counts": {
+    "UNAVAILABLE": 15,
+    "PASS": 5,
+    "FAIL": 3
+  },
+  "valuation_capabilities": [
+    {
+      "run_id": "9c869e51-ae27-4b7e-895c-79a2c978258c",
+      "market": "A",
+      "status": "PASS",
+      "selected_provider": "EastmoneyDataCenter[valuation_comparison+scale_comparison]",
+      "reason": "",
+      "required_capabilities": "[\"symbol\", \"pe\", \"pb\", \"total_market_cap\", \"floating_market_cap\", \"snapshot_time\"]"
+    },
+    {
+      "run_id": "9c869e51-ae27-4b7e-895c-79a2c978258c",
+      "market": "HK",
+      "status": "PASS",
+      "selected_provider": "stock_hk_financial_indicator_em",
+      "reason": "",
+      "required_capabilities": "[\"symbol\", \"pe\", \"pb\", \"total_market_cap\", \"snapshot_time\"]"
+    }
+  ],
+  "akshare_version": "1.18.80",
+  "python_version": "3.11.4",
+  "discovered_functions": [
+    {
+      "interface": "stock_a_all_pb",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_all_pb",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_all_pb.py"
+    },
+    {
+      "interface": "stock_a_below_net_asset_statistics",
+      "signature": "(symbol: str = '全部A股') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_a_below_net_asset_statistics",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_a_below_net_asset_statistics.py"
+    },
+    {
+      "interface": "stock_a_code_to_symbol",
+      "signature": "(symbol: str = '000300') -> str",
+      "module": "akshare.index.index_cons",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\index\\index_cons.py"
+    },
+    {
+      "interface": "stock_a_congestion_lg",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_congestion_lg",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_congestion_lg.py"
+    },
+    {
+      "interface": "stock_a_gxl_lg",
+      "signature": "(symbol: str = '上证A股') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_gxl_lg",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_gxl_lg.py"
+    },
+    {
+      "interface": "stock_a_high_low_statistics",
+      "signature": "(symbol: str = 'all') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_a_high_low",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_a_high_low.py"
+    },
+    {
+      "interface": "stock_a_ttm_lyr",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_ttm_lyr",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_ttm_lyr.py"
+    },
+    {
+      "interface": "stock_account_statistics_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_account_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_account_em.py"
+    },
+    {
+      "interface": "stock_add_stock",
+      "signature": "(symbol: str = '688166') -> pandas.DataFrame",
+      "module": "akshare.stock_fundamental.stock_finance_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_fundamental\\stock_finance_sina.py"
+    },
+    {
+      "interface": "stock_allotment_cninfo",
+      "signature": "(symbol: str = '600030', start_date: str = '19700101', end_date: str = '22220222') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_allotment_cninfo",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_allotment_cninfo.py"
+    },
+    {
+      "interface": "stock_analyst_detail_em",
+      "signature": "(analyst_id: str = '11000200926', indicator: str = '最新跟踪成分股') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_analyst_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_analyst_em.py"
+    },
+    {
+      "interface": "stock_analyst_rank_em",
+      "signature": "(year: str = '2024') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_analyst_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_analyst_em.py"
+    },
+    {
+      "interface": "stock_financial_analysis_indicator",
+      "signature": "(symbol: str = '600004', start_year: str = '1900') -> pandas.DataFrame",
+      "module": "akshare.stock_fundamental.stock_finance_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_fundamental\\stock_finance_sina.py"
+    },
+    {
+      "interface": "stock_financial_analysis_indicator_em",
+      "signature": "(symbol: str = '301389.SZ', indicator: str = '按报告期') -> pandas.DataFrame",
+      "module": "akshare.stock_fundamental.stock_finance_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_fundamental\\stock_finance_sina.py"
+    },
+    {
+      "interface": "stock_financial_hk_analysis_indicator_em",
+      "signature": "(symbol: str = '00853', indicator: str = '年度') -> pandas.DataFrame",
+      "module": "akshare.stock_fundamental.stock_finance_hk_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_fundamental\\stock_finance_hk_em.py"
+    },
+    {
+      "interface": "stock_financial_us_analysis_indicator_em",
+      "signature": "(symbol: str = 'TSLA', indicator: str = '年报') -> pandas.DataFrame",
+      "module": "akshare.stock_fundamental.stock_finance_us_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_fundamental\\stock_finance_us_em.py"
+    },
+    {
+      "interface": "stock_hk_company_profile_em",
+      "signature": "(symbol: str = '03900') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_profile_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_profile_em.py"
+    },
+    {
+      "interface": "stock_hk_daily",
+      "signature": "(symbol: str = '00981', adjust: str = '') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_sina.py"
+    },
+    {
+      "interface": "stock_hk_dividend_payout_em",
+      "signature": "(symbol: str = '03900') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_profile_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_profile_em.py"
+    },
+    {
+      "interface": "stock_hk_famous_spot_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_famous",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_famous.py"
+    },
+    {
+      "interface": "stock_hk_fhpx_detail_ths",
+      "signature": "(symbol: str = '0700') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_fhpx_ths",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_fhpx_ths.py"
+    },
+    {
+      "interface": "stock_hk_financial_indicator_em",
+      "signature": "(symbol: str = '03900') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_profile_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_profile_em.py"
+    },
+    {
+      "interface": "stock_hk_ggt_components_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hsgt_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hsgt_em.py"
+    },
+    {
+      "interface": "stock_hk_growth_comparison_em",
+      "signature": "(symbol: str = '03900') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_comparison_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_comparison_em.py"
+    },
+    {
+      "interface": "stock_hk_gxl_lg",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_gxl_lg",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_gxl_lg.py"
+    },
+    {
+      "interface": "stock_hk_hist",
+      "signature": "(symbol: str = '00593', period: str = 'daily', start_date: str = '19700101', end_date: str = '22220101', adjust: str = '') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_hk_hist_min_em",
+      "signature": "(symbol: str = '01611', period: str = '1', adjust: str = '', start_date: str = '1979-09-01 09:32:00', end_date: str = '2222-01-01 09:32:00') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_hk_hot_rank_detail_em",
+      "signature": "(symbol: str = '00700') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_hot_rank_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_hot_rank_em.py"
+    },
+    {
+      "interface": "stock_hk_hot_rank_detail_realtime_em",
+      "signature": "(symbol: str = '00700') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_hot_rank_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_hot_rank_em.py"
+    },
+    {
+      "interface": "stock_hk_hot_rank_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_hot_rank_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_hot_rank_em.py"
+    },
+    {
+      "interface": "stock_hk_hot_rank_latest_em",
+      "signature": "(symbol: str = '00700') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_hot_rank_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_hot_rank_em.py"
+    },
+    {
+      "interface": "stock_hk_index_daily_em",
+      "signature": "(symbol: str = 'HSTECF2L') -> pandas.DataFrame",
+      "module": "akshare.index.index_stock_hk",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\index\\index_stock_hk.py"
+    },
+    {
+      "interface": "stock_hk_index_daily_sina",
+      "signature": "(symbol: str = 'CES100') -> pandas.DataFrame",
+      "module": "akshare.index.index_stock_hk",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\index\\index_stock_hk.py"
+    },
+    {
+      "interface": "stock_hk_index_spot_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.index.index_stock_hk",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\index\\index_stock_hk.py"
+    },
+    {
+      "interface": "stock_hk_index_spot_sina",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.index.index_stock_hk",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\index\\index_stock_hk.py"
+    },
+    {
+      "interface": "stock_hk_indicator_eniu",
+      "signature": "(symbol: str = 'hk01093', indicator: str = '市盈率') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_a_indicator",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_a_indicator.py"
+    },
+    {
+      "interface": "stock_hk_main_board_spot_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_hk_profit_forecast_et",
+      "signature": "(symbol: str = '09999', indicator: str = '盈利预测概览') -> pandas.DataFrame",
+      "module": "akshare.stock_fundamental.stock_profit_forecast_hk_etnet",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_fundamental\\stock_profit_forecast_hk_etnet.py"
+    },
+    {
+      "interface": "stock_hk_scale_comparison_em",
+      "signature": "(symbol: str = '03900') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_comparison_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_comparison_em.py"
+    },
+    {
+      "interface": "stock_hk_security_profile_em",
+      "signature": "(symbol: str = '03900') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_profile_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_profile_em.py"
+    },
+    {
+      "interface": "stock_hk_spot",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_sina.py"
+    },
+    {
+      "interface": "stock_hk_spot_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_hk_valuation_baidu",
+      "signature": "(symbol: str = '06969', indicator: str = '总市值', period: str = '近一年') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hk_valuation_baidu",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hk_valuation_baidu.py"
+    },
+    {
+      "interface": "stock_hk_valuation_comparison_em",
+      "signature": "(symbol: str = '03900') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hk_comparison_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hk_comparison_em.py"
+    },
+    {
+      "interface": "stock_hold_management_person_em",
+      "signature": "(symbol: str = '001308', name: str = '吴远') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hold_control_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hold_control_em.py"
+    },
+    {
+      "interface": "stock_index_pb_lg",
+      "signature": "(symbol: str = '上证50') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_a_pe_and_pb",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_a_pe_and_pb.py"
+    },
+    {
+      "interface": "stock_index_pe_lg",
+      "signature": "(symbol: str = '沪深300') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_a_pe_and_pb",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_a_pe_and_pb.py"
+    },
+    {
+      "interface": "stock_industry_pe_ratio_cninfo",
+      "signature": "(symbol: str = '证监会行业分类', date: str = '20210910') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_industry_pe_cninfo",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_industry_pe_cninfo.py"
+    },
+    {
+      "interface": "stock_market_pb_lg",
+      "signature": "(symbol: str = '上证') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_a_pe_and_pb",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_a_pe_and_pb.py"
+    },
+    {
+      "interface": "stock_market_pe_lg",
+      "signature": "(symbol: str = '深证') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_a_pe_and_pb",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_a_pe_and_pb.py"
+    },
+    {
+      "interface": "stock_us_valuation_baidu",
+      "signature": "(symbol: str = 'NVDA', indicator: str = '总市值', period: str = '近一年') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_us_valuation_baidu",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_us_valuation_baidu.py"
+    },
+    {
+      "interface": "stock_zh_a_cdr_daily",
+      "signature": "(symbol: str = 'sh689009', start_date: str = '19900101', end_date: str = '22201116') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_sina.py"
+    },
+    {
+      "interface": "stock_zh_a_daily",
+      "signature": "(symbol: str = 'sh603843', start_date: str = '19900101', end_date: str = '21000118', adjust: str = '') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_sina.py"
+    },
+    {
+      "interface": "stock_zh_a_disclosure_relation_cninfo",
+      "signature": "(symbol: str = '000001', market: str = '沪深京', start_date: str = '20230618', end_date: str = '20231219') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_disclosure_cninfo",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_disclosure_cninfo.py"
+    },
+    {
+      "interface": "stock_zh_a_disclosure_report_cninfo",
+      "signature": "(symbol: str = '000001', market: str = '沪深京', keyword: str = '', category: str = '', start_date: str = '20230618', end_date: str = '20231219') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_disclosure_cninfo",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_disclosure_cninfo.py"
+    },
+    {
+      "interface": "stock_zh_a_gbjg_em",
+      "signature": "(symbol: str = '603392.SH') -> pandas.DataFrame",
+      "module": "akshare.stock_fundamental.stock_gbjg_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_fundamental\\stock_gbjg_em.py"
+    },
+    {
+      "interface": "stock_zh_a_gdhs",
+      "signature": "(symbol: str = '20230930') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_gdhs",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_gdhs.py"
+    },
+    {
+      "interface": "stock_zh_a_gdhs_detail_em",
+      "signature": "(symbol: str = '000001') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_gdhs",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_gdhs.py"
+    },
+    {
+      "interface": "stock_zh_a_hist",
+      "signature": "(symbol: str = '000001', period: str = 'daily', start_date: str = '19700101', end_date: str = '20500101', adjust: str = '', timeout: float = None) -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_zh_a_hist_min_em",
+      "signature": "(symbol: str = '000001', start_date: str = '1979-09-01 09:32:00', end_date: str = '2222-01-01 09:32:00', period: str = '5', adjust: str = '') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_zh_a_hist_pre_min_em",
+      "signature": "(symbol: str = '000001', start_time: str = '09:00:00', end_time: str = '15:50:00') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_zh_a_hist_tx",
+      "signature": "(symbol: str = 'sz000001', start_date: str = '19000101', end_date: str = '20500101', adjust: str = '', timeout: float = None) -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_tx",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_tx.py"
+    },
+    {
+      "interface": "stock_zh_a_minute",
+      "signature": "(symbol: str = 'sh600519', period: str = '1', adjust: str = '') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_sina.py"
+    },
+    {
+      "interface": "stock_zh_a_new",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_special",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_special.py"
+    },
+    {
+      "interface": "stock_zh_a_new_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_special",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_special.py"
+    },
+    {
+      "interface": "stock_zh_a_spot",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_sina",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_sina.py"
+    },
+    {
+      "interface": "stock_zh_a_spot_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_zh_a_spot_tx",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_tx",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_tx.py"
+    },
+    {
+      "interface": "stock_zh_a_st_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_special",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_special.py"
+    },
+    {
+      "interface": "stock_zh_a_stop_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_special",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_special.py"
+    },
+    {
+      "interface": "stock_zh_a_tick_tx_js",
+      "signature": "(symbol: str = 'sz000001') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_a_tick_tx",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_a_tick_tx.py"
+    },
+    {
+      "interface": "stock_zh_ab_comparison_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_hist_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_hist_em.py"
+    },
+    {
+      "interface": "stock_zh_ah_daily",
+      "signature": "(symbol: str = '02318', start_year: str = '2000', end_year: str = '2019', adjust: str = '') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_ah_tx",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_ah_tx.py"
+    },
+    {
+      "interface": "stock_zh_ah_name",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_ah_tx",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_ah_tx.py"
+    },
+    {
+      "interface": "stock_zh_ah_spot",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_ah_tx",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_ah_tx.py"
+    },
+    {
+      "interface": "stock_zh_ah_spot_em",
+      "signature": "() -> pandas.DataFrame",
+      "module": "akshare.stock.stock_hsgt_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_hsgt_em.py"
+    },
+    {
+      "interface": "stock_zh_valuation_baidu",
+      "signature": "(symbol: str = '002044', indicator: str = '总市值', period: str = '近一年') -> pandas.DataFrame",
+      "module": "akshare.stock_feature.stock_zh_valuation_baidu",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock_feature\\stock_zh_valuation_baidu.py"
+    },
+    {
+      "interface": "stock_zh_valuation_comparison_em",
+      "signature": "(symbol: str = 'SZ000895') -> pandas.DataFrame",
+      "module": "akshare.stock.stock_zh_comparison_em",
+      "source_file": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\.venv\\Lib\\site-packages\\akshare\\stock\\stock_zh_comparison_em.py"
+    }
+  ],
+  "stage0_hashes_before": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_after": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_unchanged": true,
+  "raw_closed_world": true,
+  "full_stage18_1_rerun_recommended": true,
+  "stage18_2_authorized": false,
+  "stage18_2_started": false
+}

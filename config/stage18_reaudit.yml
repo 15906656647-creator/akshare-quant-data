@@ -1,0 +1,46 @@
+schema_version: "1.0.0"
+stage: 18
+substage: "18.1.3"
+model_version: "stage18_capability_reaudit_v1"
+
+upstream:
+  stage18_config_path: "config/stage18.yml"
+  valuation_audit_run_id: "9c869e51-ae27-4b7e-895c-79a2c978258c"
+  valuation_audit_status_required: "PASS"
+  valuation_audit_run_path: "reports/stage18/9c869e51-ae27-4b7e-895c-79a2c978258c/stage18_1_2_run.json"
+  valuation_audit_manifest_path: "reports/stage18/9c869e51-ae27-4b7e-895c-79a2c978258c/stage18_1_2_manifest.json"
+  frozen_failure_evidence_run_id: "19660ce0-e73d-4d0c-8451-cfaee0b726da"
+  frozen_failure_evidence_path: "reports/stage18/19660ce0-e73d-4d0c-8451-cfaee0b726da/stage18_1_1_spot_retest.json"
+
+analysis:
+  as_of_date: "2026-07-27"
+  asset_role: "interface_audit"
+  audit_only: true
+  eligible_for_stage18_2_ingestion: false
+
+valuation:
+  A:
+    type: "composite"
+    provider: "EastmoneyDataCenter"
+    interfaces:
+      - "stock_zh_valuation_comparison_em"
+      - "stock_zh_scale_comparison_em"
+    required_fields: [symbol, pe, pb, total_market_cap, floating_market_cap, snapshot_time]
+  HK:
+    type: "single"
+    provider: "EastmoneyDataCenter"
+    interfaces:
+      - "stock_hk_financial_indicator_em"
+    required_fields: [symbol, pe, pb, total_market_cap, snapshot_time]
+  frozen_rejected_interfaces:
+    - "stock_zh_a_spot_em"
+    - "stock_hk_spot_em"
+
+runtime:
+  max_attempts: 3
+  retry_delay_seconds: 1.0
+  request_timeout_seconds: 20.0
+
+storage:
+  raw_root: "data/raw/stage18/interface_audit"
+  reports_root: "reports/stage18"

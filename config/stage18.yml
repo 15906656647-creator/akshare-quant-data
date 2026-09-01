@@ -1,0 +1,32 @@
+schema_version: "1.0.0"
+stage: 18
+substage: "18.1"
+model_version: "stage18_interface_audit_v1"
+
+upstream:
+  stage17_run_id: "4a5599fb-9e60-4013-9c0c-69fcc25a98b2"
+  stage17_status_required: "PASS"
+  stage18_authorized_required: true
+  expected_daily_quality_pass_count: 69
+  expected_a_share_count: 16
+  expected_h_share_count: 7
+
+analysis:
+  as_of_date: "2026-07-27"
+  current_snapshot_policy: "audit_only"
+
+samples:
+  a_share_count: 3
+  h_share_count: 2
+  selection_policy: "exchange_listing_extremes_v1"
+
+runtime:
+  max_attempts: 3
+  retry_delay_seconds: 1.0
+  request_timeout_seconds: 20.0
+
+storage:
+  stage17_reports_root: "reports/stage17"
+  stage17_raw_root: "data/raw/stage17"
+  raw_root: "data/raw/stage18/interface_audit"
+  reports_root: "reports/stage18"

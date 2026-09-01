@@ -165,13 +165,56 @@ class TestStageBoundary:
             item for item in clean.rglob("*")
             if item.is_file() and item.name != ".gitkeep"
         ]
-        if clean_files:
+        legacy_clean_files = [
+            item for item in clean_files
+            if item.relative_to(clean).parts[0] != "stage18"
+        ]
+        if legacy_clean_files:
             report = json.loads(
                 (REPO_ROOT / "reports" / "stage5_run.json").read_text("utf-8")
             )
             assert report["stage"] == 5
             assert report["status"] == "PASS"
-            assert all("transform_run_id=" in item.as_posix() for item in clean_files)
+            assert all(
+                "transform_run_id=" in item.as_posix()
+                for item in legacy_clean_files
+            )
+        stage18_files = [
+            item for item in clean_files
+            if item.relative_to(clean).parts[0] == "stage18"
+        ]
+        stage18_runs = {}
+        for item in stage18_files:
+            parts = item.relative_to(clean / "stage18").parts
+            assert parts and parts[0].startswith("run_id=")
+            stage18_runs.setdefault(parts[0].removeprefix("run_id="), []).append(item)
+        for run_id, files in stage18_runs.items():
+            report_dir = REPO_ROOT / "reports" / "stage18" / run_id
+            run_path = report_dir / "stage18_3_run.json"
+            interrupted_path = report_dir / "stage18_3_interrupted.json"
+            if run_path.is_file():
+                run = json.loads(run_path.read_text("utf-8"))
+                manifest = json.loads(
+                    (report_dir / "stage18_3_manifest.json").read_text("utf-8")
+                )
+                assert run["stage"] == 18 and run["substage"] == "18.3"
+                assert run["status"] == "PASS"
+                assert manifest["run_id"] == run_id
+                registered = {item["path"] for item in manifest["files"]}
+                assert all(
+                    item.relative_to(REPO_ROOT).as_posix() in registered
+                    for item in files
+                )
+            else:
+                interrupted = json.loads(interrupted_path.read_text("utf-8"))
+                assert interrupted["status"] == "INTERRUPTED"
+                assert interrupted["formal_acceptance_eligible"] is False
+                assert interrupted["stage18_4_authorized"] is False
+                registered = {item["path"] for item in interrupted["files"]}
+                assert all(
+                    item.relative_to(REPO_ROOT).as_posix() in registered
+                    for item in files
+                )
         raw = REPO_ROOT / "data" / "raw"
         allowed = {
             "stock_zh_a_hist", "stock_zh_a_spot_em", ".gitkeep",
@@ -183,6 +226,7 @@ class TestStageBoundary:
             "stock_individual_fund_flow",
             "crypto_js_spot",
             "stage17",
+            "stage18",
         }
         assert {item.name for item in raw.iterdir()} <= allowed
         crypto_raw = raw / "crypto_js_spot"
@@ -204,6 +248,7 @@ class TestStageBoundary:
                 "stage5_repair.py",
                 "stage6_build.py",
                 "stage16_report.py",
+                "stage18_4_load.py",
             }:
                 continue
             text = py_file.read_text(encoding="utf-8", errors="ignore")

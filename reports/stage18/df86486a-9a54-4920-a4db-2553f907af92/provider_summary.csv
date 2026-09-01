@@ -1,0 +1,13 @@
+﻿market,provider,interface,category,status,dataset_count,total_rows
+A,EastmoneyDataCenter,stock_balance_sheet_by_report_em,balance_sheet,PASS,16,1180
+A,EastmoneyDataCenter,stock_cash_flow_sheet_by_report_em,cash_flow_statement,PASS,16,1181
+A,EastmoneyDataCenter,stock_profit_sheet_by_report_em,income_statement,PASS,16,1206
+A,EastmoneyDataCenter,stock_zh_scale_comparison_em,valuation_snapshot,PASS,16,16
+A,EastmoneyDataCenter,stock_zh_valuation_comparison_em,valuation_snapshot,PASS,16,128
+A,Sina,stock_financial_abstract,financial_abstract,PASS,16,1280
+A,Sina,stock_financial_analysis_indicator,financial_indicator,PASS,16,1204
+HK,EastmoneyDataCenter,stock_financial_hk_analysis_indicator_em,financial_indicator,PASS,14,123
+HK,EastmoneyDataCenter,stock_financial_hk_report_em,balance_sheet,PASS,14,6967
+HK,EastmoneyDataCenter,stock_financial_hk_report_em,cash_flow_statement,PASS,14,5894
+HK,EastmoneyDataCenter,stock_financial_hk_report_em,income_statement,PASS,14,4922
+HK,EastmoneyDataCenter,stock_hk_financial_indicator_em,valuation_snapshot,PASS,7,7

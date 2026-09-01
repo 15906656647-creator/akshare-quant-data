@@ -1,0 +1,61 @@
+schema_version: "1.0.0"
+stage: 18
+substage: "18.4"
+model_version: "stage18_fundamental_database_v1"
+
+upstream:
+  stage18_3_run_id: "66bebf1c-8b64-42a6-a970-1dbf1ecb395f"
+  required_status: "PASS"
+  stage18_4_authorized_required: true
+  stage18_4_started_required: false
+  stage18_2_run_id: "df86486a-9a54-4920-a4db-2553f907af92"
+  stage18_3_run_path: "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/stage18_3_run.json"
+  stage18_3_manifest_path: "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/stage18_3_manifest.json"
+  clean_run_root: "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f"
+
+stage18_4:
+  analysis_as_of_date: "2026-07-27"
+  asset_role: "fundamental_database"
+  writes_database: true
+  writes_clean: false
+  writes_features: false
+  writes_stage19: false
+  checkpoint_after_commit: true
+  read_only_after_acceptance: true
+  hive_partitioning: false
+
+tables:
+  financial_abstract:
+    name: "fact_financial_abstract"
+    expected_rows: 79917
+  financial_indicator:
+    name: "fact_financial_indicator"
+    expected_rows: 78482
+  balance_sheet:
+    name: "fact_balance_sheet"
+    expected_rows: 124211
+  income_statement:
+    name: "fact_income_statement"
+    expected_rows: 76720
+  cash_flow_statement:
+    name: "fact_cash_flow_statement"
+    expected_rows: 109656
+  valuation_snapshot:
+    name: "fact_valuation_snapshot"
+    expected_rows: 23
+
+validation:
+  expected_history_rows: 468986
+  expected_total_rows: 469009
+  expected_security_count: 23
+  expected_a_share_count: 16
+  expected_h_share_count: 7
+  deterministic_sample_rows: 25
+  require_zero_canonical_key_duplicates: true
+  require_all_valuation_ineligible: true
+
+storage:
+  database_root: "database/stage18"
+  database_filename: "fundamentals.duckdb"
+  reports_root: "reports/stage18"
+

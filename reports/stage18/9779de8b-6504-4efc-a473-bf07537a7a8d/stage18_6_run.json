@@ -1,0 +1,62 @@
+{
+  "stage": 18,
+  "substage": "18.6",
+  "run_id": "9779de8b-6504-4efc-a473-bf07537a7a8d",
+  "status": "PASS",
+  "stage18_status": "PASS",
+  "started_at": "2026-08-28T07:57:11.315199+00:00",
+  "finished_at": "2026-08-28T07:57:18.490916+00:00",
+  "analysis_as_of_date": "2026-07-27",
+  "upstream_stage18_5_run_id": "1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8",
+  "stage_chain": {
+    "stage18_1": {
+      "run_id": "4915ea1b-2e00-4a34-a743-d35dfcb66fe2",
+      "status": "PASS"
+    },
+    "stage18_2": {
+      "run_id": "df86486a-9a54-4920-a4db-2553f907af92",
+      "status": "PASS"
+    },
+    "stage18_3": {
+      "run_id": "66bebf1c-8b64-42a6-a970-1dbf1ecb395f",
+      "status": "PASS"
+    },
+    "stage18_4": {
+      "run_id": "b2d7bf6c-b7c7-4760-b16d-33640111cb11",
+      "status": "PASS"
+    },
+    "stage18_5": {
+      "run_id": "1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8",
+      "status": "PASS"
+    }
+  },
+  "formal_database_path": "database/stage18/run_id=b2d7bf6c-b7c7-4760-b16d-33640111cb11/fundamentals.duckdb",
+  "formal_database_sha256": "ef095fbee26da64da43e19ea7da45f4d8924c9f3977f3c735f29926d70e0812b",
+  "formal_feature_path": "data/features/stage18/run_id=1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/fundamental_features.parquet",
+  "formal_feature_sha256": "ed3db58277045eca98e9806e324c3a28d7a1a85d773c831a5807dfc16ba3ee64",
+  "feature_unit_count": 276,
+  "feature_pass_count": 170,
+  "feature_unavailable_count": 106,
+  "feature_fail_count": 0,
+  "feature_blocked_count": 0,
+  "unknown_unavailable_reason_count": 0,
+  "unavailable_reason_counts": {
+    "NO_PIT_ELIGIBLE_INPUT": 49,
+    "ANNUAL_OR_PRIOR_BALANCE_UNAVAILABLE": 36,
+    "NO_COMMON_PIT_REPORT_PERIOD": 21
+  },
+  "quality_check_count": 36,
+  "quality_fail_count": 0,
+  "stage0_hashes_unchanged": true,
+  "formal_assets_unchanged": true,
+  "stage_chain_unchanged": true,
+  "stage19_asset_count": 0,
+  "tmp_wal_residual_count": 0,
+  "blockers": [],
+  "stage19_authorized": true,
+  "stage19_started": false,
+  "known_test_debt": {
+    "node_id": "tests/test_stage8_manual_import.py::test_default_cli_fails_closed_without_real_dataset",
+    "signature": "expected returncode 1, observed returncode 0"
+  }
+}

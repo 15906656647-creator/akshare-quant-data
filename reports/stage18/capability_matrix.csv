@@ -1,0 +1,12 @@
+﻿run_id,market,capability,status,selected_provider,planned_unit_count,observed_unit_count,pass_count,reason
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,A,financial_abstract,PASS,stock_financial_abstract,3,3,3,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,A,financial_indicator,PASS,stock_financial_analysis_indicator,3,3,3,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,A,balance_sheet,PASS,stock_balance_sheet_by_report_em,3,3,3,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,A,income_statement,PASS,stock_profit_sheet_by_report_em,3,3,3,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,A,cash_flow_statement,PASS,stock_cash_flow_sheet_by_report_em,3,3,3,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,HK,financial_indicator,PASS,stock_financial_hk_analysis_indicator_em,4,4,4,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,HK,balance_sheet,PASS,stock_financial_hk_report_em,4,4,4,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,HK,income_statement,PASS,stock_financial_hk_report_em,4,4,4,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,HK,cash_flow_statement,PASS,stock_financial_hk_report_em,4,4,4,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,A,valuation,PASS,EastmoneyDataCenter[valuation_comparison+scale_comparison],6,6,6,
+4915ea1b-2e00-4a34-a743-d35dfcb66fe2,HK,valuation,PASS,stock_hk_financial_indicator_em,2,2,2,

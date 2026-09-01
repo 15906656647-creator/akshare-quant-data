@@ -1,0 +1,74 @@
+{
+  "stage": 18,
+  "substage": "18.1.1",
+  "run_id": "19660ce0-e73d-4d0c-8451-cfaee0b726da",
+  "retested_formal_stage18_1_run_id": "95c730f5-1bc0-429b-a370-96eeead06f62",
+  "analysis_as_of_date": "2026-07-27",
+  "akshare_version": "1.18.80",
+  "scope": "two shared Eastmoney spot requests only",
+  "network_policy": {
+    "max_attempts_per_interface": 3,
+    "fixed_http_timeout_seconds": 20.0,
+    "request_deduplication": "one shared request per interface per attempt",
+    "raw_written": false
+  },
+  "started_at": "2026-08-27T04:05:39.438514+00:00",
+  "finished_at": "2026-08-27T04:06:11.330256+00:00",
+  "results": [
+    {
+      "interface": "stock_zh_a_spot_em",
+      "market": "A",
+      "target_host": "82.push2.eastmoney.com",
+      "terminal_status": "FAIL",
+      "error_type": "connection_error",
+      "attempts": [
+        {"attempt": 1, "duration_ms": 5293.952, "status": "failed", "transport_class": "connection_error"},
+        {"attempt": 2, "duration_ms": 5352.054, "status": "failed", "transport_class": "connection_error"},
+        {"attempt": 3, "duration_ms": 5065.266, "status": "failed", "transport_class": "connection_error"}
+      ]
+    },
+    {
+      "interface": "stock_hk_spot_em",
+      "market": "HK",
+      "target_host": "72.push2.eastmoney.com",
+      "terminal_status": "FAIL",
+      "error_type": "connection_error",
+      "attempts": [
+        {"attempt": 1, "duration_ms": 4832.224, "status": "failed", "transport_class": "connection_error"},
+        {"attempt": 2, "duration_ms": 5835.305, "status": "failed", "transport_class": "connection_error"},
+        {"attempt": 3, "duration_ms": 5511.699, "status": "failed", "transport_class": "connection_error"}
+      ]
+    }
+  ],
+  "classification": {
+    "dns_error_observed": false,
+    "tls_error_observed": false,
+    "connection_error_observed": true,
+    "empty_response_observed": false,
+    "schema_or_business_logic_error_observed": false
+  },
+  "governance": {
+    "status": "BLOCKED",
+    "full_stage18_1_rerun_triggered": false,
+    "stage18_2_authorized": false,
+    "stage18_2_started": false,
+    "alternative_provider_audit_started": false,
+    "next_permitted_task": "Stage 18.1.2 alternative real-time valuation provider capability audit"
+  },
+  "test_evidence": {
+    "stage18_stage0_structure": "41 passed",
+    "stage17_tencent_recovery_with_short_basetemp": "9 passed",
+    "full_pytest_with_short_basetemp": "1011 passed, 1 failed",
+    "only_failure_node_id": "tests/test_stage8_manual_import.py::test_default_cli_fails_closed_without_real_dataset",
+    "only_failure_signature": "expected returncode 1, observed returncode 0"
+  },
+  "stage0_sha256_before_and_after": {
+    "config/universe.yml": "0B6F61D43E753945B7E7931D27359E34A199891EAC3F7D59F29C9D17EFCCEC65",
+    "config/metric_definition.yml": "13F9415D3E55AACC91E9913652D6E6520D9C681AC3043F09409602C44B5C00C4",
+    "docs/stage0_scope.md": "18EEEC59594B2CCA67CFC7E7F137855ED2B1F018C10623E426340188AC761615"
+  },
+  "immutable_upstream_evidence": {
+    "stage18_1_run_json_sha256": "3E72EA49BAC029306B65575BC873C18E58BA9D67E25D8DD5F88DC8BDE10F9069",
+    "stage18_1_manifest_json_sha256": "408DB523E020706CEB9DD678E67CFFDA5A57CBEC0CCF60465C8223257C970B88"
+  }
+}

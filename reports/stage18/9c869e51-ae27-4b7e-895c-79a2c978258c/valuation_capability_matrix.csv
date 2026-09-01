@@ -1,0 +1,3 @@
+﻿run_id,market,status,selected_provider,reason,required_capabilities
+9c869e51-ae27-4b7e-895c-79a2c978258c,A,PASS,EastmoneyDataCenter[valuation_comparison+scale_comparison],,"[""symbol"", ""pe"", ""pb"", ""total_market_cap"", ""floating_market_cap"", ""snapshot_time""]"
+9c869e51-ae27-4b7e-895c-79a2c978258c,HK,PASS,stock_hk_financial_indicator_em,,"[""symbol"", ""pe"", ""pb"", ""total_market_cap"", ""snapshot_time""]"

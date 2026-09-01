@@ -1,0 +1,60 @@
+schema_version: "1.0.0"
+stage: 18
+substage: "18.5"
+model_version: "stage18_pit_fundamental_features_v1"
+
+upstream:
+  stage18_4_run_id: "b2d7bf6c-b7c7-4760-b16d-33640111cb11"
+  required_status: "PASS"
+  stage18_5_authorized_required: true
+  stage18_5_started_required: false
+  stage18_4_run_path: "reports/stage18/b2d7bf6c-b7c7-4760-b16d-33640111cb11/stage18_4_run.json"
+  stage18_4_manifest_path: "reports/stage18/b2d7bf6c-b7c7-4760-b16d-33640111cb11/stage18_4_manifest.json"
+  database_path: "database/stage18/run_id=b2d7bf6c-b7c7-4760-b16d-33640111cb11/fundamentals.duckdb"
+  database_sha256: "ef095fbee26da64da43e19ea7da45f4d8924c9f3977f3c735f29926d70e0812b"
+
+stage18_5:
+  analysis_as_of_date: "2026-07-27"
+  asset_role: "fundamental_feature"
+  input_mode: "read_only"
+  pit_status_required: "PIT_ELIGIBLE"
+  eligible_flag_required: true
+  writes_features: true
+  writes_database: false
+  writes_clean: false
+  writes_stage19: false
+  valuation_snapshot_allowed: false
+  announcement_date_inference_allowed: false
+  currency_conversion_allowed: false
+
+scope:
+  expected_security_count: 23
+  expected_a_share_count: 16
+  expected_h_share_count: 7
+  feature_names:
+    - revenue
+    - net_profit
+    - total_assets
+    - total_equity
+    - operating_cash_flow
+    - revenue_yoy
+    - net_profit_yoy
+    - net_margin
+    - roa
+    - roe
+    - debt_to_asset
+    - ocf_to_net_profit
+
+governance:
+  unavailable_allowed: true
+  comparable_period_rule: "same_fiscal_period_prior_year"
+  annual_ratio_period: "FY"
+  ratio_denominator_zero_policy: "UNAVAILABLE"
+  missing_input_policy: "UNAVAILABLE"
+  mixed_currency_policy: "UNAVAILABLE"
+  output_format: "long"
+
+storage:
+  feature_root: "data/features/stage18"
+  reports_root: "reports/stage18"
+

@@ -1,0 +1,31 @@
+{
+  "contract_version": "stage18_to_stage19_v1",
+  "status": "PASS",
+  "analysis_as_of_date": "2026-07-27",
+  "fundamental_database_run_id": "b2d7bf6c-b7c7-4760-b16d-33640111cb11",
+  "fundamental_database_path": "database/stage18/run_id=b2d7bf6c-b7c7-4760-b16d-33640111cb11/fundamentals.duckdb",
+  "fundamental_database_sha256": "ef095fbee26da64da43e19ea7da45f4d8924c9f3977f3c735f29926d70e0812b",
+  "fundamental_feature_run_id": "1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8",
+  "fundamental_feature_path": "data/features/stage18/run_id=1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/fundamental_features.parquet",
+  "fundamental_feature_sha256": "ed3db58277045eca98e9806e324c3a28d7a1a85d773c831a5807dfc16ba3ee64",
+  "feature_policy": {
+    "PASS": "downstream_eligible",
+    "UNAVAILABLE": "preserve_null_and_unavailable_no_fill",
+    "FAIL": "prohibited",
+    "BLOCKED": "prohibited"
+  },
+  "current_valuation_snapshot": {
+    "eligible_for_as_of_date_analysis": false,
+    "historical_pe_pb_backfill_allowed": false
+  },
+  "upstream_access_policy": {
+    "formal_inputs_only": [
+      "fundamental_database",
+      "fundamental_feature"
+    ],
+    "stage18_audit_raw_reinterpretation_allowed": false
+  },
+  "stage19_authorized": true,
+  "stage19_started": false,
+  "stage19_event_publication_gate_required": true
+}

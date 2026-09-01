@@ -1,0 +1,60 @@
+{
+  "stage": 18,
+  "substage": "18.5",
+  "run_id": "1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8",
+  "status": "PASS",
+  "upstream_stage18_4_run_id": "b2d7bf6c-b7c7-4760-b16d-33640111cb11",
+  "feature_asset": {
+    "path": "data/features/stage18/run_id=1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/fundamental_features.parquet",
+    "row_count": 276,
+    "sha256": "ed3db58277045eca98e9806e324c3a28d7a1a85d773c831a5807dfc16ba3ee64"
+  },
+  "files": [
+    {
+      "path": "data/features/stage18/run_id=1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/fundamental_features.parquet",
+      "size": 46231,
+      "sha256": "ed3db58277045eca98e9806e324c3a28d7a1a85d773c831a5807dfc16ba3ee64"
+    },
+    {
+      "path": "data/features/stage18/run_id=1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/metadata.json",
+      "size": 1305,
+      "sha256": "5d349d8c304aeda7387c4c7665ac85cf2f445fa39a81a08fbd123d666f3c2a5e"
+    },
+    {
+      "path": "config/stage18_5.yml",
+      "size": 1741,
+      "sha256": "61edfc4d932adc713e7a5f3a272a1a0d0ebbb0adb0b8734154a236676e3e0429"
+    },
+    {
+      "path": "reports/stage18/1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/stage18_5_run.json",
+      "size": 1637,
+      "sha256": "e35ca9333f014e39dcd4fc75446493625ac07e170d4dd88a524704e575e82eee"
+    },
+    {
+      "path": "reports/stage18/1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/feature_definition.csv",
+      "size": 3009,
+      "sha256": "77f0a8507ee30cfe573f900dbf898d4803d064617db5bef23216b7ce2ff2feed"
+    },
+    {
+      "path": "reports/stage18/1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/feature_coverage.csv",
+      "size": 862,
+      "sha256": "779a890d48680a259b8caa165a90df9c2ab9956e2d5d56a08e2fbf66b21ce995"
+    },
+    {
+      "path": "reports/stage18/1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/pit_feature_validation.csv",
+      "size": 172,
+      "sha256": "ed37fd30c0702c3403ee44df7f4403272cb5c585a8d409e94b1744b3e239b533"
+    },
+    {
+      "path": "reports/stage18/1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/period_matching_validation.csv",
+      "size": 5132,
+      "sha256": "6f5c8999742a825f54a2190ba245bcbe917c7a342313a8ac79542878ca8ac9b5"
+    },
+    {
+      "path": "reports/stage18/1bc599a7-17eb-4cc8-a543-8c0baaa7c3b8/feature_quality.csv",
+      "size": 14927,
+      "sha256": "e84c329006c4eb161fe9552de460d06e8ac66eabcb8fa44382a58b8f50e8b145"
+    }
+  ],
+  "manifest_closed_world": true
+}

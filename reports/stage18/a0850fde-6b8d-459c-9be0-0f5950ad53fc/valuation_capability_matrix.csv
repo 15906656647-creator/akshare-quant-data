@@ -1,0 +1,3 @@
+﻿run_id,market,status,selected_provider,reason,required_capabilities
+a0850fde-6b8d-459c-9be0-0f5950ad53fc,A,UNAVAILABLE,,all_audited_providers_have_explicit_semantic_gaps,"[""symbol"", ""pe"", ""pb"", ""total_market_cap"", ""floating_market_cap"", ""snapshot_time""]"
+a0850fde-6b8d-459c-9be0-0f5950ad53fc,HK,PASS,stock_hk_financial_indicator_em,,"[""symbol"", ""pe"", ""pb"", ""total_market_cap"", ""snapshot_time""]"

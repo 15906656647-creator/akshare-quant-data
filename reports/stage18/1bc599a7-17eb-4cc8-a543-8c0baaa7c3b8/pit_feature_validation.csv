@@ -1,0 +1,5 @@
+﻿check_name,expected,observed,status
+future_data_usage,0,0,PASS
+non_pit_input_usage,0,0,PASS
+announcement_date_inference,0,0,PASS
+current_valuation_leakage,0,0,PASS

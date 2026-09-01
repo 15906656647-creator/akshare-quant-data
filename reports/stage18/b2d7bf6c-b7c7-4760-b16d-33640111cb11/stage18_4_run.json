@@ -1,0 +1,107 @@
+{
+  "stage": 18,
+  "substage": "18.4",
+  "run_id": "b2d7bf6c-b7c7-4760-b16d-33640111cb11",
+  "status": "PASS",
+  "stage18_4_status": "PASS",
+  "started_at": "2026-08-28T02:50:39.457761+00:00",
+  "finished_at": "2026-08-28T02:51:10.116942+00:00",
+  "analysis_as_of_date": "2026-07-27",
+  "upstream_stage18_3_run_id": "66bebf1c-8b64-42a6-a970-1dbf1ecb395f",
+  "upstream_stage18_2_run_id": "df86486a-9a54-4920-a4db-2553f907af92",
+  "database_path": "database/stage18/run_id=b2d7bf6c-b7c7-4760-b16d-33640111cb11/fundamentals.duckdb",
+  "database_size_bytes": 25440256,
+  "database_sha256": "ef095fbee26da64da43e19ea7da45f4d8924c9f3977f3c735f29926d70e0812b",
+  "table_row_counts": {
+    "financial_abstract": 79917,
+    "financial_indicator": 78482,
+    "balance_sheet": 124211,
+    "income_statement": 76720,
+    "cash_flow_statement": 109656,
+    "valuation_snapshot": 23
+  },
+  "history_row_count": 468986,
+  "total_row_count": 469009,
+  "table_count": 6,
+  "security_count": 23,
+  "canonical_key_duplicate_count": 0,
+  "schema_validation_fail_count": 0,
+  "lineage_validation_fail_count": 0,
+  "pit_validation_fail_count": 0,
+  "valuation_ineligible_count": 23,
+  "stage0_hashes_before": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_after": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_unchanged": true,
+  "protected_assets_before": {
+    "stage17_raw": {
+      "file_count": 2228,
+      "tree_sha256": "ec89be4fba79678e565ce5d5e6f1d01c6259478d95b0bbeaa6997edc8592364d"
+    },
+    "stage18_1_audit_raw": {
+      "file_count": 358,
+      "tree_sha256": "193cd7a3c2e8b98742920e320f11e8c3400d67cd8482053ba11416b498452c6f"
+    },
+    "stage18_2_raw": {
+      "file_count": 700,
+      "tree_sha256": "fc8ab839e84f98d2cdacc3992514a4473a6dd7b0bc9d301a3f7cc6b4479065bc"
+    },
+    "stage18_3_clean": {
+      "file_count": 12,
+      "tree_sha256": "01873c44a14e992388ff0ee207363e2ad79c90ff158636a75d7d6eaa496890b3"
+    }
+  },
+  "protected_assets_after": {
+    "stage17_raw": {
+      "file_count": 2228,
+      "tree_sha256": "ec89be4fba79678e565ce5d5e6f1d01c6259478d95b0bbeaa6997edc8592364d"
+    },
+    "stage18_1_audit_raw": {
+      "file_count": 358,
+      "tree_sha256": "193cd7a3c2e8b98742920e320f11e8c3400d67cd8482053ba11416b498452c6f"
+    },
+    "stage18_2_raw": {
+      "file_count": 700,
+      "tree_sha256": "fc8ab839e84f98d2cdacc3992514a4473a6dd7b0bc9d301a3f7cc6b4479065bc"
+    },
+    "stage18_3_clean": {
+      "file_count": 12,
+      "tree_sha256": "01873c44a14e992388ff0ee207363e2ad79c90ff158636a75d7d6eaa496890b3"
+    }
+  },
+  "protected_assets_unchanged": true,
+  "upstream_evidence_before": {
+    "run_id": "66bebf1c-8b64-42a6-a970-1dbf1ecb395f",
+    "run_sha256": "ef1afe02762fb8002dbc69857efa958b878ebe5e05b7c681d49f3d9139bcb99c",
+    "manifest_sha256": "4e0e869a23d2d6df34f869060ddfd4f6d7fa980d27668996e3a2ddae9d7c55ff",
+    "manifest_tree_sha256": "f0ff8bce0cad58800b33a1f1d60fa76949d3a9aa3bc380c138b0952a478e2ba8",
+    "manifest_file_count": 20,
+    "clean_dataset_count": 6
+  },
+  "upstream_evidence_after": {
+    "run_id": "66bebf1c-8b64-42a6-a970-1dbf1ecb395f",
+    "run_sha256": "ef1afe02762fb8002dbc69857efa958b878ebe5e05b7c681d49f3d9139bcb99c",
+    "manifest_sha256": "4e0e869a23d2d6df34f869060ddfd4f6d7fa980d27668996e3a2ddae9d7c55ff",
+    "manifest_tree_sha256": "f0ff8bce0cad58800b33a1f1d60fa76949d3a9aa3bc380c138b0952a478e2ba8",
+    "manifest_file_count": 20,
+    "clean_dataset_count": 6
+  },
+  "upstream_evidence_unchanged": true,
+  "feature_file_count": 0,
+  "stage19_asset_count": 0,
+  "tmp_wal_residual_count": 0,
+  "blockers": [],
+  "stage18_5_authorized": true,
+  "stage18_5_started": false,
+  "known_test_debt": {
+    "node_id": "tests/test_stage8_manual_import.py::test_default_cli_fails_closed_without_real_dataset",
+    "signature": "expected returncode 1, observed returncode 0"
+  }
+}

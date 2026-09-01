@@ -1,0 +1,93 @@
+﻿symbol,market,feature_name,feature_status,source_periods,period_match_status
+000100,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+000100,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+000100,A,roa,PASS,"[[2024, ""FY""], [2025, ""FY""]]",PASS
+000100,A,roe,PASS,"[[2024, ""FY""], [2025, ""FY""]]",PASS
+002067,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002067,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002067,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+002067,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+002129,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002129,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002129,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+002129,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+002230,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002230,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002230,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+002230,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+002361,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002361,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002361,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+002361,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+002600,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002600,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+002600,A,roa,PASS,"[[2024, ""FY""], [2025, ""FY""]]",PASS
+002600,A,roe,PASS,"[[2024, ""FY""], [2025, ""FY""]]",PASS
+300274,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+300274,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+300274,A,roa,PASS,"[[2024, ""FY""], [2025, ""FY""]]",PASS
+300274,A,roe,PASS,"[[2024, ""FY""], [2025, ""FY""]]",PASS
+300433,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+300433,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+300433,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+300433,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+600231,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+600231,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+600231,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+600231,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+600438,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+600438,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+600438,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+600438,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+600763,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+600763,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+600763,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+600763,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+601012,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+601012,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+601012,A,roa,PASS,"[[2024, ""FY""], [2025, ""FY""]]",PASS
+601012,A,roe,PASS,"[[2024, ""FY""], [2025, ""FY""]]",PASS
+601500,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+601500,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+601500,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+601500,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+601636,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+601636,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+601636,A,roa,PASS,"[[2022, ""FY""], [2023, ""FY""]]",PASS
+601636,A,roe,PASS,"[[2022, ""FY""], [2023, ""FY""]]",PASS
+603259,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+603259,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+603259,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+603259,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+603799,A,net_profit_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+603799,A,revenue_yoy,PASS,"[[2025, ""Q1""], [2026, ""Q1""]]",PASS
+603799,A,roa,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+603799,A,roe,UNAVAILABLE,"[[2025, ""FY""]]",PASS
+02076.HK,HK,net_profit_yoy,UNAVAILABLE,[],PASS
+02076.HK,HK,revenue_yoy,UNAVAILABLE,[],PASS
+02076.HK,HK,roa,UNAVAILABLE,[],PASS
+02076.HK,HK,roe,UNAVAILABLE,[],PASS
+02180.HK,HK,net_profit_yoy,UNAVAILABLE,[],PASS
+02180.HK,HK,revenue_yoy,UNAVAILABLE,[],PASS
+02180.HK,HK,roa,UNAVAILABLE,[],PASS
+02180.HK,HK,roe,UNAVAILABLE,[],PASS
+06100.HK,HK,net_profit_yoy,UNAVAILABLE,[],PASS
+06100.HK,HK,revenue_yoy,UNAVAILABLE,[],PASS
+06100.HK,HK,roa,UNAVAILABLE,[],PASS
+06100.HK,HK,roe,UNAVAILABLE,[],PASS
+06919.HK,HK,net_profit_yoy,UNAVAILABLE,[],PASS
+06919.HK,HK,revenue_yoy,UNAVAILABLE,[],PASS
+06919.HK,HK,roa,UNAVAILABLE,[],PASS
+06919.HK,HK,roe,UNAVAILABLE,[],PASS
+08365.HK,HK,net_profit_yoy,UNAVAILABLE,[],PASS
+08365.HK,HK,revenue_yoy,UNAVAILABLE,[],PASS
+08365.HK,HK,roa,UNAVAILABLE,[],PASS
+08365.HK,HK,roe,UNAVAILABLE,[],PASS
+08462.HK,HK,net_profit_yoy,UNAVAILABLE,[],PASS
+08462.HK,HK,revenue_yoy,UNAVAILABLE,[],PASS
+08462.HK,HK,roa,UNAVAILABLE,[],PASS
+08462.HK,HK,roe,UNAVAILABLE,[],PASS
+09669.HK,HK,net_profit_yoy,UNAVAILABLE,[],PASS
+09669.HK,HK,revenue_yoy,UNAVAILABLE,[],PASS
+09669.HK,HK,roa,UNAVAILABLE,[],PASS
+09669.HK,HK,roe,UNAVAILABLE,[],PASS

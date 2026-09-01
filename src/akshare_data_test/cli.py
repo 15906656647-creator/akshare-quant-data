@@ -1834,6 +1834,111 @@ def main():
     b17.add_argument("--log-level", default="INFO")
     b17.add_argument("--debug", action="store_true", default=False)
     b18 = sub.add_parser(
+        "stage18-interface-audit",
+        help="Audit current A-share and H-share fundamental interface capability",
+    )
+    b18.add_argument("--as-of-date", required=True)
+    b18.add_argument("--upstream-run-id", default=None)
+    b18.add_argument("--config", default="config/stage18.yml")
+    b18.add_argument("--run-id", default=None)
+    mode18 = b18.add_mutually_exclusive_group()
+    mode18.add_argument("--dry-run", action="store_true", default=False)
+    mode18.add_argument("--validate-only", action="store_true", default=False)
+    b18.add_argument("--log-level", default="INFO")
+    b18.add_argument("--debug", action="store_true", default=False)
+    b1812 = sub.add_parser(
+        "stage18-valuation-audit",
+        help="Audit alternative A/H-share valuation providers and capability equivalence",
+    )
+    b1812.add_argument("--as-of-date", required=True)
+    b1812.add_argument("--upstream-run-id", default=None)
+    b1812.add_argument(
+        "--config", default="config/stage18_valuation_audit.yml"
+    )
+    b1812.add_argument("--run-id", default=None)
+    mode1812 = b1812.add_mutually_exclusive_group()
+    mode1812.add_argument("--dry-run", action="store_true", default=False)
+    mode1812.add_argument("--validate-only", action="store_true", default=False)
+    b1812.add_argument("--log-level", default="INFO")
+    b1812.add_argument("--debug", action="store_true", default=False)
+    b1813 = sub.add_parser(
+        "stage18-interface-reaudit",
+        help="Run the full Stage 18.1 capability re-audit and exit gate",
+    )
+    b1813.add_argument("--as-of-date", required=True)
+    b1813.add_argument("--upstream-run-id", default=None)
+    b1813.add_argument("--config", default="config/stage18_reaudit.yml")
+    b1813.add_argument("--run-id", default=None)
+    mode1813 = b1813.add_mutually_exclusive_group()
+    mode1813.add_argument("--dry-run", action="store_true", default=False)
+    mode1813.add_argument("--validate-only", action="store_true", default=False)
+    b1813.add_argument("--log-level", default="INFO")
+    b1813.add_argument("--debug", action="store_true", default=False)
+    b182 = sub.add_parser(
+        "stage18-fundamental-collect",
+        help="Collect formal Stage 18.2 fundamental Raw for all 23 securities",
+    )
+    b182.add_argument("--as-of-date", required=True)
+    b182.add_argument("--upstream-run-id", default=None)
+    b182.add_argument("--config", default="config/stage18_2.yml")
+    b182.add_argument("--run-id", default=None)
+    mode182 = b182.add_mutually_exclusive_group()
+    mode182.add_argument("--dry-run", action="store_true", default=False)
+    mode182.add_argument("--validate-only", action="store_true", default=False)
+    b182.add_argument("--log-level", default="INFO")
+    b182.add_argument("--debug", action="store_true", default=False)
+    b183 = sub.add_parser(
+        "stage18-fundamental-standardize",
+        help="Standardize Stage 18.2 formal Raw into Stage 18.3 canonical Clean",
+    )
+    b183.add_argument("--as-of-date", required=True)
+    b183.add_argument("--upstream-run-id", default=None)
+    b183.add_argument("--config", default="config/stage18_3.yml")
+    b183.add_argument("--run-id", default=None)
+    mode183 = b183.add_mutually_exclusive_group()
+    mode183.add_argument("--dry-run", action="store_true", default=False)
+    mode183.add_argument("--validate-only", action="store_true", default=False)
+    b183.add_argument("--log-level", default="INFO")
+    b183.add_argument("--debug", action="store_true", default=False)
+    b184 = sub.add_parser(
+        "stage18-db-load",
+        help="Load Stage 18.3 formal Clean into a new validated Stage 18.4 DuckDB",
+    )
+    b184.add_argument("--as-of-date", required=True)
+    b184.add_argument("--upstream-run-id", default=None)
+    b184.add_argument("--config", default="config/stage18_4.yml")
+    b184.add_argument("--run-id", default=None)
+    mode184 = b184.add_mutually_exclusive_group()
+    mode184.add_argument("--dry-run", action="store_true", default=False)
+    mode184.add_argument("--validate-only", action="store_true", default=False)
+    b184.add_argument("--log-level", default="INFO")
+    b184.add_argument("--debug", action="store_true", default=False)
+    b185 = sub.add_parser(
+        "stage18-feature-build",
+        help="Build Stage 18.5 PIT fundamental features from the read-only Stage 18.4 DB",
+    )
+    b185.add_argument("--as-of-date", required=True)
+    b185.add_argument("--upstream-run-id", default=None)
+    b185.add_argument("--config", default="config/stage18_5.yml")
+    b185.add_argument("--run-id", default=None)
+    mode185 = b185.add_mutually_exclusive_group()
+    mode185.add_argument("--dry-run", action="store_true", default=False)
+    mode185.add_argument("--validate-only", action="store_true", default=False)
+    b185.add_argument("--log-level", default="INFO")
+    b185.add_argument("--debug", action="store_true", default=False)
+    b186 = sub.add_parser(
+        "stage18-finalize",
+        help="Finalize Stage 18 quality, freeze exits, and authorize but do not start Stage 19",
+    )
+    b186.add_argument("--as-of-date", required=True)
+    b186.add_argument("--upstream-run-id", default=None)
+    b186.add_argument("--config", default="config/stage18_6.yml")
+    b186.add_argument("--run-id", default=None)
+    mode186 = b186.add_mutually_exclusive_group()
+    mode186.add_argument("--dry-run", action="store_true", default=False)
+    mode186.add_argument("--validate-only", action="store_true", default=False)
+    b186.add_argument("--log-level", default="INFO")
+    b186.add_argument("--debug", action="store_true", default=False)
     probe = sub.add_parser(
         "stage8-source-probe",
         help="Probe authoritative rule/status sources and write feasibility report",
@@ -2042,6 +2147,38 @@ def main():
         from .stage17_cli import command as stage17_command
 
         sys.exit(stage17_command(args))
+    elif args.command == "stage18-interface-audit":
+        from .stage18_cli import command as stage18_command
+
+        sys.exit(stage18_command(args))
+    elif args.command == "stage18-valuation-audit":
+        from .stage18_valuation_cli import command as stage18_valuation_command
+
+        sys.exit(stage18_valuation_command(args))
+    elif args.command == "stage18-interface-reaudit":
+        from .stage18_reaudit_cli import command as stage18_reaudit_command
+
+        sys.exit(stage18_reaudit_command(args))
+    elif args.command == "stage18-fundamental-collect":
+        from .stage18_2_cli import command as stage18_2_command
+
+        sys.exit(stage18_2_command(args))
+    elif args.command == "stage18-fundamental-standardize":
+        from .stage18_3_cli import command as stage18_3_command
+
+        sys.exit(stage18_3_command(args))
+    elif args.command == "stage18-db-load":
+        from .stage18_4_cli import command as stage18_4_command
+
+        sys.exit(stage18_4_command(args))
+    elif args.command == "stage18-feature-build":
+        from .stage18_5_cli import command as stage18_5_command
+
+        sys.exit(stage18_5_command(args))
+    elif args.command == "stage18-finalize":
+        from .stage18_6_cli import command as stage18_6_command
+
+        sys.exit(stage18_6_command(args))
     elif args.command == "stage8-source-probe":
         sys.exit(_cmd_stage8_source_probe(args))
     elif args.command == "stage8-rules-build":

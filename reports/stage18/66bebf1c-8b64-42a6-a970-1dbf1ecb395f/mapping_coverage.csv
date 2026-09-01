@@ -1,0 +1,12 @@
+﻿market,category,raw_metric_field_count,core_mapped_field_count,passthrough_mapped_field_count,unmapped_field_count,core_fields_present,required_core_fields_missing
+A,balance_sheet,240,4,236,0,"[""net_assets"", ""parent_equity"", ""total_assets"", ""total_liabilities""]",[]
+A,cash_flow_statement,207,1,206,0,"[""operating_cash_flow""]",[]
+A,financial_abstract,70,8,62,0,"[""eps"", ""gross_margin"", ""net_assets"", ""net_profit"", ""operating_cash_flow"", ""parent_net_profit"", ""revenue"", ""roe""]",[]
+A,financial_indicator,81,7,74,0,"[""debt_to_asset"", ""eps"", ""gross_margin"", ""net_margin"", ""roa"", ""roe"", ""weighted_roe""]",[]
+A,income_statement,140,4,136,0,"[""eps"", ""net_profit"", ""parent_net_profit"", ""revenue""]",[]
+A,valuation_snapshot,28,4,24,0,"[""floating_market_cap"", ""pb"", ""pe"", ""total_market_cap""]",[]
+HK,balance_sheet,84,3,81,0,"[""net_assets"", ""total_assets"", ""total_liabilities""]",[]
+HK,cash_flow_statement,65,1,64,0,"[""operating_cash_flow""]",[]
+HK,financial_indicator,26,8,18,0,"[""debt_to_asset"", ""eps"", ""gross_margin"", ""net_margin"", ""parent_net_profit"", ""revenue"", ""roa"", ""roe""]",[]
+HK,income_statement,38,3,35,0,"[""net_profit"", ""parent_net_profit"", ""revenue""]",[]
+HK,valuation_snapshot,21,4,17,0,"[""floating_market_cap"", ""pb"", ""pe"", ""total_market_cap""]",[]

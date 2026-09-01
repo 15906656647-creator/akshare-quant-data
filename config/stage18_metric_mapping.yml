@@ -1,0 +1,55 @@
+schema_version: "1.0.0"
+mapping_version: "stage18_core_metrics_v1"
+
+mappings:
+  - {market: A, category: financial_abstract, source_field: "营业总收入", canonical_name: revenue, canonical_unit: currency}
+  - {market: A, category: financial_abstract, source_field: "净利润", canonical_name: net_profit, canonical_unit: currency}
+  - {market: A, category: financial_abstract, source_field: "归母净利润", canonical_name: parent_net_profit, canonical_unit: currency}
+  - {market: A, category: financial_abstract, source_field: "股东权益合计(净资产)", canonical_name: net_assets, canonical_unit: currency}
+  - {market: A, category: financial_abstract, source_field: "经营现金流量净额", canonical_name: operating_cash_flow, canonical_unit: currency}
+  - {market: A, category: financial_abstract, source_field: "毛利率", canonical_name: gross_margin, canonical_unit: percent}
+  - {market: A, category: financial_abstract, source_field: "净资产收益率(ROE)", canonical_name: roe, canonical_unit: percent}
+  - {market: A, category: financial_abstract, source_field: "基本每股收益", canonical_name: eps, canonical_unit: currency_per_share}
+
+  - {market: A, category: financial_indicator, source_field: "总资产净利润率(%)", canonical_name: roa, canonical_unit: percent}
+  - {market: A, category: financial_indicator, source_field: "销售毛利率(%)", canonical_name: gross_margin, canonical_unit: percent}
+  - {market: A, category: financial_indicator, source_field: "销售净利率(%)", canonical_name: net_margin, canonical_unit: percent}
+  - {market: A, category: financial_indicator, source_field: "净资产收益率(%)", canonical_name: roe, canonical_unit: percent}
+  - {market: A, category: financial_indicator, source_field: "加权净资产收益率(%)", canonical_name: weighted_roe, canonical_unit: percent}
+  - {market: A, category: financial_indicator, source_field: "资产负债率(%)", canonical_name: debt_to_asset, canonical_unit: percent}
+  - {market: A, category: financial_indicator, source_field: "摊薄每股收益(元)", canonical_name: eps, canonical_unit: currency_per_share}
+
+  - {market: A, category: balance_sheet, source_field: TOTAL_ASSETS, canonical_name: total_assets, canonical_unit: currency}
+  - {market: A, category: balance_sheet, source_field: TOTAL_LIABILITIES, canonical_name: total_liabilities, canonical_unit: currency}
+  - {market: A, category: balance_sheet, source_field: TOTAL_EQUITY, canonical_name: net_assets, canonical_unit: currency}
+  - {market: A, category: balance_sheet, source_field: TOTAL_PARENT_EQUITY, canonical_name: parent_equity, canonical_unit: currency}
+  - {market: A, category: income_statement, source_field: TOTAL_OPERATE_INCOME, canonical_name: revenue, canonical_unit: currency}
+  - {market: A, category: income_statement, source_field: NETPROFIT, canonical_name: net_profit, canonical_unit: currency}
+  - {market: A, category: income_statement, source_field: PARENT_NETPROFIT, canonical_name: parent_net_profit, canonical_unit: currency}
+  - {market: A, category: income_statement, source_field: BASIC_EPS, canonical_name: eps, canonical_unit: currency_per_share}
+  - {market: A, category: cash_flow_statement, source_field: NETCASH_OPERATE, canonical_name: operating_cash_flow, canonical_unit: currency}
+
+  - {market: HK, category: financial_indicator, source_field: OPERATE_INCOME, canonical_name: revenue, canonical_unit: currency}
+  - {market: HK, category: financial_indicator, source_field: HOLDER_PROFIT, canonical_name: parent_net_profit, canonical_unit: currency}
+  - {market: HK, category: financial_indicator, source_field: GROSS_PROFIT_RATIO, canonical_name: gross_margin, canonical_unit: percent}
+  - {market: HK, category: financial_indicator, source_field: NET_PROFIT_RATIO, canonical_name: net_margin, canonical_unit: percent}
+  - {market: HK, category: financial_indicator, source_field: ROE_AVG, canonical_name: roe, canonical_unit: percent}
+  - {market: HK, category: financial_indicator, source_field: ROA, canonical_name: roa, canonical_unit: percent}
+  - {market: HK, category: financial_indicator, source_field: DEBT_ASSET_RATIO, canonical_name: debt_to_asset, canonical_unit: percent}
+  - {market: HK, category: financial_indicator, source_field: BASIC_EPS, canonical_name: eps, canonical_unit: currency_per_share}
+  - {market: HK, category: balance_sheet, source_field: "004009999", canonical_name: total_assets, canonical_unit: currency}
+  - {market: HK, category: balance_sheet, source_field: "004025999", canonical_name: total_liabilities, canonical_unit: currency}
+  - {market: HK, category: balance_sheet, source_field: "004028999", canonical_name: net_assets, canonical_unit: currency}
+  - {market: HK, category: income_statement, source_field: "004001999", canonical_name: revenue, canonical_unit: currency}
+  - {market: HK, category: income_statement, source_field: "004012999", canonical_name: net_profit, canonical_unit: currency}
+  - {market: HK, category: income_statement, source_field: "004025002", canonical_name: parent_net_profit, canonical_unit: currency}
+  - {market: HK, category: cash_flow_statement, source_field: "003999", canonical_name: operating_cash_flow, canonical_unit: currency}
+
+  - {market: A, category: valuation_snapshot, source_field: "市盈率-TTM", canonical_name: pe, canonical_unit: ratio}
+  - {market: A, category: valuation_snapshot, source_field: "市净率-MRQ", canonical_name: pb, canonical_unit: ratio}
+  - {market: A, category: valuation_snapshot, source_field: "总市值", canonical_name: total_market_cap, canonical_unit: currency}
+  - {market: A, category: valuation_snapshot, source_field: "流通市值", canonical_name: floating_market_cap, canonical_unit: currency}
+  - {market: HK, category: valuation_snapshot, source_field: "市盈率", canonical_name: pe, canonical_unit: ratio}
+  - {market: HK, category: valuation_snapshot, source_field: "市净率", canonical_name: pb, canonical_unit: ratio}
+  - {market: HK, category: valuation_snapshot, source_field: "总市值(港元)", canonical_name: total_market_cap, canonical_unit: currency}
+  - {market: HK, category: valuation_snapshot, source_field: "港股市值(港元)", canonical_name: floating_market_cap, canonical_unit: currency}

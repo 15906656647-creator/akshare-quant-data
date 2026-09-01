@@ -1,0 +1,16 @@
+{
+  "stage": 18,
+  "substage": "18.1.2",
+  "run_id": "eb315f57-637f-4e3a-94a2-6936e4e0c16d",
+  "status": "INTERRUPTED",
+  "reason": "local_schema_parser_error",
+  "error_signature": "AttributeError: numpy.float64 object has no attribute notna",
+  "raw_preserved": true,
+  "raw_file_count": 32,
+  "metadata_file_count": 16,
+  "parquet_file_count": 16,
+  "formal_capability_conclusion": false,
+  "stage18_2_authorized": false,
+  "superseded_by_complete_run_id": "9c869e51-ae27-4b7e-895c-79a2c978258c",
+  "governance_note": "The append-only audit Raw is retained. This interrupted run has no formal Stage 18.1.2 exit authority."
+}

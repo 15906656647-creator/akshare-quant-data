@@ -1,0 +1,65 @@
+{
+  "stage": 18,
+  "substage": "18.1",
+  "run_id": "b276fa2d-1462-4b44-a38c-14013555293c",
+  "status": "BLOCKED",
+  "started_at": "2026-08-27T03:12:50.650695+00:00",
+  "finished_at": "2026-08-27T03:14:11.661225+00:00",
+  "upstream_stage17_run_id": "4a5599fb-9e60-4013-9c0c-69fcc25a98b2",
+  "upstream_status": "PASS",
+  "analysis_as_of_date": "2026-07-27",
+  "snapshot_policy": "audit_only",
+  "sample_symbols": [
+    "600763",
+    "000100",
+    "603259",
+    "08365.HK",
+    "09669.HK"
+  ],
+  "sample_reasons": [
+    {
+      "symbol": "600763",
+      "reason": "earliest_listed_SH"
+    },
+    {
+      "symbol": "000100",
+      "reason": "earliest_listed_SZ"
+    },
+    {
+      "symbol": "603259",
+      "reason": "latest_listed_remaining_A"
+    },
+    {
+      "symbol": "08365.HK",
+      "reason": "earliest_listed_HK"
+    },
+    {
+      "symbol": "09669.HK",
+      "reason": "latest_listed_HK"
+    }
+  ],
+  "candidate_security_count": 23,
+  "inventory_row_count": 38,
+  "network_call_count": 35,
+  "status_counts": {
+    "PASS": 33,
+    "FAIL": 5
+  },
+  "akshare_version": "1.18.80",
+  "python_version": "3.11.4",
+  "stage0_hashes_before": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_after": {
+    "config/universe.yml": "0b6f61d43e753945b7e7931d27359e34a199891eac3f7d59f29c9d17efccec65",
+    "config/metric_definition.yml": "13f9415d3e55aacc91e9913652d6e6520d9c681ac3043f09409602c44b5c00c4",
+    "docs/stage0_scope.md": "18eeec59594b2cca67cfc7e7f137855ed2b1f018c10623e426340188ac761615"
+  },
+  "stage0_hashes_unchanged": true,
+  "stage18_2_planning_authorized": false,
+  "known_test_debt": [
+    "Stage 8 manual-rule fixture precondition conflict"
+  ]
+}

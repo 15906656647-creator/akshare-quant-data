@@ -1,0 +1,7 @@
+﻿category,table_name,expected_rows,source_rows,database_rows,difference,status
+financial_abstract,fact_financial_abstract,79917,79917,79917,0,PASS
+financial_indicator,fact_financial_indicator,78482,78482,78482,0,PASS
+balance_sheet,fact_balance_sheet,124211,124211,124211,0,PASS
+income_statement,fact_income_statement,76720,76720,76720,0,PASS
+cash_flow_statement,fact_cash_flow_statement,109656,109656,109656,0,PASS
+valuation_snapshot,fact_valuation_snapshot,23,23,23,0,PASS

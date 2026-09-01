@@ -1,0 +1,87 @@
+{
+  "stage": 18,
+  "substage": "18.4",
+  "run_id": "b2d7bf6c-b7c7-4760-b16d-33640111cb11",
+  "status": "PASS",
+  "upstream_stage18_3_run_id": "66bebf1c-8b64-42a6-a970-1dbf1ecb395f",
+  "database": {
+    "path": "database/stage18/run_id=b2d7bf6c-b7c7-4760-b16d-33640111cb11/fundamentals.duckdb",
+    "size": 25440256,
+    "sha256": "ef095fbee26da64da43e19ea7da45f4d8924c9f3977f3c735f29926d70e0812b"
+  },
+  "tables": [
+    {
+      "category": "financial_abstract",
+      "table_name": "fact_financial_abstract",
+      "row_count": 79917
+    },
+    {
+      "category": "financial_indicator",
+      "table_name": "fact_financial_indicator",
+      "row_count": 78482
+    },
+    {
+      "category": "balance_sheet",
+      "table_name": "fact_balance_sheet",
+      "row_count": 124211
+    },
+    {
+      "category": "income_statement",
+      "table_name": "fact_income_statement",
+      "row_count": 76720
+    },
+    {
+      "category": "cash_flow_statement",
+      "table_name": "fact_cash_flow_statement",
+      "row_count": 109656
+    },
+    {
+      "category": "valuation_snapshot",
+      "table_name": "fact_valuation_snapshot",
+      "row_count": 23
+    }
+  ],
+  "files": [
+    {
+      "path": "database/stage18/run_id=b2d7bf6c-b7c7-4760-b16d-33640111cb11/fundamentals.duckdb",
+      "size": 25440256,
+      "sha256": "ef095fbee26da64da43e19ea7da45f4d8924c9f3977f3c735f29926d70e0812b"
+    },
+    {
+      "path": "config/stage18_4.yml",
+      "size": 1789,
+      "sha256": "8d0b80e3508d5efaefdcc7092683543e078bf6f079f930535a533ace6092f009"
+    },
+    {
+      "path": "reports/stage18/b2d7bf6c-b7c7-4760-b16d-33640111cb11/stage18_4_run.json",
+      "size": 4469,
+      "sha256": "5108951bb8697c236ee859706b0e51a48fa2020e176882eead00432a3824b4e9"
+    },
+    {
+      "path": "reports/stage18/b2d7bf6c-b7c7-4760-b16d-33640111cb11/table_row_counts.csv",
+      "size": 483,
+      "sha256": "1bd52513f52ce59dbee412a82aa83186573e5d11f0e1adb755512347d5a766d1"
+    },
+    {
+      "path": "reports/stage18/b2d7bf6c-b7c7-4760-b16d-33640111cb11/schema_validation.csv",
+      "size": 17093,
+      "sha256": "e116caaba56da4e158a5042378c74a54d354760b71411cf5025da666d2e8dcff"
+    },
+    {
+      "path": "reports/stage18/b2d7bf6c-b7c7-4760-b16d-33640111cb11/lineage_validation.csv",
+      "size": 1236,
+      "sha256": "4eb31b5b5ead562f132a2a773c9012a23f1a9752a5e1035b15dcbef8fed49c04"
+    },
+    {
+      "path": "reports/stage18/b2d7bf6c-b7c7-4760-b16d-33640111cb11/pit_validation.csv",
+      "size": 2479,
+      "sha256": "0cb57f778bc23d48660723922b2aa0a032a70a40fd54864008e57b48186b8202"
+    },
+    {
+      "path": "reports/stage18/b2d7bf6c-b7c7-4760-b16d-33640111cb11/database_integrity.csv",
+      "size": 810,
+      "sha256": "a5a9d4520196f6999bfe0d4a33ab53188886901cd19d4c82e55e489f1f41c042"
+    }
+  ],
+  "manifest_closed_world": true
+}

@@ -1,0 +1,160 @@
+{
+  "stage": 18,
+  "substage": "18.3",
+  "run_id": "66bebf1c-8b64-42a6-a970-1dbf1ecb395f",
+  "status": "PASS",
+  "upstream_stage18_2_run_id": "df86486a-9a54-4920-a4db-2553f907af92",
+  "clean_datasets": [
+    {
+      "category": "financial_abstract",
+      "row_count": 79917,
+      "schema_hash": "8825c81ffcbb59d45623f9c9cf9f1d68ce699f214ecbd36ca7795d3057297034",
+      "data_sha256": "9b741ad7a8c6c8568942946d144f5ed95bcf384fcb96d704126de684150f6260",
+      "data_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/financial_abstract/data.parquet",
+      "metadata_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/financial_abstract/metadata.json"
+    },
+    {
+      "category": "financial_indicator",
+      "row_count": 78482,
+      "schema_hash": "8825c81ffcbb59d45623f9c9cf9f1d68ce699f214ecbd36ca7795d3057297034",
+      "data_sha256": "a5742159cf2e63fcf3432cb8857c7aea4a087c97d98f1ad5ab99e12b0e3c9f42",
+      "data_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/financial_indicator/data.parquet",
+      "metadata_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/financial_indicator/metadata.json"
+    },
+    {
+      "category": "balance_sheet",
+      "row_count": 124211,
+      "schema_hash": "8825c81ffcbb59d45623f9c9cf9f1d68ce699f214ecbd36ca7795d3057297034",
+      "data_sha256": "0b7c27a5360797422cbd3aa30eb21c9d17620d6c39fe7425d08e450ee05cdcff",
+      "data_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/balance_sheet/data.parquet",
+      "metadata_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/balance_sheet/metadata.json"
+    },
+    {
+      "category": "income_statement",
+      "row_count": 76720,
+      "schema_hash": "8825c81ffcbb59d45623f9c9cf9f1d68ce699f214ecbd36ca7795d3057297034",
+      "data_sha256": "cca82428a7d6e8f4baa9c4993310decaf8cbd2451af041435d304676d134b9ca",
+      "data_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/income_statement/data.parquet",
+      "metadata_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/income_statement/metadata.json"
+    },
+    {
+      "category": "cash_flow_statement",
+      "row_count": 109656,
+      "schema_hash": "8825c81ffcbb59d45623f9c9cf9f1d68ce699f214ecbd36ca7795d3057297034",
+      "data_sha256": "5fe6db6e78626f38d8268fecbec4cfe5d38f59864b59a7afa79d9e2b44cffe15",
+      "data_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/cash_flow_statement/data.parquet",
+      "metadata_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/cash_flow_statement/metadata.json"
+    },
+    {
+      "category": "valuation_snapshot",
+      "row_count": 23,
+      "schema_hash": "93fbd41c41fc8af0c05cb4212e20b3cff5f9999c37cae096bb00106fe017d5c6",
+      "data_sha256": "4fdab00a32ba8114690f268a922867ecd33e04d99ba9c06c328f128627047393",
+      "data_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/valuation_snapshot/data.parquet",
+      "metadata_path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/valuation_snapshot/metadata.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/balance_sheet/data.parquet",
+      "size": 3342843,
+      "sha256": "0b7c27a5360797422cbd3aa30eb21c9d17620d6c39fe7425d08e450ee05cdcff"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/balance_sheet/metadata.json",
+      "size": 3749,
+      "sha256": "b2fba9cc85b3ffadda9f10d6692d3c62785971cb155879c6423c2cb8ed587945"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/cash_flow_statement/data.parquet",
+      "size": 2884665,
+      "sha256": "5fe6db6e78626f38d8268fecbec4cfe5d38f59864b59a7afa79d9e2b44cffe15"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/cash_flow_statement/metadata.json",
+      "size": 3967,
+      "sha256": "3940d722c68a6a62deac320eeb7da3af3194344e809847eec6561fdd9a8bec22"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/financial_abstract/data.parquet",
+      "size": 2119925,
+      "sha256": "9b741ad7a8c6c8568942946d144f5ed95bcf384fcb96d704126de684150f6260"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/financial_abstract/metadata.json",
+      "size": 2692,
+      "sha256": "96e8bc4bea26f1e2eadb2429db42fec724d443061d58886a039b8f7c0592a31f"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/financial_indicator/data.parquet",
+      "size": 1895678,
+      "sha256": "a5742159cf2e63fcf3432cb8857c7aea4a087c97d98f1ad5ab99e12b0e3c9f42"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/financial_indicator/metadata.json",
+      "size": 4150,
+      "sha256": "d815bc8ebb6deeedcb6d508ccb219cc98e9e1084f34522edcc50b73beb82b210"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/income_statement/data.parquet",
+      "size": 1983874,
+      "sha256": "cca82428a7d6e8f4baa9c4993310decaf8cbd2451af041435d304676d134b9ca"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/income_statement/metadata.json",
+      "size": 3825,
+      "sha256": "cd5e9138e4206c1c86e8e28ced50d99207dc98183f87b345864400af07e786ed"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/valuation_snapshot/data.parquet",
+      "size": 22992,
+      "sha256": "4fdab00a32ba8114690f268a922867ecd33e04d99ba9c06c328f128627047393"
+    },
+    {
+      "path": "data/clean/stage18/run_id=66bebf1c-8b64-42a6-a970-1dbf1ecb395f/valuation_snapshot/metadata.json",
+      "size": 4778,
+      "sha256": "2b562ba46bf0f96f737536564bb08034bc539d3141daa61ceb704f86f452cad0"
+    },
+    {
+      "path": "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/clean_coverage.csv",
+      "size": 1117,
+      "sha256": "24cdd48ce36cad9a4e50ec5995c048ec833eb6894ec222fc3b071f34362c649f"
+    },
+    {
+      "path": "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/currency_summary.csv",
+      "size": 587,
+      "sha256": "5f1d331000dccf4542b0d32288064a04fa191c21838f37e37d2161182adb9c5a"
+    },
+    {
+      "path": "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/duplicate_conflicts.csv",
+      "size": 75,
+      "sha256": "e58d8667a244ab4c540fd26f266d06b63e189374b51e9f4aaff7811b3833b1a7"
+    },
+    {
+      "path": "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/field_mapping.csv",
+      "size": 103180,
+      "sha256": "9ac0d3343d65f04295be2ff151ffe95eba0f8d95cb0d8d3921dce2255292c139"
+    },
+    {
+      "path": "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/mapping_coverage.csv",
+      "size": 1352,
+      "sha256": "a57a72205cd3a47a51139f6202acb5353852f80494c0b97ae4bc17332ac97c9a"
+    },
+    {
+      "path": "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/quality_report.csv",
+      "size": 4199,
+      "sha256": "e1b9352901a05bb41514596063dbdcc29851da85bed053a3ea26567d9753c7ff"
+    },
+    {
+      "path": "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/schema_inventory.csv",
+      "size": 1315071,
+      "sha256": "3cea114ac57e1a3038214094540afd85aa85a88fb3837757f720967f27df42d3"
+    },
+    {
+      "path": "reports/stage18/66bebf1c-8b64-42a6-a970-1dbf1ecb395f/temporal_quality.csv",
+      "size": 1004,
+      "sha256": "64375c946fecb298304ea014c50c6113537942fd48f817cbcf052a4e81ab1444"
+    }
+  ],
+  "manifest_closed_world": true
+}

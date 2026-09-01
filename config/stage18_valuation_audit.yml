@@ -1,0 +1,63 @@
+schema_version: "1.0.0"
+stage: 18
+substage: "18.1.2"
+model_version: "stage18_valuation_provider_registry_v1"
+
+upstream:
+  stage18_config_path: "config/stage18.yml"
+  stage18_1_1_run_id: "19660ce0-e73d-4d0c-8451-cfaee0b726da"
+  stage18_1_1_status_required: "BLOCKED"
+  stage18_1_1_evidence_path: "reports/stage18/19660ce0-e73d-4d0c-8451-cfaee0b726da/stage18_1_1_spot_retest.json"
+  frozen_failed_interfaces:
+    - "stock_zh_a_spot_em"
+    - "stock_hk_spot_em"
+
+analysis:
+  as_of_date: "2026-07-27"
+  asset_role: "valuation_provider_audit"
+  audit_only: true
+  eligible_for_stage18_2_ingestion: false
+  required_capabilities:
+    A: [symbol, pe, pb, total_market_cap, floating_market_cap, snapshot_time]
+    HK: [symbol, pe, pb, total_market_cap, snapshot_time]
+  optional_capabilities:
+    A: []
+    HK: [hk_market_cap]
+
+registry:
+  A:
+    - interface: "stock_zh_a_spot"
+      provider: "Sina"
+      mode: "shared_snapshot"
+    - interface: "stock_zh_a_spot_tx"
+      provider: "Tencent"
+      mode: "shared_snapshot"
+    - interface: "stock_zh_valuation_baidu"
+      provider: "Baidu"
+      mode: "metric_series"
+    - interface: "stock_zh_valuation_comparison_em"
+      provider: "EastmoneyDataCenter"
+      mode: "symbol_snapshot"
+    - interface: "stock_zh_scale_comparison_em"
+      provider: "EastmoneyDataCenter"
+      mode: "symbol_snapshot"
+  HK:
+    - interface: "stock_hk_financial_indicator_em"
+      provider: "EastmoneyDataCenter"
+      mode: "symbol_snapshot"
+    - interface: "stock_hk_indicator_eniu"
+      provider: "Eniu"
+      mode: "metric_series"
+    - interface: "stock_hk_valuation_baidu"
+      provider: "Baidu"
+      mode: "metric_series"
+  auto_scan_keywords: [pe, pb, valuation, indicator, market_value, stock_a, stock_zh_a, stock_hk]
+
+runtime:
+  max_attempts: 3
+  retry_delay_seconds: 1.0
+  request_timeout_seconds: 20.0
+
+storage:
+  raw_root: "data/raw/stage18/valuation_provider_audit"
+  reports_root: "reports/stage18"
