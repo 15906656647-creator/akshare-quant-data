@@ -1,0 +1,52 @@
+{
+  "stage": 19,
+  "formal_event_release": {
+    "status": "BLOCKED",
+    "checks": {
+      "G1": {
+        "status": "BLOCKED",
+        "reason": "authoritative security status coverage is incomplete or UNKNOWN"
+      },
+      "G2": {
+        "status": "BLOCKED",
+        "reason": "security status source audit is incomplete"
+      },
+      "G3": {
+        "status": "PASS",
+        "reason": ""
+      },
+      "G4": {
+        "status": "BLOCKED",
+        "reason": "required dual manual review is incomplete"
+      },
+      "G5": {
+        "status": "BLOCKED",
+        "reason": "unexplained security status gaps remain"
+      },
+      "G6": {
+        "status": "PASS",
+        "reason": ""
+      },
+      "G7": {
+        "status": "PASS",
+        "reason": ""
+      },
+      "G8": {
+        "status": "BLOCKED",
+        "reason": "Stage 8 formal rebuild has not passed"
+      },
+      "G9": {
+        "status": "BLOCKED",
+        "reason": "S15-14 revalidation has not passed"
+      }
+    },
+    "blocked_reasons": [
+      "G1:authoritative security status coverage is incomplete or UNKNOWN",
+      "G2:security status source audit is incomplete",
+      "G4:required dual manual review is incomplete",
+      "G5:unexplained security status gaps remain",
+      "G8:Stage 8 formal rebuild has not passed",
+      "G9:S15-14 revalidation has not passed"
+    ]
+  }
+}

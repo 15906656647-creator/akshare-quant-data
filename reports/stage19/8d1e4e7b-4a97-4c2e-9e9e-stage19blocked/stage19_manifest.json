@@ -1,0 +1,254 @@
+{
+  "stage": 19,
+  "run_id": "8d1e4e7b-4a97-4c2e-9e9e-stage19blocked",
+  "as_of_date": "2026-07-27",
+  "entry_status": "PASS",
+  "target_symbols": [
+    "002067",
+    "002600",
+    "002230",
+    "600763",
+    "603259",
+    "603799",
+    "601012",
+    "600438",
+    "002361",
+    "601500",
+    "600231",
+    "300274",
+    "601636",
+    "002129",
+    "000100",
+    "300433"
+  ],
+  "analysis_range": [
+    "2025-07-27",
+    "2026-07-27"
+  ],
+  "price_route": "Stage 17 formal A-share adjust=raw only",
+  "candidate_count": 3862,
+  "official_event_count": 0,
+  "rule_dataset": {
+    "status": "READY",
+    "record_count": 12,
+    "review_status": "approved_with_waiver",
+    "errors": []
+  },
+  "status_dataset": {
+    "status": "FAILED",
+    "record_count": 0,
+    "review_status": "",
+    "errors": [
+      "records_csv_empty",
+      "records_file_missing:security_status_history.csv"
+    ]
+  },
+  "rule_audit": {
+    "record_count": 12,
+    "verified_count": 12,
+    "dual_reviewed_count": 0,
+    "waiver_count": 12,
+    "missing_source_count": 0,
+    "coverage_start": "2025-07-27",
+    "coverage_end": "2026-07-27"
+  },
+  "historical_revalidation": {
+    "stage8_evidence": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\database\\stage15_s14_fix\\stage8_authoritative.duckdb",
+    "s15_14_evidence": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\database\\stage15_s14_fix\\s14_verification.json",
+    "s15_14_payload": {
+      "stage": 15,
+      "command": "stage15-s14-reverify",
+      "status": "PASS",
+      "run_id": "5a6b7c8d-9e0f-4a1b-8c2d-3e4f5a6b7c8d",
+      "as_of_date": "2026-07-27",
+      "stage8_database": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\database\\stage15_s14_fix\\3e8f2a0d-9b1c-4d2e-8f3a-1c2d3e4f5a6b\\stage8_authoritative.duckdb",
+      "stage15_reports_dir": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\reports\\stage15_s14_fix\\4f5e6d7c-8a9b-4c1d-9e2f-3a4b5c6d7e8f",
+      "symbol_count": 3,
+      "valid_sample_count": 3,
+      "unavailable_count": 0,
+      "mismatch_count": 0,
+      "blocking_reasons": [],
+      "outputs": {
+        "verification_csv": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\database\\stage15_s14_fix\\s14_verification.csv",
+        "verification_json": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\database\\stage15_s14_fix\\s14_verification.json",
+        "verification_markdown": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\database\\stage15_s14_fix\\s14_verification.md",
+        "csv_sha256": "9ce86579748e3261c1b75297b492d3e5b0e063fe8e5d458fe64195357ac38893"
+      }
+    },
+    "stale_s15_14_pass_ignored": true,
+    "current_interpretation": "BLOCKED: S15-14 requires a current formal Stage 8 rebuild"
+  },
+  "stage8_rebuild_status": "BLOCKED",
+  "s15_14_status": "BLOCKED",
+  "release_gate": {
+    "stage": 19,
+    "formal_event_release": {
+      "status": "BLOCKED",
+      "checks": {
+        "G1": {
+          "status": "BLOCKED",
+          "reason": "authoritative security status coverage is incomplete or UNKNOWN"
+        },
+        "G2": {
+          "status": "BLOCKED",
+          "reason": "security status source audit is incomplete"
+        },
+        "G3": {
+          "status": "PASS",
+          "reason": ""
+        },
+        "G4": {
+          "status": "BLOCKED",
+          "reason": "required dual manual review is incomplete"
+        },
+        "G5": {
+          "status": "BLOCKED",
+          "reason": "unexplained security status gaps remain"
+        },
+        "G6": {
+          "status": "PASS",
+          "reason": ""
+        },
+        "G7": {
+          "status": "PASS",
+          "reason": ""
+        },
+        "G8": {
+          "status": "BLOCKED",
+          "reason": "Stage 8 formal rebuild has not passed"
+        },
+        "G9": {
+          "status": "BLOCKED",
+          "reason": "S15-14 revalidation has not passed"
+        }
+      },
+      "blocked_reasons": [
+        "G1:authoritative security status coverage is incomplete or UNKNOWN",
+        "G2:security status source audit is incomplete",
+        "G4:required dual manual review is incomplete",
+        "G5:unexplained security status gaps remain",
+        "G8:Stage 8 formal rebuild has not passed",
+        "G9:S15-14 revalidation has not passed"
+      ]
+    }
+  },
+  "official_event_availability": "BLOCKED",
+  "stage20_authorized": false,
+  "raw_inputs": [
+    {
+      "dataset_id": "daily:000100:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=000100/adjust=raw/source=sina/data.parquet",
+      "sha256": "5da12317d84c0d2778eb00ad1672e7f43f9ec0f73d5a383b04d6132ea5235649",
+      "row_count": 5131,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:002067:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=002067/adjust=raw/source=sina/data.parquet",
+      "sha256": "99907d916c5afc379f2fbcae7b9380831ef10b23249a91f35777e73d43e06b71",
+      "row_count": 4808,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:002129:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=002129/adjust=raw/source=sina/data.parquet",
+      "sha256": "9b829ea04cd089356ff7a0acd5942252eade7a779d0a28b6bc7770575618835a",
+      "row_count": 4155,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:002230:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=002230/adjust=raw/source=sina/data.parquet",
+      "sha256": "0c9372b257488cb87d9a3b72cc472fd7f7fd9380b106479a2f7399dbdf878803",
+      "row_count": 4357,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:002361:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=002361/adjust=raw/source=sina/data.parquet",
+      "sha256": "7e71295ae2649c20e48ff28699756c58834d1ef8924f476a23ba6988da0e26eb",
+      "row_count": 3900,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:002600:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=002600/adjust=raw/source=sina/data.parquet",
+      "sha256": "0d2271b3f88c9a665fdfc8b07cbe4501aaa7765819891e8c18e3a68832e036e8",
+      "row_count": 3414,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:300274:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=300274/adjust=raw/source=sina/data.parquet",
+      "sha256": "86247fa885b1b987b4bcdd69d12a4ce99d77fb744650c93627c1f5c916f36075",
+      "row_count": 3570,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:300433:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=300433/adjust=raw/source=sina/data.parquet",
+      "sha256": "091f980f8a645669086566f1fe249c4846a34805ea661b26d46c76ec168e1121",
+      "row_count": 2757,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:600231:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=600231/adjust=raw/source=sina/data.parquet",
+      "sha256": "a527066ce16c9d3c128ecb9bbf8598a0048896b6a27fd3add15120be8e7a149e",
+      "row_count": 6241,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:600438:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=600438/adjust=raw/source=sina/data.parquet",
+      "sha256": "74350c60b96c9dec18a9a90e1346d31ebe47c15529d8f951c37ecff92b6db9a8",
+      "row_count": 5252,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:600763:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=600763/adjust=raw/source=sina/data.parquet",
+      "sha256": "6927c302e035065ba2580ab93092f150609fcdd5e3987d4543d94fe5f2b09694",
+      "row_count": 6805,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:601012:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=601012/adjust=raw/source=sina/data.parquet",
+      "sha256": "fdbfb33634db2e13419d0039ce65e6eb25d11aea57a300e6486f39caed23a38c",
+      "row_count": 3452,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:601500:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=601500/adjust=raw/source=sina/data.parquet",
+      "sha256": "dd0de8c099a3df970ffc6703310dc466797447659d0646fda4560d7098a729c5",
+      "row_count": 2404,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:601636:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=601636/adjust=raw/source=sina/data.parquet",
+      "sha256": "c8aa5a56d3bf0d371c973e394ea30d2801de321a5306b0af99a2312d68d71190",
+      "row_count": 3637,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:603259:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=603259/adjust=raw/source=sina/data.parquet",
+      "sha256": "1a73a566814ba85ef881701b403658c806d5767e58ef83031b274e03f8747b0b",
+      "row_count": 2016,
+      "adjust_type": "raw"
+    },
+    {
+      "dataset_id": "daily:603799:raw",
+      "path": "data/raw/stage17/equity_daily/run_id=4a5599fb-9e60-4013-9c0c-69fcc25a98b2/market=A/symbol=603799/adjust=raw/source=sina/data.parquet",
+      "sha256": "36944af65d1035d06fb58141e4c915d8000234c2d178304e272ccbd3aa0af628",
+      "row_count": 2777,
+      "adjust_type": "raw"
+    }
+  ],
+  "validate_only": false,
+  "database_path": "database/stage19/run_id=8d1e4e7b-4a97-4c2e-9e9e-stage19blocked/stage19.duckdb",
+  "database_sha256": "d60d44d5bec5249ead3aacf0c0650b2da0ffc0159f6dc664e7c59b4990e7ecdc"
+}

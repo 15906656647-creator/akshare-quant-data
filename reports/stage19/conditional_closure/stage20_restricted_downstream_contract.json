@@ -1,0 +1,69 @@
+{
+  "contract_version": "stage19_to_stage20_restricted_v1",
+  "source_stage": 19,
+  "target_stage": 20,
+  "analysis_as_of_date": "2026-07-27",
+  "management_status": "CONDITIONALLY_CLOSED",
+  "framework_status": "PASS",
+  "formal_event_release_status": "BLOCKED",
+  "official_event_availability": "BLOCKED",
+  "stage20_authorized": true,
+  "authorization_mode": "RESTRICTED",
+  "authorization_scope": "NON_EVENT_ONLY",
+  "restricted_entry_authorized": true,
+  "full_entry_authorized": false,
+  "stage20_started": false,
+  "allowed_capabilities": [
+    "stock_code_filter", "market_filter", "date_range_filter", "non_event_metric_filter",
+    "a_share_market_data", "hk_share_market_data", "ethusdt_market_data",
+    "daily_kline", "weekly_kline", "quality_gated_minute_kline",
+    "ma3", "ma5", "ma7", "ma10", "ma13", "ma20", "ma21",
+    "volume", "amount", "turnover_rate", "non_event_price_volume_indicators",
+    "stage18_pass_fundamentals", "revenue", "net_profit", "roe", "roa",
+    "gross_margin", "net_margin", "pe", "pb", "ps", "total_market_cap",
+    "float_market_cap", "available_fundamental_features",
+    "security_code_comparison", "time_comparison", "metric_comparison",
+    "non_event_market_analysis"
+  ],
+  "blocked_capabilities": [
+    "official_limit_up_count", "official_limit_down_count", "official_limit_up_event_list",
+    "official_limit_down_event_list", "consecutive_limit_up_analysis",
+    "consecutive_limit_down_analysis", "limit_up_next_day_performance",
+    "limit_down_next_day_performance", "event_forward_3d_return",
+    "event_forward_5d_return", "event_forward_10d_return", "event_mfe_mae_ranking",
+    "event_based_ranking", "event_based_screening", "event_dependent_stock_score",
+    "candidate_event_as_official", "frontend_inferred_official_limit_event"
+  ],
+  "formal_inputs": {
+    "non_event_market_data": "Stage 17 formal PASS assets subject to per-dataset quality status",
+    "fundamentals": "Stage 18 formal PASS downstream contract and feature policy",
+    "stage19_event_status": "stage19_gate.json and this restricted contract",
+    "stage19_candidate_event": "PROHIBITED_AS_OFFICIAL"
+  },
+  "event_data_policy": {
+    "official_event_query_allowed": false,
+    "official_event_statistics_allowed": false,
+    "candidate_access": "INTERNAL_ONLY_PROHIBITED_USER_FACING",
+    "frontend_event_inference_allowed": false,
+    "blocked_value": null,
+    "blocked_availability_status": "BLOCKED",
+    "blocker_reason_required": true
+  },
+  "required_status_propagation": {
+    "consume_formal_event_release_status": true,
+    "preserve_null": true,
+    "preserve_blocked_or_unavailable": true,
+    "zero_fill_prohibited": true,
+    "candidate_display_prohibited": true,
+    "explicit_chinese_blocker_message_required": true
+  },
+  "unresolved_blockers": [
+    "缺少可审计、完整覆盖的权威 security_status_history",
+    "security status source audit 未完成",
+    "required manual review 未完成",
+    "Stage 8 formal rebuild 未通过",
+    "S15-14 current revalidation 未通过"
+  ],
+  "conditional_closure_reference": "reports/stage19/conditional_closure/stage19_conditional_closure.json",
+  "created_at": "2026-08-30T00:00:00+08:00"
+}

@@ -1939,6 +1939,16 @@ def main():
     mode186.add_argument("--validate-only", action="store_true", default=False)
     b186.add_argument("--log-level", default="INFO")
     b186.add_argument("--debug", action="store_true", default=False)
+    b19 = sub.add_parser(
+        "stage19-build",
+        help="Build Stage 19 A-share limit-event candidates and formal release gate",
+    )
+    b19.add_argument("--as-of-date", required=True)
+    b19.add_argument("--config", default="config/stage19.yml")
+    b19.add_argument("--run-id", default=None)
+    b19.add_argument("--validate-only", action="store_true", default=False)
+    b19.add_argument("--log-level", default="INFO")
+    b19.add_argument("--debug", action="store_true", default=False)
     probe = sub.add_parser(
         "stage8-source-probe",
         help="Probe authoritative rule/status sources and write feasibility report",
@@ -2179,6 +2189,10 @@ def main():
         from .stage18_6_cli import command as stage18_6_command
 
         sys.exit(stage18_6_command(args))
+    elif args.command == "stage19-build":
+        from .stage19_cli import command as stage19_command
+
+        sys.exit(stage19_command(args))
     elif args.command == "stage8-source-probe":
         sys.exit(_cmd_stage8_source_probe(args))
     elif args.command == "stage8-rules-build":

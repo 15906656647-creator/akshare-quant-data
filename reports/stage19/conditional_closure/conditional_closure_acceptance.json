@@ -1,0 +1,40 @@
+{
+  "stage": 19,
+  "decision_type": "CONDITIONAL_CLOSURE_ACCEPTANCE",
+  "decision_date": "2026-08-30",
+  "analysis_as_of_date": "2026-07-27",
+  "management_status": "CONDITIONALLY_CLOSED",
+  "framework_status": "PASS",
+  "formal_event_release_status": "BLOCKED",
+  "official_event_availability": "BLOCKED",
+  "stage20_restricted_entry": "AUTHORIZED",
+  "stage20_full_entry": "NOT_AUTHORIZED",
+  "authorization_mode": "RESTRICTED",
+  "authorization_scope": "NON_EVENT_ONLY",
+  "stage20_started": false,
+  "targeted_test": {
+    "command": ".venv\\Scripts\\python.exe -m pytest tests/test_stage19_conditional_closure.py -q",
+    "passed": 18,
+    "failed": 0,
+    "duration_seconds": 0.10
+  },
+  "full_repository_test": {
+    "command": ".venv\\Scripts\\python.exe -m pytest -q",
+    "passed": 1085,
+    "failed": 0,
+    "duration_seconds": 293.90
+  },
+  "real_evidence_preserved": {
+    "candidate_count": 3862,
+    "official_event_count": 0,
+    "formal_statistics_count": 160,
+    "formal_statistics_value": null,
+    "formal_statistics_availability": "BLOCKED"
+  },
+  "stage0_frozen_config_check": {
+    "command": ".venv\\Scripts\\python.exe tests/test_stage0_config.py",
+    "passed": 35,
+    "failed": 0
+  },
+  "created_at": "2026-08-30T00:00:00+08:00"
+}

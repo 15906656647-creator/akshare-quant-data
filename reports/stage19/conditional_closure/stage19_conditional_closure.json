@@ -1,0 +1,83 @@
+{
+  "stage": 19,
+  "decision_type": "CONDITIONAL_CLOSURE",
+  "decision_date": "2026-08-30",
+  "analysis_as_of_date": "2026-07-27",
+  "management_status": "CONDITIONALLY_CLOSED",
+  "runtime_status": "BLOCKED",
+  "framework_status": "PASS",
+  "formal_event_release_status": "BLOCKED",
+  "official_event_availability": "BLOCKED",
+  "remediation_status": "OPEN",
+  "unresolved_blockers": [
+    "缺少可审计、完整覆盖的权威 security_status_history",
+    "security status source audit 未完成",
+    "required manual review 未完成",
+    "Stage 8 formal rebuild 未通过",
+    "S15-14 current revalidation 未通过"
+  ],
+  "allowed_downstream_stage": 20,
+  "downstream_authorization_mode": "RESTRICTED",
+  "authorization_scope": "NON_EVENT_ONLY",
+  "restricted_entry_authorized": true,
+  "full_entry_authorized": false,
+  "stage20_started": false,
+  "allowed_capabilities": [
+    "stock_code_filter", "market_filter", "date_range_filter", "non_event_metric_filter",
+    "a_share_market_data", "hk_share_market_data", "ethusdt_market_data",
+    "daily_kline", "weekly_kline", "quality_gated_minute_kline",
+    "ma3", "ma5", "ma7", "ma10", "ma13", "ma20", "ma21",
+    "volume", "amount", "turnover_rate", "non_event_price_volume_indicators",
+    "stage18_pass_fundamentals", "revenue", "net_profit", "roe", "roa",
+    "gross_margin", "net_margin", "pe", "pb", "ps", "total_market_cap",
+    "float_market_cap", "available_fundamental_features",
+    "security_code_comparison", "time_comparison", "metric_comparison",
+    "non_event_market_analysis"
+  ],
+  "blocked_capabilities": [
+    "official_limit_up_count", "official_limit_down_count", "official_limit_up_event_list",
+    "official_limit_down_event_list", "consecutive_limit_up_analysis",
+    "consecutive_limit_down_analysis", "limit_up_next_day_performance",
+    "limit_down_next_day_performance", "event_forward_3d_return",
+    "event_forward_5d_return", "event_forward_10d_return", "event_mfe_mae_ranking",
+    "event_based_ranking", "event_based_screening", "event_dependent_stock_score",
+    "candidate_event_as_official", "frontend_inferred_official_limit_event"
+  ],
+  "required_status_propagation": {
+    "event_module_must_read_formal_release_status": true,
+    "availability_status": ["BLOCKED", "UNAVAILABLE"],
+    "value_when_blocked": null,
+    "blocker_reason_required": true,
+    "zero_fill_prohibited": true,
+    "candidate_display_prohibited": true,
+    "inferred_value_prohibited": true,
+    "frontend_recalculation_prohibited": true,
+    "silent_hiding_prohibited": true
+  },
+  "candidate_data_policy": {
+    "access_scope": "INTERNAL_GOVERNANCE_AND_QUALITY_ONLY",
+    "official_source_allowed": false,
+    "user_facing_display_allowed": false
+  },
+  "remediation_requirements": [
+    "authoritative_security_status_history",
+    "security_status_source_audit",
+    "eliminate_gap_and_unknown",
+    "required_manual_review",
+    "stage8_formal_rebuild",
+    "s15_14_current_revalidation",
+    "stage19_real_data_rerun",
+    "g1_to_g9_pass",
+    "formal_event_publication",
+    "stage19_formal_pass"
+  ],
+  "evidence_references": [
+    "docs/stage_transition_rules.md",
+    "docs/stage19_acceptance.md",
+    "docs/stage19_conditional_closure.md",
+    "reports/stage19/8d1e4e7b-4a97-4c2e-9e9e-stage19blocked/stage19_manifest.json",
+    "reports/stage19/8d1e4e7b-4a97-4c2e-9e9e-stage19blocked/stage19_gate.json",
+    "reports/stage19/8d1e4e7b-4a97-4c2e-9e9e-stage19blocked/formal_release_hardening.json"
+  ],
+  "created_at": "2026-08-30T00:00:00+08:00"
+}
