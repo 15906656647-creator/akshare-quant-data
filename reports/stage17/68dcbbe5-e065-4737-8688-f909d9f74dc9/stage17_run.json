@@ -1,0 +1,48 @@
+{
+  "stage": 17,
+  "run_id": "68dcbbe5-e065-4737-8688-f909d9f74dc9",
+  "status": "BLOCKED",
+  "as_of_date": "2026-08-24",
+  "started_at": "2026-08-26T08:50:38.151827+00:00",
+  "finished_at": "2026-08-26T09:29:28.717877+00:00",
+  "blocked_risks": [
+    "daily:08462.HK:hfq:failed:tencent:upstream_error | eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:08462.HK:qfq:failed:tencent:upstream_error | eastmoney:connection_error | sina:ohlc_logic_error"
+  ],
+  "blocker_details": [
+    {
+      "dataset_id": "daily:08462.HK:qfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "NOT_RUN",
+      "error_type": "all_sources_unusable",
+      "detail": "tencent:upstream_error | eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:08462.HK:hfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "NOT_RUN",
+      "error_type": "all_sources_unusable",
+      "detail": "tencent:upstream_error | eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    }
+  ],
+  "unavailable_items": [
+    "08462.HK:history_unavailable"
+  ],
+  "counts": {
+    "daily_expected": 69,
+    "daily_expected_count": 69,
+    "daily_success": 67,
+    "daily_nonempty_count": 67,
+    "daily_quality_pass_count": 67,
+    "daily_success_semantics": "compatibility_alias_of_daily_nonempty_count",
+    "crypto_expected": 6,
+    "crypto_success": 6,
+    "minute_probe_expected": 10,
+    "minute_probe_success": 0
+  },
+  "stage18_authorized": false
+}

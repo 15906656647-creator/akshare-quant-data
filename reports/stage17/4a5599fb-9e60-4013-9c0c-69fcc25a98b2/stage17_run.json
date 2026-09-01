@@ -1,0 +1,24 @@
+{
+  "stage": 17,
+  "run_id": "4a5599fb-9e60-4013-9c0c-69fcc25a98b2",
+  "status": "PASS",
+  "as_of_date": "2026-08-24",
+  "started_at": "2026-08-26T09:37:51.369946+00:00",
+  "finished_at": "2026-08-26T10:08:03.601039+00:00",
+  "blocked_risks": [],
+  "blocker_details": [],
+  "unavailable_items": [],
+  "counts": {
+    "daily_expected": 69,
+    "daily_expected_count": 69,
+    "daily_success": 69,
+    "daily_nonempty_count": 69,
+    "daily_quality_pass_count": 69,
+    "daily_success_semantics": "compatibility_alias_of_daily_nonempty_count",
+    "crypto_expected": 6,
+    "crypto_success": 6,
+    "minute_probe_expected": 10,
+    "minute_probe_success": 0
+  },
+  "stage18_authorized": true
+}

@@ -1,0 +1,115 @@
+﻿dataset_id,check_name,status,detail
+profile:002067,dataset_quality,PASS,
+profile:002600,dataset_quality,PASS,
+profile:002230,dataset_quality,PASS,
+profile:600763,dataset_quality,PASS,
+profile:603259,dataset_quality,PASS,
+profile:603799,dataset_quality,PASS,
+profile:601012,dataset_quality,PASS,
+profile:600438,dataset_quality,PASS,
+profile:002361,dataset_quality,PASS,
+profile:601500,dataset_quality,PASS,
+profile:600231,dataset_quality,PASS,
+profile:300274,dataset_quality,PASS,
+profile:601636,dataset_quality,PASS,
+profile:002129,dataset_quality,PASS,
+profile:000100,dataset_quality,PASS,
+profile:300433,dataset_quality,PASS,
+profile:02180.HK,dataset_quality,PASS,
+profile:08365.HK,dataset_quality,PASS,
+profile:08462.HK,dataset_quality,PASS,
+profile:02076.HK,dataset_quality,PASS,
+profile:06100.HK,dataset_quality,PASS,
+profile:06919.HK,dataset_quality,PASS,
+profile:09669.HK,dataset_quality,PASS,
+daily:002067:raw,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:002067:qfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:002067:hfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:002600:raw,dataset_quality,PASS,
+daily:002600:qfq,dataset_quality,PASS,
+daily:002600:hfq,dataset_quality,PASS,
+daily:002230:raw,dataset_quality,PASS,
+daily:002230:qfq,dataset_quality,PASS,
+daily:002230:hfq,dataset_quality,PASS,
+daily:600763:raw,dataset_quality,PASS,
+daily:600763:qfq,dataset_quality,PASS,
+daily:600763:hfq,dataset_quality,PASS,
+daily:603259:raw,dataset_quality,PASS,
+daily:603259:qfq,dataset_quality,PASS,
+daily:603259:hfq,dataset_quality,PASS,
+daily:603799:raw,dataset_quality,PASS,
+daily:603799:qfq,dataset_quality,PASS,
+daily:603799:hfq,dataset_quality,PASS,
+daily:601012:raw,dataset_quality,PASS,
+daily:601012:qfq,dataset_quality,PASS,
+daily:601012:hfq,dataset_quality,PASS,
+daily:600438:raw,dataset_quality,PASS,
+daily:600438:qfq,dataset_quality,PASS,
+daily:600438:hfq,dataset_quality,PASS,
+daily:002361:raw,dataset_quality,PASS,
+daily:002361:qfq,dataset_quality,PASS,
+daily:002361:hfq,dataset_quality,PASS,
+daily:601500:raw,dataset_quality,PASS,
+daily:601500:qfq,dataset_quality,PASS,
+daily:601500:hfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:600231:raw,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:600231:qfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:600231:hfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:300274:raw,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:300274:qfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:300274:hfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:601636:raw,dataset_quality,FAIL,"HTTPSConnectionPool(host='push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2Cf61%2Cf116&ut=7eea3"
+daily:601636:qfq,dataset_quality,PASS,
+daily:601636:hfq,dataset_quality,PASS,
+daily:002129:raw,dataset_quality,PASS,
+daily:002129:qfq,dataset_quality,PASS,
+daily:002129:hfq,dataset_quality,PASS,
+daily:000100:raw,dataset_quality,PASS,
+daily:000100:qfq,dataset_quality,PASS,
+daily:000100:hfq,dataset_quality,PASS,
+daily:300433:raw,dataset_quality,PASS,
+daily:300433:qfq,dataset_quality,PASS,
+daily:300433:hfq,dataset_quality,PASS,
+daily:02180.HK:raw,dataset_quality,FAIL,ohlc_logic_error
+daily:02180.HK:qfq,dataset_quality,FAIL,ohlc_logic_error
+daily:02180.HK:hfq,dataset_quality,FAIL,ohlc_logic_error
+daily:08365.HK:raw,dataset_quality,PASS,
+daily:08365.HK:qfq,dataset_quality,PASS,
+daily:08365.HK:hfq,dataset_quality,PASS,
+daily:08462.HK:raw,dataset_quality,PASS,
+daily:08462.HK:qfq,dataset_quality,PASS,
+daily:08462.HK:hfq,dataset_quality,PASS,
+daily:02076.HK:raw,dataset_quality,FAIL,ohlc_logic_error
+daily:02076.HK:qfq,dataset_quality,FAIL,ohlc_logic_error
+daily:02076.HK:hfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.02076&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:06100.HK:raw,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.06100&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:06100.HK:qfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.06100&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:06100.HK:hfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.06100&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:06919.HK:raw,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.06919&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:06919.HK:qfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.06919&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:06919.HK:hfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.06919&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:09669.HK:raw,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.09669&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:09669.HK:qfq,dataset_quality,FAIL,"HTTPSConnectionPool(host='33.push2his.eastmoney.com', port=443): Max retries exceeded with url: /api/qt/stock/kline/get?secid=116.09669&fields1=f1%2Cf2%2Cf3%2Cf4%2Cf5%2Cf6&fields2=f51%2Cf52%2Cf53%2Cf54%2Cf55%2Cf56%2Cf57%2Cf58%2Cf59%2Cf60%2C"
+daily:09669.HK:hfq,dataset_quality,FAIL,ohlc_logic_error
+minute:002067:1m,dataset_quality,PASS,
+minute-derived:002067:3m,dataset_quality,FAIL,由1分钟样本按3分钟分桶演示聚合；未写入Raw，不代表上游直接支持
+minute:002067:5m,dataset_quality,PASS,
+minute:300274:1m,dataset_quality,PASS,
+minute-derived:300274:3m,dataset_quality,FAIL,由1分钟样本按3分钟分桶演示聚合；未写入Raw，不代表上游直接支持
+minute:300274:5m,dataset_quality,PASS,
+minute:600763:1m,dataset_quality,PASS,
+minute-derived:600763:3m,dataset_quality,FAIL,由1分钟样本按3分钟分桶演示聚合；未写入Raw，不代表上游直接支持
+minute:600763:5m,dataset_quality,PASS,
+minute:02180.HK:1m,dataset_quality,PASS,
+minute-derived:02180.HK:3m,dataset_quality,FAIL,由1分钟样本按3分钟分桶演示聚合；未写入Raw，不代表上游直接支持
+minute:02180.HK:5m,dataset_quality,PASS,
+minute:08365.HK:1m,dataset_quality,PASS,
+minute-derived:08365.HK:3m,dataset_quality,FAIL,由1分钟样本按3分钟分桶演示聚合；未写入Raw，不代表上游直接支持
+minute:08365.HK:5m,dataset_quality,PASS,
+crypto:ETHUSDT:1m,dataset_quality,PASS,
+crypto:ETHUSDT:3m,dataset_quality,PASS,
+crypto:ETHUSDT:5m,dataset_quality,PASS,
+crypto:ETHUSDT:15m,dataset_quality,PASS,
+crypto:ETHUSDT:1h,dataset_quality,PASS,
+crypto:ETHUSDT:1d,dataset_quality,PASS,
+stage17,raw_manifest_closed_world,PASS,

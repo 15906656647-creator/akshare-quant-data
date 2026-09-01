@@ -1,0 +1,244 @@
+{
+  "stage": 17,
+  "run_id": "78cddc46-4b2a-4ebe-9065-1e54e3dff522",
+  "status": "BLOCKED",
+  "as_of_date": "2026-08-24",
+  "started_at": "2026-08-24T10:36:58.498313+00:00",
+  "finished_at": "2026-08-24T11:02:40.248391+00:00",
+  "blocked_risks": [
+    "daily:02076.HK:hfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:02076.HK:qfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:02076.HK:raw:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:02180.HK:hfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:02180.HK:qfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:02180.HK:raw:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:06100.HK:hfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:06100.HK:qfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:06100.HK:raw:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:06919.HK:hfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:06919.HK:qfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:06919.HK:raw:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:08365.HK:hfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:08365.HK:qfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:08365.HK:raw:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:08462.HK:hfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:08462.HK:qfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:08462.HK:raw:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:09669.HK:hfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:09669.HK:qfq:failed:eastmoney:connection_error | sina:ohlc_logic_error",
+    "daily:09669.HK:raw:failed:eastmoney:connection_error | sina:ohlc_logic_error"
+  ],
+  "blocker_details": [
+    {
+      "dataset_id": "daily:02180.HK:raw",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:02180.HK:qfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:02180.HK:hfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:08365.HK:raw",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:08365.HK:qfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:08365.HK:hfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:08462.HK:raw",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:08462.HK:qfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:08462.HK:hfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:02076.HK:raw",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:02076.HK:qfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:02076.HK:hfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:06100.HK:raw",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:06100.HK:qfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:06100.HK:hfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:06919.HK:raw",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:06919.HK:qfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:06919.HK:hfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:09669.HK:raw",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:09669.HK:qfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    },
+    {
+      "dataset_id": "daily:09669.HK:hfq",
+      "category": "source_candidate_failure",
+      "status": "failed",
+      "quality_status": "FAIL",
+      "error_type": "all_sources_unusable",
+      "detail": "eastmoney:connection_error | sina:ohlc_logic_error",
+      "selected_source": null
+    }
+  ],
+  "unavailable_items": [
+    "02076.HK:history_unavailable",
+    "02180.HK:history_unavailable",
+    "06100.HK:history_unavailable",
+    "06919.HK:history_unavailable",
+    "08365.HK:history_unavailable",
+    "08462.HK:history_unavailable",
+    "09669.HK:history_unavailable"
+  ],
+  "counts": {
+    "daily_expected": 69,
+    "daily_expected_count": 69,
+    "daily_success": 48,
+    "daily_nonempty_count": 48,
+    "daily_quality_pass_count": 48,
+    "daily_success_semantics": "compatibility_alias_of_daily_nonempty_count",
+    "crypto_expected": 6,
+    "crypto_success": 6,
+    "minute_probe_expected": 10,
+    "minute_probe_success": 1
+  },
+  "stage18_authorized": false
+}

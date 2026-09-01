@@ -1821,6 +1821,19 @@ def main():
     mode16.add_argument("--validate-only", action="store_true", default=False)
     b16.add_argument("--log-level", default="INFO")
     b16.add_argument("--debug", action="store_true", default=False)
+    b17 = sub.add_parser(
+        "collect-stage17",
+        help="Collect and audit Stage 17 A-share, H-share, and ETHUSDT Raw data",
+    )
+    b17.add_argument("--as-of-date", required=True)
+    b17.add_argument("--config", default="config/stage17.yml")
+    b17.add_argument("--run-id", default=None)
+    mode17 = b17.add_mutually_exclusive_group()
+    mode17.add_argument("--dry-run", action="store_true", default=False)
+    mode17.add_argument("--validate-only", action="store_true", default=False)
+    b17.add_argument("--log-level", default="INFO")
+    b17.add_argument("--debug", action="store_true", default=False)
+    b18 = sub.add_parser(
     probe = sub.add_parser(
         "stage8-source-probe",
         help="Probe authoritative rule/status sources and write feasibility report",
@@ -2025,6 +2038,10 @@ def main():
         sys.exit(_cmd_quality_control(args))
     elif args.command == "final-report":
         sys.exit(_cmd_final_report(args))
+    elif args.command == "collect-stage17":
+        from .stage17_cli import command as stage17_command
+
+        sys.exit(stage17_command(args))
     elif args.command == "stage8-source-probe":
         sys.exit(_cmd_stage8_source_probe(args))
     elif args.command == "stage8-rules-build":

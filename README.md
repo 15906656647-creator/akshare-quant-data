@@ -185,6 +185,29 @@ python run_pipeline.py quality-control --as-of-date 2026-07-27 \
 正式涨停事件缺失时，交叉验证涨停项标记 `UNAVAILABLE` 并写入 `blocked` 风险，
 不伪造正式结果。
 
+截至 2026-08-24，Stage 15 在治理层为 `CONDITIONALLY_CLOSED`，因此允许进入
+Stage 17；这不会改变上述程序状态。S15-14 和正式涨跌停事件仍为
+`BLOCKED/UNAVAILABLE`，Stage 19 正式发布门禁继续有效。完整决策见
+[`docs/stage15_conditional_closure.md`](docs/stage15_conditional_closure.md)。
+
+## Stage 17 多市场原始数据采集
+
+`collect-stage17`按独立`run_id`采集A股、港股和OKX `ETH-USDT` Raw数据。
+配置、实施和验收分别见`config/stage17.yml`、
+[`docs/stage17_implementation.md`](docs/stage17_implementation.md)和
+[`docs/stage17_acceptance.md`](docs/stage17_acceptance.md)。
+
+```bash
+python run_pipeline.py collect-stage17 --as-of-date 2026-08-24 --validate-only
+python run_pipeline.py collect-stage17 --as-of-date 2026-08-24 --dry-run
+python run_pipeline.py collect-stage17 --as-of-date 2026-08-24 --run-id <uuid>
+```
+
+截至2026-08-24，重新审计后的正式批次状态仍为`BLOCKED`：A股48/48通过，港股
+21/21因主源连接失败且新浪候选存在`ohlc_logic_error`而保持阻塞；正式日线非空数与
+质量通过数均为48/69，ETH六周期全部通过。CLI会分别显示非空Raw数和质量通过数。
+Stage 18未获授权。本入口不会采集财务报表或生成涨跌停事件。
+
 ## 目录结构
 
 ```text

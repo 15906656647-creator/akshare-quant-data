@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import time
+import threading
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
@@ -43,6 +44,8 @@ def _call_with_retry(
     parameters: dict[str, Any],
     max_attempts: int,
     retry_delay_seconds: float,
+    max_retry_delay_seconds: float | None = None,
+    sleeper: Callable[[float], None] = time.sleep,
 ) -> MarketCall:
     attempts = max(1, min(int(max_attempts), 3))
     for attempt in range(1, attempts + 1):
@@ -71,9 +74,38 @@ def _call_with_retry(
                     error_type,
                     _sanitize_message(exc),
                 )
-            time.sleep(max(0.0, retry_delay_seconds))
+            base_delay = max(0.0, retry_delay_seconds)
+            maximum = base_delay if max_retry_delay_seconds is None else max(
+                base_delay, max_retry_delay_seconds
+            )
+            sleeper(min(maximum, base_delay * (2 ** (attempt - 1))))
     raise AssertionError("retry loop exhausted unexpectedly")
+_REQUESTS_TIMEOUT_LOCK = threading.Lock()
 
+
+def _call_with_default_http_timeout(
+    function: Callable[..., Any], *, parameters: dict[str, Any], timeout: float,
+) -> Any:
+    """Apply a bounded default timeout to AKShare functions without timeout args.
+
+    Stage 17 executes source calls sequentially. The lock makes the temporary
+    HTTP getter wrapper deterministic if an adapter is accidentally used by
+    more than one Stage 17 worker.
+    """
+    import requests
+
+    original_get = getattr(requests, "get")
+
+    def timed_get(*args: Any, **kwargs: Any) -> Any:
+        kwargs.setdefault("timeout", timeout)
+        return original_get(*args, **kwargs)
+
+    with _REQUESTS_TIMEOUT_LOCK:
+        setattr(requests, "get", timed_get)
+        try:
+            return function(**parameters)
+        finally:
+            setattr(requests, "get", original_get)
 
 class StockMarketAdapter:
     """Only class allowed to call the two AKShare interfaces used in Stage 3."""

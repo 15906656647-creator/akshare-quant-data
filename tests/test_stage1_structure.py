@@ -182,6 +182,7 @@ class TestStageBoundary:
             "stock_cash_flow_sheet_by_report_em",
             "stock_individual_fund_flow",
             "crypto_js_spot",
+            "stage17",
         }
         assert {item.name for item in raw.iterdir()} <= allowed
         crypto_raw = raw / "crypto_js_spot"

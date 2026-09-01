@@ -1,0 +1,338 @@
+{
+  "as_of_date": "2026-08-24",
+  "audit_date": "2026-08-25",
+  "audit_run_id": "52f4f2ab-1ec9-4c8a-9d73-25d18fcf5ace",
+  "candidate_dataset_count": 21,
+  "distinct_hk_symbol_count": 7,
+  "formal_manifest": {
+    "path": "reports/stage17/78cddc46-4b2a-4ebe-9065-1e54e3dff522/stage17_manifest.json",
+    "sha256": "72764163495678760fc1563d234bc25fb8720e28e97af33dd7158915c1560f7d"
+  },
+  "formal_run_id": "78cddc46-4b2a-4ebe-9065-1e54e3dff522",
+  "formal_run_summary": {
+    "path": "reports/stage17/78cddc46-4b2a-4ebe-9065-1e54e3dff522/stage17_run.json",
+    "sha256": "a3ca2139c5590b2a9dd64b663e9c0e8f58f11272b80afd20a84f411930d5db6b"
+  },
+  "formal_stage_status_after": "BLOCKED",
+  "formal_stage_status_before": "BLOCKED",
+  "invalid_row_count": 1089,
+  "network_calls": 0,
+  "outputs": [
+    {
+      "path": "reports/stage17_hk_audit/52f4f2ab-1ec9-4c8a-9d73-25d18fcf5ace/hk_ohlc_error_analysis.csv",
+      "sha256": "cb6dd4e609dec9b8ad96e32bcd02f2a8579a8353f98ab4c48821a4aa2e21e9e0",
+      "size_bytes": 475194
+    },
+    {
+      "path": "reports/stage17_hk_audit/52f4f2ab-1ec9-4c8a-9d73-25d18fcf5ace/hk_dataset_summary.csv",
+      "sha256": "58a448e2ba3cd43763c99190534cd207ead1b2a16ec386f4eb2f74e3a768fb65",
+      "size_bytes": 15991
+    },
+    {
+      "path": "reports/stage17_hk_audit/52f4f2ab-1ec9-4c8a-9d73-25d18fcf5ace/hk_source_replacement_evaluation.md",
+      "sha256": "18fb94a2ed55053400275f75cd90b6a66c012b0c44d4255ecccc97401f670bc6",
+      "size_bytes": 4721
+    }
+  ],
+  "raw_files_modified": 0,
+  "root_cause": "upstream_raw_ohlc_inconsistency",
+  "stage": 17,
+  "stage18_authorized": false,
+  "task": "hk_ohlc_root_cause_audit",
+  "verified_inputs": [
+    {
+      "dataset_id": "daily:02076.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/adjust=raw/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "7759730f73ae6ea665aca0c6f45f7ff3d108b8e993b384a4575345a30b4d0c10",
+      "size_bytes": 24853
+    },
+    {
+      "dataset_id": "daily:02076.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/adjust=raw/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "024b16de8efde11e249ab999081fd1c90e927cb09c5e35937b3200718faa003d",
+      "size_bytes": 2065
+    },
+    {
+      "dataset_id": "daily:02076.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/adjust=qfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "ec9ea2aef432e323934b5201aaa07ca019a38a39fa7a4f1dbf397701b71e6e9d",
+      "size_bytes": 31650
+    },
+    {
+      "dataset_id": "daily:02076.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/adjust=qfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "c0e642c4fdda20d903b44daea65346894831b2dd0494146e707bddd5d650caf6",
+      "size_bytes": 2068
+    },
+    {
+      "dataset_id": "daily:02076.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/adjust=hfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "15daa34164cd3f01e5e113e4c0c8f88d1a143182a57b9c96d087865ca5baa966",
+      "size_bytes": 26697
+    },
+    {
+      "dataset_id": "daily:02076.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/adjust=hfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "f4fc09386da3eccdc09a2c81a89ddb3c4ff8aca4b1f75c2fd767a91d28a20fa3",
+      "size_bytes": 2068
+    },
+    {
+      "dataset_id": "daily:02180.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/adjust=raw/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "57538c94b984eb1224c897f74688d9af54c5e215201152086f9328a89f1588bf",
+      "size_bytes": 34867
+    },
+    {
+      "dataset_id": "daily:02180.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/adjust=raw/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "265aee3876a028bd123a350409d6ddb070807f10087fb1c3cc72a69d2ba2434c",
+      "size_bytes": 2066
+    },
+    {
+      "dataset_id": "daily:02180.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/adjust=qfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "c9f7235dbeceb83d5521c64c9d76fe859277d1e9c4c54c404d5c874d39c3d6ef",
+      "size_bytes": 44588
+    },
+    {
+      "dataset_id": "daily:02180.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/adjust=qfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "3fdb4d882d4844cefd14509f7b62af5588c79a153eba0cd445a6d76983592f1d",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:02180.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/adjust=hfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "a3ed05cc326aa7cddab31bda6a821788929537487f09271dab32fa50097108e3",
+      "size_bytes": 34455
+    },
+    {
+      "dataset_id": "daily:02180.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/adjust=hfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "a38e6438f72159c4d78da33a4f89b08458107eefb90931f33e7393a504809f60",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:06100.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/adjust=raw/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "8b43f77a3954bffa8ea7b194dd37e1b641c26879e436f990cc4bd7ed0351992c",
+      "size_bytes": 66983
+    },
+    {
+      "dataset_id": "daily:06100.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/adjust=raw/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "14adc6ae4dd58f781ac31b41cf1e4a90211981a55bb8b338ddaf628dd9463373",
+      "size_bytes": 2066
+    },
+    {
+      "dataset_id": "daily:06100.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/adjust=qfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "18aa00292bedef3ab95b1265b129037aa628516b402adf6ec1bd42c2a36341e0",
+      "size_bytes": 81236
+    },
+    {
+      "dataset_id": "daily:06100.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/adjust=qfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "8f69271e7b8b6937006a88a7b2326cd684ed365c9610342de35e6f373728743d",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:06100.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/adjust=hfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "0fc3110cf31483dca6a9a6917e2c48fa1e141ddf0d924d267d3f95944e30218e",
+      "size_bytes": 66974
+    },
+    {
+      "dataset_id": "daily:06100.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/adjust=hfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "64c8ca5a0c108ac813372e877d82468fc139ee2c523852e1a6a447b1d513e105",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:06919.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/adjust=raw/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "112d4916343af9972c62b39edd2937d087419240f308ab02a677fd487c77a586",
+      "size_bytes": 43390
+    },
+    {
+      "dataset_id": "daily:06919.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/adjust=raw/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "483d7df1f5429175a503d403fb7d184ab82fd833b134ef68c5a2fe41109d06e2",
+      "size_bytes": 2066
+    },
+    {
+      "dataset_id": "daily:06919.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/adjust=qfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "3abebc2c3c59b9380daad0c5a7b5d0bcc9033b581041a0fab7913a725e51cd35",
+      "size_bytes": 55176
+    },
+    {
+      "dataset_id": "daily:06919.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/adjust=qfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "2aae89a53c7b4ef14330dade5a9da47fbcb4a5b22703ef71447b2a60e4d27b6a",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:06919.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/adjust=hfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "24b84563d1311b7064d99912b29b5be04706715aa2460895a4c17bfe27f47926",
+      "size_bytes": 43357
+    },
+    {
+      "dataset_id": "daily:06919.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/adjust=hfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "75602f0492cad40abf76f9b3901c4c50f9616c4313ba8886ee8525fa2bcbd7d0",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:08365.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/adjust=raw/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "b6c9e5e539a642bf9da42c0d2cda42a7452dd43d4a4fcbb71df28e4fb31c5c66",
+      "size_bytes": 44255
+    },
+    {
+      "dataset_id": "daily:08365.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/adjust=raw/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "3909bf91c52a30cff61f69456114ddedd9ee87907c714f2066cce9343e6df848",
+      "size_bytes": 2066
+    },
+    {
+      "dataset_id": "daily:08365.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/adjust=qfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "02e23ed66e955a13b64ee07e19e01950938b955831daaf6ab8f3134894ba0e19",
+      "size_bytes": 50297
+    },
+    {
+      "dataset_id": "daily:08365.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/adjust=qfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "2b201c7bbc4058c3bc7c0b8d9e74c49024376482a4a8b6ff93ee887f22e88b13",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:08365.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/adjust=hfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "38bffd628f1ea0b590fd51c84dfb77369b742c34ca5fb371e253d9f4887e6de7",
+      "size_bytes": 46776
+    },
+    {
+      "dataset_id": "daily:08365.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/adjust=hfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "2c2a435ac43446ce4a0dadbf5d811c9b15023f69210457af4f2018ecc94e030f",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:08462.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/adjust=raw/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "3e0c6f7fe52d734cf4c9734a27ead3f921b4f0888c5387c6140fe5cec961d4f5",
+      "size_bytes": 44778
+    },
+    {
+      "dataset_id": "daily:08462.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/adjust=raw/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "b57cca5943bf58df5c008d5311c5d13decc8c8a63805510888b11e14c2b58e68",
+      "size_bytes": 2066
+    },
+    {
+      "dataset_id": "daily:08462.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/adjust=qfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "3e0c6f7fe52d734cf4c9734a27ead3f921b4f0888c5387c6140fe5cec961d4f5",
+      "size_bytes": 44778
+    },
+    {
+      "dataset_id": "daily:08462.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/adjust=qfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "1a802b30bd1bf42fccd0d6c10327fed54e2d9efe347e7f6e01a38a4ddfb129a3",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:08462.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/adjust=hfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "3e0c6f7fe52d734cf4c9734a27ead3f921b4f0888c5387c6140fe5cec961d4f5",
+      "size_bytes": 44778
+    },
+    {
+      "dataset_id": "daily:08462.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/adjust=hfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "ef0e0bebb6de18fbaf5fbaa0b5f879d7a2bd39f658a4771725072f6bdcfde39a",
+      "size_bytes": 2069
+    },
+    {
+      "dataset_id": "daily:09669.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=raw/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "e7ea01dc8c80bf56c1110c7c0e005f0e6c2d19b625a639aef9d7d60ef618f47b",
+      "size_bytes": 30097
+    },
+    {
+      "dataset_id": "daily:09669.HK:raw:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=raw/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "113d21c52c8352c319e4bd9af90f789ffb52c24e4976f53f7da7ea1bac4f1685",
+      "size_bytes": 2065
+    },
+    {
+      "dataset_id": "daily:09669.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=qfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "e7ea01dc8c80bf56c1110c7c0e005f0e6c2d19b625a639aef9d7d60ef618f47b",
+      "size_bytes": 30097
+    },
+    {
+      "dataset_id": "daily:09669.HK:qfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=qfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "69b6235550fe216e0d22b24071377ac2af19b6fb9238730cd9d4fe0dec73cf5f",
+      "size_bytes": 2068
+    },
+    {
+      "dataset_id": "daily:09669.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=hfq/source=sina/data.parquet",
+      "role": "data",
+      "sha256": "e7ea01dc8c80bf56c1110c7c0e005f0e6c2d19b625a639aef9d7d60ef618f47b",
+      "size_bytes": 30097
+    },
+    {
+      "dataset_id": "daily:09669.HK:hfq:candidate:sina",
+      "path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=hfq/source=sina/metadata.json",
+      "role": "metadata",
+      "sha256": "21e53937ce70020d2cde69e64c136cdc14b57a1090703afde6c2e77cbd88f0dd",
+      "size_bytes": 2068
+    }
+  ]
+}

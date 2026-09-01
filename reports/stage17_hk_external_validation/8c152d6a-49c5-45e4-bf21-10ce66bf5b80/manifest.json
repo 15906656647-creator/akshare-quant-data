@@ -1,0 +1,339 @@
+{
+  "stage": 17,
+  "task": "stage17_6_3_09669_external_validation",
+  "run_id": "8c152d6a-49c5-45e4-bf21-10ce66bf5b80",
+  "symbol": "09669.HK",
+  "as_of_date": "2026-08-24",
+  "started_at": "2026-08-25T03:08:32.389468+00:00",
+  "finished_at": "2026-08-25T03:08:33.713675+00:00",
+  "validation_status": "BLOCKED",
+  "stage17_formal_status_before": "BLOCKED",
+  "stage17_formal_status_after": "BLOCKED",
+  "stage17_formal_rerun": false,
+  "provider_registry_built": false,
+  "stage18_authorized": false,
+  "existing_provider_evidence": [
+    {
+      "provider": "sina",
+      "adjust": "raw",
+      "run_id": "78cddc46-4b2a-4ebe-9065-1e54e3dff522",
+      "status": "success",
+      "quality_status": "FAIL",
+      "error_type": "",
+      "error_message": "ohlc_logic_error",
+      "data_path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=raw/source=sina/data.parquet",
+      "data_sha256": "e7ea01dc8c80bf56c1110c7c0e005f0e6c2d19b625a639aef9d7d60ef618f47b"
+    },
+    {
+      "provider": "sina",
+      "adjust": "qfq",
+      "run_id": "78cddc46-4b2a-4ebe-9065-1e54e3dff522",
+      "status": "success",
+      "quality_status": "FAIL",
+      "error_type": "",
+      "error_message": "ohlc_logic_error",
+      "data_path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=qfq/source=sina/data.parquet",
+      "data_sha256": "e7ea01dc8c80bf56c1110c7c0e005f0e6c2d19b625a639aef9d7d60ef618f47b"
+    },
+    {
+      "provider": "sina",
+      "adjust": "hfq",
+      "run_id": "78cddc46-4b2a-4ebe-9065-1e54e3dff522",
+      "status": "success",
+      "quality_status": "FAIL",
+      "error_type": "",
+      "error_message": "ohlc_logic_error",
+      "data_path": "data/raw/stage17/equity_daily/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/adjust=hfq/source=sina/data.parquet",
+      "data_sha256": "e7ea01dc8c80bf56c1110c7c0e005f0e6c2d19b625a639aef9d7d60ef618f47b"
+    },
+    {
+      "provider": "tencent",
+      "adjust": "raw",
+      "run_id": "a7c3e6d1-90b4-4c15-a268-4c5c4bc66ba2",
+      "status": "PASS",
+      "quality_status": "PASS",
+      "error_type": "",
+      "error_message": "",
+      "data_path": "data/raw/stage17/hk_tencent_candidate/run_id=a7c3e6d1-90b4-4c15-a268-4c5c4bc66ba2/market=HK/symbol=09669.HK/adjust=raw/source=tencent/data.parquet",
+      "data_sha256": "0a3b60e25d7ae2d763cfe94c66f8fbbaadf7109117c41e5a7a7eb0bc72f6ce9b"
+    },
+    {
+      "provider": "tencent",
+      "adjust": "qfq",
+      "run_id": "a7c3e6d1-90b4-4c15-a268-4c5c4bc66ba2",
+      "status": "FAIL",
+      "quality_status": "NOT_RUN",
+      "error_type": "upstream_error",
+      "error_message": "'日期'",
+      "data_path": "",
+      "data_sha256": ""
+    },
+    {
+      "provider": "tencent",
+      "adjust": "hfq",
+      "run_id": "a7c3e6d1-90b4-4c15-a268-4c5c4bc66ba2",
+      "status": "FAIL",
+      "quality_status": "NOT_RUN",
+      "error_type": "upstream_error",
+      "error_message": "'日期'",
+      "data_path": "",
+      "data_sha256": ""
+    },
+    {
+      "provider": "eastmoney",
+      "adjust": "raw",
+      "run_id": "f041b62c-ea95-4f37-a9d5-6b0d9d4a27d8",
+      "status": "FAIL",
+      "quality_status": "FAIL",
+      "error_type": "",
+      "error_message": "ohlc_logic_error",
+      "data_path": "data/raw/stage17/hk_eastmoney_candidate/run_id=f041b62c-ea95-4f37-a9d5-6b0d9d4a27d8/market=HK/symbol=09669.HK/adjust=raw/source=eastmoney/data.parquet",
+      "data_sha256": "d03594ffe74422f607750ba02b93fc0776eefaff091ce42cc7ad21c0c10f5117"
+    },
+    {
+      "provider": "eastmoney",
+      "adjust": "qfq",
+      "run_id": "f041b62c-ea95-4f37-a9d5-6b0d9d4a27d8",
+      "status": "FAIL",
+      "quality_status": "FAIL",
+      "error_type": "",
+      "error_message": "ohlc_logic_error",
+      "data_path": "data/raw/stage17/hk_eastmoney_candidate/run_id=f041b62c-ea95-4f37-a9d5-6b0d9d4a27d8/market=HK/symbol=09669.HK/adjust=qfq/source=eastmoney/data.parquet",
+      "data_sha256": "d03594ffe74422f607750ba02b93fc0776eefaff091ce42cc7ad21c0c10f5117"
+    },
+    {
+      "provider": "eastmoney",
+      "adjust": "hfq",
+      "run_id": "f041b62c-ea95-4f37-a9d5-6b0d9d4a27d8",
+      "status": "FAIL",
+      "quality_status": "FAIL",
+      "error_type": "",
+      "error_message": "ohlc_logic_error",
+      "data_path": "data/raw/stage17/hk_eastmoney_candidate/run_id=f041b62c-ea95-4f37-a9d5-6b0d9d4a27d8/market=HK/symbol=09669.HK/adjust=hfq/source=eastmoney/data.parquet",
+      "data_sha256": "d03594ffe74422f607750ba02b93fc0776eefaff091ce42cc7ad21c0c10f5117"
+    }
+  ],
+  "synchronized_anomalies": [
+    {
+      "adjust": "hfq",
+      "trade_date": "2024-03-07",
+      "providers": [
+        "eastmoney",
+        "sina"
+      ]
+    },
+    {
+      "adjust": "qfq",
+      "trade_date": "2024-03-07",
+      "providers": [
+        "eastmoney",
+        "sina"
+      ]
+    },
+    {
+      "adjust": "raw",
+      "trade_date": "2024-03-07",
+      "providers": [
+        "eastmoney",
+        "sina",
+        "yahoo"
+      ]
+    }
+  ],
+  "external_provider_results": [
+    {
+      "provider": "yahoo",
+      "interface": "chart_v8",
+      "adjust": "raw",
+      "status": "FAIL",
+      "quality_status": "FAIL",
+      "semantics": "provider_native_raw_ohlc_and_adjusted_close_only",
+      "reason": "ohlc_logic_error",
+      "row_count": 826,
+      "raw_response_sha256": "0cc677a917d2d57f1f27f3aba8df22e5a7b638d39b2eab38b12f7c00c7deeaf9"
+    },
+    {
+      "provider": "yahoo",
+      "interface": "chart_v8",
+      "adjust": "qfq",
+      "status": "FAIL",
+      "quality_status": "NOT_RUN",
+      "semantics": "provider_native_raw_ohlc_and_adjusted_close_only",
+      "reason": "adjusted_close_is_not_verified_qfq_ohlc",
+      "row_count": 0,
+      "raw_response_sha256": "0cc677a917d2d57f1f27f3aba8df22e5a7b638d39b2eab38b12f7c00c7deeaf9"
+    },
+    {
+      "provider": "yahoo",
+      "interface": "chart_v8",
+      "adjust": "hfq",
+      "status": "FAIL",
+      "quality_status": "NOT_RUN",
+      "semantics": "provider_native_raw_ohlc_and_adjusted_close_only",
+      "reason": "adjusted_close_is_not_verified_hfq_ohlc",
+      "row_count": 0,
+      "raw_response_sha256": "0cc677a917d2d57f1f27f3aba8df22e5a7b638d39b2eab38b12f7c00c7deeaf9"
+    },
+    {
+      "provider": "alpha_vantage",
+      "interface": "TIME_SERIES_DAILY_ADJUSTED",
+      "adjust": "capability",
+      "status": "UNAVAILABLE",
+      "quality_status": "NOT_RUN",
+      "semantics": "provider_adjusted_daily_not_assumed_qfq_or_hfq",
+      "reason": "api_key_not_configured; no request sent",
+      "row_count": 0,
+      "raw_response_sha256": ""
+    },
+    {
+      "provider": "hkex",
+      "interface": "licensed_historical_data_product",
+      "adjust": "capability",
+      "status": "UNAVAILABLE",
+      "quality_status": "NOT_RUN",
+      "semantics": "no licensed adjusted-history interface configured",
+      "reason": "product entitlement and interface not configured; no request sent",
+      "row_count": 0,
+      "raw_response_sha256": ""
+    }
+  ],
+  "verified_listing_evidence": [
+    {
+      "symbol": "02180.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/data.parquet",
+      "size_bytes": 9694,
+      "sha256": "df7ccdaa0af825f009c47271849111925bd7e929e6ffb516478341d1a60e3a59"
+    },
+    {
+      "symbol": "02180.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "dd1da51912b4d827bdd920b590fd7de0a7c21c81f631b9d4cefeff1cff7251d4"
+    },
+    {
+      "symbol": "08365.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/data.parquet",
+      "size_bytes": 9709,
+      "sha256": "2144887799b2a8affbe279da9a7e4151ca81b270d981004faf5b2ed6f802f27c"
+    },
+    {
+      "symbol": "08365.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "84d610d31c6695608f890b0d198f20da576dfc07040bb6da45d77609bf8bebaa"
+    },
+    {
+      "symbol": "08462.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/data.parquet",
+      "size_bytes": 9739,
+      "sha256": "c5a68573b8ba7b2129e5a400067f69e6ef6e190f0406f8bca791632e18ee7e69"
+    },
+    {
+      "symbol": "08462.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "4a5d8eeb9f994040750ec5145a6f45e14f5f0ed815e389ef9c89e9fb8987cf8d"
+    },
+    {
+      "symbol": "02076.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/data.parquet",
+      "size_bytes": 9480,
+      "sha256": "16d1a4b0bcebf6bd7e4eb15de6e6736b570e02c6820fd983036e660ee29df80c"
+    },
+    {
+      "symbol": "02076.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "317a54aa1debccd183ae2aed32e7185145da1fc21dd0e32399ca9a01daa795a7"
+    },
+    {
+      "symbol": "06100.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/data.parquet",
+      "size_bytes": 9700,
+      "sha256": "3a9e278f832b4b35c9b986eebcdfdfcb6b70d29a46c9070e73551370bfa78818"
+    },
+    {
+      "symbol": "06100.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "0c33cd8d1df74b97507f752b0e1adbc145a62c343a624e0eaf140219387b87c0"
+    },
+    {
+      "symbol": "06919.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/data.parquet",
+      "size_bytes": 9709,
+      "sha256": "c47ed45a3da7c730e585db3ab5bfe5d740af1789590d8fba76161da73805fb12"
+    },
+    {
+      "symbol": "06919.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "c65badc62b80084c90c8aea0794e8a7f3b6ab9ce092673fc68b6d2a2d3804bc6"
+    },
+    {
+      "symbol": "09669.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/data.parquet",
+      "size_bytes": 9709,
+      "sha256": "44b82ec10f28b515e15dda05bedfb30e2445b831476727916f33e84847dc9a7a"
+    },
+    {
+      "symbol": "09669.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "2ba630c47532426795f9b623522c9aaf4290bba2bb4a32cee1153ef8e3a7fcb2"
+    }
+  ],
+  "raw_manifest_closed_world": true,
+  "raw_files": [
+    {
+      "role": "source_response",
+      "path": "data/raw/stage17/hk_external_source_response/run_id=8c152d6a-49c5-45e4-bf21-10ce66bf5b80/market=HK/symbol=09669.HK/source=yahoo/response.json",
+      "size_bytes": 86015,
+      "sha256": "0cc677a917d2d57f1f27f3aba8df22e5a7b638d39b2eab38b12f7c00c7deeaf9"
+    },
+    {
+      "role": "source_metadata",
+      "path": "data/raw/stage17/hk_external_source_response/run_id=8c152d6a-49c5-45e4-bf21-10ce66bf5b80/market=HK/symbol=09669.HK/source=yahoo/metadata.json",
+      "size_bytes": 933,
+      "sha256": "651cf07f80c9fe4c37259c79bc56a7e044d9295c09120eead6574b469e0349cc"
+    },
+    {
+      "role": "candidate_data",
+      "path": "data/raw/stage17/hk_external_candidate/run_id=8c152d6a-49c5-45e4-bf21-10ce66bf5b80/market=HK/symbol=09669.HK/adjust=provider_native/source=yahoo/data.parquet",
+      "size_bytes": 31127,
+      "sha256": "ae36b732c0edb3759978fb5221f09c53591ce08fbacebbbfa662efaef03d4b30"
+    },
+    {
+      "role": "candidate_metadata",
+      "path": "data/raw/stage17/hk_external_candidate/run_id=8c152d6a-49c5-45e4-bf21-10ce66bf5b80/market=HK/symbol=09669.HK/adjust=provider_native/source=yahoo/metadata.json",
+      "size_bytes": 1129,
+      "sha256": "55882a230a1eab8771aa3a05de82fbfd270cdcc74ef95bff5d6252513fa21206"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/stage17_hk_external_validation/8c152d6a-49c5-45e4-bf21-10ce66bf5b80/09669_provider_comparison.csv",
+      "size_bytes": 7099,
+      "sha256": "2a7f07fe5eecddb8591a96dc377f6765c8af2b226ed8b2f1a74d912e5a541fc2"
+    },
+    {
+      "path": "reports/stage17_hk_external_validation/8c152d6a-49c5-45e4-bf21-10ce66bf5b80/09669_source_validation.md",
+      "size_bytes": 2339,
+      "sha256": "c30c3898c7a343c83df023db0afa88b5b99fc8acb0547e3e55cd6cc1076c9543"
+    }
+  ]
+}

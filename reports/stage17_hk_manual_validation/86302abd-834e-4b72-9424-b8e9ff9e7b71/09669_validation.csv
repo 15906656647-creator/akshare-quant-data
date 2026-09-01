@@ -1,0 +1,4 @@
+﻿symbol,adjust,provider,status,call_status,quality_status,row_count,first_date,last_date,listing_date,coverage_status,source,provider_adjust_semantics,source_file,source_sha256,candidate_path,candidate_sha256,error_type,error_message
+09669.HK,raw,manual_external,FAIL,unavailable,NOT_RUN,0,,,2023-04-13,history_unavailable,,,,,,,source_file_missing,No CSV or Parquet source file for 09669.HK/raw
+09669.HK,qfq,manual_external,FAIL,unavailable,NOT_RUN,0,,,2023-04-13,history_unavailable,,,,,,,source_file_missing,No CSV or Parquet source file for 09669.HK/qfq
+09669.HK,hfq,manual_external,FAIL,unavailable,NOT_RUN,0,,,2023-04-13,history_unavailable,,,,,,,source_file_missing,No CSV or Parquet source file for 09669.HK/hfq

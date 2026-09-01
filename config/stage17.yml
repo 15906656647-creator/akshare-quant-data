@@ -1,0 +1,83 @@
+schema_version: "1.2.0"
+stage: 17
+as_of_date: "2026-08-24"
+model_version: "stage17_multimarket_raw_v3_registry"
+
+equity_daily:
+  start_date: "1970-01-01"
+  adjustments: [raw, qfq, hfq]
+  strict_listing_coverage: true
+  providers:
+    a_share:
+      primary: {source: eastmoney, interface: stock_zh_a_hist}
+      fallback: {source: sina, interface: stock_zh_a_daily}
+      fallback_on: [connection_error, timeout, rate_limit, empty_result]
+    h_share:
+      primary: {source: eastmoney, interface: stock_hk_hist}
+      fallback: {source: sina, interface: stock_hk_daily}
+      fallback_on: [connection_error, timeout, rate_limit, empty_result, ohlc_logic_error]
+      registry:
+        "02076.HK": {raw: [tencent, eastmoney, sina], qfq: [tencent, eastmoney, sina], hfq: [tencent, eastmoney, sina]}
+        "02180.HK": {raw: [tencent, eastmoney, sina], qfq: [tencent, eastmoney, sina], hfq: [tencent, eastmoney, sina]}
+        "06100.HK": {raw: [tencent, eastmoney, sina], qfq: [tencent, eastmoney, sina], hfq: [tencent, eastmoney, sina]}
+        "06919.HK": {raw: [tencent, eastmoney, sina], qfq: [tencent, eastmoney, sina], hfq: [tencent, eastmoney, sina]}
+        "08365.HK": {raw: [tencent, eastmoney, sina], qfq: [tencent, eastmoney, sina], hfq: [tencent, eastmoney, sina]}
+        "08462.HK": {raw: [tencent, eastmoney, sina], qfq: [tencent, tencent_compat, eastmoney, sina], hfq: [tencent, tencent_compat, eastmoney, sina]}
+        "09669.HK": {raw: [tencent, eastmoney, sina], qfq: [tencent_compat, eastmoney, sina], hfq: [tencent_compat, eastmoney, sina]}
+  a_shares:
+    - {symbol: "002067", exchange: SZ}
+    - {symbol: "002600", exchange: SZ}
+    - {symbol: "002230", exchange: SZ}
+    - {symbol: "600763", exchange: SH}
+    - {symbol: "603259", exchange: SH}
+    - {symbol: "603799", exchange: SH}
+    - {symbol: "601012", exchange: SH}
+    - {symbol: "600438", exchange: SH}
+    - {symbol: "002361", exchange: SZ}
+    - {symbol: "601500", exchange: SH}
+    - {symbol: "600231", exchange: SH}
+    - {symbol: "300274", exchange: SZ}
+    - {symbol: "601636", exchange: SH}
+    - {symbol: "002129", exchange: SZ}
+    - {symbol: "000100", exchange: SZ}
+    - {symbol: "300433", exchange: SZ}
+  h_shares:
+    - "02180.HK"
+    - "08365.HK"
+    - "08462.HK"
+    - "02076.HK"
+    - "06100.HK"
+    - "06919.HK"
+    - "09669.HK"
+
+equity_minute_feasibility:
+  direct_intervals: [1m, 5m]
+  derived_report_only_interval: 3m
+  a_share_samples: ["002067", "300274", "600763"]
+  h_share_samples: ["02180.HK", "08365.HK"]
+  start_date: "2026-08-17"
+
+crypto:
+  symbol: "ETHUSDT"
+  requested_instrument: "ETH-USDT"
+  provider: "okx_public_api"
+  exchange: "OKX"
+  market: "spot"
+  timezone: "UTC"
+  minute_intervals: [1m, 3m, 5m, 15m]
+  long_history_intervals: [1h, 1d]
+  minute_lookback_days: 90
+  long_history_start_date: "2015-07-30"
+  confirmed_only: true
+
+runtime:
+  max_attempts: 3
+  akshare_retry_delay_seconds: 2.0
+  max_retry_delay_seconds: 8.0
+  inter_request_delay_seconds: 0.15
+  request_timeout_seconds: 20.0
+  okx_page_limit: 300
+
+storage:
+  raw_root: "data/raw/stage17"
+  reports_root: "reports/stage17"

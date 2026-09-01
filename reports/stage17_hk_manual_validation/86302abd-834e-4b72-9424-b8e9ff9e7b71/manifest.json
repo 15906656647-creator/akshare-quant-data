@@ -1,0 +1,200 @@
+{
+  "stage": 17,
+  "task": "stage17_6_5_09669_manual_validation",
+  "run_id": "86302abd-834e-4b72-9424-b8e9ff9e7b71",
+  "evidence_run_id": "78cddc46-4b2a-4ebe-9065-1e54e3dff522",
+  "symbol": "09669.HK",
+  "provider": "manual_external",
+  "input_dir": "E:\\大学\\实习\\嘉驰国际\\AKShare 量化金融数据\\data\\manual\\stage17\\hk",
+  "as_of_date": "2026-08-24",
+  "started_at": "2026-08-25T06:08:10.109308+00:00",
+  "finished_at": "2026-08-25T06:08:10.109308+00:00",
+  "expected_dataset_count": 3,
+  "quality_pass_count": 0,
+  "validation_status": "BLOCKED",
+  "stage17_formal_status_before": "BLOCKED",
+  "stage17_formal_status_after": "BLOCKED",
+  "stage17_formal_rerun": false,
+  "provider_registry_built": false,
+  "stage18_authorized": false,
+  "stage19_artifacts_created": false,
+  "raw_manifest_closed_world": true,
+  "datasets": [
+    {
+      "symbol": "09669.HK",
+      "adjust": "raw",
+      "provider": "manual_external",
+      "status": "FAIL",
+      "call_status": "unavailable",
+      "quality_status": "NOT_RUN",
+      "row_count": 0,
+      "first_date": "",
+      "last_date": "",
+      "listing_date": "2023-04-13",
+      "coverage_status": "history_unavailable",
+      "source": "",
+      "provider_adjust_semantics": "",
+      "source_file": "",
+      "source_sha256": "",
+      "candidate_path": "",
+      "candidate_sha256": "",
+      "error_type": "source_file_missing",
+      "error_message": "No CSV or Parquet source file for 09669.HK/raw"
+    },
+    {
+      "symbol": "09669.HK",
+      "adjust": "qfq",
+      "provider": "manual_external",
+      "status": "FAIL",
+      "call_status": "unavailable",
+      "quality_status": "NOT_RUN",
+      "row_count": 0,
+      "first_date": "",
+      "last_date": "",
+      "listing_date": "2023-04-13",
+      "coverage_status": "history_unavailable",
+      "source": "",
+      "provider_adjust_semantics": "",
+      "source_file": "",
+      "source_sha256": "",
+      "candidate_path": "",
+      "candidate_sha256": "",
+      "error_type": "source_file_missing",
+      "error_message": "No CSV or Parquet source file for 09669.HK/qfq"
+    },
+    {
+      "symbol": "09669.HK",
+      "adjust": "hfq",
+      "provider": "manual_external",
+      "status": "FAIL",
+      "call_status": "unavailable",
+      "quality_status": "NOT_RUN",
+      "row_count": 0,
+      "first_date": "",
+      "last_date": "",
+      "listing_date": "2023-04-13",
+      "coverage_status": "history_unavailable",
+      "source": "",
+      "provider_adjust_semantics": "",
+      "source_file": "",
+      "source_sha256": "",
+      "candidate_path": "",
+      "candidate_sha256": "",
+      "error_type": "source_file_missing",
+      "error_message": "No CSV or Parquet source file for 09669.HK/hfq"
+    }
+  ],
+  "raw_files": [],
+  "verified_listing_evidence": [
+    {
+      "symbol": "02180.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/data.parquet",
+      "size_bytes": 9694,
+      "sha256": "df7ccdaa0af825f009c47271849111925bd7e929e6ffb516478341d1a60e3a59"
+    },
+    {
+      "symbol": "02180.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02180.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "dd1da51912b4d827bdd920b590fd7de0a7c21c81f631b9d4cefeff1cff7251d4"
+    },
+    {
+      "symbol": "08365.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/data.parquet",
+      "size_bytes": 9709,
+      "sha256": "2144887799b2a8affbe279da9a7e4151ca81b270d981004faf5b2ed6f802f27c"
+    },
+    {
+      "symbol": "08365.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08365.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "84d610d31c6695608f890b0d198f20da576dfc07040bb6da45d77609bf8bebaa"
+    },
+    {
+      "symbol": "08462.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/data.parquet",
+      "size_bytes": 9739,
+      "sha256": "c5a68573b8ba7b2129e5a400067f69e6ef6e190f0406f8bca791632e18ee7e69"
+    },
+    {
+      "symbol": "08462.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=08462.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "4a5d8eeb9f994040750ec5145a6f45e14f5f0ed815e389ef9c89e9fb8987cf8d"
+    },
+    {
+      "symbol": "02076.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/data.parquet",
+      "size_bytes": 9480,
+      "sha256": "16d1a4b0bcebf6bd7e4eb15de6e6736b570e02c6820fd983036e660ee29df80c"
+    },
+    {
+      "symbol": "02076.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=02076.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "317a54aa1debccd183ae2aed32e7185145da1fc21dd0e32399ca9a01daa795a7"
+    },
+    {
+      "symbol": "06100.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/data.parquet",
+      "size_bytes": 9700,
+      "sha256": "3a9e278f832b4b35c9b986eebcdfdfcb6b70d29a46c9070e73551370bfa78818"
+    },
+    {
+      "symbol": "06100.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06100.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "0c33cd8d1df74b97507f752b0e1adbc145a62c343a624e0eaf140219387b87c0"
+    },
+    {
+      "symbol": "06919.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/data.parquet",
+      "size_bytes": 9709,
+      "sha256": "c47ed45a3da7c730e585db3ab5bfe5d740af1789590d8fba76161da73805fb12"
+    },
+    {
+      "symbol": "06919.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=06919.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "c65badc62b80084c90c8aea0794e8a7f3b6ab9ce092673fc68b6d2a2d3804bc6"
+    },
+    {
+      "symbol": "09669.HK",
+      "role": "data",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/data.parquet",
+      "size_bytes": 9709,
+      "sha256": "44b82ec10f28b515e15dda05bedfb30e2445b831476727916f33e84847dc9a7a"
+    },
+    {
+      "symbol": "09669.HK",
+      "role": "metadata",
+      "path": "data/raw/stage17/equity_profile/run_id=78cddc46-4b2a-4ebe-9065-1e54e3dff522/market=HK/symbol=09669.HK/metadata.json",
+      "size_bytes": 827,
+      "sha256": "2ba630c47532426795f9b623522c9aaf4290bba2bb4a32cee1153ef8e3a7fcb2"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/stage17_hk_manual_validation/86302abd-834e-4b72-9424-b8e9ff9e7b71/09669_validation.csv",
+      "size_bytes": 726,
+      "sha256": "23a174cdb989be18b161499c76b250bbc0befa34ebb07711329fbb5e7648f83c"
+    },
+    {
+      "path": "reports/stage17_hk_manual_validation/86302abd-834e-4b72-9424-b8e9ff9e7b71/09669_validation.md",
+      "size_bytes": 1667,
+      "sha256": "846cb3d77762b92370429fc4965e19b4bb6fa71bc732f39862969c5a314f76ab"
+    }
+  ]
+}
