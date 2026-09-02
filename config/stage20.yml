@@ -1,0 +1,17 @@
+stage: 20
+analysis_as_of_date: "2026-07-27"
+authorization_mode: RESTRICTED
+authorization_scope: NON_EVENT_ONLY
+entry_contract: reports/stage19/conditional_closure/stage20_restricted_downstream_contract.json
+conditional_closure: reports/stage19/conditional_closure/stage19_conditional_closure.json
+stage17_manifest: reports/stage17/4a5599fb-9e60-4013-9c0c-69fcc25a98b2/stage17_manifest.json
+stage18_contract: reports/stage18/9779de8b-6504-4efc-a473-bf07537a7a8d/downstream_contract.json
+public_data_dir: web/stage20/public/data
+report_root: reports/stage20
+ma_windows: [3, 5, 7, 10, 13, 20, 21]
+weekly_rule: W-FRI
+event_blocker_message: Stage 19 正式涨跌停事件发布门禁尚未通过，因此当前无法提供正式涨跌停统计。
+deployment:
+  provider: Netlify
+  status: READY_NOT_DEPLOYED
+  reason: 当前环境缺少正式 Netlify 部署授权/连接

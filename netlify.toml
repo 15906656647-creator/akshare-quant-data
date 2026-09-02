@@ -1,0 +1,9 @@
+[build]
+  base = "web/stage20"
+  command = "pnpm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
