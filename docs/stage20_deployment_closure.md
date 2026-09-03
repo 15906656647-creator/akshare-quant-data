@@ -1,75 +1,135 @@
-# Stage 20 受限范围部署收口记录
+# Stage 20 ??????????
 
-## 1. 收口边界
+## 1. ????
 
-本任务只验证并尝试完成 Stage 20 `RESTRICTED/NON_EVENT_ONLY` 的 Netlify 部署闭环，
-不启动 Stage 21，不改变 Stage 20 full/event scope，也不改变 Stage 19 Gate 或 remediation。
+??????? Stage 20 `RESTRICTED/NON_EVENT_ONLY` ??? Netlify
+Production Deployment ???
 
-部署入口复核通过：Stage 20 restricted scope=`PASS`、production build=`PASS`、full scope=
-`NOT_AUTHORIZED`、event scope=`BLOCKED`、Stage 21=`NOT_STARTED`。
+??????????????
 
-## 2. Production artifact 与配置复核
+- Stage 20 restricted scope?`PASS`
+- Stage 20 full scope?`NOT_AUTHORIZED`
+- Stage 20 event scope?`BLOCKED`
+- Stage 19 formal event release?`BLOCKED`
+- Stage 19 remediation?`OPEN`
+- Stage 21?`NOT_STARTED`
 
-正式 artifact 为 `web/stage20/dist`，由已验收 public 数据重新执行：
+????????????? Stage 20 ????????????? Stage 20
+full/event scope ????????? Stage 19 ??????????
 
-```text
-cd web/stage20
-pnpm run build
-```
+## 2. Production artifact ???
 
-Vite 5.4.14 共转换 47 个模块，build `PASS`。Netlify 配置检查通过：base 为
-`web/stage20`、command 为 `pnpm run build`、publish 为 `dist`，SPA 200 redirect 存在；
-Vite base 为 `/`，production sourcemap 关闭。
+?? production artifact ? `web/stage20/dist`?
 
-- artifact hash：`4cca7ec81e90e34c7d05b25b583d29ab91a5d9956c4e154881444e0c63da1546`
-- index SHA-256：`9be93b7e014000d7dc18993d0037cfed7103b84b3970e5a6fefd39905d2434e4`
-- dist 文件：173
-- public 数据文件：169
+Netlify/Vite ????? `PASS`?
 
-## 3. Netlify 授权与真实部署结果
+- Base directory?`web/stage20`
+- Build command?`pnpm run build`
+- Publish directory?`dist`
+- SPA redirect??????
+- Vite base?`/`
+- Production sourcemap???
+- dist ???173
+- public ?????169
+- candidate event leak?0
+- secret scan?`PASS`
+- absolute path scan?`PASS`
+- forbidden file scan?`PASS`
+- source map count?0
 
-当前执行环境检查结果：
+?? artifact hash?
 
-- Netlify CLI：不存在；
-- `NETLIFY_*` 授权环境变量：不存在；
-- `.netlify/state.json` 站点绑定：不存在；
-- Netlify connector：不可用。
+- directory SHA-256?`4cca7ec81e90e34c7d05b25b583d29ab91a5d9956c4e154881444e0c63da1546`
+- index SHA-256?`9be93b7e014000d7dc18993d0037cfed7103b84b3970e5a6fefd39905d2434e4`
+- metadata SHA-256?`48c4a2a1969212a0b79a30a3a62f4c39b40681afc819621ac7df29084b9b7816`
 
-OpenAI Sites 属于不同部署平台，不能替代或冒充 Netlify。由于没有正式身份和目标站点，
-未执行交互登录或创建未知站点，也没有伪造 deployment id、site id 或 URL。
+## 3. Netlify ?? Production Deployment
 
-因此：
+?????? Netlify GitHub Web integration ? GitHub production branch
+`main` ???
 
-- deployment closure status：`BLOCKED`
-- deployment status：`READY_NOT_DEPLOYED`
-- production URL：`NULL`
-- deployment id/site id/deployed_at：`NULL`
+???????
 
-## 4. Artifact 安全与静态 Smoke
+- provider?Netlify
+- site/project name?`akshare-quant-data`
+- site/project ID?`4bf18f3c-3d04-4c3f-96d0-765e61289aca`
+- deployment ID?`6a98e79ba1ae2d01c4c1c1da`
+- deployed Git commit?`a9fea0df198bc2b9b6cd58ad7df1b33f0634f6ff`
+- deployed at?`2026-09-03T11:21:44+08:00`
+- production visibility?`PUBLIC`
+- production URL?`https://akshare-quant-data.netlify.app`
+- immutable deploy URL?`https://6a98e79ba1ae2d01c4c1c1da--akshare-quant-data.netlify.app`
 
-- candidate event leak：0；
-- secret scan：`PASS`；
-- local absolute path scan：`PASS`；
-- forbidden DuckDB/SQLite/source map/fixture/debug：0；
-- source map count：0。
+Netlify deploy ???? Initializing?Building?Deploying?Cleanup ?
+Post-processing ?? `Complete`?????? `Published`?
 
-本地静态 smoke 为 `PASS`：index 与其 JS/CSS 引用存在，A 股、港股、ETHUSDT 代表分片可读，
-Stage 19 event 保持 `BLOCKED/NULL`，不存在“0 次涨停/跌停”替代不可用，港股基本面正确显示
-`UNAVAILABLE`。由于没有 production URL，线上 smoke 为 `NOT_RUN_NO_PRODUCTION_URL`，
-visual QA 为 `UNAVAILABLE_NO_PRODUCTION_URL`。
+???????????
 
-## 5. 测试与不可变性
+- deployment closure status?`PASS`
+- deployment status?`DEPLOYED`
+- blocker reason?`NULL`
 
-- 部署收口与 Stage 20 定向：`37 passed in 7.27s`；
-- Stage 0 冻结检查：`35/35 PASS`；
-- 全仓回归：`1122 passed in 437.19s`，0 failed。
+????????/?? Netlify CLI???? `NETLIFY_*` ???????
+??????? blocker????? deployment ??????? Netlify GitHub Web
+integration ??????? Site ID?Deploy ID?Production URL ? Deploy Permalink
+????????
 
-Stage 0/17/18/19 正式资产和治理状态均未修改。Stage 19 formal event release 仍为
-`BLOCKED`，remediation 仍为 `OPEN`；Stage 21 仍为 `NOT_STARTED`。
+## 4. Production Smoke ? Visual QA
 
-## 6. 正式机器证据
+Production HTTP smoke?`PASS`?
+
+???? URL ??? HTTP 200??????? artifact ? SHA-256 identity ???
+
+- `/`
+- `/data/metadata.json`
+- `/data/series/A/000100/1d/qfq.json`
+- `/data/series/HK/02076.HK/1d/qfq.json`
+- `/data/series/CRYPTO/ETHUSDT/1d/none.json`
+
+?????????
+
+- all production endpoints HTTP 200?`PASS`
+- all representative endpoint hashes match local?`PASS`
+- production index hash matches local?`PASS`
+- immutable deploy index hash matches local?`PASS`
+- production metadata hash matches local?`PASS`
+
+?? static smoke?`PASS`?
+
+?? visual QA?`PASS_MANUAL`??? Production URL ?????????????
+restricted dashboard ?????A ????? ETHUSDT ?????Stage 19 event
+??? `BLOCKED/NULL`??????????? 0 ????
+
+## 5. ???????
+
+???????
+
+- Stage 20 deployment tests?`13 passed`
+- Stage 20 restricted + deployment?`39 passed`
+- Stage 0 frozen config?`35/35 checks passed`
+- full repository?`1124 passed`
+- failed?0
+
+????????? Stage 0/17/18/19 ?????????????
+
+Stage 19 ???
+
+- management status?`CONDITIONALLY_CLOSED`
+- formal event release?`BLOCKED`
+- remediation?`OPEN`
+
+Stage 21 ?? `NOT_STARTED`?
+
+## 6. ??????
+
+?? evidence?
 
 `reports/stage20/d2f02a9d-901f-4e99-9f4f-20b6d17c77ef/deployment_closure_evidence.json`
 
-本次部署收口不能宣布 PASS。待提供正式 Netlify 授权以及明确目标站点或获准创建站点后，
-应在独立 Stage 20 部署收口任务中执行真实 production deploy，并对真实 URL 进行线上 smoke。
+? evidence ???? Netlify Site ID?Deploy ID?Production URL?immutable Deploy
+URL???? Git commit?artifact hashes??? smoke??? visual QA ????????
+
+?? Stage 20 restricted deployment closure ???? `PASS`?
+
+?????? Stage 20 ???? restricted/non-event deployment closure????
+Stage 20 full/event scope???? Stage 19 formal event gate??????? Stage 21?
